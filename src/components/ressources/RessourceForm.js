@@ -14,7 +14,7 @@ class RessourceForm extends React.Component {
       buttonForm = (
         <section className="field is-grouped">
           <section className="control">
-            <Link to="/admin/program/ressources">
+            <Link to="/admin/program/ressources/1/edit">
               <button className="button is-link">Editer</button>
             </Link>
           </section>
@@ -32,7 +32,7 @@ class RessourceForm extends React.Component {
       buttonForm = (
         <section className="field is-grouped">
           <section className="control">
-            <Link to="/admin/program/ressources">
+            <Link to="/admin/program/ressources/1/edit">
               <button className="button is-link">Créer</button>
             </Link>
           </section>

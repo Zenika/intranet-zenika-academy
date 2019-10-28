@@ -14,12 +14,12 @@ class WhoToFollowForm extends React.Component {
       buttonForm = (
         <section className="field is-grouped">
           <section className="control">
-            <Link to="/admin/program/ressources">
+            <Link to="/admin/community/whotofollow/1/edit">
               <button className="button is-link">Editer</button>
             </Link>
           </section>
           <section className="control">
-            <Link to="/admin/program/ressources">
+            <Link to="/admin/community/whotofollow">
               <button className="button is-danger ">Supprimer</button>
             </Link>
           </section>
@@ -32,7 +32,7 @@ class WhoToFollowForm extends React.Component {
       buttonForm = (
         <section className="field is-grouped">
           <section className="control">
-            <Link to="/admin/community/whoToFollow">
+            <Link to="/admin/community/whoToFollow/1/edit">
               <button className="button is-link">Créer</button>
             </Link>
           </section>
