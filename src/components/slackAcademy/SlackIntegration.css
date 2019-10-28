@@ -1,0 +1,19 @@
+.titre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    border-style:solid;
+    border-color: #000; 
+    border-width: 1px 1px 0 1px;
+}
+
+.slack{
+    display: flex;
+    height: 25rem;
+    border: 1px solid #000
+}
+
+.container{
+    margin:2rem;
+}

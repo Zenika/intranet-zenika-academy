@@ -1,0 +1,16 @@
+.landingPage_carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carouselControl {
+    height: 5rem;
+    padding: 1.4em;
+    margin: 1.4em;
+}
+
+.carouselPlaceholder {
+    width: 50%;
+    height: auto;
+}

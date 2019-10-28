@@ -1,0 +1,12 @@
+.userDataInput{
+    width: 30rem;
+}
+
+.userDataInputContainer{
+    display: flex;
+    align-items: center;
+}
+
+.userDataInputLabel{
+    width:6rem;
+}
