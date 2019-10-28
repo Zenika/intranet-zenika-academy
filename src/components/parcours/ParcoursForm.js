@@ -110,7 +110,7 @@ class ParcoursForm extends React.Component {
               defaultValue={parcours ? parcours.program : ''}
             />
           </section>
-          <a>Lien vers le programme</a>
+          <a href="https://google.com" rel="noopener noreferrer" target="_blank">Lien vers le programme</a>
         </section>
         <section className="field">
           <label className="label">Equipe pédagogique</label>
