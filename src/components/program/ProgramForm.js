@@ -54,7 +54,7 @@ class ProgramForm extends React.Component {
           <input className="input " type="text" placeholder="Renforcement JS" />
         </section>
         <section className="field">
-          <a href="https://google.com" rel="noopener noreferrer" target="_blank">Lien vers le programme</>
+          <a href="https://google.com" rel="noopener noreferrer" target="_blank">Lien vers le programme</a>
         </section>
         <section className="field">
           <label className="label">Equipe pédagogique</label>
