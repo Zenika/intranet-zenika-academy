@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import RssFeedData from './RssFeedData';
-import '../layout/Layout.css';
+import '../layout/Layout.scss';
 import Searchbar from '../searchbar/Searchbar';
 
 const RssFeedList = () => (

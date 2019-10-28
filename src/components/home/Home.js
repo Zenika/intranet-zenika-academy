@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../app/index.css';
-import '../app/App.css';
+import '../app/index.scss';
+import '../app/App.scss';
 import Caroussel from '../caroussel/Caroussel';
 
 class Home extends Component {

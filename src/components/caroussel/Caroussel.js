@@ -1,5 +1,5 @@
 import React from 'react';
-import './Caroussel.css';
+import './Caroussel.scss';
 
 const Caroussel = () => (
   <section className="landingPage_carousel">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Navigation.css';
+import './Navigation.scss';
 
 
 class NavigationBar extends Component {
@@ -181,22 +181,18 @@ class NavigationBar extends Component {
           <section className="navbar-menu">
             {isNavAdmin ? adminLinks : notAdminLinks}
             <section className="navbar-end">
-
-                <section className="navbar-item has-dropdown is-hoverable">
+              <section className="navbar-item has-dropdown is-hoverable">
+                <Link to="/profil">
                   <span className="navbar-link is-arrowless">
-                  <img
-                    className="image is-48x48 is-rounded"
-                    src="http://blogue-ton-ecole.ac-dijon.fr/wp-content/uploads/2016/07/Avatar_girl_face.png"
-                    alt="placeholde-avatar"
-                    id="navBarAvatar"
-                  />
+                    <img
+                      className="image is-48x48 is-rounded"
+                      src="http://blogue-ton-ecole.ac-dijon.fr/wp-content/uploads/2016/07/Avatar_girl_face.png"
+                      alt="placeholde-avatar"
+                      id="navBarAvatar"
+                    />
                   </span>
-                  <section className="navbar-dropdown">
-                    <Link to="/profil">
-                      <span className="navbar-item">Mon profil</span>
-                    </Link>
-                  </section>
-                </section>
+                </Link>
+              </section>
               <section className="navbar-item">
                 <p>Bienvenue, Anne-Lise!</p>
               </section>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../layout/Layout.css';
+import '../layout/Layout.scss';
 
 const ParcoursData = (props) => (
   <section className="section box mbmd">

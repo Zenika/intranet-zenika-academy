@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css';
+import './Footer.scss';
 import Linkedin from './linkedin.png';
 import Twitter from './twitter.png';
 import Youtube from './youtube.png';

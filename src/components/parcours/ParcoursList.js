@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ParcoursData from './ParcoursData';
-import '../layout/Layout.css';
+import '../layout/Layout.scss';
 import Searchbar from '../searchbar/Searchbar';
 
 const parcours = [

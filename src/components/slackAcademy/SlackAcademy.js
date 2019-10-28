@@ -1,5 +1,5 @@
 import React from 'react';
-import './SlackIntegration.css';
+import './SlackIntegration.scss';
 
 const SlackIntegration = () => (
   <section className="container">

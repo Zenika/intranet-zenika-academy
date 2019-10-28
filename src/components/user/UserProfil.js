@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserProfil.css';
+import './UserProfil.scss';
 
 const UserProfil = () => (
   <article>
