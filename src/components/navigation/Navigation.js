@@ -34,6 +34,13 @@ class NavigationBar extends Component {
     localStorage.setItem('navbarAdmin', state);
   }
 
+  setBurgerBar = () => {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector(`#${burger.dataset.target}`);
+    burger.classList.toggle('is-active');
+    nav.classList.toggle('is-active');
+  };
+
     /**
      * Allows to check if the user is logged in
      */
@@ -173,12 +180,18 @@ class NavigationBar extends Component {
 
       const mainNav = (
         <nav
-          className="navbar"
+          className="navbar is-primary"
           role="navigation"
           aria-label="main navigation"
         >
-          <section className="navbar-brand" />
-          <section className="navbar-menu">
+          <section className="navbar-brand">
+            <span className="navbar-burger burger" onClick={() => this.setBurgerBar()} data-target="navMenu">
+              <span />
+              <span />
+              <span />
+            </span>
+          </section>
+          <section className="navbar-menu" id="navMenu">
             {isNavAdmin ? adminLinks : notAdminLinks}
             <section className="navbar-end">
               <section className="navbar-item has-dropdown is-hoverable">
