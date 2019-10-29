@@ -1,0 +1,31 @@
+.userDataInput{
+    width: 30rem;
+}
+
+.userDataInputContainer{
+    display: flex;
+    align-items: center;
+}
+
+.userDataInputLabel{
+    width:6rem;
+}
+
+.avatarTitle {
+    text-align: center;
+    height: 4rem;
+    display: block;
+    font-size: 1.5rem;
+}
+
+.edit{
+    margin:0 1rem;
+    padding: 0.3rem;
+    color:blue;
+    border:none;
+    /* text-decoration: underline blue; */
+}
+
+.modal{
+    display: flex;
+}

@@ -20,7 +20,7 @@ import RssFeedList from '../rssFeed/RssFeedList';
 import RssFeedForm from '../rssFeed/RssFeedForm';
 import WhoToFollowForm from '../whoToFollow/WhoToFollowForm';
 import WhoToFollowList from '../whoToFollow/WhoToFollowList';
-import UserProfil from '../user/UserProfil';
+import UserProfile from '../user/UserProfile';
 import Home from '../home/Home';
 
 class App extends React.Component {
@@ -62,7 +62,7 @@ class App extends React.Component {
             <Route exact path="/admin/community/whoToFollow" component={WhoToFollowList} />
             <Route key="create-whotofollow" exact path="/admin/community/whoToFollow/create" component={WhoToFollowForm} />
             <Route key="edit-whotofollow" exact path="/admin/community/whoToFollow/:id/edit" component={WhoToFollowForm} />
-            <Route exact path="/profil" component={UserProfil} />
+            <Route exact path="/profil" component={UserProfile} />
             <Route component={Notfound} />
           </Switch>
         </main>
