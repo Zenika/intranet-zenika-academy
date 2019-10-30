@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.scss';
-
+import logo from './logo.png';
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -72,9 +72,13 @@ class NavigationBar extends Component {
       const { loggedIn, modalState, isNavAdmin } = this.state;
 
       const mainLink = (
-        <section className="navbar-item">
+        <section className="navbar-item" onClick={() => this.setNavbarState(false)}>
           <Link to="/">
-            <span className="navbar-item" onClick={() => this.setNavbarState(false)}>Accueil</span>
+            <img
+              id="navbarLogo"
+              src={logo}
+              alt="logo zenika"
+            />
           </Link>
         </section>
       );
@@ -172,7 +176,8 @@ class NavigationBar extends Component {
           </section>
           <section className="navbar-item">
             <Link to="/admin/parcours/administration">
-              <span className="navbar-item" onClick={() => this.setNavbarState(true)}>Administration</span>
+              <span className="navbar-item is-hidden-mobile is-hidden-touch" onClick={() => this.setNavbarState(true)}>Administration</span>
+              <span className="navbar-item is-hidden-desktop" onClick={() => this.setNavbarState(true)}>Admin</span>
             </Link>
           </section>
         </section>
@@ -198,7 +203,6 @@ class NavigationBar extends Component {
                 <Link to="/profil">
                   <span className="navbar-link is-arrowless">
                     <img
-                      className="image is-48x48 is-rounded"
                       src="http://blogue-ton-ecole.ac-dijon.fr/wp-content/uploads/2016/07/Avatar_girl_face.png"
                       alt="placeholde-avatar"
                       id="navBarAvatar"
@@ -206,17 +210,12 @@ class NavigationBar extends Component {
                   </span>
                 </Link>
               </section>
-              <section className="navbar-item">
-                <p>Bienvenue, Anne-Lise!</p>
+              <section className="navbar-item is-hidden-mobile is-hidden-touch">
+                <span>Bienvenue, Anne-Lise!</span>
               </section>
-              <section className="navbar-item">
+              <section className="navbar-item" onClick={() => this.connect(false)}>
                 <Link to="/">
-                  <span
-                    onClick={() => this.connect(false)}
-                    className="button is-danger"
-                  >
-                                            Sign out
-                  </span>
+                    <i className="fas fa-sign-out-alt icon-signout" />
                 </Link>
               </section>
             </section>

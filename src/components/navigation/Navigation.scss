@@ -1,3 +1,21 @@
+@import "~bulma/sass/utilities/initial-variables.sass";
+$navbar-breakpoint: 650px;
+@import "~bulma/bulma.sass";
+
+@media screen and (max-width: 1023px) {
+    .navbar-menu {
+        background-color: #00d1b2;
+    }
+}
+
+@media screen and (max-width: 748px) {
+    .navbar-menu {
+        font-size: 0.85rem;
+    }
+}
+
+
+
 a {
     color: #4a4a4a
 }
@@ -7,10 +25,11 @@ a {
     display: flex;
 }
 
-#navBarAvatar {
+
+#navbarLogo, #navBarAvatar  {
+    max-height: 3.75rem;
     height: 50px;
     border-radius: 50px;
-    max-height: 3.75rem;
 }
 
 .dropdownMenu {
@@ -30,4 +49,8 @@ a:hover{
 
 .dropdownItem:hover {
     background-color: #fafafa;
+}
+
+.icon-signout {
+    font-size: 2rem;
 }
