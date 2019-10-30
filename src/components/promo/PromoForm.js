@@ -1,28 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import DatePicker from '../datepicker/DatePicker';
+import React from "react";
+import { Link } from "react-router-dom";
+import DatePicker from "../datepicker/DatePicker";
 
-class ParcoursForm extends React.Component {
-  componentDidUpdate() {
-  }
+class PromoForm extends React.Component {
+  componentDidUpdate() {}
 
   render() {
     const { id } = this.props.match.params;
-    let parcours;
+    let promo;
     let titleForm;
     let buttonForm;
 
     if (id !== undefined) {
       if (this.props.location.query) {
-        parcours = this.props.location.query.parcours;
+        promo = this.props.location.query.promo;
       }
-      titleForm = (
-        <h1 className="title is-4 is-spaced">Edition d'un parcours</h1>
-      );
+      titleForm = <h1 className="title is-4 is-spaced">Edition d'une promo</h1>;
       buttonForm = (
         <section className="field is-grouped">
           <section className="control">
-            <Link to="/admin/parcours/1/edit">
+            <Link to="/admin/promo/1/edit">
               <button className="button is-link">Editer</button>
             </Link>
           </section>
@@ -34,14 +31,14 @@ class ParcoursForm extends React.Component {
         </section>
       );
     } else {
-      parcours = {};
+      promo = {};
       titleForm = (
-        <h1 className="title is-4 is-spaced">Création d'un parcours</h1>
+        <h1 className="title is-4 is-spaced">Création d'une promo</h1>
       );
       buttonForm = (
         <section className="field is-grouped">
           <section className="control">
-            <Link to="/admin/parcours/1/edit">
+            <Link to="/admin/promo/1/edit">
               <button className="button is-link">Créer</button>
             </Link>
           </section>
@@ -61,9 +58,7 @@ class ParcoursForm extends React.Component {
           <section className="control">
             <label className="label">Pays: </label>
             <section className="select">
-              <select
-                defaultValue={parcours ? parcours.country : ''}
-              >
+              <select defaultValue={promo ? promo.country : ""}>
                 <option>France</option>
                 <option>Maroc</option>
               </select>
@@ -74,7 +69,7 @@ class ParcoursForm extends React.Component {
           <label className="label">Ville: </label>
           <section className="control">
             <section className="select">
-              <select defaultValue={parcours ? parcours.city : ''}>
+              <select defaultValue={promo ? promo.city : ""}>
                 <option>Paris</option>
                 <option>Rennes</option>
               </select>
@@ -82,42 +77,31 @@ class ParcoursForm extends React.Component {
           </section>
         </section>
         <section className="field">
-          <label className="label">Numéro: </label>
-          <section className="control">
-            <section className="select">
-              <select defaultValue={parcours ? parcours.number : ''}>
-                <option>02</option>
-                <option>05</option>
-              </select>
-            </section>
-          </section>
-        </section>
-        <section className="field">
           <label> Date de début: </label>
-          <DatePicker date={parcours ? parcours.startDate : ''} />
+          <DatePicker date={promo ? promo.startDate : ""} />
         </section>
         <section>
           <label> Date de fin: </label>
-          <DatePicker date={parcours ? parcours.endDate : ''} />
+          <DatePicker date={promo ? promo.endDate : ""} />
         </section>
         <section className="field">
           <label className="label">Programme: </label>
           <section className="control">
-            <input
-              className="input"
-              type="text"
-              placeholder="Perfectionnement JS"
-              defaultValue={parcours ? parcours.program : ''}
-            />
+            <section className="select">
+              <select defaultValue={promo.program || ""}>
+                <option>Js</option>
+                <option>Java</option>
+                <option>Php</option>
+              </select>
+            </section>
           </section>
-          <a href="https://google.com" rel="noopener noreferrer" target="_blank">Lien vers le programme</a>
         </section>
         <section className="field">
           <label className="label">Equipe pédagogique</label>
           <section className="control">
             <label className="label">Intitulé du rôle: </label>
             <input
-              defaultValue={parcours ? parcours.role : ''}
+              defaultValue={promo ? promo.role : ""}
               className="input"
               type="text"
               placeholder="Formateur référent"
@@ -126,9 +110,7 @@ class ParcoursForm extends React.Component {
           <section className="control">
             <label className="label">Prénom: </label>
             <input
-              defaultValue={
-                  parcours ? parcours.teacherFirstName : ''
-                }
+              defaultValue={promo ? promo.teacherFirstName : ""}
               className="input "
               type="text"
               placeholder="Jean"
@@ -137,9 +119,7 @@ class ParcoursForm extends React.Component {
           <section className="control">
             <label className="label">Nom: </label>
             <input
-              defaultValue={
-                  parcours ? parcours.teacherLastName : ''
-                }
+              defaultValue={promo ? promo.teacherLastName : ""}
               className="input"
               type="text"
               placeholder="TASSE"
@@ -148,9 +128,7 @@ class ParcoursForm extends React.Component {
           <section className="control">
             <label className="label">Descriptif: </label>
             <textarea
-              defaultValue={
-                  parcours ? parcours.description : ''
-                }
+              defaultValue={promo ? promo.description : ""}
               className="textarea"
               placeholder="Il est génial"
             />
@@ -162,4 +140,4 @@ class ParcoursForm extends React.Component {
   }
 }
 
-export default ParcoursForm;
+export default PromoForm;

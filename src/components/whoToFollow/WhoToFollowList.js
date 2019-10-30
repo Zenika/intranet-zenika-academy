@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import WhoToFollowData from './WhoToFollowData';
 import '../layout/Layout.scss';
-import Searchbar from '../searchbar/Searchbar';
+import SearchBar from '../searchBar/SearchBar';
 
 const WhoToFollowList = () => (
   <article className="box mbmd">
     <aside className="mbmd">
-      <Searchbar />
+      <SearchBar />
       <div className="buttons">
         <Link to="/admin/community/whoToFollow/create">
           <button className="button is-primary">Nouveau</button>
