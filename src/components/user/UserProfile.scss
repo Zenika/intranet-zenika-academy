@@ -9,6 +9,7 @@
 
 .userDataInputLabel{
     width:6rem;
+    display: inline-block;
 }
 
 .avatarTitle {
@@ -18,14 +19,7 @@
     font-size: 1.5rem;
 }
 
-.edit{
-    margin:0 1rem;
-    padding: 0.3rem;
-    color:blue;
-    border:none;
-    /* text-decoration: underline blue; */
+.userProfileButton{
+    margin-right:0.5rem;
 }
 
-.modal{
-    display: flex;
-}

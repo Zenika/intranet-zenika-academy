@@ -2,89 +2,82 @@ import React, { Component } from 'react';
 import './UserProfile.scss';
 import Caroussel from '../caroussel/Caroussel';
 
-const Modal = () => (
-  <div className="modal">
-    <div className="modal-background"></div>
-    <div className="modal-card">
-      <header className="modal-card-head">
-        <p className="modal-card-title">Modal title</p>
-        <button className="delete" aria-label="close"></button>
-      </header>
-      <section className="modal-card-body">
-        <input />
-      </section>
-      <footer className="modal-card-foot">
-        <button className="button is-success">Save changes</button>
-        <button className="button">Cancel</button>
-      </footer>
-    </div>
-  </div>
-);
-
-
 class UserProfile extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      toggleModal: false,
-      nom:'Tasse',
-      prenom:'Jean',
+      name: 'Tasse',
+      firstname: 'Jean',
+      address:'10 rue Milan 75009 Paris',
+      email:'jean.milan@gmail.com',
+      telephone:'+33665454323',
+      promotion:'2019',
+      disabled:true
     };
   }
 
-  openEditModal = () => {
-    this.setState({ toggleModal: true })
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  onInputChange = (e) => {
-    this.setState({
-       prenom: e.target.value
-    });
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({disabled:true})  
+  }
+
+  modifyForm = e =>{
+    e.preventDefault();
+    this.setState({disabled:false})
   }
 
   render() {
-
-    let modal;
-    if (this.state.toggleModal) {
-      modal = <Modal />;
-    }
     return (
       <article>
-        {modal}
         <section className="section box">
           <h1 className="title is-4 is-spaced">Profil de Jean TASSE</h1>
-          <section className="field userDataInputContainer">
-            <label className="userDataInputLabel">Nom :&nbsp;</label>
-            <input value={this.state.nom} className="input is-info userDataInput" ref="name" type="text"/>
-            <button className="edit" onClick={() => { this.openEditModal() }}>Edit</button>
-          </section>
 
-          <section className="field userDataInputContainer">
-            <label className="userDataInputLabel">Prénom :&nbsp;</label>
-            <input value={this.state.prenom} className="input is-info userDataInput" ref="name" type="text"/>
-          </section>
-
-          <section className="field userDataInputContainer">
-            <label className="userDataInputLabel">Adresse :&nbsp;</label>
-            <input className="input is-info userDataInput" type="text" value="10 rue Londres" />
-          </section>
-
-          <section className="field userDataInputContainer">
-            <label className="userDataInputLabel">E-mail :&nbsp;</label>
-            <input className="input is-info userDataInput" type="text" value="jean.tasse@gmail.com" />
-          </section>
-
-          <section className="field userDataInputContainer">
-            <label className="userDataInputLabel">Téléphone :&nbsp;</label>
-            <input className="input is-info userDataInput" type="text" value="+33646578987" />
-          </section>
-
-          <section className="field userDataInputContainer">
-            <label className="userDataInputLabel">Promotion :&nbsp;</label>
-            <input className="input is-info userDataInput" type="text" value="2019" />
-          </section>
+          <form onSubmit={this.handleSubmit}>
+            <section className="field userDataInputContainer">
+              <label className="userDataInputLabel">
+                Nom :
+              </label>
+              <input type="text" disabled={this.state.disabled} name="name" value={this.state.name} onChange={this.handleChange} className="input is-info userDataInput" />
+            </section>
+            <section className="field userDataInputContainer">
+              <label className="userDataInputLabel">
+                Prénom :
+              </label>
+              <input type="text" disabled={this.state.disabled} name="firstname" value={this.state.firstname} onChange={this.handleChange} className="input is-info userDataInput" />
+            </section>
+            <section className="field userDataInputContainer">
+              <label className="userDataInputLabel">
+                Adresse :
+              </label>
+              <input type="text" disabled={this.state.disabled} name="firstname" value={this.state.address} onChange={this.handleChange} className="input is-info userDataInput" />
+            </section>
+            <section className="field userDataInputContainer">
+              <label className="userDataInputLabel">
+                Email :
+              </label>
+              <input type="text" disabled={this.state.disabled} name="firstname" value={this.state.email} onChange={this.handleChange} className="input is-info userDataInput" />
+            </section>
+            <section className="field userDataInputContainer">
+              <label className="userDataInputLabel">
+                Téléphone :
+              </label>
+              <input type="text" disabled={this.state.disabled} name="firstname" value={this.state.telephone} onChange={this.handleChange} className="input is-info userDataInput" />
+            </section>
+            <section className="field userDataInputContainer">
+              <label className="userDataInputLabel">
+                Promotion :
+              </label>
+              <input type="text" disabled name="firstname" value={this.state.promotion} onChange={this.handleChange} className="input is-info userDataInput" />
+            </section>
+            <button className="button is-warning userProfileButton" onClick={(e)=>{this.modifyForm(e)}}>Modifier</button>            
+            <button className="button is-success userProfileButton"  disabled={this.state.disabled} type="submit">Enregistrer</button>
+          </form>
 
         </section>
         <section className="section box">
