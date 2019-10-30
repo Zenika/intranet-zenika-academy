@@ -210,7 +210,7 @@ class NavigationBar extends Component {
           {isNavAdmin ? adminLinks : notAdminLinks}
           <section className="navbar-end">
             <section className="navbar-item has-dropdown is-hoverable">
-              <Link to="/profil">
+              <Link to="/profile">
                 <span className="navbar-link is-arrowless">
                   <img
                     src="http://blogue-ton-ecole.ac-dijon.fr/wp-content/uploads/2016/07/Avatar_girl_face.png"
