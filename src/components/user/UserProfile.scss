@@ -1,0 +1,24 @@
+.userDataInput{
+    width: 30rem;
+}
+
+.userDataInputContainer{
+    display: flex;
+    align-items: center;
+}
+
+.userDataInputLabel{
+    width:6rem;
+    display: inline-block;
+}
+
+.avatarTitle {
+    text-align: center;
+    height: 4rem;
+    display: block;
+    font-size: 1.5rem;
+}
+
+.userProfileButton{
+    margin-right:0.5rem;
+}
