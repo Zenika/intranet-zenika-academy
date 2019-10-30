@@ -1,33 +1,5 @@
-<<<<<<< HEAD
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Agenda from "../agenda/Agenda";
-import Contacts from "../contacts/ContactList";
-import WelcomeBooklet from "../welcomeBooklet/WelcomeBooklet";
-import RessourcesList from "../ressources/RessourceList";
-import SlackAcademy from "../slackAcademy/SlackAcademy";
-import Notfound from "../notfound/Notfound";
-import NavigationBar from "../navigation/Navigation";
-import Footer from "../footer/Footer";
-import PromoList from "../promo/PromoList";
-import PromoForm from "../promo/PromoForm";
-import RessourceForm from "../ressources/RessourceForm";
-import ProgramList from "../program/ProgramList";
-import ProgramForm from "../program/ProgramForm";
-import ModuleList from "../module/ModuleList";
-import ModuleForm from "../module/ModuleForm";
-import SlackAcademyAdmin from "../slackAcademy/SlackAcademyAdmin";
-import RssFeedList from "../rssFeed/RssFeedList";
-import RssFeedForm from "../rssFeed/RssFeedForm";
-import WhoToFollowForm from "../whoToFollow/WhoToFollowForm";
-import WhoToFollowList from "../whoToFollow/WhoToFollowList";
-import UserProfil from "../user/UserProfil";
-import Home from "../home/Home";
-=======
 import React from 'react';
-import {
-  BrowserRouter as Router, Route, Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Agenda from '../agenda/Agenda';
 import Contacts from '../contacts/ContactList';
 import WelcomeBooklet from '../welcomeBooklet/WelcomeBooklet';
@@ -36,11 +8,13 @@ import SlackAcademy from '../slackAcademy/SlackAcademy';
 import Notfound from '../notfound/Notfound';
 import NavigationBar from '../navigation/Navigation';
 import Footer from '../footer/Footer';
-import ParcoursList from '../parcours/ParcoursList';
-import ParcoursForm from '../parcours/ParcoursForm';
+import PromoList from '../promo/PromoList';
+import PromoForm from '../promo/PromoForm';
 import RessourceForm from '../ressources/RessourceForm';
 import ProgramList from '../program/ProgramList';
 import ProgramForm from '../program/ProgramForm';
+import ModuleList from '../module/ModuleList';
+import ModuleForm from '../module/ModuleForm';
 import SlackAcademyAdmin from '../slackAcademy/SlackAcademyAdmin';
 import RssFeedList from '../rssFeed/RssFeedList';
 import RssFeedForm from '../rssFeed/RssFeedForm';
@@ -48,7 +22,7 @@ import WhoToFollowForm from '../whoToFollow/WhoToFollowForm';
 import WhoToFollowList from '../whoToFollow/WhoToFollowList';
 import UserProfile from '../user/UserProfile';
 import Home from '../home/Home';
->>>>>>> 9790e3f0fa8539c8ce23f989396596a0014cba03
+
 
 class App extends React.Component {
   render() {
@@ -100,7 +74,6 @@ class App extends React.Component {
               component={ModuleForm}
             />
             <Route exact path="/admin/program" component={ProgramList} />
-<<<<<<< HEAD
             <Route
               key="create-program"
               exact
@@ -166,22 +139,7 @@ class App extends React.Component {
               path="/admin/community/whoToFollow/:id/edit"
               component={WhoToFollowForm}
             />
-            <Route exact path="/profil" component={UserProfil} />
-=======
-            <Route key="create-program" exact path="/admin/program/create" component={ProgramForm} />
-            <Route key="edit-parcours" path="/admin/program/:id/edit" component={ProgramForm} />
-            <Route exact path="/admin/program/ressources" component={RessourcesList} />
-            <Route key="create-ressource" path="/admin/program/ressources/create" component={RessourceForm} />
-            <Route key="edit-ressource" path="/admin/program/ressources/:id/edit" component={RessourceForm} />
-            <Route exact path="/admin/community/slackAcademy" component={SlackAcademyAdmin} />
-            <Route exact path="/admin/community/rssFeed" component={RssFeedList} />
-            <Route key="create-rss" exact path="/admin/community/rssFeed/create" component={RssFeedForm} />
-            <Route key="edit-rss" exact path="/admin/community/rssFeed/:id/edit" component={RssFeedForm} />
-            <Route exact path="/admin/community/whoToFollow" component={WhoToFollowList} />
-            <Route key="create-whotofollow" exact path="/admin/community/whoToFollow/create" component={WhoToFollowForm} />
-            <Route key="edit-whotofollow" exact path="/admin/community/whoToFollow/:id/edit" component={WhoToFollowForm} />
-            <Route exact path="/profil" component={UserProfile} />
->>>>>>> 9790e3f0fa8539c8ce23f989396596a0014cba03
+            <Route exact path="/profile" component={UserProfile} />
             <Route component={Notfound} />
           </Switch>
         </main>

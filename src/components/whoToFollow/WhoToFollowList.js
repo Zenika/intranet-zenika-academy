@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import WhoToFollowData from './WhoToFollowData';
 import '../layout/Layout.scss';
-import SearchBar from '../searchBar/SearchBar';
+import SearchBar from '../searchbar/Searchbar';
 
 const WhoToFollowList = () => (
   <article className="box mbmd">

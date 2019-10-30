@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import RssFeedData from './RssFeedData';
 import '../layout/Layout.scss';
-import SearchBar from '../searchBar/SearchBar';
+import SearchBar from '../searchbar/Searchbar';
 
 const RssFeedList = () => (
   <article className="box mbmd">

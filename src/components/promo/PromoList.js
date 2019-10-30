@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PromoData from './PromoData';
 import '../layout/Layout.scss';
-import SearchBar from '../searchBar/SearchBar';
+import SearchBar from '../searchbar/Searchbar';
 
 const promo = [
   {
@@ -58,14 +58,14 @@ const promo = [
       teacherLastName: 'Bros',
       program: 'Gaming',
       role: 'Plombier référent',
-      description: `it's me, Mario!`,
+      description: 'it\'s me, Mario!',
     },
   },
 ];
 
 const PromoList = () => (
-  <article className={`box mbmd`}>
-    <aside className={`mbmd`}>
+  <article className="box mbmd">
+    <aside className="mbmd">
       <SearchBar />
       <div className="buttons">
         <Link to="/admin/promo/create">
@@ -78,48 +78,48 @@ const PromoList = () => (
     <h1 className="title is-4 is-spaced">Liste des promos</h1>
     <ul>
       <li>
-        <section className={`section box mbmd`}>
+        <section className="section box mbmd">
           <PromoData promo={promo[0].promo1} />
-          <section className={'mtmd'}>
+          <section className="mtmd">
             <Link
               to={{
                 pathname: '/admin/promo/1/edit',
                 query: { promo: promo[0].promo1 },
               }}
             >
-              <a className={`button is-primary mrmd`}>Editer</a>
+              <a className="button is-primary mrmd">Editer</a>
             </Link>
             <a className="button is-danger">Supprimer</a>
           </section>
         </section>
       </li>
       <li>
-        <section className={`section box mbmd`}>
+        <section className="section box mbmd">
           <PromoData promo={promo[0].promo2} />
-          <section className={'mtmd'}>
+          <section className="mtmd">
             <Link
               to={{
                 pathname: '/admin/promo/2/edit',
                 query: { promo: promo[0].promo2 },
               }}
             >
-              <a className={`button is-primary mrmd`}>Editer</a>
+              <a className="button is-primary mrmd">Editer</a>
             </Link>
             <a className="button is-danger">Supprimer</a>
           </section>
         </section>
       </li>
       <li>
-        <section className={`section box mbmd`}>
+        <section className="section box mbmd">
           <PromoData promo={promo[0].promo3} />
-          <section className={'mtmd'}>
+          <section className="mtmd">
             <Link
               to={{
                 pathname: '/admin/promo/3/edit',
                 query: { promo: promo[0].promo3 },
               }}
             >
-              <a className={`button is-primary mrmd`}>Editer</a>
+              <a className="button is-primary mrmd">Editer</a>
             </Link>
             <a className="button is-danger">Supprimer</a>
           </section>
