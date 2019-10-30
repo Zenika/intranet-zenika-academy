@@ -2,18 +2,18 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import RssFeedData from './RssFeedData';
 import '../layout/Layout.scss';
-import Searchbar from '../searchbar/Searchbar';
+import SearchBar from '../searchBar/SearchBar';
 
 const RssFeedList = () => (
   <article className="box mbmd">
-      <aside className="mbmd">
-        <Searchbar />
-        <div className="buttons">
-          <Link to="/admin/community/rssFeed/create">
-            <button className="button is-primary">Nouveau</button>
-          </Link>
-        </div>
-      </aside>
+    <aside className="mbmd">
+      <SearchBar />
+      <div className="buttons">
+        <Link to="/admin/community/rssFeed/create">
+          <button className="button is-primary">Nouveau</button>
+        </Link>
+      </div>
+    </aside>
     <h1 className="title is-4 is-spaced">Liste des feeds</h1>
     <ul>
       <li>

@@ -1,8 +1,8 @@
-import queryString from 'query-string';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import RessourceData from './RessourceData';
-import Searchbar from '../searchbar/Searchbar';
+import queryString from "query-string";
+import React from "react";
+import { Link } from "react-router-dom";
+import RessourceData from "./RessourceData";
+import SearchBar from "../searchBar/SearchBar";
 
 class RessourceList extends React.Component {
   render() {
@@ -10,7 +10,7 @@ class RessourceList extends React.Component {
     return (
       <article className="box mbmd">
         <aside className="mbmd">
-          <Searchbar />
+          <SearchBar />
           <div className="buttons">
             <Link to={`${this.props.match.path}/create`}>
               <button className="button is-primary">Nouveau</button>
@@ -18,7 +18,9 @@ class RessourceList extends React.Component {
           </div>
         </aside>
         <section className="section box">
-          <h1 className="title is-4 is-spaced">Module 1 - Saucisse de Toulouse  </h1>
+          <h1 className="title is-4 is-spaced">
+            Module 1 - Saucisse de Toulouse{" "}
+          </h1>
           <h2 className="subtitle is-5">Toulouse et son histoire</h2>
           <ul>
             <li>
@@ -42,7 +44,9 @@ class RessourceList extends React.Component {
           </ul>
         </section>
         <section className="section box">
-          <h1 className="title is-4 is-spaced">Module 2 - Le rugby à Toulouse</h1>
+          <h1 className="title is-4 is-spaced">
+            Module 2 - Le rugby à Toulouse
+          </h1>
           <h2 className="subtitle is-5">Toulouse et son Rugby</h2>
           <ul>
             <li>

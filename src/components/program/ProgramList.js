@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProgramData from './ProgramData';
 import '../layout/Layout.scss';
-import Searchbar from '../searchbar/Searchbar';
+import SearchBar from '../searchBar/SearchBar';
 
 class ProgramList extends React.Component {
   render() {
     return (
       <article className="box mbmd">
         <aside className="mbmd">
-          <Searchbar />
+          <SearchBar />
           <div className="buttons">
             <Link to="/admin/program/create">
               <button className="button is-primary">Nouveau</button>
