@@ -1,5 +1,4 @@
 .row{
-    /* background-color: red; */
     display:flex;
     flex-direction: row;
     margin:4rem 0;
@@ -8,20 +7,18 @@
 }
 
 .photo{
-    /* background-color: blue; */
     border: 1px black solid;
     border-radius: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3.5rem;
-    width: 3.5rem;
-    margin:4rem;
+    height: 5rem;
+    width: 5rem;
+    margin:2rem;
     padding: 0.5rem;
 }
 
 .textBox{
-    /* background-color: green; */
     border:1px solid black;
     padding:0.3rem;
     flex:1;
