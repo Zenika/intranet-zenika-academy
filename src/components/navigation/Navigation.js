@@ -98,7 +98,7 @@ class NavigationBar extends Component {
       <section className="navbar-start">
         {mainLink}
         <section className="navbar-item">
-          <Link to="/admin/parcours/parcours">
+          <Link to="/admin/dashboard">
             <span className="navbar-item">Dashboard</span>
           </Link>
         </section>
@@ -187,7 +187,7 @@ class NavigationBar extends Component {
           </section>
         </section>
         <section className="navbar-item">
-          <Link to="/admin/parcours/dashboard">
+          <Link to="/admin/dashboard">
             <span
               className="navbar-link is-arrowless is-hidden-tablet-only is-hidden-touch-only"
               onClick={() => this.setNavbarState(true)}

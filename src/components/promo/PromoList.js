@@ -64,69 +64,74 @@ const promo = [
 ];
 
 const PromoList = () => (
-  <article className="box mbmd">
-    <aside className="mbmd">
-      <SearchBar />
-      <div className="buttons">
-        <Link to="/admin/promo/create">
-          <button type="button" className="button is-primary">
-            Nouveau
+  <React.Fragment>
+    <div>
+      <h1 className="title is-1 mbmd">Promotions</h1>
+    </div>
+    <article className="box mbmd">
+      <aside className="mbmd">
+        <SearchBar />
+        <div className="buttons">
+          <Link to="/admin/promo/create">
+            <button type="button" className="button is-primary">
+              Nouveau
           </button>
-        </Link>
-      </div>
-    </aside>
-    <h1 className="title is-4 is-spaced">Liste des promos</h1>
-    <ul>
-      <li>
-        <section className="section box mbmd">
-          <PromoData promo={promo[0].promo1} />
-          <section className="mtmd">
-            <Link
-              to={{
-                pathname: '/admin/promo/1/edit',
-                query: { promo: promo[0].promo1 },
-              }}
-            >
-              <a className="button is-primary mrmd">Editer</a>
-            </Link>
-            <a className="button is-danger">Supprimer</a>
+          </Link>
+        </div>
+      </aside>
+      <h1 className="title is-4 is-spaced">Liste des promos</h1>
+      <ul>
+        <li>
+          <section className="section box mbmd">
+            <PromoData promo={promo[0].promo1} />
+            <section className="mtmd">
+              <Link
+                to={{
+                  pathname: '/admin/promo/1/edit',
+                  query: { promo: promo[0].promo1 },
+                }}
+              >
+                <a className="button is-primary mrmd">Editer</a>
+              </Link>
+              <a className="button is-danger">Supprimer</a>
+            </section>
           </section>
-        </section>
-      </li>
-      <li>
-        <section className="section box mbmd">
-          <PromoData promo={promo[0].promo2} />
-          <section className="mtmd">
-            <Link
-              to={{
-                pathname: '/admin/promo/2/edit',
-                query: { promo: promo[0].promo2 },
-              }}
-            >
-              <a className="button is-primary mrmd">Editer</a>
-            </Link>
-            <a className="button is-danger">Supprimer</a>
+        </li>
+        <li>
+          <section className="section box mbmd">
+            <PromoData promo={promo[0].promo2} />
+            <section className="mtmd">
+              <Link
+                to={{
+                  pathname: '/admin/promo/2/edit',
+                  query: { promo: promo[0].promo2 },
+                }}
+              >
+                <a className="button is-primary mrmd">Editer</a>
+              </Link>
+              <a className="button is-danger">Supprimer</a>
+            </section>
           </section>
-        </section>
-      </li>
-      <li>
-        <section className="section box mbmd">
-          <PromoData promo={promo[0].promo3} />
-          <section className="mtmd">
-            <Link
-              to={{
-                pathname: '/admin/promo/3/edit',
-                query: { promo: promo[0].promo3 },
-              }}
-            >
-              <a className="button is-primary mrmd">Editer</a>
-            </Link>
-            <a className="button is-danger">Supprimer</a>
+        </li>
+        <li>
+          <section className="section box mbmd">
+            <PromoData promo={promo[0].promo3} />
+            <section className="mtmd">
+              <Link
+                to={{
+                  pathname: '/admin/promo/3/edit',
+                  query: { promo: promo[0].promo3 },
+                }}
+              >
+                <a className="button is-primary mrmd">Editer</a>
+              </Link>
+              <a className="button is-danger">Supprimer</a>
+            </section>
           </section>
-        </section>
-      </li>
-    </ul>
-  </article>
+        </li>
+      </ul>
+    </article>
+  </React.Fragment>
 );
 
 export default PromoList;
