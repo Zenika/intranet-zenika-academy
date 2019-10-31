@@ -24,6 +24,7 @@ import UserProfile from '../user/UserProfile';
 import Home from '../home/Home';
 import Administration from '../dashboard/Dashboard';
 import './App.scss';
+import { PromoCreateContainer } from '../promoCreateForm/PromoCreateContainer';
 
 class App extends React.Component {
   render() {
@@ -56,7 +57,7 @@ class App extends React.Component {
             <Route
               key="create-promo"
               path="/admin/promo/create"
-              component={PromoForm}
+              component={PromoCreateContainer}
             />
             <Route
               key="edit-promo"

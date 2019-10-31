@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PromoData from './PromoData';
 import '../layout/Layout.scss';
-import SearchBar from '../searchbar/Searchbar';
+import SearchBar from '../searchBar/Searchbar';
 
 const promo = [
   {

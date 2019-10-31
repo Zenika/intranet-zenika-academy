@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import RssFeedData from './RssFeedData';
 import '../layout/Layout.scss';
-import SearchBar from '../searchbar/Searchbar';
+import SearchBar from '../searchBar/Searchbar';
 
 const RssFeedList = () => (
   <React.Fragment>
