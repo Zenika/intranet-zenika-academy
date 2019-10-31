@@ -6,7 +6,12 @@ import Caroussel from '../caroussel/Caroussel';
 class Home extends Component {
   render() {
     return (
-      <Caroussel />
+      <React.Fragment>
+        <div>
+          <h1 className="title is-1 mbmd">Accueil</h1>
+        </div>
+        <Caroussel />
+      </React.Fragment>
     );
   }
 }
