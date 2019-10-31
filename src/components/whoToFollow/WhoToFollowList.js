@@ -2,12 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import WhoToFollowData from './WhoToFollowData';
 import '../layout/Layout.scss';
-<<<<<<< HEAD
-import SearchBar from '../searchbar/Searchbar';
-import { read } from 'fs';
-=======
 import SearchBar from '../searchBar/Searchbar';
->>>>>>> wizard multiForm init
 
 const WhoToFollowList = () => (
   <React.Fragment>
