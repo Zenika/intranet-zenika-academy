@@ -234,7 +234,6 @@ class NavigationBar extends Component {
                     id="navBarAvatar"
                   />
                 </span>
-                <span className="navbar-link is-arrowless is-hidden-mobile">Mon profil</span>
               </Link>
             </section>
             <section className="navbar-item is-hidden-mobile is-hidden-touch">
