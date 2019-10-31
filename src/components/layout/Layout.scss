@@ -94,3 +94,33 @@ footer {
 .pbxxl { padding-bottom: 8rem; }
 .mlxxl { margin-left: 8rem; }
 .plxxl { padding-left: 8rem; }
+
+.adminDashboard {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.adminDashboardItem {
+    width: 30%;
+}
+
+.selectpromsearchbar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.displayUserInfo {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.promList {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    
+}

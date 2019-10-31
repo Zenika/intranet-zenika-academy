@@ -22,6 +22,7 @@ import WhoToFollowForm from '../whoToFollow/WhoToFollowForm';
 import WhoToFollowList from '../whoToFollow/WhoToFollowList';
 import UserProfile from '../user/UserProfile';
 import Home from '../home/Home';
+import Administration from '../dashboard/Dashboard';
 
 
 class App extends React.Component {
@@ -140,6 +141,7 @@ class App extends React.Component {
               component={WhoToFollowForm}
             />
             <Route exact path="/profile" component={UserProfile} />
+            <Route path="/admin/dashboard" component={Administration} />
             <Route component={Notfound} />
           </Switch>
         </main>
