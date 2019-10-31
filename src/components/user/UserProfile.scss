@@ -12,11 +12,16 @@
     display: inline-block;
 }
 
-.avatarTitle {
+.userProfileSectionTitle {
     text-align: center;
     height: 4rem;
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.assessmentTitle{
+    font-style: italic;
+    text-decoration: underline;
 }
 
 .userProfileButton{

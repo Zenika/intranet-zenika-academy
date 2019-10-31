@@ -45,22 +45,21 @@ class UserProfile extends Component {
             <UserProfileInput label="Email : " disabled={this.state.disabled} name="email" value={this.state.email} onChange={this.handleChange} />
             <UserProfileInput label="Téléphone : " disabled={this.state.disabled} name="telephone" value={this.state.telephone} onChange={this.handleChange} />
             <UserProfileInput label="Promotion : " name="promotion" value={this.state.promotion} onChange={this.handleChange} />
-    
+
             <button className="button is-warning userProfileButton" onClick={(e) => { this.modifyForm(e) }}>Modifier</button>
             <button className="button is-success userProfileButton" disabled={this.state.disabled} type="submit">Enregistrer</button>
           </form>
 
         </section>
         <section className="section box">
-          <h1>Ma montée en compétence :</h1>
-          <p>Evaluation 1 :</p>
-          <p>Evaluation 2 :</p>
-          -
-      <p>Projet ADA</p>
+          <h1 className="userProfileSectionTitle">Montée en compétence :</h1>
+          <h2 class="assessmentTitle">Evaluation 1 :</h2><strong>60%</strong><progress class="progress is-info" value="60" max="100"></progress>
+          <h2 class="assessmentTitle">Evaluation 2 :</h2><strong>90%</strong><progress class="progress is-info" value="90" max="100"></progress>
+          <h2 class="assessmentTitle">Projet ADA :</h2><strong>70%</strong> <progress class="progress is-link" value="70" max="100"></progress>
         </section>
 
         <section className="section box">
-          <h1 className="avatarTitle">Choix avatar</h1>
+          <h1 className="userProfileSectionTitle">Choix avatar</h1>
           <Caroussel />
         </section>
       </article>
