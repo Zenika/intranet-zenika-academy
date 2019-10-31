@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-export class PromoCreateStepTwo extends Component {
+export class PromoCreateStepThree extends Component {
   render() {
     const { nextStep, prevStep } = this.props;
-
     const buttonForm = (
       <section className="field is-grouped">
         <section className="control">
@@ -17,15 +16,15 @@ export class PromoCreateStepTwo extends Component {
     return (
       <div>
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d'une promo (étape 2/4)</h1>
+          <h1 className="title is-4 is-spaced">Création d'une promo (étape 3/4)</h1>
           <section className="field">
-            <label className="label">Choisir un programme existant</label>
+            <label className="label">Choix de l'équipe pédagogique</label>
             <section className="field">
-              <label className="label">Programme: </label>
+              <label className="label">Formateurs: </label>
               <section className="control">
                 <section className="select">
                   <select>
-                    <option>Java</option>
+                    <option>Jérémie Patonier</option>
                   </select>
                 </section>
               </section>
@@ -33,26 +32,11 @@ export class PromoCreateStepTwo extends Component {
           </section>
           <br />
           <section className="field">
-            <label className="label">Création d'un nouveau programme</label>
+            <label className="label">Ajout d'un formateur</label>
             <section className="field">
               <section className="control">
-                <label className="label">Nom du programme: </label>
+                <label className="label">Nom du formateur: </label>
                 <input className="input " type="text" placeholder="Renforcement JS" />
-              </section>
-              <section className="field">
-                <label className="label">Choix des Modules</label>
-                <section className="field">
-                  <label className="label">Modules: </label>
-                  <section className="control">
-                    <section className="select">
-                      <select>
-                        <option>Bases html</option>
-                        <option>Bases css</option>
-                        <option>Variables Javascript</option>
-                      </select>
-                    </section>
-                  </section>
-                </section>
               </section>
               <section className="field">
                 <section className="control">
@@ -62,7 +46,6 @@ export class PromoCreateStepTwo extends Component {
               </section>
             </section>
           </section>
-
           {buttonForm}
         </article>
       </div>
@@ -70,4 +53,4 @@ export class PromoCreateStepTwo extends Component {
   }
 }
 
-export default PromoCreateStepTwo;
+export default PromoCreateStepThree;

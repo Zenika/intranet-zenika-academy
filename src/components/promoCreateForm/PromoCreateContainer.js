@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PromoCreateStepOne } from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
+import PromoCreateStepThree from './PromoCreateStepThree';
 
 export class PromoCreateContainer extends Component {
 
@@ -46,6 +47,13 @@ export class PromoCreateContainer extends Component {
       case 2:
         return (
           <PromoCreateStepTwo
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
+        );
+      case 3:
+        return (
+          <PromoCreateStepThree
             nextStep={nextStep}
             prevStep={prevStep}
           />
