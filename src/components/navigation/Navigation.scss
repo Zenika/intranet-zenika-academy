@@ -14,7 +14,7 @@ $navbar-breakpoint: 680px;
     }
 }
 
-@media screen and (max-width: $navbar-breakpoint) {
+@media screen and (max-width: 680px) {
     #display-breakpoint{
         display: block;
     }

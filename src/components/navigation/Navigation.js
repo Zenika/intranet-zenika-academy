@@ -24,11 +24,6 @@ class NavigationBar extends Component {
     } else {
       this.setState({ loggedIn: false, modalState: '' });
     }
-    const navDroppableLink = document.getElementsByClassName('navbar-item has-dropdown is-hoverable');
-    for (let i = 0; i < navDroppableLink.length; i += 1) {
-      console.log(navDroppableLink[i]);
-      navDroppableLink[i].addEventListener('click', this.clickOnNavDroppableButton, false);
-    }
   }
 
   setNavbarState(state) {
@@ -102,8 +97,8 @@ class NavigationBar extends Component {
             <span className="navbar-item">Dashboard</span>
           </Link>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable">
-          <span className="navbar-link" onClick={this.handleHover}>Promotions</span>
+        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
+          <span className="navbar-link">Promotions</span>
           <section className="navbar-dropdown">
             <Link to="/admin/promo/list">
               <span className="navbar-item">Mes promo</span>
@@ -113,7 +108,7 @@ class NavigationBar extends Component {
             </Link>
           </section>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable">
+        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
           <span className="navbar-link">Programmes</span>
           <section className="navbar-dropdown">
             <Link to="/admin/program">
@@ -127,7 +122,7 @@ class NavigationBar extends Component {
             </Link>
           </section>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable">
+        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
           <span className="navbar-link">Communauté</span>
           <section className="navbar-dropdown">
             <Link to="/admin/community/slackAcademy">
@@ -147,7 +142,7 @@ class NavigationBar extends Component {
     const notAdminLinks = (
       <section className="navbar-start">
         {mainLink}
-        <section className="navbar-item has-dropdown is-hoverable">
+        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
           <span className="navbar-link">Ma formation</span>
           <section className="navbar-dropdown">
             <Link to="/agenda">
@@ -161,7 +156,7 @@ class NavigationBar extends Component {
             </Link>
           </section>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable">
+        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
           <span className="navbar-link">Ressources</span>
           <section className="navbar-dropdown">
             <Link to="/ressources?author=Formateurs">
@@ -172,7 +167,7 @@ class NavigationBar extends Component {
             </Link>
           </section>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable">
+        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
           <span className="navbar-link">Communauté</span>
           <section className="navbar-dropdown">
             <Link to="/slackAcademy">

@@ -23,7 +23,7 @@ import WhoToFollowList from '../whoToFollow/WhoToFollowList';
 import UserProfile from '../user/UserProfile';
 import Home from '../home/Home';
 import Administration from '../dashboard/Dashboard';
-
+import './App.scss';
 
 class App extends React.Component {
   render() {
@@ -32,7 +32,7 @@ class App extends React.Component {
         <header>
           <NavigationBar />
         </header>
-        <main className="container is-fluid">
+        <main className="container fluid">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/agenda" component={Agenda} />
