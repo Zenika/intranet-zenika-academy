@@ -1,5 +1,5 @@
 @import "~bulma/sass/utilities/initial-variables.sass";
-$navbar-breakpoint: 650px;
+$navbar-breakpoint: 680px;
 @import "~bulma/bulma.sass";
 
 @media screen and (max-width: 1023px) {
@@ -14,7 +14,32 @@ $navbar-breakpoint: 650px;
     }
 }
 
+@media screen and (max-width: $navbar-breakpoint) {
+    #display-breakpoint{
+        display: block;
+    }
+    .navbar-menu {
+        background-color: white;
+    }
+    .navbar-item.has-dropdown {
+        padding: 0.5rem 0.75rem;
+    }
+    .navbar-item {
+        &.has-dropdown {
+            .navbar-dropdown {
+                display: none;
+            }
+        }
+    }
 
+    .navbar-item {
+        border-bottom: 1px solid #dbdbdb;
+    }
+
+    .navbar-item.has-dropdown:hover .navbar-dropdown {
+        display: block;
+    }
+}
 
 a {
     color: #4a4a4a

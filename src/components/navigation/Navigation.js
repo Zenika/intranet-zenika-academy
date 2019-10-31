@@ -11,7 +11,9 @@ class NavigationBar extends Component {
       modalState: '',
       loggedIn: false,
       isNavAdmin: false,
+      isHovered: false,
     };
+    this.handleHover = this.handleHover.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +23,11 @@ class NavigationBar extends Component {
       this.setState({ loggedIn: true });
     } else {
       this.setState({ loggedIn: false, modalState: '' });
+    }
+    const navDroppableLink = document.getElementsByClassName('navbar-item has-dropdown is-hoverable');
+    for (let i = 0; i < navDroppableLink.length; i += 1) {
+      console.log(navDroppableLink[i]);
+      navDroppableLink[i].addEventListener('click', this.clickOnNavDroppableButton, false);
     }
   }
 
@@ -52,6 +59,12 @@ class NavigationBar extends Component {
     nav.classList.toggle('is-active');
   };
 
+  handleHover() {
+    this.setState((prevState) => ({
+      isHovered: !prevState.isHovered,
+    }));
+  }
+
   /**
    * Allows to open or close de sign in Modal
    * @param {*} ev boolean
@@ -73,7 +86,10 @@ class NavigationBar extends Component {
         onClick={() => this.setNavbarState(false)}
       >
         <Link to="/">
-          <img id="navbarLogo" src={logo} alt="logo zenika" />
+          <img id="navbarLogo" src={logo} className="is-hidden-mobile" alt="logo zenika" />
+        </Link>
+        <Link to="/">
+          <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">Accueil</span>
         </Link>
       </section>
     );
@@ -82,12 +98,12 @@ class NavigationBar extends Component {
       <section className="navbar-start">
         {mainLink}
         <section className="navbar-item">
-          <Link to="/admin/parcours/administration">
+          <Link to="/admin/parcours/parcours">
             <span className="navbar-item">Dashboard</span>
           </Link>
         </section>
         <section className="navbar-item has-dropdown is-hoverable">
-          <span className="navbar-link">Promotions</span>
+          <span className="navbar-link" onClick={this.handleHover}>Promotions</span>
           <section className="navbar-dropdown">
             <Link to="/admin/promo/list">
               <span className="navbar-item">Mes promo</span>
@@ -171,15 +187,15 @@ class NavigationBar extends Component {
           </section>
         </section>
         <section className="navbar-item">
-          <Link to="/admin/parcours/administration">
+          <Link to="/admin/parcours/dashboard">
             <span
-              className="navbar-item is-hidden-mobile is-hidden-touch"
+              className="navbar-link is-arrowless is-hidden-tablet-only is-hidden-touch-only"
               onClick={() => this.setNavbarState(true)}
             >
               Administration
             </span>
             <span
-              className="navbar-item is-hidden-desktop"
+              className="navbar-link is-arrowless navBorder is-hidden-mobile is-hidden-desktop"
               onClick={() => this.setNavbarState(true)}
             >
               Admin
@@ -211,13 +227,14 @@ class NavigationBar extends Component {
           <section className="navbar-end">
             <section className="navbar-item has-dropdown is-hoverable">
               <Link to="/profile">
-                <span className="navbar-link is-arrowless">
+                <span className="navbar-link is-arrowless is-hidden-mobile">
                   <img
                     src="http://blogue-ton-ecole.ac-dijon.fr/wp-content/uploads/2016/07/Avatar_girl_face.png"
                     alt="placeholde-avatar"
                     id="navBarAvatar"
                   />
                 </span>
+                <span className="navbar-link is-arrowless is-hidden-mobile">Mon profil</span>
               </Link>
             </section>
             <section className="navbar-item is-hidden-mobile is-hidden-touch">
@@ -228,7 +245,8 @@ class NavigationBar extends Component {
               onClick={() => this.connect(false)}
             >
               <Link to="/">
-                <i className="fas fa-sign-out-alt icon-signout" />
+                <i className="fas fa-sign-out-alt icon-signout is-hidden-mobile" />
+                <span className="navbar-link is-arrowless is-hidden-tablet">Se déconnecter</span>
               </Link>
             </section>
           </section>
