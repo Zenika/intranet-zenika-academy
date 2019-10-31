@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from "../datepicker/DatePicker";
 export class PromoCreateStepOne extends Component {
+
   render() {
 
     const { nextStep } = this.props;
