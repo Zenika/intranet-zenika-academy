@@ -2,45 +2,6 @@
 $navbar-breakpoint: 680px;
 @import "~bulma/bulma.sass";
 
-@media screen and (max-width: 1023px) {
-    .navbar-menu {
-        background-color: #00d1b2;
-    }
-}
-
-@media screen and (max-width: 748px) {
-    .navbar-menu {
-        font-size: 0.85rem;
-    }
-}
-
-@media screen and (max-width: 680px) {
-    #display-breakpoint{
-        display: block;
-    }
-    .navbar-menu {
-        background-color: white;
-    }
-    .navbar-item.has-dropdown {
-        padding: 0.5rem 0.75rem;
-    }
-    .navbar-item {
-        &.has-dropdown {
-            .navbar-dropdown {
-                display: none;
-            }
-        }
-    }
-
-    .navbar-item {
-        border-bottom: 1px solid #dbdbdb;
-    }
-
-    .navbar-item.has-dropdown:hover .navbar-dropdown {
-        display: block;
-    }
-}
-
 a {
     color: #4a4a4a
 }
@@ -55,6 +16,14 @@ a {
     max-height: 3.75rem;
     height: 50px;
     border-radius: 50px;
+}
+
+.display-mobile {
+    display: none;
+}
+
+.display-desktop {
+    display: inline-block;
 }
 
 .dropdownMenu {
@@ -78,4 +47,58 @@ a:hover{
 
 .icon-signout {
     font-size: 2rem;
+}
+
+@media screen and (max-width: 1023px) {
+    .navbar-menu-front {
+        background-color: #00d1b2;
+    }
+    .navbar-menu-admin {
+        background-color: #ff3860;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .navbar-menu {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 679px) {
+    #display-breakpoint{
+        display: block;
+    }
+    .navbar-menu {
+        background-color: white;
+    }
+    .navbar-item.has-dropdown {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .navbar-item {
+        border-bottom: 1px solid #dbdbdb;
+    }
+    .display-mobile {
+        display: inline-block;
+    }
+    .display-desktop {
+        display: none;
+    }
+    a {
+        .navbar-item {
+            border: none;
+        }
+        .navbar-item:hover, navbar-item:focus{
+            background-color: #fafafa;
+        }
+    }
+}
+
+@media screen and (min-width: 679px) {
+    .navbar-item.is-hoverable:hover .navbar-dropdown {
+        display: block !important;
+    }
+    .navbar-item.is-hoverable:focus-within .navbar-dropdown {
+        display: none;
+    }
 }

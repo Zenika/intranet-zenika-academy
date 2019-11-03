@@ -11,9 +11,8 @@ class NavigationBar extends Component {
       modalState: '',
       loggedIn: false,
       isNavAdmin: false,
-      isHovered: false,
     };
-    this.handleHover = this.handleHover.bind(this);
+    this.setBurgerLink = this.setBurgerLink.bind(this);
   }
 
   componentDidMount() {
@@ -54,11 +53,10 @@ class NavigationBar extends Component {
     nav.classList.toggle('is-active');
   };
 
-  handleHover() {
-    this.setState((prevState) => ({
-      isHovered: !prevState.isHovered,
-    }));
-  }
+  setBurgerLink = (e) => {
+    const navLink = e.currentTarget;
+    navLink.nextElementSibling.classList.toggle('is-hidden-mobile');
+  };
 
   /**
    * Allows to open or close de sign in Modal
@@ -94,37 +92,37 @@ class NavigationBar extends Component {
         {mainLink}
         <section className="navbar-item">
           <Link to="/admin/dashboard">
-            <span className="navbar-item">Dashboard</span>
+            <span className="navbar-link is-arrowless">Dashboard</span>
           </Link>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
-          <span className="navbar-link">Promotions</span>
-          <section className="navbar-dropdown">
+        <section className="navbar-item has-dropdown is-hoverable">
+          <span className="navbar-link" onClick={this.setBurgerLink}>Promotions</span>
+          <section className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/admin/promo/list">
-              <span className="navbar-item">Mes promo</span>
+              <span className="navbar-item">Promo</span>
             </Link>
             <Link to="/admin/promo/create">
               <span className="navbar-item">Créer</span>
             </Link>
           </section>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
-          <span className="navbar-link">Programmes</span>
-          <section className="navbar-dropdown">
+        <section className="navbar-item has-dropdown is-hoverable">
+          <span className="navbar-link" onClick={this.setBurgerLink}>Programmes</span>
+          <section className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/admin/program">
-              <span className="navbar-item">Mes programmes</span>
+              <span className="navbar-item">Programmes</span>
             </Link>
             <Link to="/admin/module/list">
-              <span className="navbar-item">Mes modules</span>
+              <span className="navbar-item">Modules</span>
             </Link>
             <Link to="/admin/program/ressources">
-              <span className="navbar-item">Mes ressources</span>
+              <span className="navbar-item">Ressources</span>
             </Link>
           </section>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
-          <span className="navbar-link">Communauté</span>
-          <section className="navbar-dropdown">
+        <section className="navbar-item has-dropdown is-hoverable">
+          <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
+          <section className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/admin/community/slackAcademy">
               <span className="navbar-item">Zenika Slack</span>
             </Link>
@@ -142,9 +140,9 @@ class NavigationBar extends Component {
     const notAdminLinks = (
       <section className="navbar-start">
         {mainLink}
-        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
-          <span className="navbar-link">Ma formation</span>
-          <section className="navbar-dropdown">
+        <section className="navbar-item has-dropdown is-hoverable">
+          <span className="navbar-link" onClick={this.setBurgerLink}>Ma formation</span>
+          <section className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/agenda">
               <span className="navbar-item">Agenda</span>
             </Link>
@@ -156,9 +154,9 @@ class NavigationBar extends Component {
             </Link>
           </section>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
-          <span className="navbar-link">Ressources</span>
-          <section className="navbar-dropdown">
+        <section className="navbar-item has-dropdown is-hoverable">
+          <span className="navbar-link" onClick={this.setBurgerLink}>Ressources</span>
+          <section className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/ressources?author=Formateurs">
               <span className="navbar-item">Formateurs</span>
             </Link>
@@ -167,9 +165,9 @@ class NavigationBar extends Component {
             </Link>
           </section>
         </section>
-        <section className="navbar-item has-dropdown is-hoverable" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
-          <span className="navbar-link">Communauté</span>
-          <section className="navbar-dropdown">
+        <section className="navbar-item has-dropdown is-hoverable">
+          <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
+          <section className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/slackAcademy">
               <span className="navbar-item">Slack Academy</span>
             </Link>
@@ -184,13 +182,7 @@ class NavigationBar extends Component {
         <section className="navbar-item">
           <Link to="/admin/dashboard">
             <span
-              className="navbar-link is-arrowless is-hidden-tablet-only is-hidden-touch-only"
-              onClick={() => this.setNavbarState(true)}
-            >
-              Administration
-            </span>
-            <span
-              className="navbar-link is-arrowless navBorder is-hidden-mobile is-hidden-desktop"
+              className="navbar-link is-arrowless navBorder"
               onClick={() => this.setNavbarState(true)}
             >
               Admin
@@ -202,7 +194,7 @@ class NavigationBar extends Component {
 
     const mainNav = (
       <nav
-        className="navbar is-primary"
+        className={isNavAdmin ? 'navbar is-danger' : 'navbar is-primary'}
         role="navigation"
         aria-label="main navigation"
       >
@@ -217,18 +209,19 @@ class NavigationBar extends Component {
             <span />
           </span>
         </section>
-        <section className="navbar-menu" id="navMenu">
+        <section className={isNavAdmin ? 'navbar-menu navbar-menu-admin' : 'navbar-menu navbar-menu-front'} id="navMenu">
           {isNavAdmin ? adminLinks : notAdminLinks}
           <section className="navbar-end">
             <section className="navbar-item has-dropdown is-hoverable">
               <Link to="/profile">
-                <span className="navbar-link is-arrowless is-hidden-mobile">
+                <span className="navbar-link is-arrowless display-desktop">
                   <img
                     src="http://blogue-ton-ecole.ac-dijon.fr/wp-content/uploads/2016/07/Avatar_girl_face.png"
                     alt="placeholde-avatar"
                     id="navBarAvatar"
                   />
                 </span>
+                <span className="navbar-link is-arrowless display-mobile">Mon Profil</span>
               </Link>
             </section>
             <section className="navbar-item is-hidden-mobile is-hidden-touch">
@@ -239,8 +232,8 @@ class NavigationBar extends Component {
               onClick={() => this.connect(false)}
             >
               <Link to="/">
-                <i className="fas fa-sign-out-alt icon-signout is-hidden-mobile" />
-                <span className="navbar-link is-arrowless is-hidden-tablet">Se déconnecter</span>
+                <i className="fas fa-sign-out-alt icon-signout display-desktop" />
+                <span className="navbar-link is-arrowless display-mobile">Se déconnecter</span>
               </Link>
             </section>
           </section>
@@ -249,13 +242,18 @@ class NavigationBar extends Component {
     );
 
     const loggedOutNav = (
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
+        <section className="navbar-item display-mobile">
+          <button onClick={() => this.toggleModal(true)} className="button">
+            Sign in
+          </button>
+        </section>
         <section className="navbar-menu">
-          <section className="navBarLoggedOut">
+          <secion className="navBarLoggedOut">
             <section className="navbar-start">
               <p>There is no fate but what we make</p>
             </section>
-          </section>
+          </secion>
           <section className="navbar-end">
             <section className="navbar-item">
               <button onClick={() => this.toggleModal(true)} className="button">
