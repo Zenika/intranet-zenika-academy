@@ -249,11 +249,11 @@ class NavigationBar extends Component {
           </button>
         </section>
         <section className="navbar-menu">
-          <secion className="navBarLoggedOut">
+          <section className="navBarLoggedOut">
             <section className="navbar-start">
               <p>There is no fate but what we make</p>
             </section>
-          </secion>
+          </section>
           <section className="navbar-end">
             <section className="navbar-item">
               <button onClick={() => this.toggleModal(true)} className="button">
