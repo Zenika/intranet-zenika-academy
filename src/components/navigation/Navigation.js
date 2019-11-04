@@ -209,7 +209,7 @@ class NavigationBar extends Component {
             <span />
           </span>
         </section>
-        <section className={isNavAdmin ? 'navbar-menu navbar-menu-admin' : 'navbar-menu navbar-menu-front'} id="navMenu">
+        <section className="navbar-menu" id="navMenu">
           {isNavAdmin ? adminLinks : notAdminLinks}
           <section className="navbar-end">
             <section className="navbar-item has-dropdown is-hoverable">
