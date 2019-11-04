@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './PromoCreate.scss';
+
 
 export class PromoCreateStepTwo extends Component {
   render() {
@@ -15,32 +17,35 @@ export class PromoCreateStepTwo extends Component {
       </section>
     );
     return (
-      <div>
+      <div className="promoCreateForm">
         <article className="section box">
           <h1 className="title is-4 is-spaced">Création d'une promo (étape 2/4)</h1>
           <section className="field">
-            <label className="label">Choisir un programme existant</label>
+            <label className="label">Choisir un programme existant: </label>
             <section className="field">
-              <label className="label">Programme: </label>
               <section className="control">
                 <section className="select">
                   <select>
+                    <option></option>
                     <option>Java</option>
                   </select>
                 </section>
               </section>
             </section>
           </section>
-          <br />
+          <div className="field">
+
+            <label className="label middleLines"><span>OU</span></label>
+          </div>
           <section className="field">
-            <label className="label">Création d'un nouveau programme</label>
+            <label className="label">Créer d'un nouveau programme: </label>
             <section className="field">
               <section className="control">
-                <label className="label">Nom du programme: </label>
-                <input className="input " type="text" placeholder="Renforcement JS" />
+                <input className="input " type="text" placeholder="Nom du programme" />
               </section>
+            </section>
+            <section>
               <section className="field">
-                <label className="label">Choix des Modules</label>
                 <section className="field">
                   <label className="label">Modules: </label>
                   <section className="control">
@@ -56,7 +61,6 @@ export class PromoCreateStepTwo extends Component {
               </section>
               <section className="field">
                 <section className="control">
-                  <label className="label">Modules: </label>
                   <textarea className="textarea" placeholder="Modules" />
                 </section>
               </section>
@@ -65,7 +69,7 @@ export class PromoCreateStepTwo extends Component {
 
           {buttonForm}
         </article>
-      </div>
+      </div >
     );
   }
 }

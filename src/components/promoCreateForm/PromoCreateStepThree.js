@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import './PromoCreate.scss';
+
 
 export class PromoCreateStepThree extends Component {
   render() {
-    const { nextStep, prevStep } = this.props;
+    const { nextStep, prevStep, isTeachers } = this.props;
     const buttonForm = (
       <section className="field is-grouped">
         <section className="control">
@@ -14,34 +16,46 @@ export class PromoCreateStepThree extends Component {
       </section>
     );
     return (
-      <div>
+      <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d'une promo (étape 3/4)</h1>
+          <h1 className="title is-4 is-spaced">Création d'une promo (étape {isTeachers ? "3" : "4"}/4)</h1>
           <section className="field">
-            <label className="label">Choix de l'équipe pédagogique</label>
+            <label className="label">Choisir des {isTeachers ? " formateurs " : " élèves "} existants:</label>
             <section className="field">
-              <label className="label">Formateurs: </label>
               <section className="control">
                 <section className="select">
                   <select>
-                    <option>Jérémie Patonier</option>
+                    <option></option>
+                    <option>{isTeachers ? "Jérémie Patonier" : "Jérémy Pluquet"}</option>
                   </select>
                 </section>
               </section>
             </section>
           </section>
-          <br />
           <section className="field">
-            <label className="label">Ajout d'un formateur</label>
+            <label className="label middleLines"><span>OU</span></label>
+          </section>
+          <section className="field">
+            <label className="label">Créer de nouveaux{isTeachers ? " formateurs " : " élèves "}:</label>
             <section className="field">
               <section className="control">
-                <label className="label">Nom du formateur: </label>
-                <input className="input " type="text" placeholder="Renforcement JS" />
+                <input className="input " type="text" placeholder="Nom" />
               </section>
+            </section>
+            <section className="field">
+              <section className="control">
+                <input className="input " type="text" placeholder="Prénom" />
+              </section>
+            </section>
+            <section className="field">
+              <section className="control">
+                <button className="button is-link">Ajouter</button>
+              </section>
+            </section>
+            <section className="field">
               <section className="field">
                 <section className="control">
-                  <label className="label">Modules: </label>
-                  <textarea className="textarea" placeholder="Modules" />
+                  <textarea className="textarea" placeholder={isTeachers ? " formateurs " : " élèves "} />
                 </section>
               </section>
             </section>
