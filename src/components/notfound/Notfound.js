@@ -1,15 +1,20 @@
 import React from 'react';
-import notfound from './notfound.png'; 
+import { Link } from 'react-router-dom';
+import notfound from './notfound.png';
+import './notfound.scss';
 
 const Notfound = () => {
     return (
-        <React.Fragment>
+        <div className="container-404">
+            <h1 className="title is-1"> WOOPS ! </h1>
+            <img src={notfound} id="notFound" alt="image-404-notfound"></img>
+            <p className="subtitle is-3">Voilà qui n'était pas prévu ... </p>
             <div>
-                <h1 className="title is-1"> WOOPS ! </h1>
-                <p>Ce n'était pas prévu </p>
-                <img src={notfound} id="notFound" alt="image-404-notfound"></img>
+                <Link to="/" id="goBack">
+                    Retourner à l'accueil
+                </Link>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 
