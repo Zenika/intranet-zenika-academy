@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import DatePicker from "../datepicker/DatePicker";
+import DatePicker from '../datepicker/DatePicker';
+import './PromoCreate.scss';
+
 export class PromoCreateStepOne extends Component {
-
   render() {
-
     const { nextStep } = this.props;
 
     const buttonForm = (
@@ -17,7 +17,7 @@ export class PromoCreateStepOne extends Component {
       </section>
     );
     return (
-      <div>
+      <div className="promoCreateForm">
         <article className="section box">
           <h1 className="title is-4 is-spaced">Création d'une promo (étape 1/4)</h1>
           <section className="control">
@@ -27,13 +27,13 @@ export class PromoCreateStepOne extends Component {
           <section>
             <section className="control">
               <label className="label">Date de début: </label>
-              <DatePicker date={""} />
+              <DatePicker date="" />
             </section>
           </section>
           <section>
             <section className="control">
               <label className="label">Date de fin: </label>
-              <DatePicker date={""} />
+              <DatePicker date="" />
             </section>
           </section>
           <section className="field">
@@ -65,8 +65,8 @@ export class PromoCreateStepOne extends Component {
           {buttonForm}
         </article>
       </div>
-    )
+    );
   }
 }
 
-export default PromoCreateStepOne
+export default PromoCreateStepOne;

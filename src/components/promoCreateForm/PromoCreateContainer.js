@@ -9,33 +9,57 @@ export class PromoCreateContainer extends Component {
     super();
     this.state = {
       step: 1,
-      startDate: '',
-      endDate: '',
-      students: [],
-      teachers: [],
-      program: []
+      isTeachers: true,
+      promo: {
+        number: 0,
+        startDate: '',
+        endDate: '',
+        students: [],
+        teachers: [],
+        program: []
+      }
     };
   }
 
+  /**
+   * Allows to handle state change in promo form
+   * @param e event from wich data are coming from
+   */
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   }
 
+  /**
+   * Allows to navigate forward on multiform
+   */
   nextStep = () => {
     const { step } = this.state;
+    console.log("next", step);
+
+    if (step === 2) {
+      this.setState({ isTeachers: true })
+    }
+    if (step === 3) {
+      this.setState({ isTeachers: false })
+    }
     this.setState({ step: step + 1 })
   }
 
+  /**
+   * Allows to navigate backward on multiform
+   */
   prevStep = () => {
     const { step } = this.state;
+    if (step < 5) {
+      this.setState({ isTeachers: true });
+    }
     if (step > 0) this.setState({ step: step - 1 });
   }
 
   render() {
-    const { step } = this.state;
+    const { step, isTeachers } = this.state;
     const { nextStep, prevStep } = this;
-    console.log(step);
 
     switch (step) {
       case 1:
@@ -56,6 +80,15 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepThree
             nextStep={nextStep}
             prevStep={prevStep}
+            isTeachers={isTeachers}
+          />
+        );
+      case 4:
+        return (
+          <PromoCreateStepThree
+            nextStep={nextStep}
+            prevStep={prevStep}
+            isTeachers={isTeachers}
           />
         );
       default:
