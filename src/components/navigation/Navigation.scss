@@ -95,10 +95,10 @@ a:hover{
 }
 
 @media screen and (min-width: 679px) {
-    .navbar-item.is-hoverable:hover .navbar-dropdown {
-        display: block !important;
-    }
     .navbar-item.is-hoverable:focus-within .navbar-dropdown {
         display: none;
+    }
+    .navbar-item.is-hoverable:hover .navbar-dropdown {
+        display: block;
     }
 }
