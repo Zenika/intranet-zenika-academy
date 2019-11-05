@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
+import SearchbarAuto from '../autosuggest/Autosuggest';
 import './PromoCreate.scss';
 
+const programs = [
+  {
+    title: 'C',
+  },
+  {
+    title: 'C++',
+  },
+  {
+    title: 'Java',
+  },
+  {
+    title: 'Javascript',
+  },
+  {
+    title: 'Agile',
+  },
+];
 
 export class PromoCreateStepTwo extends Component {
   render() {
@@ -26,12 +44,7 @@ export class PromoCreateStepTwo extends Component {
             <label className="label">Choisir un programme existant: </label>
             <section className="field">
               <section className="control">
-                <section className="select">
-                  <select>
-                    <option></option>
-                    <option>Java</option>
-                  </select>
-                </section>
+                <SearchbarAuto searchObject={programs} searchKey="title" />
               </section>
             </section>
           </section>
