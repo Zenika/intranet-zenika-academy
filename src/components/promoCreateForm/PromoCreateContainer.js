@@ -4,7 +4,6 @@ import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import PromoCreateStepThree from './PromoCreateStepThree';
 
 export class PromoCreateContainer extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -16,8 +15,8 @@ export class PromoCreateContainer extends Component {
         endDate: '',
         students: [],
         teachers: [],
-        program: []
-      }
+        program: [],
+      },
     };
   }
 
@@ -25,7 +24,7 @@ export class PromoCreateContainer extends Component {
    * Allows to handle state change in promo form
    * @param e event from wich data are coming from
    */
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   }
@@ -35,15 +34,10 @@ export class PromoCreateContainer extends Component {
    */
   nextStep = () => {
     const { step } = this.state;
-    console.log("next", step);
-
-    if (step === 2) {
-      this.setState({ isTeachers: true })
+    if (step > 2) {
+      this.setState({ isTeachers: false });
     }
-    if (step === 3) {
-      this.setState({ isTeachers: false })
-    }
-    this.setState({ step: step + 1 })
+    this.setState({ step: step + 1 });
   }
 
   /**
