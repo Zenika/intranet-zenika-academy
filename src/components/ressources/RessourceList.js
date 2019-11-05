@@ -2,7 +2,7 @@ import queryString from 'query-string';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RessourceData from './RessourceData';
-import SearchBar from '../searchbar/Searchbar';
+import SearchBar from '../searchBar/Searchbar';
 
 class RessourceList extends React.Component {
   render() {
