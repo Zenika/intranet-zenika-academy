@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './PromoCreate.scss';
-
-
+import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 export class PromoCreateStepThree extends Component {
   render() {
-    const { nextStep, prevStep, isTeachers } = this.props;
+    const { nextStep, prevStep, isTeachers, step } = this.props;
     const buttonForm = (
       <section className="field is-grouped">
         <section className="control">
@@ -39,8 +38,9 @@ export class PromoCreateStepThree extends Component {
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d'une promo (étape {isTeachers ? "3" : "4"}/4)</h1>
-          <section className="field">
+          <h1 className="title is-4 is-spaced">Création d'une promo</h1>
+          <BulmaSteps step={step} />
+          <section className="control">
             <label className="label">Choisir des {isTeachers ? " formateurs " : " élèves "} existants:</label>
             <section className="field">
               <section className="control">

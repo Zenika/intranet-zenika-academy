@@ -48,8 +48,10 @@ export class PromoCreateContainer extends Component {
     if (step < 5) {
       this.setState({ isTeachers: true });
     }
-    if (step > 0) this.setState({ step: step - 1 });
+    this.setState({ step: step - 1 });
   }
+
+
 
   render() {
     const { step, isTeachers } = this.state;
@@ -60,6 +62,7 @@ export class PromoCreateContainer extends Component {
         return (
           <PromoCreateStepOne
             nextStep={nextStep}
+            step={step}
           />
         );
       case 2:
@@ -67,6 +70,7 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepTwo
             nextStep={nextStep}
             prevStep={prevStep}
+            step={step}
           />
         );
       case 3:
@@ -75,6 +79,7 @@ export class PromoCreateContainer extends Component {
             nextStep={nextStep}
             prevStep={prevStep}
             isTeachers={isTeachers}
+            step={step}
           />
         );
       case 4:
@@ -83,6 +88,7 @@ export class PromoCreateContainer extends Component {
             nextStep={nextStep}
             prevStep={prevStep}
             isTeachers={isTeachers}
+            step={step}
           />
         );
       default:
