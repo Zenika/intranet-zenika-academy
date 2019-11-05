@@ -15,6 +15,27 @@ export class PromoCreateStepThree extends Component {
         </section>
       </section>
     );
+
+    const studentComplement = (
+      <section className="field">
+        <section className="field">
+          <section className="control">
+            <input className="input " type="text" placeholder="Email" />
+          </section>
+        </section>
+        <section className="field">
+          <section className="control">
+            <input className="input " type="text" placeholder="Numéro de téléphone" />
+          </section>
+        </section>
+        <section className="field">
+          <section className="control">
+            <input className="input " type="text" placeholder="Identifiant Pole Emploi" />
+          </section>
+        </section>
+      </section>
+    );
+
     return (
       <div className="promoCreateForm">
         <article className="section box">
@@ -47,6 +68,7 @@ export class PromoCreateStepThree extends Component {
                 <input className="input " type="text" placeholder="Prénom" />
               </section>
             </section>
+            {!isTeachers && studentComplement}
             <section className="field">
               <section className="control">
                 <button className="button is-link">Ajouter</button>
