@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 import DatePicker from '../datepicker/DatePicker';
 import './PromoCreate.scss';
 
 export class PromoCreateStepOne extends Component {
   render() {
-    const { nextStep } = this.props;
+    const { nextStep, step } = this.props;
 
     const buttonForm = (
       <section className="field is-grouped">
@@ -16,10 +17,13 @@ export class PromoCreateStepOne extends Component {
         </section>
       </section>
     );
+
+
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d'une promo (étape 1/4)</h1>
+          <h1 className="title is-4 is-spaced">Création d'une promo</h1>
+          <BulmaSteps step={step} />
           <section className="control">
             <label className="label">Nom de la promo: </label>
             <input className="input " type="text" placeholder="Promo" />

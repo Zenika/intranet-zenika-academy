@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.8.0",
+    "bulma-o-steps": "^1.0.9",
     "node-sass": "^4.13.0",
     "query-string": "^6.8.3",
     "react": "^16.11.0",
