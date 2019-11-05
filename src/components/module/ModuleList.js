@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ModuleData from './ModuleData';
-import SearchBar from '../searchBar/Searchbar';
+import SearchBar from '../searchbar/Searchbar';
 
 const ModuleList = () => (
   <article className="box mbmd">

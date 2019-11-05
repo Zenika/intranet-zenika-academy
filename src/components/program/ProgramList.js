@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProgramData from './ProgramData';
 import '../layout/Layout.scss';
-import SearchBar from '../searchBar/Searchbar';
+import SearchBar from '../searchbar/Searchbar';
 
 class ProgramList extends React.Component {
   render() {

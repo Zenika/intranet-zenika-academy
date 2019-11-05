@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import WhoToFollowData from './WhoToFollowData';
 import '../layout/Layout.scss';
-import SearchBar from '../searchBar/Searchbar';
+import SearchBar from '../searchbar/Searchbar';
 
 const WhoToFollowList = () => (
   <React.Fragment>
