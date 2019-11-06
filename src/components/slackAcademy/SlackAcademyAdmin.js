@@ -4,7 +4,7 @@ import '../layout/Layout.scss';
 const SlackAcademyAdmin = () => (
   <React.Fragment>
     <div>
-      <h1 className="title is-1 mbmd">Slack Academy</h1>
+      <h1 className="title is-2 mbmd">Slack Academy</h1>
     </div>
     <article className="section box">
       <section className="mbmd">

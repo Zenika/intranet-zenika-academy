@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../layout/Layout.scss';
+import bulmaCollapsible from '@creativebulma/bulma-collapsible';
 import PromDataCard from './PromDataCard.js';
 
 const promDataForDashboard = [
@@ -42,48 +43,72 @@ const promDataForDashboard = [
     }
 ];
 
-const DashboardPromData = () => (
-    <div className="notification">
-        <h1 className="title is-2">Promos en cours</h1>
-        <article>
-            <h2 className="title is-3 ">{promDataForDashboard[0].promo1.country}</h2>
-            <ul className="adminDashboard">
-                <li className="adminDashboardItem">
-                    <PromDataCard
-                        title={promDataForDashboard[0].promo1.title}
-                        city={promDataForDashboard[0].promo1.city}
-                        promo={promDataForDashboard[0].promo1.promo}
-                    />
-                </li>
-                <li className="adminDashboardItem">
-                    <PromDataCard
-                        title={promDataForDashboard[0].promo2.title}
-                        city={promDataForDashboard[0].promo2.city}
-                        promo={promDataForDashboard[0].promo2.promo}
-                    />
-                </li>
-                <li className="adminDashboardItem">
-                    <PromDataCard
-                        title={promDataForDashboard[0].promo3.title}
-                        city={promDataForDashboard[0].promo3.city}
-                        promo={promDataForDashboard[0].promo3.promo}
-                    />
-                </li>
-            </ul>
-        </article>
-        <article>
-            <h2 className="title is-3 ">{promDataForDashboard[0].promo4.country}</h2>
-            <ul className="adminDashboard">
-                <li className="adminDashboardItem">
-                    <PromDataCard
-                        title={promDataForDashboard[0].promo4.title}
-                        city={promDataForDashboard[0].promo4.city}
-                        promo={promDataForDashboard[0].promo4.promo}
-                    />
-                </li>
-            </ul>
-        </article>
-    </div>
-);
+class DashboardPromData extends Component {
+    componentDidMount() {
+        this.collapsibles = bulmaCollapsible.attach(".is-collapsible", {
+            container: this.refs.collapsibles,
+            collapsed: false,
+            allowMultiple: true
+        });
+    }
+
+    render() {
+        return (
+            <div className="notification">
+                <h1 className="title is-4">Promos en cours</h1>
+                <section ref="collapsibles" id="accordion_first">
+                    <article className="message">
+                        <div className="message-header">
+                            <h2 className="title is-5 ">{promDataForDashboard[0].promo1.country} (3)</h2>
+                            <a href="#collapsible-section1" data-action="collapse">
+                                <i className="fas fa-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div id="collapsible-section1" className="adminDashboard message-body is-collapsible" data-parent="accordion_first">
+                            <div className="adminDashboardItem message-body-content">
+                                <PromDataCard
+                                    title={promDataForDashboard[0].promo1.title}
+                                    city={promDataForDashboard[0].promo1.city}
+                                    promo={promDataForDashboard[0].promo1.promo}
+                                />
+                            </div>
+                            <div className="adminDashboardItem message-body-content">
+                                <PromDataCard
+                                    title={promDataForDashboard[0].promo2.title}
+                                    city={promDataForDashboard[0].promo2.city}
+                                    promo={promDataForDashboard[0].promo2.promo}
+                                />
+                            </div>
+                            <div className="adminDashboardItem message-body-content">
+                                <PromDataCard
+                                    title={promDataForDashboard[0].promo3.title}
+                                    city={promDataForDashboard[0].promo3.city}
+                                    promo={promDataForDashboard[0].promo3.promo}
+                                />
+                            </div>
+                        </div>
+                    </article>
+                    <article className="message">
+                        <div className="message-header">
+                            <h2 className="title is-5">{promDataForDashboard[0].promo4.country} (1)</h2>
+                            <a  href="#collapsible-section2" data-action="collapse">
+                                <i className="fas fa-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div id="collapsible-section2" className="adminDashboard message-body is-collapsible" data-parent="accordion_first">
+                            <div className="adminDashboardItem message-body-content">
+                                <PromDataCard
+                                    title={promDataForDashboard[0].promo4.title}
+                                    city={promDataForDashboard[0].promo4.city}
+                                    promo={promDataForDashboard[0].promo4.promo}
+                                />
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        );
+    }
+}
 
 export default DashboardPromData;

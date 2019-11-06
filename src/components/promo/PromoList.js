@@ -66,7 +66,7 @@ const promo = [
 const PromoList = () => (
   <React.Fragment>
     <div>
-      <h1 className="title is-1 mbmd">Promotions</h1>
+      <h1 className="title is-2 mbmd">Promotions</h1>
     </div>
     <article className="box mbmd">
       <aside className="mbmd">
