@@ -5,19 +5,25 @@ import './PromoCreate.scss';
 
 const programs = [
   {
-    title: 'C',
+    label: 'C',
+    value: 'C',
   },
   {
-    title: 'C++',
+    label: 'C++',
+    value: 'C++',
+
   },
   {
-    title: 'Java',
+    label: 'Java',
+    value: 'Java',
   },
   {
-    title: 'Javascript',
+    label: 'Javascript',
+    value: 'Javascript',
   },
   {
-    title: 'Agile',
+    label: 'Agile',
+    value: 'Agile',
   },
 ];
 
@@ -44,7 +50,7 @@ export class PromoCreateStepTwo extends Component {
             <label className="label">Choisir un programme existant: </label>
             <section className="field">
               <section className="control">
-                <SearchbarAutoComplete searchObject={programs} searchKey="title" />
+                <SearchbarAutoComplete searchObject={programs} searchKey="title" isMulti />
               </section>
             </section>
           </section>
@@ -84,7 +90,7 @@ export class PromoCreateStepTwo extends Component {
 
           {buttonForm}
         </article>
-      </div >
+      </div>
     );
   }
 }

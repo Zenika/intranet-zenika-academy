@@ -1,67 +1,37 @@
 import React, { Component } from 'react';
-import Autosuggest from 'react-autosuggest';
-import './theme.scss';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 export class SearchbarAuto extends Component {
   constructor() {
     super();
     this.state = {
-      value: '',
-      suggestions: [],
+      selectedOption: null,
+    };
+    this.handleChange = (selectedOption) => {
+      this.setState(
+        { selectedOption },
+        () => console.log('Option selected:', this.state.selectedOption),
+      );
     };
   }
 
-  onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue,
-    });
-  };
 
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: this.getSuggestions(value),
-    });
-  };
-
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: [],
-    });
-  };
-
-   getSuggestions = (value) => {
-     const { searchObject, searchKey } = this.props;
-     const inputValue = value.trim().toLowerCase();
-     const inputLength = inputValue.length;
-     return inputLength === 0 ? [] : searchObject.filter((search) => search[searchKey].toLowerCase().slice(0, inputLength) === inputValue);
-   };
-
-   getSuggestionValue = (suggestion) => suggestion[this.props.searchKey];
-
-   renderSuggestion = (suggestion) => (
-     <div>
-       {suggestion[this.props.searchKey]}
-     </div>
-   );
-
-   render() {
-     const { value, suggestions } = this.state;
-     const inputProps = {
-       placeholder: 'Rechercher',
-       value,
-       onChange: this.onChange,
-     };
-     return (
-       <Autosuggest
-         suggestions={suggestions}
-         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-         getSuggestionValue={this.getSuggestionValue}
-         renderSuggestion={this.renderSuggestion}
-         inputProps={inputProps}
-       />
-     );
-   }
+  render() {
+    const { selectedOption } = this.state;
+    return (
+      <Select
+        closeMenuOnSelect={false}
+        components={animatedComponents}
+        value={selectedOption}
+        onChange={this.handleChange}
+        options={this.props.searchObject}
+        isMulti={this.props.isMulti}
+      />
+    );
+  }
 }
 
 export default SearchbarAuto;

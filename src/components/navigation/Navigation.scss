@@ -45,16 +45,20 @@ a:hover{
     background-color: #fafafa;
 }
 
-.icon-signout {
+.icon-signout, .icon-signout-admin {
     font-size: 2rem;
+}
+
+.icon-signout-admin {
+    color: white;
 }
 
 @media screen and (max-width: 1023px) {
     .navbar-menu-front {
-        background-color: #00d1b2;
+        background-color: whitesmoke;
     }
     .navbar-menu-admin {
-        background-color: #ff3860;
+        background-color: #363636
     }
 }
 
