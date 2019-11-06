@@ -50,7 +50,7 @@ class UserProfile extends Component {
               <UserProfileInput label="Promotion : " name="promotion" value={this.state.promotion} onChange={this.handleChange} />
 
               <button className="button is-warning userProfileButton" onClick={(e) => { this.modifyForm(e); }}>Modifier</button>
-              <button className="button is-success userProfileButton" disabled={this.state.disabled} type="submit">Enregistrer</button>
+              <button className="button is-success userProfileButton" disabled={this.state.disabled} type="submit">Soumettre</button>
             </form>
 
           </section>

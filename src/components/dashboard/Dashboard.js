@@ -7,11 +7,9 @@ class Dashboard extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div>
                     <h1 className="title is-1 mbmd">Dashboard</h1>
-                </div>
                 <div>
-                <DashboardShearchbar />
+                <DashboardFilterBar />
                 <DashboardPromData />
                 </div>
             </React.Fragment>
