@@ -66,10 +66,10 @@ export class PromoCreateStepThree extends Component {
           <BulmaSteps step={step} />
           <section className="control">
             <label className="label">
-Choisir des
+              Choisir des
               {isTeachers ? ' formateurs ' : ' élèves '}
               {' '}
-existants:
+              existants:
             </label>
             <section className="field">
               <section className="control">

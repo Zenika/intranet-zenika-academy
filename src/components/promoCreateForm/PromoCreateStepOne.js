@@ -7,11 +7,7 @@ function PromoCreateStepOne(props) {
   const { nextStep, step } = props;
 
   const buttonForm = (
-<<<<<<< HEAD
     <section className="field buttonField">
-=======
-    <section className="field is-grouped">
->>>>>>> numbers in step
       <section className="control">
         <button className="button is-danger">Annuler</button>
       </section>
