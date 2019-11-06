@@ -72,7 +72,21 @@ class NavigationBar extends Component {
 
   render() {
     const { loggedIn, modalState, isNavAdmin } = this.state;
-
+    const navbarMenu = document.querySelector('#navMenu') || '';
+    let navbarMenuClass;
+    if (isNavAdmin && loggedIn) {
+      if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-front is-active') {
+        navbarMenuClass = 'navbar-menu navbar-menu-admin is-active';
+      } else {
+        navbarMenuClass = 'navbar-menu navbar-menu-admin';
+      }
+    } else if (!isNavAdmin || !loggedIn) {
+      if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-admin is-active') {
+        navbarMenuClass = 'navbar-menu navbar-menu-front is-active';
+      } else {
+        navbarMenuClass = 'navbar-menu navbar-menu-front';
+      }
+    }
     const mainLink = (
       <section
         className="navbar-item"
@@ -209,7 +223,7 @@ class NavigationBar extends Component {
             <span />
           </span>
         </section>
-        <section className="navbar-menu" id="navMenu">
+        <section className={navbarMenuClass} id="navMenu">
           {isNavAdmin ? adminLinks : notAdminLinks}
           <section className="navbar-end">
             <section className="navbar-item has-dropdown is-hoverable">

@@ -4,7 +4,6 @@ import Caroussel from '../caroussel/Caroussel';
 import UserProfileInput from './UserProfileInput';
 
 class UserProfile extends Component {
-
   constructor(props) {
     super(props);
 
@@ -15,27 +14,27 @@ class UserProfile extends Component {
       email: 'jean.milan@gmail.com',
       telephone: '+33665454323',
       promotion: '2019',
-      disabled: true
+      disabled: true,
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ disabled: true })
-  }
+    this.setState({ disabled: true });
+  };
 
-  modifyForm = e => {
+  modifyForm = (e) => {
     e.preventDefault();
-    this.setState({ disabled: false })
-  }
+    this.setState({ disabled: false });
+  };
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <div>
           <h1 className="title is-1 mbmd">Mon profil</h1>
         </div>
@@ -50,16 +49,23 @@ class UserProfile extends Component {
               <UserProfileInput label="Téléphone : " disabled={this.state.disabled} name="telephone" value={this.state.telephone} onChange={this.handleChange} />
               <UserProfileInput label="Promotion : " name="promotion" value={this.state.promotion} onChange={this.handleChange} />
 
-              <button className="button is-warning userProfileButton" onClick={(e) => { this.modifyForm(e) }}>Modifier</button>
+              <button className="button is-warning userProfileButton" onClick={(e) => { this.modifyForm(e); }}>Modifier</button>
               <button className="button is-success userProfileButton" disabled={this.state.disabled} type="submit">Enregistrer</button>
             </form>
 
           </section>
           <section className="section box">
             <h1 className="userProfileSectionTitle">Montée en compétence :</h1>
-            <h2 class="assessmentTitle">Evaluation 1 :</h2><strong>60%</strong><progress class="progress is-info" value="60" max="100"></progress>
-            <h2 class="assessmentTitle">Evaluation 2 :</h2><strong>90%</strong><progress class="progress is-info" value="90" max="100"></progress>
-            <h2 class="assessmentTitle">Projet ADA :</h2><strong>70%</strong> <progress class="progress is-link" value="70" max="100"></progress>
+            <h2 className="assessmentTitle">Evaluation 1 :</h2>
+            <strong>60%</strong>
+            <progress className="progress is-info" value="60" max="100" />
+            <h2 className="assessmentTitle">Evaluation 2 :</h2>
+            <strong>90%</strong>
+            <progress className="progress is-info" value="90" max="100" />
+            <h2 className="assessmentTitle">Projet ADA :</h2>
+            <strong>70%</strong>
+            {' '}
+            <progress className="progress is-link" value="70" max="100" />
           </section>
 
           <section className="section box">
@@ -67,9 +73,9 @@ class UserProfile extends Component {
             <Caroussel />
           </section>
         </article>
-      </React.Fragment>
-    )
+      </>
+    );
   }
-};
+}
 
 export default UserProfile;
