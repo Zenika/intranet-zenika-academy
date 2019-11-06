@@ -27,7 +27,7 @@ function generateCards(){
 
 const ContactList = () => (
   <React.Fragment>
-    <h1 className="title is-1 mbmd">Contacts utiles</h1>
+    <h1 className="title is-2 mbmd">Contacts utiles</h1>
     <div className="ContactListCardContainer">
       {generateCards()}
     </div>

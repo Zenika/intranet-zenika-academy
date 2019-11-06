@@ -5,32 +5,12 @@ export class PromoCreateStepThree extends Component {
   render() {
     const { nextStep, prevStep, isTeachers, step } = this.props;
     const buttonForm = (
-      <section className="field is-grouped">
+      <section className="field buttonField">
         <section className="control">
           <button className="button is-danger" onClick={prevStep}>Revenir</button>
         </section>
         <section className="control">
           <button className="button is-link" onClick={nextStep}>Continuer</button>
-        </section>
-      </section>
-    );
-
-    const studentComplement = (
-      <section className="field">
-        <section className="field">
-          <section className="control">
-            <input className="input " type="text" placeholder="Email" />
-          </section>
-        </section>
-        <section className="field">
-          <section className="control">
-            <input className="input " type="text" placeholder="Numéro de téléphone" />
-          </section>
-        </section>
-        <section className="field">
-          <section className="control">
-            <input className="input " type="text" placeholder="Identifiant Pole Emploi" />
-          </section>
         </section>
       </section>
     );
@@ -57,28 +37,9 @@ export class PromoCreateStepThree extends Component {
             <label className="label middleLines"><span>OU</span></label>
           </section>
           <section className="field">
-            <label className="label">Créer de nouveaux{isTeachers ? " formateurs " : " élèves "}:</label>
             <section className="field">
-              <section className="control">
-                <input className="input " type="text" placeholder="Nom" />
-              </section>
-            </section>
-            <section className="field">
-              <section className="control">
-                <input className="input " type="text" placeholder="Prénom" />
-              </section>
-            </section>
-            {!isTeachers && studentComplement}
-            <section className="field">
-              <section className="control">
-                <button className="button is-link">Ajouter</button>
-              </section>
-            </section>
-            <section className="field">
-              <section className="field">
-                <section className="control">
-                  <textarea className="textarea" placeholder={isTeachers ? " formateurs " : " élèves "} />
-                </section>
+              <section className="control buttonCreate">
+                <button className="button is-link">Créer un utilisateur</button>
               </section>
             </section>
           </section>

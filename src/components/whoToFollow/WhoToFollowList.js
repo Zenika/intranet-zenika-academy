@@ -7,7 +7,7 @@ import SearchBar from '../searchbar/Searchbar';
 const WhoToFollowList = () => (
   <React.Fragment>
     <div>
-      <h1 className="title is-1 mbmd">Who to follow</h1>
+      <h1 className="title is-2 mbmd">Who to follow</h1>
     </div>
     <article className="box mbmd">
       <aside className="mbmd">
