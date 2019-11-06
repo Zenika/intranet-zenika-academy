@@ -9,7 +9,7 @@ export class PromoCreateContainer extends Component {
     super();
     this.state = {
       step: 1,
-      title: "",
+      title: '',
       startDate: '',
       endDate: '',
       students: [],
@@ -26,21 +26,23 @@ export class PromoCreateContainer extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value }, () => {
       console.log(`state: ${this.state}, value: ${value}`);
-    },
-    );
+    });
   }
 
+  /**
+   * Allows to handle state change from multi select
+   * @param options options objects from multi select
+   * @param name name of the state to update
+   */
   handleMultiChange = (options, name) => {
-    if (name === "program") {
+    if (name === 'program') {
       this.setState({ [name]: [options] }, () => {
         console.log(`state: ${this.state}, value: ${options}`);
-      },
-      );
+      });
     }
     this.setState({ [name]: options }, () => {
       console.log(`state: ${this.state}, value: ${options}`);
-    },
-    );
+    });
   }
 
   /**
@@ -66,7 +68,9 @@ export class PromoCreateContainer extends Component {
     const promo = {
       title, startDate, endDate, teachers, students, program, country, city,
     };
-    const { nextStep, prevStep, handleChange, handleMultiChange } = this;
+    const {
+      nextStep, prevStep, handleChange, handleMultiChange,
+    } = this;
 
     switch (step) {
       case 1:

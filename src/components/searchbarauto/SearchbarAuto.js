@@ -10,7 +10,6 @@ export class SearchbarAuto extends Component {
 
   render() {
     const { options, defaultValue, handleChange, isMulti, name } = this.props;
-    console.log(this.props);
 
     return (
       <Select
