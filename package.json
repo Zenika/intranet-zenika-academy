@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@creativebulma/bulma-collapsible": "^1.0.4",
     "@kenshooui/react-multi-select": "^1.1.5",
     "bulma": "^0.8.0",
     "bulma-o-steps": "^1.0.9",
     "node-sass": "^4.13.0",
     "query-string": "^6.8.3",
     "react": "^16.11.0",
-    "react-autosuggest": "^9.4.3",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "react-select": "^3.0.8",
     "sass-loader": "^8.0.0"
   },
   "scripts": {

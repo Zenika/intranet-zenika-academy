@@ -9,7 +9,7 @@ class ProgramList extends React.Component {
     return (
       <React.Fragment>
         <div>
-          <h1 className="title is-1 mbmd">Programmes</h1>
+          <h1 className="title is-2 mbmd">Programmes</h1>
         </div>
         <article className="box mbmd">
           <aside className="mbmd">

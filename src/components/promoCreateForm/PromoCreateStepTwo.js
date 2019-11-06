@@ -5,19 +5,25 @@ import './PromoCreate.scss';
 
 const programs = [
   {
-    title: 'C',
+    label: 'C',
+    value: 'C',
   },
   {
-    title: 'C++',
+    label: 'C++',
+    value: 'C++',
+
   },
   {
-    title: 'Java',
+    label: 'Java',
+    value: 'Java',
   },
   {
-    title: 'Javascript',
+    label: 'Javascript',
+    value: 'Javascript',
   },
   {
-    title: 'Agile',
+    label: 'Agile',
+    value: 'Agile',
   },
 ];
 
@@ -26,7 +32,7 @@ export class PromoCreateStepTwo extends Component {
     const { nextStep, prevStep, step } = this.props;
 
     const buttonForm = (
-      <section className="field is-grouped">
+      <section className="field buttonField">
         <section className="control">
           <button className="button is-danger" onClick={prevStep}>Revenir</button>
         </section>
@@ -44,12 +50,11 @@ export class PromoCreateStepTwo extends Component {
             <label className="label">Choisir un programme existant: </label>
             <section className="field">
               <section className="control">
-                <SearchbarAutoComplete searchObject={programs} searchKey="title" />
+                <SearchbarAutoComplete searchObject={programs} searchKey="title" isMulti />
               </section>
             </section>
           </section>
           <div className="field">
-
             <label className="label middleLines"><span>OU</span></label>
           </div>
           <section className="field">
@@ -59,32 +64,10 @@ export class PromoCreateStepTwo extends Component {
                 <input className="input " type="text" placeholder="Nom du programme" />
               </section>
             </section>
-            <section>
-              <section className="field">
-                <section className="field">
-                  <label className="label">Modules: </label>
-                  <section className="control">
-                    <section className="select">
-                      <select>
-                        <option>Bases html</option>
-                        <option>Bases css</option>
-                        <option>Variables Javascript</option>
-                      </select>
-                    </section>
-                  </section>
-                </section>
-              </section>
-              <section className="field">
-                <section className="control">
-                  <textarea className="textarea" placeholder="Modules" />
-                </section>
-              </section>
-            </section>
           </section>
-
           {buttonForm}
         </article>
-      </div >
+      </div>
     );
   }
 }

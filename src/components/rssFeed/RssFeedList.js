@@ -7,7 +7,7 @@ import SearchBar from '../searchbar/Searchbar';
 const RssFeedList = () => (
   <React.Fragment>
     <div>
-      <h1 className="title is-1 mbmd">Flux RSS</h1>
+      <h1 className="title is-2 mbmd">Flux RSS</h1>
     </div>
     <article className="box mbmd">
       <aside className="mbmd">

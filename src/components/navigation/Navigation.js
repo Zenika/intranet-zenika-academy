@@ -208,7 +208,7 @@ class NavigationBar extends Component {
 
     const mainNav = (
       <nav
-        className={isNavAdmin ? 'navbar is-danger' : 'navbar is-primary'}
+        className={isNavAdmin ? 'navbar is-dark' : 'navbar is-light'}
         role="navigation"
         aria-label="main navigation"
       >
@@ -245,8 +245,8 @@ class NavigationBar extends Component {
               className="navbar-item"
               onClick={() => this.connect(false)}
             >
-              <Link to="/">
-                <i className="fas fa-sign-out-alt icon-signout display-desktop" />
+              <Link to="/" className= {isNavAdmin ? 'icon-signout-admin' : 'icon-signout'}>
+                <i className="fas fa-sign-out-alt display-desktop" />
                 <span className="navbar-link is-arrowless display-mobile">Se déconnecter</span>
               </Link>
             </section>
