@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
-<<<<<<< HEAD
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
-=======
-import SearchbarAuto from '../autosuggest/Autosuggest';
->>>>>>> rebase dev
 import './PromoCreate.scss';
 
 const programs = [
