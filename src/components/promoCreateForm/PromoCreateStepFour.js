@@ -25,9 +25,7 @@ const students = [
 
 export class PromoCreateStepFour extends Component {
   render() {
-    const {
-      nextStep, prevStep, step,
-    } = this.props;
+    const { nextStep, prevStep, step, handleChange, promo, handleMultiChange } = this.props;
 
     const buttonForm = (
       <section className="field buttonField">
@@ -51,7 +49,7 @@ export class PromoCreateStepFour extends Component {
                         </label>
             <section className="field">
               <section className="control">
-                <SearchbarAutoComplete searchObject={students} searchKey="name" isMulti />
+                <SearchbarAutoComplete defaultValue={promo.students} name={"students"} options={students} handleChange={(e) => handleMultiChange(e, "students")} searchKey="title" isMulti />
               </section>
             </section>
           </section>

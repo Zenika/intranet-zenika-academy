@@ -23,15 +23,24 @@ export class PromoCreateContainer extends Component {
    * @param e event from wich data are coming from
    */
   handleChange = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
-    console.log(typeof e.target.value);
-
-
     const { name, value } = e.target;
-    this.setState({ [name]: value });
-    console.log(this.state);
+    this.setState({ [name]: value }, () => {
+      console.log(`state: ${this.state}, value: ${value}`);
+    },
+    );
+  }
 
+  handleMultiChange = (options, name) => {
+    if (name === "program") {
+      this.setState({ [name]: [options] }, () => {
+        console.log(`state: ${this.state}, value: ${options}`);
+      },
+      );
+    }
+    this.setState({ [name]: options }, () => {
+      console.log(`state: ${this.state}, value: ${options}`);
+    },
+    );
   }
 
   /**
@@ -57,7 +66,7 @@ export class PromoCreateContainer extends Component {
     const promo = {
       title, startDate, endDate, teachers, students, program, country, city,
     };
-    const { nextStep, prevStep, handleChange } = this;
+    const { nextStep, prevStep, handleChange, handleMultiChange } = this;
 
     switch (step) {
       case 1:
@@ -75,6 +84,7 @@ export class PromoCreateContainer extends Component {
             nextStep={nextStep}
             prevStep={prevStep}
             handleChange={handleChange}
+            handleMultiChange={handleMultiChange}
             promo={promo}
             step={step}
           />
@@ -85,6 +95,7 @@ export class PromoCreateContainer extends Component {
             nextStep={nextStep}
             prevStep={prevStep}
             handleChange={handleChange}
+            handleMultiChange={handleMultiChange}
             promo={promo}
             step={step}
           />
@@ -95,6 +106,7 @@ export class PromoCreateContainer extends Component {
             nextStep={nextStep}
             prevStep={prevStep}
             handleChange={handleChange}
+            handleMultiChange={handleMultiChange}
             promo={promo}
             step={step}
           />
