@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PromoCreateStepOne from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import { PromoCreateStepThree } from './PromoCreateStepThree';
+import { PromoCreateStepFour } from './PromoCreateStepFour';
 
 export class PromoCreateContainer extends Component {
   constructor() {
@@ -76,16 +77,14 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepThree
             nextStep={nextStep}
             prevStep={prevStep}
-            isTeachers={isTeachers}
             step={step}
           />
         );
       case 4:
         return (
-          <PromoCreateStepThree
+          <PromoCreateStepFour
             nextStep={nextStep}
             prevStep={prevStep}
-            isTeachers={isTeachers}
             step={step}
           />
         );

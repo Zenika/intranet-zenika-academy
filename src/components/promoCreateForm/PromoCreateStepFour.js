@@ -3,32 +3,32 @@ import './PromoCreate.scss';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 
-const teachers = [
+const students = [
   {
-    label: 'Jérémie Patonnier',
-    value: 'Jérémie Patonnier',
+    label: 'Jeremy Pluquet',
+    value: 'Jeremy Pluquet',
   },
   {
-    label: 'Jonathan Barthelemy',
-    value: 'Jonathan Barthelemy',
+    label: 'Youcef Messaoudene',
+    value: 'Youcef Messaoudene',
 
   },
   {
-    label: 'Monsieur X',
+    label: 'Anne-Lise Vanhoegaerden',
     value: 'Monsieur X',
   },
   {
-    label: 'Madame Y',
-    value: 'Madame Y',
+    label: 'Claudine Lafine',
+    value: 'Claudine Lafine',
   },
 ];
 
-
-export class PromoCreateStepThree extends Component {
+export class PromoCreateStepFour extends Component {
   render() {
     const {
       nextStep, prevStep, step,
     } = this.props;
+
     const buttonForm = (
       <section className="field buttonField">
         <section className="control">
@@ -47,11 +47,11 @@ export class PromoCreateStepThree extends Component {
           <BulmaSteps step={step} />
           <section className="control">
             <label className="label">
-              Choisir des formateurs existants:
-            </label>
+              Choisir des élèves existants:
+                        </label>
             <section className="field">
               <section className="control">
-                <SearchbarAutoComplete searchObject={teachers} searchKey="name" isMulti />
+                <SearchbarAutoComplete searchObject={students} searchKey="name" isMulti />
               </section>
             </section>
           </section>
@@ -72,4 +72,4 @@ export class PromoCreateStepThree extends Component {
   }
 }
 
-export default PromoCreateStepThree;
+export default PromoCreateStepFour;
