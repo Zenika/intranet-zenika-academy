@@ -36,7 +36,7 @@ class UserProfile extends Component {
     return (
       <>
         <div>
-          <h1 className="title is-1 mbmd">Mon profil</h1>
+          <h1 className="title is-2 mbmd">Mon profil</h1>
         </div>
         <article>
           <section className="section box">

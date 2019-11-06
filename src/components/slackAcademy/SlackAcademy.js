@@ -4,7 +4,7 @@ import './SlackIntegration.scss';
 const SlackIntegration = () => (
   <React.Fragment>
     <div>
-      <h1 className="title is-1 mbmd">Slack Academy</h1>
+      <h1 className="title is-2 mbmd">Slack Academy</h1>
     </div>
     <section className="container">
       <h1 className="titre">Integration API Slack</h1>

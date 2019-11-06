@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <React.Fragment>
         <div>
-          <h1 className="title is-1 mbmd">Accueil</h1>
+          <h1 className="title is-2 mbmd">Accueil</h1>
         </div>
         <Caroussel />
       </React.Fragment>

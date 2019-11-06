@@ -8,7 +8,7 @@ class Dashboard extends React.Component {
         return (
             <React.Fragment>
                 <div>
-                    <h1 className="title is-1 mbmd">Dashboard</h1>
+                    <h1 className="title is-2 mbmd">Dashboard</h1>
                 </div>
                 <div>
                 <DashboardShearchbar />
