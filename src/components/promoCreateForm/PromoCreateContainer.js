@@ -9,15 +9,12 @@ export class PromoCreateContainer extends Component {
     super();
     this.state = {
       step: 1,
-      isTeachers: true,
-      promo: {
-        number: 0,
-        startDate: '',
-        endDate: '',
-        students: [],
-        teachers: [],
-        program: [],
-      },
+      title: "",
+      startDate: '',
+      endDate: '',
+      students: [],
+      teachers: [],
+      program: [],
     };
   }
 
@@ -26,8 +23,15 @@ export class PromoCreateContainer extends Component {
    * @param e event from wich data are coming from
    */
   handleChange = (e) => {
+    console.log(e.target.name);
+    console.log(e.target.value);
+    console.log(typeof e.target.value);
+
+
     const { name, value } = e.target;
     this.setState({ [name]: value });
+    console.log(this.state);
+
   }
 
   /**
@@ -35,9 +39,6 @@ export class PromoCreateContainer extends Component {
    */
   nextStep = () => {
     const { step } = this.state;
-    if (step > 2) {
-      this.setState({ isTeachers: false });
-    }
     this.setState({ step: step + 1 });
   }
 
@@ -46,15 +47,17 @@ export class PromoCreateContainer extends Component {
    */
   prevStep = () => {
     const { step } = this.state;
-    if (step < 5) {
-      this.setState({ isTeachers: true });
-    }
     this.setState({ step: step - 1 });
   }
 
   render() {
-    const { step, isTeachers } = this.state;
-    const { nextStep, prevStep } = this;
+    const {
+      step, title, startDate, endDate, teachers, students, program, country, city,
+    } = this.state;
+    const promo = {
+      title, startDate, endDate, teachers, students, program, country, city,
+    };
+    const { nextStep, prevStep, handleChange } = this;
 
     switch (step) {
       case 1:
@@ -62,6 +65,8 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepOne
             nextStep={nextStep}
             step={step}
+            promo={promo}
+            handleChange={handleChange}
           />
         );
       case 2:
@@ -69,6 +74,8 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepTwo
             nextStep={nextStep}
             prevStep={prevStep}
+            handleChange={handleChange}
+            promo={promo}
             step={step}
           />
         );
@@ -77,6 +84,8 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepThree
             nextStep={nextStep}
             prevStep={prevStep}
+            handleChange={handleChange}
+            promo={promo}
             step={step}
           />
         );
@@ -85,6 +94,8 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepFour
             nextStep={nextStep}
             prevStep={prevStep}
+            handleChange={handleChange}
+            promo={promo}
             step={step}
           />
         );
