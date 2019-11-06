@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
                     <h1 className="title is-2 mbmd">Dashboard</h1>
                 </div>
                 <div>
-                <DashboardShearchbar />
+                <DashboardFilterBar />
                 <DashboardPromData />
                 </div>
             </React.Fragment>
