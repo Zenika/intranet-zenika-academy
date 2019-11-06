@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { PromoCreateStepOne } from './PromoCreateStepOne';
+import PromoCreateStepOne from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
-import PromoCreateStepThree from './PromoCreateStepThree';
+import { PromoCreateStepThree } from './PromoCreateStepThree';
 
 export class PromoCreateContainer extends Component {
   constructor() {
@@ -50,8 +50,6 @@ export class PromoCreateContainer extends Component {
     }
     this.setState({ step: step - 1 });
   }
-
-
 
   render() {
     const { step, isTeachers } = this.state;
