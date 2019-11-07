@@ -25,6 +25,15 @@ export class PromoCreateContainer extends Component {
    */
   handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "startDate" || name === "endDate") {
+
+      /** Date in EUR format */
+      const date = value.split("-").reverse().join("-");
+
+      return this.setState({ [name]: date }, () => {
+        console.log(`state: ${this.state}, value: ${date}`);
+      });
+    }
     this.setState({ [name]: value }, () => {
       console.log(`state: ${this.state}, value: ${value}`);
     });
