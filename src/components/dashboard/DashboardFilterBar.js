@@ -53,19 +53,18 @@ class DashboardFilterBar extends Component {
                     onChange={this.handleChange}
                     showSearch={false}
                     showSelectAll={false}
-                    noneSelectedMessage={false}
                     showSelectedItems={true}
                     messages={{
                         searchPlaceholder: "Search...",
                         noItemsMessage: "Aucun filtre sélectionné",
-                        noneSelectedMessage: "None Selected",
-                        selectedMessage: "delected",
+                        noneSelectedMessage: "",
+                        selectedMessage: "Sélectionné(s)",
                         selectAllMessage: "Select All",
-                        clearAllMessage: "Clear All",
+                        clearAllMessage: "Tout désélectionner",
                         disabledItemsTooltip: "You can only select 1 file"
                     }}
                     itemHeight={25}
-                // maxSelectedItems={}
+                    responsiveHeight={250}
                 />
             </div>
         );
