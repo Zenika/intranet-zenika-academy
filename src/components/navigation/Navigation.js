@@ -137,9 +137,6 @@ class NavigationBar extends Component {
         <section className="navbar-item has-dropdown is-hoverable">
           <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
           <section className="navbar-dropdown is-hidden-mobile is-boxed">
-            <Link to="/admin/community/slackAcademy">
-              <span className="navbar-item">Zenika Slack</span>
-            </Link>
             <Link to="/admin/community/rssfeed">
               <span className="navbar-item">Flux RSS</span>
             </Link>
@@ -182,9 +179,6 @@ class NavigationBar extends Component {
         <section className="navbar-item has-dropdown is-hoverable">
           <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
           <section className="navbar-dropdown is-hidden-mobile is-boxed">
-            <Link to="/slackAcademy">
-              <span className="navbar-item">Slack Academy</span>
-            </Link>
             <Link to="/rssFeed">
               <span className="navbar-item">RSS écosystème</span>
             </Link>
