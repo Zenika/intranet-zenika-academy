@@ -3,6 +3,7 @@ import PromoCreateStepOne from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import { PromoCreateStepThree } from './PromoCreateStepThree';
 import { PromoCreateStepFour } from './PromoCreateStepFour';
+import { PromoCreateResume } from './PromoCreateResume';
 
 export class PromoCreateContainer extends Component {
   constructor() {
@@ -117,7 +118,12 @@ export class PromoCreateContainer extends Component {
         );
       default:
         return (
-          <p>error</p>
+          <PromoCreateResume
+            nextStep={nextStep}
+            prevStep={prevStep}
+            promo={promo}
+            step={step}
+          />
         );
     }
   }
