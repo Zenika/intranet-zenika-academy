@@ -3,10 +3,9 @@ import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 import './PromoCreate.scss';
 
 
-export class PromoCreateResume extends Component {
+class PromoCreateResume extends Component {
   render() {
     const { step, handleChange, promo, prevStep } = this.props;
-    console.log(promo);
 
     const startDate = promo.startDate.split("-").reverse().join("-");
     const endDate = promo.endDate.split("-").reverse().join("-");
