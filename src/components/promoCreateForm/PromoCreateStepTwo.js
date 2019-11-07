@@ -29,8 +29,7 @@ const programs = [
 
 export class PromoCreateStepTwo extends Component {
   render() {
-    const { nextStep, prevStep, step } = this.props;
-
+    const { nextStep, prevStep, step, handleChange, promo, handleMultiChange } = this.props;
     const buttonForm = (
       <section className="field buttonField">
         <section className="control">
@@ -50,7 +49,7 @@ export class PromoCreateStepTwo extends Component {
             <label className="label">Choisir un programme existant: </label>
             <section className="field">
               <section className="control">
-                <SearchbarAutoComplete searchObject={programs} searchKey="title" isMulti />
+                <SearchbarAutoComplete defaultValue={promo.program} name={"program"} options={programs} handleChange={(e) => handleMultiChange(e, "program")} searchKey="title" />
               </section>
             </section>
           </section>
@@ -61,7 +60,7 @@ export class PromoCreateStepTwo extends Component {
             <label className="label">Créer d'un nouveau programme: </label>
             <section className="field">
               <section className="control">
-                <input className="input " type="text" placeholder="Nom du programme" />
+                <input className="input" defaultValue={typeof promo.program !== "string" ? " " : promo.program} name="program" onChange={(e) => handleChange(e)} type="text" placeholder="Nom du programme" />
               </section>
             </section>
           </section>

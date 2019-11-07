@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 
 class DatePicker extends Component {
   render() {
-    let date = '';
-    if (this.props.date) {
-      date = this.props.date;
-    }
-    return <input type="date" defaultValue={date || ''} />;
+    const { defaultValue, name, handleChange } = this.props;
+    return <input type="date" onChange={(e) => handleChange(e)} defaultValue={defaultValue} name={name} />;
   }
 }
 

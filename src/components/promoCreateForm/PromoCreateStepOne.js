@@ -4,7 +4,7 @@ import DatePicker from '../datepicker/DatePicker';
 import './PromoCreate.scss';
 
 function PromoCreateStepOne(props) {
-  const { nextStep, step } = props;
+  const { nextStep, step, handleChange, promo } = props;
 
   const buttonForm = (
     <section className="field buttonField">
@@ -17,7 +17,6 @@ function PromoCreateStepOne(props) {
     </section>
   );
 
-
   return (
     <div className="promoCreateForm">
       <article className="section box">
@@ -25,44 +24,28 @@ function PromoCreateStepOne(props) {
         <BulmaSteps step={step} />
         <section className="control">
           <label className="label">Nom de la promo: </label>
-          <input className="input " type="text" placeholder="Promo" />
+          <input className="input " name="title" defaultValue={promo.title} onChange={(e) => handleChange(e)} type="text" placeholder="Promo" />
         </section>
         <section>
           <section className="control">
             <label className="label">Date de début: </label>
-            <DatePicker date="" />
+            <DatePicker date={promo.startDate} name={"startDate"} defaultValue={promo.startDate} handleChange={(e) => handleChange(e)} />
           </section>
         </section>
         <section>
           <section className="control">
             <label className="label">Date de fin: </label>
-            <DatePicker date="" />
+            <DatePicker date={promo.endDate} name={"endDate"} defaultValue={promo.endDate} handleChange={(e) => handleChange(e)} />
           </section>
         </section>
         <section className="field">
           <label className="label">Pays:</label>
-          <section className="field">
-            <section className="control">
-              <section className="select">
-                <select>
-                  <option>France</option>
-                  <option>Canada</option>
-                </select>
-              </section>
-            </section>
-          </section>
+          <input className="input " name="country" defaultValue={promo.country} onChange={(e) => handleChange(e)} type="text" placeholder="Pays" />
         </section>
         <section className="field">
           <label className="label">Ville:</label>
           <section className="field">
-            <section className="control">
-              <section className="select">
-                <select>
-                  <option>Paris</option>
-                  <option>Rennes</option>
-                </select>
-              </section>
-            </section>
+            <input className="input " name="city" defaultValue={promo.city} onChange={(e) => handleChange(e)} type="text" placeholder="Ville" />
           </section>
         </section>
         {buttonForm}

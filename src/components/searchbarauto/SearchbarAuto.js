@@ -5,30 +5,21 @@ import makeAnimated from 'react-select/animated';
 const animatedComponents = makeAnimated();
 
 export class SearchbarAuto extends Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedOption: null,
-    };
-    this.handleChange = (selectedOption) => {
-      this.setState(
-        { selectedOption },
-        () => console.log('Option selected:', this.state.selectedOption),
-      );
-    };
-  }
+
 
 
   render() {
-    const { selectedOption } = this.state;
+    const { options, defaultValue, handleChange, isMulti, name } = this.props;
+
     return (
       <Select
+        name={name}
         closeMenuOnSelect={false}
         components={animatedComponents}
-        value={selectedOption}
-        onChange={this.handleChange}
-        options={this.props.searchObject}
-        isMulti={this.props.isMulti}
+        defaultValue={defaultValue}
+        onChange={(e) => handleChange(e)}
+        options={options}
+        isMulti={isMulti}
       />
     );
   }

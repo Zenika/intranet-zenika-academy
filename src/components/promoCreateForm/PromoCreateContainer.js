@@ -2,21 +2,19 @@ import React, { Component } from 'react';
 import PromoCreateStepOne from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import { PromoCreateStepThree } from './PromoCreateStepThree';
+import { PromoCreateStepFour } from './PromoCreateStepFour';
 
 export class PromoCreateContainer extends Component {
   constructor() {
     super();
     this.state = {
       step: 1,
-      isTeachers: true,
-      promo: {
-        number: 0,
-        startDate: '',
-        endDate: '',
-        students: [],
-        teachers: [],
-        program: [],
-      },
+      title: '',
+      startDate: '',
+      endDate: '',
+      students: [],
+      teachers: [],
+      program: [],
     };
   }
 
@@ -26,7 +24,25 @@ export class PromoCreateContainer extends Component {
    */
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => {
+      console.log(`state: ${this.state}, value: ${value}`);
+    });
+  }
+
+  /**
+   * Allows to handle state change from multi select
+   * @param options options objects from multi select
+   * @param name name of the state to update
+   */
+  handleMultiChange = (options, name) => {
+    if (name === 'program') {
+      this.setState({ [name]: [options] }, () => {
+        console.log(`state: ${this.state}, value: ${options}`);
+      });
+    }
+    this.setState({ [name]: options }, () => {
+      console.log(`state: ${this.state}, value: ${options}`);
+    });
   }
 
   /**
@@ -34,9 +50,6 @@ export class PromoCreateContainer extends Component {
    */
   nextStep = () => {
     const { step } = this.state;
-    if (step > 2) {
-      this.setState({ isTeachers: false });
-    }
     this.setState({ step: step + 1 });
   }
 
@@ -45,15 +58,19 @@ export class PromoCreateContainer extends Component {
    */
   prevStep = () => {
     const { step } = this.state;
-    if (step < 5) {
-      this.setState({ isTeachers: true });
-    }
     this.setState({ step: step - 1 });
   }
 
   render() {
-    const { step, isTeachers } = this.state;
-    const { nextStep, prevStep } = this;
+    const {
+      step, title, startDate, endDate, teachers, students, program, country, city,
+    } = this.state;
+    const promo = {
+      title, startDate, endDate, teachers, students, program, country, city,
+    };
+    const {
+      nextStep, prevStep, handleChange, handleMultiChange,
+    } = this;
 
     switch (step) {
       case 1:
@@ -61,6 +78,8 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepOne
             nextStep={nextStep}
             step={step}
+            promo={promo}
+            handleChange={handleChange}
           />
         );
       case 2:
@@ -68,6 +87,9 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepTwo
             nextStep={nextStep}
             prevStep={prevStep}
+            handleChange={handleChange}
+            handleMultiChange={handleMultiChange}
+            promo={promo}
             step={step}
           />
         );
@@ -76,16 +98,20 @@ export class PromoCreateContainer extends Component {
           <PromoCreateStepThree
             nextStep={nextStep}
             prevStep={prevStep}
-            isTeachers={isTeachers}
+            handleChange={handleChange}
+            handleMultiChange={handleMultiChange}
+            promo={promo}
             step={step}
           />
         );
       case 4:
         return (
-          <PromoCreateStepThree
+          <PromoCreateStepFour
             nextStep={nextStep}
             prevStep={prevStep}
-            isTeachers={isTeachers}
+            handleChange={handleChange}
+            handleMultiChange={handleMultiChange}
+            promo={promo}
             step={step}
           />
         );
