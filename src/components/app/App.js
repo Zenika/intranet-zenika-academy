@@ -4,7 +4,6 @@ import Agenda from '../agenda/Agenda';
 import Contacts from '../contacts/ContactList';
 import WelcomeBooklet from '../welcomeBooklet/WelcomeBooklet';
 import RessourcesList from '../ressources/RessourceList';
-import SlackAcademy from '../slackAcademy/SlackAcademy';
 import Notfound from '../notfound/Notfound';
 import NavigationBar from '../navigation/Navigation';
 import Footer from '../footer/Footer';
@@ -15,7 +14,6 @@ import ProgramList from '../program/ProgramList';
 import ProgramForm from '../program/ProgramForm';
 import ModuleList from '../module/ModuleList';
 import ModuleForm from '../module/ModuleForm';
-import SlackAcademyAdmin from '../slackAcademy/SlackAcademyAdmin';
 import RssFeedList from '../rssFeed/RssFeedList';
 import RssFeedForm from '../rssFeed/RssFeedForm';
 import WhoToFollowForm from '../whoToFollow/WhoToFollowForm';
@@ -50,7 +48,6 @@ class App extends React.Component {
               path="/ressources/:id/edit"
               component={RessourceForm}
             />
-            <Route exact path="/slackAcademy" component={SlackAcademy} />
             <Route exact path="/rssFeed" component={RssFeedList} />
             <Route exact path="/whoToFollow" component={WhoToFollowList} />
             <Route exact path="/admin/promo/list" component={PromoList} />
@@ -101,11 +98,6 @@ class App extends React.Component {
               key="edit-ressource"
               path="/admin/program/ressources/:id/edit"
               component={RessourceForm}
-            />
-            <Route
-              exact
-              path="/admin/community/slackAcademy"
-              component={SlackAcademyAdmin}
             />
             <Route
               exact
