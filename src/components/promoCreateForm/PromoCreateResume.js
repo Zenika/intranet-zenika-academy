@@ -8,6 +8,9 @@ export class PromoCreateResume extends Component {
     const { step, handleChange, promo, prevStep } = this.props;
     console.log(promo);
 
+    const startDate = promo.startDate.split("-").reverse().join("-");
+    const endDate = promo.endDate.split("-").reverse().join("-");
+
 
     const buttonForm = (
       <section className="field buttonField">
@@ -25,11 +28,14 @@ export class PromoCreateResume extends Component {
         <article className="section box">
           <h1 className="title is-4 is-spaced">Création d'une promo</h1>
           <BulmaSteps step={step} />
+          <section className="field">
+            <span className="title is-4 is-spaced">Résumé</span>
+          </section>
           <section className="control">
             <section className="field">
               <label className="label">Nom de la promo: </label>
               <section className="field">
-                <p>{promo.title}</p>
+                <p>{promo.title ? promo.title : ""}</p>
               </section>
             </section>
           </section>
@@ -38,7 +44,7 @@ export class PromoCreateResume extends Component {
               <section className="field">
                 <label className="label">Date de début: </label>
                 <section className="field">
-                  <span> <time >{promo.startDate}</time> </span>
+                  <span> <time >{startDate ? startDate : ""}</time> </span>
                 </section>
               </section>
             </section>
@@ -48,7 +54,7 @@ export class PromoCreateResume extends Component {
               <section className="field">
                 <label className="label">Date de fin: </label>
                 <section className="field">
-                  <span> <time >{promo.endDate}</time> </span>
+                  <span> <time >{endDate ? endDate : ""}</time> </span>
                 </section>
               </section>
             </section>
@@ -56,13 +62,35 @@ export class PromoCreateResume extends Component {
           <section className="field">
             <label className="label">Pays:</label>
             <section className="field">
-              <p>{promo.country}</p>
+              <p>{promo.country.label !== undefined ? promo.country.label : ""}</p>
             </section>
           </section>
           <section className="field">
             <label className="label">Ville:</label>
             <section className="field">
-              <p>{promo.city}</p>
+              <p>{promo.city.label !== undefined ? promo.city.label : ""}</p>
+            </section>
+          </section>
+          <section className="field">
+            <label className="label">Programme:</label>
+            <section className="field">
+              <p>{promo.program.label !== undefined ? promo.program.label : ""}</p>
+            </section>
+          </section>
+          <section className="field">
+            <label className="label">Formateurs:</label>
+            <section className="field">
+              {promo.teachers.length ? promo.teachers.map(e => {
+                return <p key={e.value}>{e.label}</p>
+              }) : ""}
+            </section>
+          </section>
+          <section className="field">
+            <label className="label">Elèves:</label>
+            <section className="field">
+              {promo.students.length ? promo.students.map(e => {
+                return <p key={e.value}>{e.label}</p>
+              }) : ""}
             </section>
           </section>
           {buttonForm}
