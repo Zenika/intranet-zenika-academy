@@ -90,6 +90,7 @@ export class PromoCreateContainer extends Component {
             step={step}
             promo={promo}
             handleChange={handleChange}
+            handleMultiChange={handleMultiChange}
           />
         );
       case 2:

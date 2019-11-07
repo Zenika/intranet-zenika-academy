@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './PromoCreate.scss';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
-
 const teachers = [
   {
     label: 'Jérémie Patonnier',
@@ -26,9 +25,11 @@ const teachers = [
 
 export class PromoCreateStepThree extends Component {
   render() {
-    const { nextStep, prevStep, step, handleChange, promo, handleMultiChange } = this.props;
+    const {
+      nextStep, prevStep, step, handleChange, promo, handleMultiChange,
+    } = this.props;
     const buttonForm = (
-      <section className="field buttonField">
+      <section className="field buttonField section">
         <section className="control">
           <button className="button is-danger" onClick={prevStep}>Revenir</button>
         </section>
@@ -49,13 +50,13 @@ export class PromoCreateStepThree extends Component {
             </label>
             <section className="field">
               <section className="control">
-                <SearchbarAutoComplete defaultValue={promo.teachers} name={"teachers"} options={teachers} handleChange={(e) => handleMultiChange(e, "teachers")} searchKey="title" isMulti />
+                <SearchbarAutoComplete defaultValue={promo.teachers} name="teachers" options={teachers} handleChange={(e) => handleMultiChange(e, 'teachers')} searchKey="title" defaultLabel="Formateurs" isMulti />
               </section>
             </section>
           </section>
-          <section className="field">
+          <div className="field section">
             <label className="label middleLines"><span>OU</span></label>
-          </section>
+          </div>
           <section className="field">
             <section className="field">
               <section className="control buttonCreate">
