@@ -88,7 +88,7 @@ class PromoCreateResume extends Component {
             <label className="label">Elèves:</label>
             <section className="field">
               {promo.students.length ? promo.students.map(e => {
-                return <p key={e.value}>{e.label}</p>
+                return <p key={e.Nom}>{`${e.Nom}  ${e.Prénom}  ${e.Email}`}</p>
               }) : ""}
             </section>
           </section>

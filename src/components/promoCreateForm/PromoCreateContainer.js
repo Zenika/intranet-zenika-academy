@@ -16,9 +16,13 @@ export class PromoCreateContainer extends Component {
       students: [],
       teachers: [],
       program: [],
-      country: "",
-      city: "",
+      country: '',
+      city: '',
     };
+  }
+
+  componentDidMount() {
+    document.title = 'Création de promotion';
   }
 
   /**
@@ -49,6 +53,17 @@ export class PromoCreateContainer extends Component {
   }
 
   /**
+   * Allows to pass csv data into state
+   * @param name name of the state to update
+   * @param data data to put in the state
+   */
+  handleCSVImport = (name, data) => {
+    this.setState({ [name]: [...data] }, () => {
+      console.log(`state: ${this.state}, value: ${data}`);
+    });
+  }
+
+  /**
    * Allows to navigate forward on multiform
    */
   nextStep = () => {
@@ -72,7 +87,7 @@ export class PromoCreateContainer extends Component {
       title, startDate, endDate, teachers, students, program, country, city,
     };
     const {
-      nextStep, prevStep, handleChange, handleMultiChange,
+      nextStep, prevStep, handleChange, handleMultiChange, handleCSVImport,
     } = this;
 
     switch (step) {
@@ -115,6 +130,7 @@ export class PromoCreateContainer extends Component {
             prevStep={prevStep}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
+            handleCSVImport={handleCSVImport}
             promo={promo}
             step={step}
           />

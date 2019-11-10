@@ -1,41 +1,36 @@
 import React, { Component } from 'react';
+import CSVReader from 'react-csv-reader';
 import './PromoCreate.scss';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
-import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 
-const students = [
-  {
-    label: 'Jeremy Pluquet',
-    value: 'Jeremy Pluquet',
-  },
-  {
-    label: 'Youcef Messaoudene',
-    value: 'Youcef Messaoudene',
 
-  },
-  {
-    label: 'Anne-Lise Vanhoegaerden',
-    value: 'Monsieur X',
-  },
-  {
-    label: 'Claudine Lafine',
-    value: 'Claudine Lafine',
-  },
-];
+const papaparseOptions = {
+  header: true,
+  dynamicTyping: true,
+  skipEmptyLines: true,
+  encoding: 'UTF-8',
+};
+
 
 export class PromoCreateStepFour extends Component {
+
+  onDataImport(e) {
+    const { handleCSVImport } = this.props;
+    handleCSVImport('students', e);
+  }
+
   render() {
     const {
-      nextStep, prevStep, step, handleChange, promo, handleMultiChange,
+      nextStep, prevStep, step,
     } = this.props;
 
     const buttonForm = (
       <section className="field buttonField section">
         <section className="control">
-          <button className="button is-danger" onClick={prevStep}>Revenir</button>
+          <button type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
         </section>
         <section className="control">
-          <button className="button is-link" onClick={nextStep}>Continuer</button>
+          <button type="button" className="button is-link" onClick={nextStep}>Continuer</button>
         </section>
       </section>
     );
@@ -46,24 +41,10 @@ export class PromoCreateStepFour extends Component {
           <h1 className="title is-4 is-spaced">Création d'une promo</h1>
           <BulmaSteps step={step} />
           <section className="control">
-            <label className="label">
-              Choisir des élèves existants:
+            <label htmlFor="students" className="label">
+              Importer des étudiants à l'aide d'un fichier csv :
             </label>
-            <section className="field">
-              <section className="control">
-                <SearchbarAutoComplete defaultValue={promo.students} name="students" options={students} handleChange={(e) => handleMultiChange(e, 'students')} searchKey="title" defaultLabel="Eleves" isMulti />
-              </section>
-            </section>
-          </section>
-          <section className="field section">
-            <label className="label middleLines"><span>OU</span></label>
-          </section>
-          <section className="field">
-            <section className="field">
-              <section className="control buttonCreate">
-                <button className="button is-link">Créer un utilisateur</button>
-              </section>
-            </section>
+            <CSVReader name="students" parserOptions={papaparseOptions} onFileLoaded={(e) => this.onDataImport(e)} />
           </section>
           {buttonForm}
         </article>
