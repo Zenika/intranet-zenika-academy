@@ -51,7 +51,7 @@ export class PromoCreateStepTwo extends Component {
             <label className="label">Choisir / Créer un programme : </label>
             <section className="field">
               <section className="control">
-                <CreatableSelect defaultValue={promo.program} name="program" isLoading={false} options={programs} handleChange={(e) => handleMultiChange(e, 'program')} searchKey="title" defaultLabel="Programme" />
+                <CreatableSelect defaultValue={promo.program} name="program" options={programs} handleChange={(e) => handleMultiChange(e, 'program')} searchKey="title" defaultLabel="Programme" />
               </section>
             </section>
           </div>

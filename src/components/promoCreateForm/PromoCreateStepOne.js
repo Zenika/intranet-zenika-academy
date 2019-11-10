@@ -76,7 +76,7 @@ function PromoCreateStepOne(props) {
         </section>
         <section className="field">
           <label className="label">Pays:</label>
-          <CreatableSelect defaultValue={promo.country} name="country" isLoading={false} options={country} handleChange={(e) => handleMultiChange(e, 'country')} searchKey="country" defaultLabel="Pays" />
+          <CreatableSelect defaultValue={promo.country} name="country" options={country} handleChange={(e) => handleMultiChange(e, 'country')} searchKey="country" defaultLabel="Pays" />
         </section>
         <section className="field">
           <label className="label">Ville:</label>

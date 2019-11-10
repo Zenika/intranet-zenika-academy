@@ -6,12 +6,14 @@ import Caroussel from '../caroussel/Caroussel';
 class Home extends Component {
   render() {
     return (
-      <React.Fragment>
+      <>
         <div>
           <h1 className="title is-2 mbmd">Accueil</h1>
         </div>
-        <Caroussel />
-      </React.Fragment>
+        <article className="box">
+          <Caroussel />
+        </article>
+      </>
     );
   }
 }

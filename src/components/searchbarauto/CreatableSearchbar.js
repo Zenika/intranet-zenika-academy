@@ -7,24 +7,34 @@ const createOption = (label) => ({
 });
 
 class CreatableSearchbar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: false,
+      optionsToSave: null,
+    };
+  }
 
   handleCreate = (inputValue) => {
     this.setState({ isLoading: true });
-    setTimeout( () => {
-      const { options } = this.state;
+    setTimeout(() => {
+      const { optionsToSave } = this.state;
       const newOption = createOption(inputValue);
+      optionsToSave.push(newOption);
+      // ajout en base de données à implémenter ici
       this.setState({
         isLoading: false,
-        options: [newOption],
+        optionsToSave,
       });
     }, 1000);
   };
 
   render() {
     const {
-      options, defaultValue, handleChange, isMulti, name, defaultLabel, isLoading,
+      options, defaultValue, handleChange, isMulti, name, defaultLabel,
     } = this.props;
-
+    const { isLoading } = this.state;
+    this.state.optionsToSave = options;
     return (
       <CreatableSelect
         isClearable
