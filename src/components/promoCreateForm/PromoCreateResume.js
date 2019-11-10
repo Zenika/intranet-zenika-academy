@@ -99,4 +99,4 @@ class PromoCreateResume extends Component {
   }
 }
 
-export default PromoCreateResume
+export default PromoCreateResume;

@@ -3,7 +3,7 @@ import PromoCreateStepOne from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import { PromoCreateStepThree } from './PromoCreateStepThree';
 import { PromoCreateStepFour } from './PromoCreateStepFour';
-import { PromoCreateResume } from './PromoCreateResume';
+import PromoCreateResume from './PromoCreateResume';
 
 export class PromoCreateContainer extends Component {
   constructor() {
