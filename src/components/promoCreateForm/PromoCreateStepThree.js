@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CSVReader from 'react-csv-reader';
 import './PromoCreate.scss';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
@@ -22,11 +23,22 @@ const teachers = [
   },
 ];
 
+const papaparseOptions = {
+  header: true,
+  dynamicTyping: true,
+  skipEmptyLines: true,
+  encoding: 'UTF-8',
+};
 
 export class PromoCreateStepThree extends Component {
+
+  onDataImport(e) {
+    const { handleCSVImport } = this.props;
+    handleCSVImport('teachers', e);
+  }
   render() {
     const {
-      nextStep, prevStep, step, handleChange, promo, handleMultiChange,
+      nextStep, prevStep, step, promo, handleMultiChange,
     } = this.props;
     const buttonForm = (
       <section className="field buttonField section">
@@ -57,12 +69,11 @@ export class PromoCreateStepThree extends Component {
           <div className="field section">
             <label className="label middleLines"><span>OU</span></label>
           </div>
-          <section className="field">
-            <section className="field">
-              <section className="control buttonCreate">
-                <button className="button is-link">Créer un utilisateur</button>
-              </section>
-            </section>
+          <section className="control">
+            <label htmlFor="students" className="label">
+              Importer des formateurs à l'aide d'un fichier csv :
+            </label>
+            <CSVReader name="students" parserOptions={papaparseOptions} onFileLoaded={(e) => this.onDataImport(e)} />
           </section>
           {buttonForm}
         </article>

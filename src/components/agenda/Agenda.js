@@ -1,6 +1,9 @@
 import React from 'react';
 
 class AgendaZenika extends React.Component {
+  componentDidMount() {
+    document.title = "Agenda";
+  }
   render() {
     return (
       <React.Fragment>

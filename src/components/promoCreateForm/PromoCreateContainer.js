@@ -119,6 +119,7 @@ export class PromoCreateContainer extends Component {
             prevStep={prevStep}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
+            handleCSVImport={handleCSVImport}
             promo={promo}
             step={step}
           />

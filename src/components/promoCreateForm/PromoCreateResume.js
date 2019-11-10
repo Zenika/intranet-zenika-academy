@@ -7,6 +7,9 @@ class PromoCreateResume extends Component {
   render() {
     const { step, promo, prevStep } = this.props;
 
+    console.log(promo);
+
+
     const startDate = promo.startDate.split("-").reverse().join("-");
     const endDate = promo.endDate.split("-").reverse().join("-");
 
@@ -79,8 +82,8 @@ class PromoCreateResume extends Component {
           <section className="field">
             <label className="label">Formateurs:</label>
             <section className="field">
-              {promo.teachers.length ? promo.teachers.map(e => {
-                return <p key={e.value}>{e.label}</p>
+              {promo.teachers.length ? promo.teachers.map((e, i) => {
+                return <p key={i}>{e.Nom ? `${e.Nom} ${e.Prénom}` : e.label}</p>
               }) : ""}
             </section>
           </section>

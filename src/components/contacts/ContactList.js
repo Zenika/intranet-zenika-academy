@@ -17,10 +17,10 @@ const data = [
   }
 ]
 
-function generateCards(){
+function generateCards() {
   let cards = []
   data.forEach((person) => {
-    cards.push(<Card data={person}/>)
+    cards.push(<Card data={person} />)
   })
   return cards
 }
