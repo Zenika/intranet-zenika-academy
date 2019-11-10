@@ -5,7 +5,7 @@ import './PromoCreate.scss';
 
 class PromoCreateResume extends Component {
   render() {
-    const { step, handleChange, promo, prevStep } = this.props;
+    const { step, promo, prevStep } = this.props;
 
     const startDate = promo.startDate.split("-").reverse().join("-");
     const endDate = promo.endDate.split("-").reverse().join("-");
