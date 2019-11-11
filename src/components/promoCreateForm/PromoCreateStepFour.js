@@ -13,10 +13,14 @@ const papaparseOptions = {
 
 
 export class PromoCreateStepFour extends Component {
-
   onDataImport(e) {
     const { handleCSVImport } = this.props;
     handleCSVImport('students', e);
+  }
+
+  handleClick = () => {
+    const csvPicker = document.getElementsByClassName("csv-input");
+    csvPicker[0].click();
   }
 
   render() {
@@ -45,6 +49,7 @@ export class PromoCreateStepFour extends Component {
               Importer des étudiants à l'aide d'un fichier csv :
             </label>
             <CSVReader name="students" parserOptions={papaparseOptions} onFileLoaded={(e) => this.onDataImport(e)} />
+            <button type="button" className="button" onClick={this.handleClick}>Choisir un fichier csv</button>
           </section>
           {buttonForm}
         </article>

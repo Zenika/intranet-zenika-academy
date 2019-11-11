@@ -3,6 +3,10 @@
     width: 30rem;
 }
 
+input[type="file"] {
+    visibility: hidden;
+}
+
 .middleLines {
     width: 100%; 
     text-align: center; 
