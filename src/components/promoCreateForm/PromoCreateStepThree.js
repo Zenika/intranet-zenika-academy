@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CSVReader from 'react-csv-reader';
 import './PromoCreate.scss';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
+import CsvPickerButton from './CsvPickerButton';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 const teachers = [
   {
@@ -71,9 +72,10 @@ export class PromoCreateStepThree extends Component {
           </div>
           <section className="control">
             <label htmlFor="students" className="label">
-              Importer des formateurs à l'aide d'un fichier csv :
+              Importer de nouveaux formateurs :
             </label>
             <CSVReader name="students" parserOptions={papaparseOptions} onFileLoaded={(e) => this.onDataImport(e)} />
+            <CsvPickerButton />
           </section>
           {buttonForm}
         </article>
