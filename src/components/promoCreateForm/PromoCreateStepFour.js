@@ -1,41 +1,25 @@
 import React, { Component } from 'react';
+import CsvPicker from '../csvPicker/CsvPicker';
 import './PromoCreate.scss';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
-import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 
-const students = [
-  {
-    label: 'Jeremy Pluquet',
-    value: 'Jeremy Pluquet',
-  },
-  {
-    label: 'Youcef Messaoudene',
-    value: 'Youcef Messaoudene',
-
-  },
-  {
-    label: 'Anne-Lise Vanhoegaerden',
-    value: 'Monsieur X',
-  },
-  {
-    label: 'Claudine Lafine',
-    value: 'Claudine Lafine',
-  },
-];
 
 export class PromoCreateStepFour extends Component {
+
   render() {
+
     const {
-      nextStep, prevStep, step, handleChange, promo, handleMultiChange,
+      nextStep, prevStep, step, handleCSVImport, name, promo,
     } = this.props;
+    const selected = promo.students.length && promo.students.length > 0 ? true : false;
 
     const buttonForm = (
       <section className="field buttonField section">
         <section className="control">
-          <button className="button is-danger" onClick={prevStep}>Revenir</button>
+          <button type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
         </section>
         <section className="control">
-          <button className="button is-link" onClick={nextStep}>Continuer</button>
+          <button type="button" className="button is-link" onClick={nextStep}>Continuer</button>
         </section>
       </section>
     );
@@ -46,24 +30,12 @@ export class PromoCreateStepFour extends Component {
           <h1 className="title is-4 is-spaced">Création d'une promo</h1>
           <BulmaSteps step={step} />
           <section className="control">
-            <label className="label">
-              Choisir des élèves existants:
+            <label htmlFor="students" className="label">
+              Importer des étudiants :
             </label>
-            <section className="field">
-              <section className="control">
-                <SearchbarAutoComplete defaultValue={promo.students} name="students" options={students} handleChange={(e) => handleMultiChange(e, 'students')} searchKey="title" defaultLabel="Eleves" isMulti />
-              </section>
-            </section>
-          </section>
-          <section className="field section">
-            <label className="label middleLines"><span>OU</span></label>
-          </section>
-          <section className="field">
-            <section className="field">
-              <section className="control buttonCreate">
-                <button className="button is-link">Créer un utilisateur</button>
-              </section>
-            </section>
+            <div className="csvPickerContainer">
+              <CsvPicker selected={selected} name={name} handleCSVImport={handleCSVImport} />
+            </div>
           </section>
           {buttonForm}
         </article>

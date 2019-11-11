@@ -5,6 +5,10 @@ import '../layout/Layout.scss';
 import SearchBar from '../searchbar/Searchbar';
 
 class ProgramList extends React.Component {
+
+  componentDidMount() {
+    document.title = "Admin/Liste des programmes";
+  }
   render() {
     return (
       <React.Fragment>

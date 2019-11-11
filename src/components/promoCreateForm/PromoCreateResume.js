@@ -3,14 +3,12 @@ import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 import './PromoCreate.scss';
 
 
-export class PromoCreateResume extends Component {
+class PromoCreateResume extends Component {
   render() {
-    const { step, handleChange, promo, prevStep } = this.props;
-    console.log(promo);
+    const { step, promo, prevStep } = this.props;
 
     const startDate = promo.startDate.split("-").reverse().join("-");
     const endDate = promo.endDate.split("-").reverse().join("-");
-
 
     const buttonForm = (
       <section className="field buttonField">
@@ -80,8 +78,8 @@ export class PromoCreateResume extends Component {
           <section className="field">
             <label className="label">Formateurs:</label>
             <section className="field">
-              {promo.teachers.length ? promo.teachers.map(e => {
-                return <p key={e.value}>{e.label}</p>
+              {promo.teachers.length ? promo.teachers.map((e, i) => {
+                return <p key={i}>{e.Nom ? `${e.Nom} ${e.Prénom}` : e.label}</p>
               }) : ""}
             </section>
           </section>
@@ -89,7 +87,7 @@ export class PromoCreateResume extends Component {
             <label className="label">Elèves:</label>
             <section className="field">
               {promo.students.length ? promo.students.map(e => {
-                return <p key={e.value}>{e.label}</p>
+                return <p key={e.Nom}>{`${e.Nom}  ${e.Prénom}  ${e.Email}`}</p>
               }) : ""}
             </section>
           </section>
@@ -100,4 +98,4 @@ export class PromoCreateResume extends Component {
   }
 }
 
-export default PromoCreateResume
+export default PromoCreateResume;

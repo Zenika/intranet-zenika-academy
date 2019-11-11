@@ -3,7 +3,7 @@ import PromoCreateStepOne from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import { PromoCreateStepThree } from './PromoCreateStepThree';
 import { PromoCreateStepFour } from './PromoCreateStepFour';
-import { PromoCreateResume } from './PromoCreateResume';
+import PromoCreateResume from './PromoCreateResume';
 
 export class PromoCreateContainer extends Component {
   constructor() {
@@ -16,9 +16,14 @@ export class PromoCreateContainer extends Component {
       students: [],
       teachers: [],
       program: [],
-      country: "",
-      city: "",
+      country: '',
+      city: '',
+      csv: false,
     };
+  }
+
+  componentDidMount() {
+    document.title = 'Création de promotion';
   }
 
   /**
@@ -49,6 +54,18 @@ export class PromoCreateContainer extends Component {
   }
 
   /**
+   * Allows to pass csv data into state
+   * @param name name of the state to update
+   * @param data data to put in the state
+   */
+  handleCSVImport = (name, data) => {
+    this.setState({ [name]: [...data] }, () => {
+      console.log(`state: ${this.state}, value: ${data}`);
+    });
+    this.setState({ csv: true });
+  }
+
+  /**
    * Allows to navigate forward on multiform
    */
   nextStep = () => {
@@ -66,13 +83,13 @@ export class PromoCreateContainer extends Component {
 
   render() {
     const {
-      step, title, startDate, endDate, teachers, students, program, country, city,
+      step, title, startDate, endDate, teachers, students, program, country, city, csv,
     } = this.state;
     const promo = {
       title, startDate, endDate, teachers, students, program, country, city,
     };
     const {
-      nextStep, prevStep, handleChange, handleMultiChange,
+      nextStep, prevStep, handleChange, handleMultiChange, handleCSVImport,
     } = this;
 
     switch (step) {
@@ -104,8 +121,11 @@ export class PromoCreateContainer extends Component {
             prevStep={prevStep}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
+            handleCSVImport={handleCSVImport}
+            name="teachers"
             promo={promo}
             step={step}
+            csv={csv}
           />
         );
       case 4:
@@ -115,8 +135,10 @@ export class PromoCreateContainer extends Component {
             prevStep={prevStep}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
+            handleCSVImport={handleCSVImport}
             promo={promo}
             step={step}
+            name="students"
           />
         );
       default:

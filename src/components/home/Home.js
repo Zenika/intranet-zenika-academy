@@ -4,6 +4,9 @@ import '../app/App.scss';
 import Caroussel from '../caroussel/Caroussel';
 
 class Home extends Component {
+  componentDidMount() {
+    document.title = "Accueil";
+  }
   render() {
     return (
       <>
