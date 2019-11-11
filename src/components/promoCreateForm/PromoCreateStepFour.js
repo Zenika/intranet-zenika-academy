@@ -1,29 +1,15 @@
 import React, { Component } from 'react';
-import CSVReader from 'react-csv-reader';
+import CsvPicker from '../csvPicker/CsvPicker';
 import './PromoCreate.scss';
-import CsvPickerButton from './CsvPickerButton';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
 
-const papaparseOptions = {
-  header: true,
-  dynamicTyping: true,
-  skipEmptyLines: true,
-  encoding: 'UTF-8',
-};
-
-
 export class PromoCreateStepFour extends Component {
-  onDataImport(e) {
-    const { handleCSVImport } = this.props;
-    handleCSVImport('students', e);
-  }
 
   render() {
     const {
-      nextStep, prevStep, step,
+      nextStep, prevStep, step, handleCSVImport, name,
     } = this.props;
-
     const buttonForm = (
       <section className="field buttonField section">
         <section className="control">
@@ -44,8 +30,7 @@ export class PromoCreateStepFour extends Component {
             <label htmlFor="students" className="label">
               Importer des étudiants :
             </label>
-            <CSVReader name="students" parserOptions={papaparseOptions} onFileLoaded={(e) => this.onDataImport(e)} />
-            <CsvPickerButton />
+            <CsvPicker name={name} handleCSVImport={handleCSVImport} />
           </section>
           {buttonForm}
         </article>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './PromoCreate.scss';
 
 class CsvPickerButton extends Component {
   handleClick = () => {

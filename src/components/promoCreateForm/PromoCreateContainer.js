@@ -120,6 +120,7 @@ export class PromoCreateContainer extends Component {
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
             handleCSVImport={handleCSVImport}
+            name="teachers"
             promo={promo}
             step={step}
           />
@@ -134,6 +135,7 @@ export class PromoCreateContainer extends Component {
             handleCSVImport={handleCSVImport}
             promo={promo}
             step={step}
+            name="students"
           />
         );
       default:

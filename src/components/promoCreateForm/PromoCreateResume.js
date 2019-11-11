@@ -7,12 +7,8 @@ class PromoCreateResume extends Component {
   render() {
     const { step, promo, prevStep } = this.props;
 
-    console.log(promo);
-
-
     const startDate = promo.startDate.split("-").reverse().join("-");
     const endDate = promo.endDate.split("-").reverse().join("-");
-
 
     const buttonForm = (
       <section className="field buttonField">
