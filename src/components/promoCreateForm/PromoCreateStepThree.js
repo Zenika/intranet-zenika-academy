@@ -34,7 +34,7 @@ const papaparseOptions = {
 export class PromoCreateStepThree extends Component {
   render() {
     const {
-      nextStep, prevStep, step, promo, handleMultiChange, handleCSVImport, name
+      nextStep, prevStep, step, promo, handleMultiChange, handleCSVImport, name, csv,
     } = this.props;
     const buttonForm = (
       <section className="field buttonField section">
@@ -58,18 +58,20 @@ export class PromoCreateStepThree extends Component {
             </label>
             <section className="field">
               <section className="control">
-                <SearchbarAutoComplete defaultValue={promo.teachers} name="teachers" options={teachers} handleChange={(e) => handleMultiChange(e, 'teachers')} searchKey="title" defaultLabel="Formateurs" isMulti />
+                <SearchbarAutoComplete csv={csv} defaultValue={promo.teachers} name="teachers" options={teachers} handleChange={(e) => handleMultiChange(e, 'teachers')} searchKey="title" defaultLabel="Formateurs" isMulti />
               </section>
             </section>
           </section>
-          <div className="field section">
+          <div className="section">
             <label className="label middleLines"><span>OU</span></label>
           </div>
           <section className="control">
             <label htmlFor="students" className="label">
               Importer de nouveaux formateurs :
             </label>
-            <CsvPicker name={name} handleCSVImport={handleCSVImport} />
+            <div className="csvPickerContainer">
+              <CsvPicker name={name} handleCSVImport={handleCSVImport} />
+            </div>
           </section>
           {buttonForm}
         </article>

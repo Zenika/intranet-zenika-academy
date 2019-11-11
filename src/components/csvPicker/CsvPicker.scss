@@ -1,0 +1,15 @@
+.csv-reader-input {
+    input[type="file"] {
+    visibility: hidden;
+    }
+}
+
+.csvIconHidden {
+    visibility: hidden;
+}
+
+.csvPickerControls {
+    .csvIconShow {
+        margin: 0.5rem;
+    }
+}

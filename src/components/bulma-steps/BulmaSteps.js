@@ -4,7 +4,7 @@ export class BulmaSteps extends Component {
   render() {
     const { step } = this.props;
     return (
-      <ul className="steps has-content-centered">
+      <ul className="steps section has-content-centered">
         <li className={`steps-segment ${step === 1 ? 'is-active' : ' '}`}>
           <span className="steps-marker"><p className="is-size-4">{step >= 1 ? '1' : ' '}</p></span>
           <div className="steps-content">

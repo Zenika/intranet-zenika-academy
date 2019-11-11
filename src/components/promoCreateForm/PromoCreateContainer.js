@@ -18,6 +18,7 @@ export class PromoCreateContainer extends Component {
       program: [],
       country: '',
       city: '',
+      csv: false,
     };
   }
 
@@ -61,6 +62,7 @@ export class PromoCreateContainer extends Component {
     this.setState({ [name]: [...data] }, () => {
       console.log(`state: ${this.state}, value: ${data}`);
     });
+    this.setState({ csv: true });
   }
 
   /**
@@ -81,7 +83,7 @@ export class PromoCreateContainer extends Component {
 
   render() {
     const {
-      step, title, startDate, endDate, teachers, students, program, country, city,
+      step, title, startDate, endDate, teachers, students, program, country, city, csv,
     } = this.state;
     const promo = {
       title, startDate, endDate, teachers, students, program, country, city,
@@ -123,6 +125,7 @@ export class PromoCreateContainer extends Component {
             name="teachers"
             promo={promo}
             step={step}
+            csv={csv}
           />
         );
       case 4:

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './CsvPicker.scss';
+
 
 class CsvPickerButton extends Component {
   handleClick = () => {
@@ -8,9 +10,9 @@ class CsvPickerButton extends Component {
 
   render() {
     return (
-      <div>
-        <button type="button" className="button" onClick={this.handleClick}>Choisir un fichier csv</button>
-      </div>
+      <>
+        <button type="button" className="button csvButton" onClick={this.handleClick}>Choisir un fichier csv</button>
+      </>
     );
   }
 }

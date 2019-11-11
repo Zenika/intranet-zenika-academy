@@ -3,8 +3,12 @@
     width: 30rem;
 }
 
-input[type="file"] {
-    visibility: hidden;
+.csvPickerContainer {
+    box-sizing: border-box;
+    clear: both;
+    font-size: 1rem;
+    position: relative;
+    text-align: center;
 }
 
 .middleLines {

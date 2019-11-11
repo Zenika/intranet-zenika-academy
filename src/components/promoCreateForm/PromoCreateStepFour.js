@@ -30,7 +30,9 @@ export class PromoCreateStepFour extends Component {
             <label htmlFor="students" className="label">
               Importer des étudiants :
             </label>
-            <CsvPicker name={name} handleCSVImport={handleCSVImport} />
+            <div className="csvPickerContainer">
+              <CsvPicker name={name} handleCSVImport={handleCSVImport} />
+            </div>
           </section>
           {buttonForm}
         </article>
