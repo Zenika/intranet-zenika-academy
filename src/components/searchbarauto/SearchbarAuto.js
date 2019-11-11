@@ -5,9 +5,7 @@ import makeAnimated from 'react-select/animated';
 const animatedComponents = makeAnimated();
 
 class SearchbarAuto extends Component {
-
   render() {
-
     const {
       options, defaultValue, handleChange, isMulti, name, defaultLabel, csv,
     } = this.props;
