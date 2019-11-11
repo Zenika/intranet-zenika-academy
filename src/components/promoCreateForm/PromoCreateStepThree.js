@@ -33,9 +33,13 @@ const papaparseOptions = {
 
 export class PromoCreateStepThree extends Component {
   render() {
+
     const {
       nextStep, prevStep, step, promo, handleMultiChange, handleCSVImport, name, csv,
     } = this.props;
+
+    const selected = promo.teachers.length && promo.teachers.length > 0 ? true : false;
+
     const buttonForm = (
       <section className="field buttonField section">
         <section className="control">
@@ -70,7 +74,7 @@ export class PromoCreateStepThree extends Component {
               Importer de nouveaux formateurs :
             </label>
             <div className="csvPickerContainer">
-              <CsvPicker name={name} handleCSVImport={handleCSVImport} />
+              <CsvPicker selected={selected} name={name} handleCSVImport={handleCSVImport} />
             </div>
           </section>
           {buttonForm}

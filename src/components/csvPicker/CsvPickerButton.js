@@ -9,9 +9,12 @@ class CsvPickerButton extends Component {
   }
 
   render() {
+    const { selected } = this.props;
     return (
       <>
-        <button type="button" className="button csvButton" onClick={this.handleClick}>Choisir un fichier csv</button>
+        <button type="button" className="button csvButton" onClick={this.handleClick}>
+          {selected ? 'Fichier importé !' : 'Choisir un fichier csv'}
+        </button>
       </>
     );
   }

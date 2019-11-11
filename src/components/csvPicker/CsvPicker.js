@@ -12,12 +12,6 @@ const papaparseOptions = {
 };
 
 export default class CsvPicker extends Component {
-  constructor() {
-    super();
-    this.state = {
-      csvIconHidden: 'csvIconHidden',
-    };
-  }
 
   /**
    * Allows to call the props function handleCSVImport
@@ -26,23 +20,16 @@ export default class CsvPicker extends Component {
   onDataImport(e) {
     const { handleCSVImport, name } = this.props;
     handleCSVImport(name, e);
-    this.setState({
-      csvIconHidden: '',
-    });
   }
 
   render() {
     /* Name of the input */
-    const { name } = this.props;
-    const { csvIconHidden } = this.state;
+    const { name, selected } = this.props;
     return (
       <>
         <CSVReader id="csvPicker" name={name} parserOptions={papaparseOptions} onFileLoaded={(e) => this.onDataImport(e)} />
         <div className="csvPickerControls">
-          <CsvPickerButton />
-          <span className={`${csvIconHidden} csvIconShow icon has-text-success`}>
-            <i className="fas fa-2x fa-check-square" />
-          </span>
+          <CsvPickerButton selected={selected} />
         </div>
       </>
     );

@@ -7,9 +7,12 @@ import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 export class PromoCreateStepFour extends Component {
 
   render() {
+
     const {
-      nextStep, prevStep, step, handleCSVImport, name,
+      nextStep, prevStep, step, handleCSVImport, name, promo,
     } = this.props;
+    const selected = promo.students.length && promo.students.length > 0 ? true : false;
+
     const buttonForm = (
       <section className="field buttonField section">
         <section className="control">
@@ -31,7 +34,7 @@ export class PromoCreateStepFour extends Component {
               Importer des étudiants :
             </label>
             <div className="csvPickerContainer">
-              <CsvPicker name={name} handleCSVImport={handleCSVImport} />
+              <CsvPicker selected={selected} name={name} handleCSVImport={handleCSVImport} />
             </div>
           </section>
           {buttonForm}
