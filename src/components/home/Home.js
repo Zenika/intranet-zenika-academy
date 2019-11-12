@@ -5,15 +5,16 @@ import Caroussel from '../caroussel/Caroussel';
 
 class Home extends Component {
   componentDidMount() {
-    document.title = "Accueil";
+    document.title = 'Accueil';
   }
+
   render() {
     return (
       <>
         <div>
           <h1 className="title is-2 mbmd">Accueil</h1>
         </div>
-        <article className="box">
+        <article className="box carousel">
           <Caroussel />
         </article>
       </>

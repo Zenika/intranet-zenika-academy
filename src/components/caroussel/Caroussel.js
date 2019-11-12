@@ -13,10 +13,16 @@ class Caroussel extends React.Component {
   render() {
     return (
       <Carousel
+        slideWidth={1}
+        dragging
+        swiping
+        slidesToScroll={1}
+        initialSlideHeight
+        slidesToShow={1}
+        cellSpacing={20}
         enableKeyboardControls
         autoplay
         wrapAround
-        dragging
         slideIndex={this.state.slideIndex}
         afterSlide={(slideIndex) => this.setState({ slideIndex })}
         renderAnnounceSlideMessage={({ currentSlide, slideCount }) => `Slide ${currentSlide + 1} of ${slideCount}`}
@@ -27,12 +33,12 @@ class Caroussel extends React.Component {
           <button className="buttonCarousel" onClick={nextSlide}><i className="far fa-arrow-alt-circle-right" /></button>
         )}
       >
-        <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide1" />
-        <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide2" />
-        <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide3" />
-        <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide4" />
-        <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide5" />
-        <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide6" />
+        <img className="imgCarousel" src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" alt="c'est un chat" />
+        <img src="http://lorempixel.com/output/cats-q-c-640-480-2.jpg" alt="c'est un chat" />
+        <img src="http://lorempixel.com/output/cats-q-c-640-480-3.jpg" alt="c'est un chat" />
+        <img src="http://lorempixel.com/output/cats-q-c-640-480-4.jpg" alt="c'est un chat" />
+        <img src="http://lorempixel.com/output/cats-q-c-640-480-5.jpg" alt="c'est un chat" />
+        <img src="http://lorempixel.com/output/cats-q-c-640-480-6.jpg" alt="c'est un chat" />
       </Carousel>
     );
   }
