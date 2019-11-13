@@ -2,7 +2,8 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
@@ -21,5 +22,12 @@
     "import/imports-first": ["error", "absolute-first"],
     "import/newline-after-import": "error",
     "react/prefer-stateless-function": 0
+
+    // "jest/no-disabled-tests": "warn",
+    // "jest/no-focused-tests": "error",
+    // "jest/no-identical-title": "error",
+    // "jest/prefer-to-have-length": "warn",
+    // "jest/valid-expect": "error"
+    
   }
 }
