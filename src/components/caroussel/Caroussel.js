@@ -17,7 +17,6 @@ class Caroussel extends React.Component {
         dragging
         swiping
         slidesToScroll={1}
-        initialSlideHeight
         slidesToShow={1}
         cellSpacing={20}
         enableKeyboardControls

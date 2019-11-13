@@ -7,7 +7,7 @@ import Github from './github.png';
 
 const Footer = () => (
   <article className="content has-text-centered">
-    <p className="content has-text-centered">
+    <div className="content has-text-centered">
       <address>
         <strong>ZENIKA ACADEMY - </strong>
               10 rue Milan 75009 Paris -
@@ -22,7 +22,7 @@ const Footer = () => (
         <a href="https://blog.zenika.com/"> - ESPACE BLOG - </a>
         <a href="https://www.zenika.com/press">ESPACE PRESSE</a>
       </p>
-    </p>
+    </div>
   </article>
 );
 

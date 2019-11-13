@@ -3,19 +3,17 @@ import { Link } from 'react-router-dom';
 import notfound from './notfound.png';
 import './notfound.scss';
 
-const Notfound = () => {
-    return (
-        <div className="container-404">
-            <h1 className="title is-1"> WOOPS ! </h1>
-            <img src={notfound} id="notFound" alt="image-404-notfound"></img>
-            <p className="subtitle is-3">Voilà qui n'était pas prévu ... </p>
-            <div>
-                <Link to="/" id="goBack">
+const Notfound = () => (
+  <div className="container-404">
+    <h1 className="title is-1"> WOOPS ! </h1>
+    <img src={notfound} id="notFound" alt="non trouvé" />
+    <p className="subtitle is-3">Voilà qui n'était pas prévu ... </p>
+    <div>
+      <Link to="/" id="goBack">
                     Retourner à l'accueil
-                </Link>
-            </div>
-        </div>
-    );
-}
+      </Link>
+    </div>
+  </div>
+);
 
 export default Notfound;
