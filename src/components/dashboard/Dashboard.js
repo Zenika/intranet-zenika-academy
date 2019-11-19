@@ -1,7 +1,6 @@
 import React from 'react';
 import { css } from 'emotion';
 import DashboardPromData from './DashboardPromData';
-// import DashboardFilterBar from './DashboardFilterBar';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 
 const pays = [
@@ -50,17 +49,14 @@ class Dashboard extends React.Component {
       <>
         <h1 className="title is-2 mbmd">Dashboard</h1>
         <h2 className="title is-4 mbmd">Filtrer les promotions</h2>
-        {/* <DashboardFilterBar /> */}
         <div style={{
           display: 'flex', flexWrap: 'wrap', margin: '1rem 1rem 1rem 0',
         }}
         >
-          <SearchbarAutoComplete className={css`max-width:20rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'villes')} name="teachers" options={villes} searchKey="title" defaultLabel="Villes" isMulti />
-          <SearchbarAutoComplete className={css`max-width:20rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'pays')} name="teachers" options={pays} searchKey="title" defaultLabel="Pays" isMulti />
-          <SearchbarAutoComplete className={css`max-width:20rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'programmes')} name="teachers" options={programmes} searchKey="title" defaultLabel="Programmes" isMulti />
+          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'villes')} options={villes} defaultLabel="Villes" />
+          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'pays')} options={pays} defaultLabel="Pays" />
+          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'programmes')} options={programmes} defaultLabel="Programmes" />
         </div>
-
-
         <DashboardPromData />
       </>
     );

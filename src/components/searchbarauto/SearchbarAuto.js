@@ -25,17 +25,17 @@ class SearchbarAuto extends Component {
     return (
       <Select
         name={name}
-        closeMenuOnSelect={!isMulti}
         components={animatedComponents}
-        defaultValue={selectedValues}
-        onChange={(e) => handleChange(e)}
         options={options}
-        noOptionsMessage={(inputValues) => `${inputValues.inputValue} n'est pas trouvé, demandez au canard !`}
-        getOptionLabel={(option) => option.label}
-        placeholder={defaultLabel}
-        getOptionValue={(option) => option.value}
         isMulti={isMulti}
         className={className}
+        placeholder={defaultLabel}
+        onChange={(e) => handleChange(e)}
+        defaultValue={selectedValues}
+        // closeMenuOnSelect={!isMulti}
+        // noOptionsMessage={(inputValues) => `${inputValues.inputValue} n'est pas trouvé, demandez au canard !`}
+        // getOptionLabel={(option) => option.label}
+        // getOptionValue={(option) => option.value}
       />
     );
   }
