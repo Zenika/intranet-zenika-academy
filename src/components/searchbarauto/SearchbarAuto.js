@@ -7,7 +7,7 @@ const animatedComponents = makeAnimated();
 class SearchbarAuto extends Component {
   render() {
     const {
-      options, defaultValue, handleChange, isMulti, name, defaultLabel, csv,
+      options, defaultValue, handleChange, isMulti, name, defaultLabel, csv, className,
     } = this.props;
 
     /* If new teachers have been created from csv,
@@ -35,6 +35,7 @@ class SearchbarAuto extends Component {
         placeholder={defaultLabel}
         getOptionValue={(option) => option.value}
         isMulti={isMulti}
+        className={className}
       />
     );
   }
