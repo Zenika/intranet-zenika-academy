@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders 1`] = `
+<article
+  className="content has-text-centered"
+>
+  <div
+    className="content has-text-centered"
+  >
+    <address>
+      <strong>
+        ZENIKA ACADEMY - 
+      </strong>
+      10 rue Milan 75009 Paris -
+      <a
+        href="info@zenika.com"
+      >
+         info@zenika.com - 
+      </a>
+      <a
+        href="tel:+33(0)1 45 26 19 15"
+      >
+        +33(0)1 45 26 19 15
+      </a>
+    </address>
+    <p
+      className="socialContainer"
+    >
+      <a
+        href="https://fr.linkedin.com/company/zenika"
+      >
+        <img
+          alt="linkedin icon"
+          className="socialIcon"
+          src="linkedin.png"
+        />
+      </a>
+      <a
+        href="https://twitter.com/ZenikaIT"
+      >
+        <img
+          alt="twitter icon"
+          className="socialIcon"
+          src="twitter.png"
+        />
+      </a>
+      <a
+        href="https://www.youtube.com/user/ZenikaITTv"
+      >
+        <img
+          alt="youtube icon"
+          className="socialIcon"
+          src="youtube.png"
+        />
+      </a>
+      <a
+        href="https://github.com/Zenika"
+      >
+        <img
+          alt="github icon"
+          className="socialIcon"
+          src="github.png"
+        />
+      </a>
+      <a
+        href="https://blog.zenika.com/"
+      >
+         - ESPACE BLOG - 
+      </a>
+      <a
+        href="https://www.zenika.com/press"
+      >
+        ESPACE PRESSE
+      </a>
+    </p>
+  </div>
+</article>
+`;
