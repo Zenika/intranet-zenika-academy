@@ -53,9 +53,9 @@ class Dashboard extends React.Component {
           display: 'flex', flexWrap: 'wrap', margin: '1rem 1rem 1rem 0',
         }}
         >
-          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'villes')} options={villes} defaultLabel="Villes" />
-          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'pays')} options={pays} defaultLabel="Pays" />
-          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'programmes')} options={programmes} defaultLabel="Programmes" />
+          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'villes')} options={villes} defaultLabel="Villes" isMulti searchKey="Villes" />
+          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'pays')} options={pays} defaultLabel="Pays" isMulti />
+          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'programmes')} options={programmes} defaultLabel="Programmes" isMulti />
         </div>
         <DashboardPromData />
       </>
