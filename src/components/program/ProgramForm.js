@@ -1,7 +1,7 @@
 // import DatePicker from "./datePicker";
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../layout/Layout.css';
+import '../layout/Layout.scss';
 
 class ProgramForm extends React.Component {
   render() {

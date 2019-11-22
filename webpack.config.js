@@ -10,16 +10,15 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.css$/i,
+        test: /\.scss$/i,
         exclude: /node_modules/,
         use: [
+          // Creates `style` nodes from JS strings
           'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
         ],
       },
       {

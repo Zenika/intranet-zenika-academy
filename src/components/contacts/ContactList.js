@@ -1,33 +1,40 @@
 import React from 'react';
-import './ContactList.css';
+import './ContactList.scss';
+import Card from '../card/Card';
+
+const data = [
+  {
+    id: 535345554,
+    name: 'John Smith',
+    description: 'Sunt magna duis proident in exercitation exercitation sit esse magna.',
+  },
+  {
+    id: 645964055,
+    name: 'Gérard Martin',
+    description: 'Proident adipisicing proident officia dolor mollit proident aliqua.',
+  },
+  {
+    id: 685968406,
+    name: 'Sylvie Lafite',
+    description: 'Qui eiusmod ut cupidatat elit veniam duis. Nisi quis sit deserunt reprehenderit veniam aute consectetur.',
+  },
+];
+
+export function generateCards() {
+  const cards = [];
+  data.forEach((person) => {
+    cards.push(<Card key={person.id} data={person} />);
+  });
+  return cards;
+}
 
 const ContactList = () => (
-  <div>
-    <div className="row">
-      <div className="photo">
-        <img
-          src="http://blogue-ton-ecole.ac-dijon.fr/wp-content/uploads/2016/07/Avatar_girl_face.png"
-          className="image is-48x48 is-rounded avatar"
-          alt="Un contact"
-        />
-      </div>
-      <div className="textBox">
-        <p>TEXT box</p>
-        <p>Descriptif de la personne et contacts reseaux / autres</p>
-        <p className="description">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure  enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
-          {' '}
-        </p>
-      </div>
+  <>
+    <h1 className="title is-2 mbmd">Contacts utiles</h1>
+    <div className="ContactListCardContainer">
+      {generateCards()}
     </div>
-  </div>
+  </>
 );
 
 export default ContactList;

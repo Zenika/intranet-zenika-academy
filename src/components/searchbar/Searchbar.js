@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-class Searchbar extends Component {
+class SearchBar extends Component {
   render() {
     return (
       <aside className="field has-addons">
@@ -8,13 +8,11 @@ class Searchbar extends Component {
           <input className="input" type="text" placeholder="Recherche libre" />
         </div>
         <div className="control">
-          <a className="button is-info">
-                    Chercher
-          </a>
+          <a className="button is-info">Chercher</a>
         </div>
       </aside>
     );
   }
 }
 
-export default Searchbar;
+export default SearchBar;

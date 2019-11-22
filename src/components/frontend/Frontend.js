@@ -15,7 +15,7 @@ import WhoToFollowIntegration from '../whoToFollow/WhoToFollowIntegration';
 import ParcoursList from '../parcours/ParcoursList';
 import ParcoursForm from '../parcours/ParcoursForm';
 import RessourceForm from '../ressources/RessourceForm';
-import Backend from '../backend/Backend';
+import Administration from '../dashboard/Dashboard';
 
 const Frontend = () => (
   <Router>
@@ -38,7 +38,6 @@ const Frontend = () => (
         <Route path="/slackAcademy" component={SlackAcademy} />
         <Route path="/rssFeed" component={RssFeedIntegration} />
         <Route path="/whoToFollow" component={WhoToFollowIntegration} />
-        <Route path="/admin/parcours/administration" component={Backend} />
         <Route component={Notfound} />
       </Switch>
     </main>

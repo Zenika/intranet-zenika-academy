@@ -1,0 +1,29 @@
+.userDataInput{
+    width: 30rem;
+}
+
+.userDataInputContainer{
+    display: flex;
+    align-items: center;
+}
+
+.userDataInputLabel{
+    width:6rem;
+    display: inline-block;
+}
+
+.userProfileSectionTitle {
+    text-align: center;
+    height: 4rem;
+    display: block;
+    font-size: 1.4rem;
+}
+
+.assessmentTitle{
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.userProfileButton{
+    margin-right:0.5rem;
+}
