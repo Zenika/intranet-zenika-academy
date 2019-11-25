@@ -28,6 +28,12 @@ const programmes = [
   { id: 17, label: 'Culture Devops/Data', group: 'Programme' },
 ];
 
+const statut = [
+  { id: 18, label: 'À venir', group: 'Statut' },
+  { id: 19, label: 'Terminé', group: 'Statut' },
+  { id: 20, label: 'En cours', group: 'Statut' },
+];
+
 class Dashboard extends React.Component {
   componentDidMount() {
     document.title = 'Admin/Dashboard';
@@ -56,6 +62,7 @@ class Dashboard extends React.Component {
           <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'villes')} options={villes} defaultLabel="Villes" />
           <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'pays')} options={pays} defaultLabel="Pays" />
           <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'programmes')} options={programmes} defaultLabel="Programmes" />
+          <SearchbarAutoComplete className={css`max-width:21rem; min-width:10rem; flex:1; margin:.5rem 1rem .5rem 0`} handleChange={(e) => this.handleMultiChange(e, 'statut')} options={statut} defaultLabel="Statut" />
         </div>
         <DashboardPromData />
       </>

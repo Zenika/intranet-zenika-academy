@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react';
 
-const PromoData = props => {
-  const { title, startDate, location, endDate } = props.promo;
+const PromoData = (props) => {
+  const {
+    title, startDate, location, endDate,
+  } = props.promo;
   return (
     <section className="section box style.mbmd">
       <h1 className="title is-4 is-spaced">{title}</h1>

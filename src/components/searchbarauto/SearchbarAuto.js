@@ -32,10 +32,10 @@ class SearchbarAuto extends Component {
         placeholder={defaultLabel}
         onChange={(e) => handleChange(e)}
         defaultValue={selectedValues}
-        // closeMenuOnSelect={!isMulti}
-        // noOptionsMessage={(inputValues) => `${inputValues.inputValue} n'est pas trouvé, demandez au canard !`}
-        // getOptionLabel={(option) => option.label}
-        // getOptionValue={(option) => option.value}
+        closeMenuOnSelect={!isMulti}
+        noOptionsMessage={(inputValues) => `${inputValues.inputValue} n'est pas trouvé, demandez au canard !`}
+        getOptionLabel={(option) => option.label}
+        getOptionValue={(option) => option.value}
       />
     );
   }
