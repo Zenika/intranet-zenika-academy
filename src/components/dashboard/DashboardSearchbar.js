@@ -1,7 +1,7 @@
 import React from 'react';
 import '../layout/Layout.scss';
 
-const DashboardShearchbar = () => (
+const DashboardSearchbar = () => (
   <div className="notification">
     <h1 className="title is-3">Rechercher une promotion</h1>
     <div className="selectpromsearchbar">
@@ -64,4 +64,4 @@ const DashboardShearchbar = () => (
   </div>
 );
 
-export default DashboardShearchbar;
+export default DashboardSearchbar;
