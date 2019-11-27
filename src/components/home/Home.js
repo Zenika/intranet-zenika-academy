@@ -15,7 +15,7 @@ class Home extends Component {
           <h1 className="title is-2 mbmd">Accueil</h1>
         </div>
         <article className="box carousel">
-          <Caroussel />
+          {/* <Caroussel /> */}
         </article>
       </>
     );

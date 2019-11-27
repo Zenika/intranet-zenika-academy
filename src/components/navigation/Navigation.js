@@ -104,7 +104,7 @@ class NavigationBar extends Component {
     const adminLinks = (
       <section className="navbar-start">
         {mainLink}
-        <section className="navbar-item">
+        {/* <section className="navbar-item">
           <Link to="/admin/dashboard">
             <span className="navbar-link is-arrowless">Dashboard</span>
           </Link>
@@ -144,14 +144,14 @@ class NavigationBar extends Component {
               <span className="navbar-item">Who to follow</span>
             </Link>
           </section>
-        </section>
+        </section> */}
       </section>
     );
 
     const notAdminLinks = (
       <section className="navbar-start">
         {mainLink}
-        <section className="navbar-item has-dropdown is-hoverable">
+        {/* <section className="navbar-item has-dropdown is-hoverable">
           <span className="navbar-link" onClick={this.setBurgerLink}>Ma formation</span>
           <section className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/agenda">
@@ -196,7 +196,7 @@ class NavigationBar extends Component {
               Admin
             </span>
           </Link>
-        </section>
+        </section> */}
       </section>
     );
 
@@ -206,7 +206,7 @@ class NavigationBar extends Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <section className="navbar-brand">
+        {/* <section className="navbar-brand">
           <span
             className="navbar-burger burger"
             onClick={() => this.setBurgerBar()}
@@ -234,18 +234,18 @@ class NavigationBar extends Component {
             </section>
             <section className="navbar-item is-hidden-mobile is-hidden-touch">
               <span>Bienvenue, Anne-Lise!</span>
-            </section>
-            <section
-              className="navbar-item"
-              onClick={() => this.connect(false)}
-            >
-              <Link to="/" className= {isNavAdmin ? 'icon-signout-admin' : 'icon-signout'}>
-                <i className="fas fa-sign-out-alt display-desktop" />
-                <span className="navbar-link is-arrowless display-mobile">Se déconnecter</span>
-              </Link>
-            </section>
-          </section>
+            </section> */}
+        <section
+          className="navbar-item"
+          onClick={() => this.connect(false)}
+        >
+          <Link to="/" className={isNavAdmin ? 'icon-signout-admin' : 'icon-signout'}>
+            <i className="fas fa-sign-out-alt display-desktop" />
+            <span className="navbar-link is-arrowless display-mobile">Se déconnecter</span>
+          </Link>
         </section>
+        {/* </section> */}
+        {/* </section > */}
       </nav>
     );
 
