@@ -18,7 +18,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use('/api/users', users);
 app.use('/api/programs', programs);
 app.use('/api/promotions', promotions);
