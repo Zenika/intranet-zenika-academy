@@ -10,15 +10,15 @@ module.exports = {
     },
 
     getUserById: (req, res, next) => {
-        return Users.findOne({ where: { id:  res.locals["user_id"] } })
+        return Users.findOne({ where: { id: res.locals["user_id"] } })
             .then((userCreated) => res.status(200).send(userCreated))
             .catch(e => res.status(400).send(e));
     },
 
-    userCreate:  (req, res) => {
+    userCreate: (req, res) => {
         const { user } = res.locals;
         if (user.role === "admin") user.password = "admin";
-        if (user.role === "user") user.password = "user";
+        if (user.role === "teacher") user.password = "teacher";
         return user.password = bcrypt.hash(user.password, saltRounds)
             .then(() => Users.create(user))
             .then((userCreated) => res.status(201).send(userCreated))
