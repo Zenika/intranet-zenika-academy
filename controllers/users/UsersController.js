@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { Users } = require('../../models');
 
 const saltRounds = 10;
@@ -12,14 +12,27 @@ module.exports = {
     .then((userCreated) => res.status(200).send(userCreated))
     .catch((e) => res.status(400).send(e)),
 
-  userCreate: (req, res) => {
+  userCreate: async (req, res) => {
     const { user } = res.locals;
-    if (user.role === 'admin') user.password = 'admin';
-    if (user.role === 'teacher') user.password = 'teacher';
-    return user.password = bcrypt.hash(user.password, saltRounds)
-      .then(() => Users.create(user))
-      .then((userCreated) => res.status(201).send(userCreated))
-      .catch((e) => res.status(400).send(e));
+    switch (user.role) {
+      case 'admin':
+        user.password = 'admin';
+        user.role = 2;
+        break;
+      case 'student':
+        user.password = 'student';
+        user.role = 1;
+        break;
+      default:
+        break;
+    }
+    try {
+      user.password = await bcrypt.hash(user.password, saltRounds);
+      const userCreated = await Users.create(user);
+      res.status(201).send(userCreated);
+    } catch (error) {
+      res.status(400).send(error);
+    }
   },
 
   userUpdate: (req, res) => {
