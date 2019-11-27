@@ -5,29 +5,29 @@ const ProgramsModel = require('./models/promotions');
 const RssFeedsModel = require('./models/rssFeeds');
 
 const sequelize = new Sequelize('zenika_academy', 'root', 'root', {
-    host: 'localhost',
-    dialect: 'mysql',
-    pool: {
-        max: 10,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
+  host: 'localhost',
+  dialect: 'mysql',
+  pool: {
+    max: 10,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
 });
 
-const Users         = UsersModel(sequelize, Sequelize);
-const Promotions    = PromotionsModel(sequelize, Sequelize);
-const Programs      = ProgramsModel(sequelize, Sequelize);
-const RssFeeds      = RssFeedsModel(sequelize, Sequelize);
+const Users = UsersModel(sequelize, Sequelize);
+const Promotions = PromotionsModel(sequelize, Sequelize);
+const Programs = ProgramsModel(sequelize, Sequelize);
+const RssFeeds = RssFeedsModel(sequelize, Sequelize);
 
 sequelize.sync({ force: true })
-    .then(() => {
-        console.log(`Database & tables created!`)
-    });
+  .then(() => {
+    console.log('Database & tables created!');
+  });
 
 module.exports = {
-    Users,
-    Promotions,
-    Programs,
-    RssFeeds,
+  Users,
+  Promotions,
+  Programs,
+  RssFeeds,
 };

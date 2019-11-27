@@ -2,8 +2,8 @@ const update = require('./updateSchema');
 const create = require('./createSchema');
 
 const rssFeedSchemas = {
-    update,
-    create
+  update,
+  create,
 };
 
 module.exports = rssFeedSchemas;

@@ -1,24 +1,17 @@
 {
-  "parser": "babel-eslint",
+  "extends": "airbnb-base",
   "env": {
-    "browser": true,
     "node": true,
-    "jest": true
+    "browser": true
   },
-  "extends": [
-    "eslint:recommended",
-    "airbnb"
-  ],
+  "plugins": ["import"],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
   "rules": {
     "no-underscore-dangle": 0,
     "import/imports-first": ["error", "absolute-first"],
     "import/newline-after-import": "error",
     "linebreak-style": 0
-    // "jest/no-disabled-tests": "warn",
-    // "jest/no-focused-tests": "error",
-    // "jest/no-identical-title": "error",
-    // "jest/prefer-to-have-length": "warn",
-    // "jest/valid-expect": "error"
-
   }
 }
