@@ -9,7 +9,8 @@ const create = Joi.object({
     .alphanum()
     .required(),
 
-  content: Joi.array().items(Joi.INTEGER()),
+  content: Joi.array().items(Joi.number()
+    .integer()),
 }).required();
 
 module.exports = create;

@@ -1,9 +1,9 @@
 const update = require('./updateSchema');
 const create = require('./createSchema');
 
-const promotionSchemas = {
+const programSchemas = {
   update,
   create,
 };
 
-module.exports = promotionSchemas;
+module.exports = programSchemas;
