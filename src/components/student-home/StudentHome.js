@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
+import './StudentHome.scss';
 
 class StudentHome extends Component {
   constructor(props) {
@@ -20,17 +21,21 @@ class StudentHome extends Component {
     // eslint-disable-next-line react/destructuring-assignment
     const promotions = this.state.promotions.length > 0 ? this.state.promotions : [];
     return (
-      <>
+      <ul className="promosContainer">
         {promotions.map((promotion) => (
-          <div key={promotion.id}>
+          <li className="promoLineContainer" key={promotion.id}>
             {promotion.title}
             {' du '}
             <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment>
             {' au '}
             <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
-          </div>
+            {' à '}
+            {promotion.city}
+            { ' ' }
+            <a href="/" className="detailsLink">détails...</a>
+          </li>
         ))}
-      </>
+      </ul>
     );
   }
 }
