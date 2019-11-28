@@ -8,7 +8,7 @@ module.exports = {
     .then((content) => res.send(content))
     .catch((e) => res.status(400).send(e)),
 
-  getUserById: (req, res, next) => Users.findOne({ where: { id: res.locals.user_id } })
+  getUserById: (req, res) => Users.findOne({ where: { id: res.locals.user_id } })
     .then((userCreated) => res.status(200).send(userCreated))
     .catch((e) => res.status(400).send(e)),
 
@@ -41,6 +41,19 @@ module.exports = {
     return Users.update({ ...user }, { where: { id: userId } })
       .then((userUpdated) => res.status(200).send(userUpdated))
       .catch((e) => res.status(400).send(e));
+  },
+
+  userSignIn: async (req, res) => {
+    const { user } = res.locals;
+    const foundUser = await Users.findOne({ where: { email: user.email } });
+    if (!foundUser) res.status(403).json({ message: 'User not found' });
+    try {
+      const allowedUser = await bcrypt.compare(user.password, foundUser.password);
+      if (!allowedUser) throw new Error('wrong credentials');
+      res.status(200).json({ role: foundUser.role, email: foundUser.email });
+    } catch (error) {
+      res.status(403).json(error.message);
+    }
   },
 
   userDelete: (req, res) => Users.destroy({ where: { id: res.locals.user_id } })
