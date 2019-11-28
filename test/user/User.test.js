@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 const httpMethod = require('../testApiMethodService');
 
-
 describe('Test User Controller Api call', () => {
   let testAdminUserId = '';
   let testAdminUserRole = 0;
