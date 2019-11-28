@@ -12,6 +12,10 @@ router.post('/',
   validator.joiObjectValidator(schemas.userSchemas.create, 'user'),
   UsersController.userCreate);
 
+router.post('/signin',
+  validator.joiObjectValidator(schemas.userSchemas.signIn, 'user'),
+  UsersController.userSignIn);
+
 router.get('/:user_id',
   validator.joiIdValidator('user_id'),
   UsersController.getUserById);
