@@ -39,7 +39,7 @@ describe('Test User Controller Api call', () => {
     expect(response.body.firstName).toEqual(body.firstName);
     expect(response.body.lastName).toEqual(body.lastName);
     expect(response.body.email).toEqual(body.email);
-    expect(response.body.role).toEqual(2);
+    expect(response.body.role).toEqual(1);
     expect(response.body.password).not.toEqual(body.password);
     done();
   });
@@ -78,7 +78,7 @@ describe('Test User Controller Api call', () => {
     expect(response.body.firstName).toEqual(body.firstName);
     expect(response.body.lastName).toEqual(body.lastName);
     expect(response.body.email).toEqual(body.email);
-    expect(response.body.role).toEqual(1);
+    expect(response.body.role).toEqual(3);
     expect(response.body.password).not.toEqual(body.password);
     done();
   });
