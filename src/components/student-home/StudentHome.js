@@ -16,11 +16,19 @@ class StudentHome extends Component {
   }
 
   render() {
-    const title = this.state.promotions[0] ? this.state.promotions[0].title : null;
+    const promotions = this.state.promotions.length > 0 ? this.state.promotions : [];
     return (
-      <div>
-        {title}
-      </div>
+      <>
+        {promotions.map((promotion) => (
+          <div key={promotion.id}>
+            {promotion.title}
+            {' du '}
+            {promotion.startDate}
+            {' au '}
+            {promotion.endDate}
+          </div>
+        ))}
+      </>
     );
   }
 }
