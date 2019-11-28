@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Moment from 'react-moment';
 
 class StudentHome extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class StudentHome extends Component {
   }
 
   render() {
+    // eslint-disable-next-line react/destructuring-assignment
     const promotions = this.state.promotions.length > 0 ? this.state.promotions : [];
     return (
       <>
@@ -23,9 +25,9 @@ class StudentHome extends Component {
           <div key={promotion.id}>
             {promotion.title}
             {' du '}
-            {promotion.startDate}
+            <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment>
             {' au '}
-            {promotion.endDate}
+            <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
           </div>
         ))}
       </>
