@@ -1,21 +1,14 @@
 const Joi = require('@hapi/joi');
 
 const update = Joi.object({
-  id: Joi.number()
-    .integer()
-    .required(),
 
-  firstName: Joi.string()
-    .required(),
+  firstName: Joi.string(),
 
-  lastName: Joi.string()
-    .required(),
+  lastName: Joi.string(),
 
-  email: Joi.string()
-    .required(),
+  email: Joi.string(),
 
-  role: Joi.string()
-    .required(),
+  role: Joi.number(),
 }).required();
 
 module.exports = update;
