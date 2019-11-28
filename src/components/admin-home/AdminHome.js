@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
-import './StudentHome.scss';
+import './AdminHome.scss';
 
-class StudentHome extends Component {
+class AdminHome extends Component {
   constructor(props) {
     super(props);
     this.state = { promotions: {} };
@@ -40,4 +40,4 @@ class StudentHome extends Component {
   }
 }
 
-export default StudentHome;
+export default AdminHome;
