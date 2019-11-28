@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../app/index.scss';
 import '../app/App.scss';
 import Caroussel from '../caroussel/Caroussel';
+import StudentHome from '../student-home/StudentHome';
 
 class Home extends Component {
   componentDidMount() {
@@ -14,9 +15,10 @@ class Home extends Component {
         <div>
           <h1 className="title is-2 mbmd">Accueil</h1>
         </div>
-        <article className="box carousel">
-          {/* <Caroussel /> */}
-        </article>
+        <StudentHome />
+        {/* <article className="box carousel"> */}
+        {/* <Caroussel /> */}
+        {/* </article> */}
       </>
     );
   }
