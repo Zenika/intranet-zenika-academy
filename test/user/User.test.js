@@ -43,7 +43,6 @@ describe('Test User Controller Api call', () => {
 
   it('Update the created user', async (done) => {
     const bodyUpdate = {
-      id: testUserId,
       firstName: 'prénomTestUpdate',
       lastName: 'nomTestUpdate',
       role: testUserRole,
