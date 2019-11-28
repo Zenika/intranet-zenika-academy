@@ -37,7 +37,7 @@ module.exports = {
 
   userUpdate: (req, res) => {
     const { user } = res.locals;
-    const userId = parseInt(res.locals.user_id);
+    const userId = parseInt(res.locals.user_id, 10);
     return Users.update({ ...user }, { where: { id: userId } })
       .then((userUpdated) => res.status(200).send(userUpdated))
       .catch((e) => res.status(400).send(e));
@@ -46,13 +46,13 @@ module.exports = {
   userSignIn: async (req, res) => {
     const { user } = res.locals;
     const foundUser = await Users.findOne({ where: { email: user.email } });
-    if (!foundUser) res.status(403).json({ message: 'User not found' });
+    if (!foundUser) res.status(403).json({ error: 'User not found' });
     try {
       const allowedUser = await bcrypt.compare(user.password, foundUser.password);
       if (!allowedUser) throw new Error('wrong credentials');
       res.status(200).json({ role: foundUser.role, email: foundUser.email });
     } catch (error) {
-      res.status(403).json(error.message);
+      res.status(403).json({ error: error.message });
     }
   },
 
