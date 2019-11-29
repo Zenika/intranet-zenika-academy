@@ -12,6 +12,7 @@ class AdminHome extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     axios.get('http://localhost:4000/api/promotions')
       .then((res) => {
         const promotions = res.data;
