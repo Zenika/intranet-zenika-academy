@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import axios from 'axios';
+import { SignInModal } from '../signInModal/SignInModal';
 import './Navigation.scss';
 import logo from './logo.png';
 
@@ -8,15 +10,18 @@ class NavigationBar extends Component {
     super(props);
 
     this.state = {
-      modalState: '',
+      modalState: false,
       loggedIn: false,
       isNavAdmin: false,
     };
     this.setBurgerLink = this.setBurgerLink.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.connect = this.connect.bind(this);
+    this.disconnect = this.disconnect.bind(this);
   }
 
   componentDidMount() {
-    let isUserLogged = localStorage.getItem('loggedIn');
+    let isUserLogged = sessionStorage.getItem('loggedIn');
     isUserLogged = JSON.parse(isUserLogged);
     if (isUserLogged != null && isUserLogged) {
       this.setState({ loggedIn: true });
@@ -27,24 +32,9 @@ class NavigationBar extends Component {
 
   setNavbarState(state) {
     this.setState({ isNavAdmin: state });
-    localStorage.setItem('navbarAdmin', state);
+    sessionStorage.setItem('navbarAdmin', state);
   }
 
-  /**
-   * Allows to check if the user is logged in
-   */
-  connect = (ev) => {
-    localStorage.setItem('loggedIn', `${ev}`);
-    this.setState({ loggedIn: ev });
-    if (!ev) {
-      this.setState({
-        modalState: '',
-        isNavAdmin: false,
-      });
-      localStorage.clear();
-      return <Redirect to="/" />;
-    }
-  };
 
   setBurgerBar = () => {
     const burger = document.querySelector('.burger');
@@ -58,20 +48,62 @@ class NavigationBar extends Component {
     navLink.nextElementSibling.classList.toggle('is-hidden-mobile');
   };
 
+
   /**
-   * Allows to open or close de sign in Modal
-   * @param {*} ev boolean
+   * Allows to connect or disconnect a user
    */
+  connect(user) {
+    return axios.post('http://localhost:4000/api/users/signin', user)
+      .then((res) => {
+        this.setState({ loggedIn: true });
+        sessionStorage.setItem('role', `${res.data.role}`);
+        sessionStorage.setItem('id', `${res.data.id}`);
+        sessionStorage.setItem('loggedIn', 'true');
+
+        /** TO BE IMPLEMENTED WHEN BOTH ADMIN AND STUDENT HOME WILL EXIST */
+        // switch (res.data.role) {
+        //   case 1:
+        //     return <Redirect to="/home/admin" />;
+        //   case 2:
+        //   case 3:
+        //     return <Redirect to="/home/student" />;
+        //   default:
+        //     return <Redirect to="/" />;
+        // }
+      })
+      .catch((err) => {
+        console.error(err);
+        this.setState({ loggedIn: false });
+        this.toggleModal(false);
+      });
+  }
+
+  disconnect() {
+    this.setState({
+      modalState: false,
+      isNavAdmin: false,
+      loggedIn: false,
+    });
+    sessionStorage.clear();
+    return <Redirect to="/" />;
+  }
+
+  /**
+ * Allows to open or close de sign in Modal
+ * @param {*} ev boolean
+ */
   toggleModal(ev) {
-    if (ev === false) {
-      this.setState({ modalState: '' });
+    if (!ev) {
+      this.setState({ modalState: false });
     } else {
-      this.setState({ modalState: 'is-active' });
+      this.setState({ modalState: true });
     }
   }
 
   render() {
-    const { loggedIn, modalState, isNavAdmin } = this.state;
+    const {
+      loggedIn, modalState, isNavAdmin, email, password,
+    } = this.state;
     const navbarMenu = document.querySelector('#navMenu') || '';
     let navbarMenuClass;
     if (isNavAdmin && loggedIn) {
@@ -88,14 +120,21 @@ class NavigationBar extends Component {
       }
     }
     const mainLink = (
-      <section
-        className="navbar-item"
-        onClick={() => this.setNavbarState(false)}
-      >
-        <Link to="/">
+      <section>
+        <Link
+          tabIndex="0"
+          className="navbar-item"
+          onKeyUp={() => this.setNavbarState(false)}
+          to="/"
+        >
           <img id="navbarLogo" src={logo} className="is-hidden-mobile" alt="logo zenika" />
         </Link>
-        <Link to="/">
+        <Link
+          tabIndex="0"
+          className="navbar-item"
+          onKeyUp={() => this.setNavbarState(false)}
+          to="/"
+        >
           <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">Accueil</span>
         </Link>
       </section>
@@ -237,9 +276,8 @@ class NavigationBar extends Component {
             </section> */}
         <section
           className="navbar-item"
-          onClick={() => this.connect(false)}
         >
-          <Link to="/" className={isNavAdmin ? 'icon-signout-admin' : 'icon-signout'}>
+          <Link onClick={() => this.disconnect()} to="/" className={isNavAdmin ? 'icon-signout-admin' : 'icon-signout'}>
             <i className="fas fa-sign-out-alt display-desktop" />
             <span className="navbar-link is-arrowless display-mobile">Se déconnecter</span>
           </Link>
@@ -252,7 +290,7 @@ class NavigationBar extends Component {
     const loggedOutNav = (
       <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
         <section className="navbar-item display-mobile">
-          <button onClick={() => this.toggleModal(true)} className="button">
+          <button type="button" onClick={() => this.toggleModal(true)} className="button">
             Sign in
           </button>
         </section>
@@ -264,57 +302,22 @@ class NavigationBar extends Component {
           </section>
           <section className="navbar-end">
             <section className="navbar-item">
-              <button onClick={() => this.toggleModal(true)} className="button">
-                Sign in
+              <button type="button" onClick={() => this.toggleModal(true)} className="button">
+                Se connecter
               </button>
             </section>
           </section>
         </section>
-        <section id="modalLogin" className={`modal ${modalState}`}>
-          <section className="modal-background" />
-          <section className="modal-card">
-            <section className="modal-card-body">
-              <form>
-                <section className="field">
-                  <p className="control has-icons-left">
-                    <input
-                      className="input"
-                      type="text"
-                      placeholder="Username"
-                    />
-                    <span className="icon is-small is-left" />
-                  </p>
-                </section>
-                <section className="field">
-                  <p className="control has-icons-left">
-                    <input
-                      className="input"
-                      type="password"
-                      placeholder="Password"
-                    />
-                    <span className="icon is-small is-left">
-                      <i className="fas fa-lock" />
-                    </span>
-                  </p>
-                </section>
-              </form>
-            </section>
-            <footer className="modal-card-foot">
-              <button
-                onClick={() => this.connect(true)}
-                className="button is-success"
-              >
-                Sign in
-              </button>
-              <button
-                onClick={() => this.toggleModal(false)}
-                className="button"
-              >
-                Cancel
-              </button>
-            </footer>
-          </section>
-        </section>
+        {modalState
+          && (
+            <SignInModal
+              toggleModal={this.toggleModal}
+              connect={this.connect}
+              email={email}
+              password={password}
+              handleChange={this.handleChange}
+            />
+          )}
       </nav>
     );
 
