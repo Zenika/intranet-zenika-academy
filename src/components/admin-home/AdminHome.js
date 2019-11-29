@@ -41,7 +41,7 @@ class AdminHome extends Component {
         <ul className="promosContainer">
           {promotions.map((promotion) => (
             <li className="promoLineContainer" key={promotion.id}>
-              {promotion.title}
+              <span className="promotionTitle">{promotion.title}</span>
               {' du '}
               <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment>
               {' au '}
