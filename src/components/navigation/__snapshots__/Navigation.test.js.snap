@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar renders correctly Displays the connexion Modal when sign in button is clicked 1`] = `
+<NavigationBar>
+  <nav
+    aria-label="main navigation"
+    className="navbar is-primary"
+    role="navigation"
+  >
+    <section
+      className="navbar-item display-mobile"
+    >
+      <button
+        className="button"
+        onClick={[Function]}
+        type="submit"
+      >
+        Se connecter
+      </button>
+    </section>
+    <section
+      className="navbar-menu"
+    >
+      <section
+        className="navBarLoggedOut"
+      >
+        <section
+          className="navbar-start"
+        >
+          <p>
+            There is no fate but what we make
+          </p>
+        </section>
+      </section>
+      <section
+        className="navbar-end"
+      >
+        <section
+          className="navbar-item"
+        >
+          <button
+            className="button signInDesktop"
+            onClick={[Function]}
+            type="submit"
+          >
+            Se connecter
+          </button>
+        </section>
+      </section>
+    </section>
+    <section
+      className="modal is-active"
+      id="modalLogin"
+    >
+      <section
+        className="modal-background"
+      />
+      <section
+        className="modal-card"
+      >
+        <section
+          className="modal-card-body"
+        >
+          <form>
+            <section
+              className="field"
+            >
+              <p
+                className="control has-icons-left"
+              >
+                <input
+                  className="input"
+                  placeholder="Username"
+                  type="text"
+                />
+                <span
+                  className="icon is-small is-left"
+                />
+              </p>
+            </section>
+            <section
+              className="field"
+            >
+              <p
+                className="control has-icons-left"
+              >
+                <input
+                  className="input"
+                  placeholder="Password"
+                  type="password"
+                />
+                <span
+                  className="icon is-small is-left"
+                >
+                  <i
+                    className="fas fa-lock"
+                  />
+                </span>
+              </p>
+            </section>
+          </form>
+        </section>
+        <footer
+          className="modal-card-foot"
+        >
+          <button
+            className="button is-success"
+            onClick={[Function]}
+          >
+            Sign in
+          </button>
+          <button
+            className="button"
+            onClick={[Function]}
+          >
+            Cancel
+          </button>
+        </footer>
+      </section>
+    </section>
+  </nav>
+</NavigationBar>
+`;
+
+exports[`Navbar renders correctly it renders correctly 1`] = `
+<NavigationBar>
+  <nav
+    aria-label="main navigation"
+    className="navbar is-primary"
+    role="navigation"
+  >
+    <section
+      className="navbar-item display-mobile"
+    >
+      <button
+        className="button"
+        onClick={[Function]}
+        type="submit"
+      >
+        Se connecter
+      </button>
+    </section>
+    <section
+      className="navbar-menu"
+    >
+      <section
+        className="navBarLoggedOut"
+      >
+        <section
+          className="navbar-start"
+        >
+          <p>
+            There is no fate but what we make
+          </p>
+        </section>
+      </section>
+      <section
+        className="navbar-end"
+      >
+        <section
+          className="navbar-item"
+        >
+          <button
+            className="button signInDesktop"
+            onClick={[Function]}
+            type="submit"
+          >
+            Se connecter
+          </button>
+        </section>
+      </section>
+    </section>
+    <section
+      className="modal "
+      id="modalLogin"
+    >
+      <section
+        className="modal-background"
+      />
+      <section
+        className="modal-card"
+      >
+        <section
+          className="modal-card-body"
+        >
+          <form>
+            <section
+              className="field"
+            >
+              <p
+                className="control has-icons-left"
+              >
+                <input
+                  className="input"
+                  placeholder="Username"
+                  type="text"
+                />
+                <span
+                  className="icon is-small is-left"
+                />
+              </p>
+            </section>
+            <section
+              className="field"
+            >
+              <p
+                className="control has-icons-left"
+              >
+                <input
+                  className="input"
+                  placeholder="Password"
+                  type="password"
+                />
+                <span
+                  className="icon is-small is-left"
+                >
+                  <i
+                    className="fas fa-lock"
+                  />
+                </span>
+              </p>
+            </section>
+          </form>
+        </section>
+        <footer
+          className="modal-card-foot"
+        >
+          <button
+            className="button is-success"
+            onClick={[Function]}
+          >
+            Sign in
+          </button>
+          <button
+            className="button"
+            onClick={[Function]}
+          >
+            Cancel
+          </button>
+        </footer>
+      </section>
+    </section>
+  </nav>
+</NavigationBar>
+`;
