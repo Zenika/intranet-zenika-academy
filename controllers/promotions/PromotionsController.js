@@ -1,4 +1,4 @@
-const { Promotions } = require('../../models');
+const { Users, Promotions } = require('../../models');
 
 module.exports = {
   getAllPromotion: (req, res) => Promotions.findAll({ raw: true })
@@ -14,6 +14,22 @@ module.exports = {
     return Promotions.create(promotion)
       .then((promotionCreated) => res.status(201).send(promotionCreated))
       .catch((e) => res.status(400).send(e));
+  },
+
+  getAllUsersFromPromo: async (req, res) => {
+    const promoId = Number(res.locals.promotion_id);
+    try {
+      const promoUsers = await Users.findAll({
+        attributes: { exclude: ['password'] },
+        includes: [{
+          model: Promotions,
+          where: { id: promoId },
+        }],
+      });
+      return res.status(200).json(promoUsers);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
   },
 
   promotionUpdate: (req, res) => {

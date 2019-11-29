@@ -8,6 +8,8 @@ const schemas = require('../service/joi/schemas/schemas');
 /* GET promotion. */
 router.get('/', PromotionsController.getAllPromotion);
 
+router.get('/users/:promotion_id', PromotionsController.getAllUsersFromPromo);
+
 router.post('/',
   validator.joiObjectValidator(schemas.promotionSchemas.create, 'promotion'),
   PromotionsController.promotionCreate);
