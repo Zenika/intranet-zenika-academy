@@ -7,8 +7,8 @@ Enzyme.configure({ adapter: new Adapter() });
 
 let wrapper;
 beforeEach(() => {
-  const mocktoggleModal = jest.fn();
-  wrapper = shallow(<SignInModal toggleModal={mocktoggleModal} />);
+  const toggleModal = jest.fn();
+  wrapper = shallow(<SignInModal toggleModal={toggleModal} />);
 });
 
 describe('Modal signIn tests', () => {
@@ -60,9 +60,10 @@ describe('Modal signIn tests', () => {
     expect(container).toHaveLength(1);
   });
 
-  // it('Should have cancel button', () => {
-  //   const button = wrapper.find('#cancelButton');
-  //   button.simulate('click');
-  //   expect(wrapper.props().toggleModal).toHaveBeenCalled(1);
-  // });
+  it('Should call toggleModal() props on cancel button click', () => {
+    const button = wrapper.find('#cancelButton');
+    const toggle = wrapper.instance().props.toggleModal;
+    button.simulate('click');
+    expect(toggle).toHaveBeenCalled();
+  });
 });

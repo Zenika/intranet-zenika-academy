@@ -58,6 +58,7 @@ class NavigationBar extends Component {
         this.setState({ loggedIn: true });
         sessionStorage.setItem('role', `${res.data.role}`);
         sessionStorage.setItem('id', `${res.data.id}`);
+        sessionStorage.setItem('promoId', `${res.data.promotionId}`);
         sessionStorage.setItem('loggedIn', 'true');
 
         /** TO BE IMPLEMENTED WHEN BOTH ADMIN AND STUDENT HOME WILL EXIST */
