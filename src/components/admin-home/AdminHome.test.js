@@ -6,6 +6,8 @@ import axios from 'axios';
 import Adapter from 'enzyme-adapter-react-16';
 import AdminHome from './AdminHome';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 jest.mock('axios');
 
 describe('AdminHome component', () => {
@@ -19,9 +21,12 @@ describe('AdminHome component', () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
+  it('contains a title "Bienvenue"', () => {
+    const app = shallow(<AdminHome />);
+    expect(app.containsMatchingElement(<h1>Bienvenue</h1>)).toEqual(true);
+  });
   describe('when rendered', () => {
     it('should fetch promotions', () => {
-      Enzyme.configure({ adapter: new Adapter() });
       const getSpy = jest.spyOn(axios, 'get');
       shallow(
         <AdminHome />,
