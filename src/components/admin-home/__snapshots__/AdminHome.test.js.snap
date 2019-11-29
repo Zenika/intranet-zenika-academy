@@ -7,6 +7,24 @@ Array [
   >
     Bienvenue
   </h1>,
+  <a
+    className="button is-primary"
+    href="/admin/promo/create"
+  >
+    Créer une promotion
+  </a>,
+  <a
+    className="button is-primary"
+    href="/admin/program/create"
+  >
+    Créer un programme
+  </a>,
+  <a
+    className="button is-primary"
+    href="/admin/user/create"
+  >
+    Créer un utilisateur
+  </a>,
   <h2
     className="title is-4 mbmd"
   >
