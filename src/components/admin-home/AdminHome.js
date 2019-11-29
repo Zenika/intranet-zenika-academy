@@ -4,6 +4,8 @@ import Moment from 'react-moment';
 import './AdminHome.scss';
 
 class AdminHome extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = { promotions: {} };
@@ -13,8 +15,14 @@ class AdminHome extends Component {
     axios.get('http://localhost:4000/api/promotions')
       .then((res) => {
         const promotions = res.data;
-        this.setState({ promotions });
+        if (this._isMounted) {
+          this.setState({ promotions });
+        }
       });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {

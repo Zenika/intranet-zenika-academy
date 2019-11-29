@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StudentHome component matches snapshot 1`] = `
+exports[`AdminHome component matches snapshot 1`] = `
 Array [
   <h1
     className="title is-2 mbmd"
@@ -10,10 +10,10 @@ Array [
   <h2
     className="title is-4 mbmd"
   >
-    Votre promotion :
+    Liste des promotions :
   </h2>,
-  <div>
-    Student Home
-  </div>,
+  <ul
+    className="promosContainer"
+  />,
 ]
 `;
