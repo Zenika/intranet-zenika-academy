@@ -46,6 +46,7 @@ export class SignInModal extends Component {
               <section className="field">
                 <p className="control has-icons-left">
                   <input
+                    id="emailInput"
                     required
                     className="input"
                     type="text"
@@ -60,6 +61,7 @@ export class SignInModal extends Component {
               <section className="field">
                 <p className="control has-icons-left">
                   <input
+                    id="passwordInput"
                     required
                     className="input"
                     type="password"
@@ -77,6 +79,7 @@ export class SignInModal extends Component {
           </section>
           <footer className="modal-card-foot modalFooter">
             <button
+              id="submitButton"
               type="submit"
               onClick={handleSubmit}
               className="button is-success"
@@ -84,6 +87,7 @@ export class SignInModal extends Component {
               Se connecter
             </button>
             <button
+              id="cancelButton"
               type="button"
               onClick={() => toggleModal(false)}
               className="button"
