@@ -316,7 +316,6 @@ class NavigationBar extends Component {
               connect={this.connect}
               email={email}
               password={password}
-              handleChange={this.handleChange}
             />
           )}
       </nav>
