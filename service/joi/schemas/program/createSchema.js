@@ -2,15 +2,13 @@ const Joi = require('@hapi/joi');
 
 const create = Joi.object({
   title: Joi.string()
-    .alphanum()
     .required(),
 
-  type: Joi.string()
-    .alphanum()
+  type: Joi.number()
+    .integer()
     .required(),
 
-  content: Joi.array().items(Joi.number()
-    .integer()),
+  content: Joi.array(),
 }).required();
 
 module.exports = create;

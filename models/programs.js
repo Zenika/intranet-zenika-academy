@@ -17,10 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     content: {
       type: DataTypes.STRING,
       get() {
-        return this.getDataValue('id').split(';');
+        if (!this.getDataValue('content')) return [];
+        const array = this.getDataValue('content').split(';');
+        array.forEach((id) => parseInt(id, 10));
+        return array;
       },
       set(val) {
-        this.setDataValue('id', val.join(';'));
+        this.setDataValue('content', val.join(';'));
       },
     },
   },

@@ -6,7 +6,6 @@ const update = Joi.object({
     .required(),
 
   title: Joi.string()
-    .alphanum()
     .required(),
 
 }).required();

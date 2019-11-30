@@ -9,7 +9,7 @@ const schemas = require('../service/joi/schemas/schemas');
 router.get('/', ProgramsController.getAllPrograms);
 
 router.post('/',
-  validator.joiObjectValidator(schemas.programSchemas.create, 'program'),
+  validator.joiObjectValidator(schemas.programSchemas.create, 'programs'),
   ProgramsController.programCreate);
 
 router.get('/:program_id',
@@ -18,7 +18,7 @@ router.get('/:program_id',
 
 router.put('/:program_id/update',
   validator.joiIdValidator('program_id'),
-  validator.joiObjectValidator(schemas.programSchemas.update, 'program'),
+  validator.joiObjectValidator(schemas.programSchemas.update, 'programs'),
   ProgramsController.programUpdate);
 
 router.delete('/:program_id',
