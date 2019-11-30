@@ -1,0 +1,13 @@
+[id^="moduleBox"] {
+    background-color: #F0F8FF;
+}
+
+[id^="subModuleBox"]{
+    background-color: #F8F8FF;
+}
+
+.root {
+    display: flow-root;
+}
+
+#addModule, #addSubModule, #addSequence { padding: 0; }
