@@ -21,6 +21,12 @@ class AddSequence extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.title !== prevState.title && nextProps.id !== prevState.id) {
+      return { ...prevState, title: nextProps.title, id: nextProps.id };
+    }
+    if (nextProps.title !== prevState.title) {
+      return { title: nextProps.title };
+    }
     if (nextProps.id !== prevState.id) {
       return { id: nextProps.id };
     }
@@ -43,6 +49,9 @@ class AddSequence extends React.Component {
             <h5 className="title is-5 is-pulled-left">
               Séquence n°
               {id + 1}
+              :
+              &nbsp;
+              {title}
             </h5>
             <a href={`#collapsible-sectionSeq${id}`} data-action="collapse" className="is-pulled-right is-active">
               <i className="fas fa-chevron-up" />
