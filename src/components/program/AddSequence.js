@@ -7,8 +7,8 @@ class AddSequence extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      title: this.props.title,
+      id: props.id,
+      title: props.title,
     };
   }
 
