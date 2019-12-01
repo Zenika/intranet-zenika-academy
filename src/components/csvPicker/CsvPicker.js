@@ -12,7 +12,6 @@ const papaparseOptions = {
 };
 
 export default class CsvPicker extends Component {
-
   /**
    * Allows to call the props function handleCSVImport
    * @param {*} e event trigger by the onFileLoaded method
@@ -21,6 +20,7 @@ export default class CsvPicker extends Component {
     const { handleCSVImport, name } = this.props;
     handleCSVImport(name, e);
   }
+
 
   render() {
     /* Name of the input */

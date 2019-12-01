@@ -58,6 +58,7 @@ class NavigationBar extends Component {
         this.setState({ loggedIn: true });
         sessionStorage.setItem('role', `${res.data.role}`);
         sessionStorage.setItem('id', `${res.data.id}`);
+        sessionStorage.setItem('promoId', `${res.data.promotionId}`);
         sessionStorage.setItem('loggedIn', 'true');
 
         /** TO BE IMPLEMENTED WHEN BOTH ADMIN AND STUDENT HOME WILL EXIST */
@@ -315,7 +316,6 @@ class NavigationBar extends Component {
               connect={this.connect}
               email={email}
               password={password}
-              handleChange={this.handleChange}
             />
           )}
       </nav>

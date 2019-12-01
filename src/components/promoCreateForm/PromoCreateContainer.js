@@ -32,9 +32,7 @@ export class PromoCreateContainer extends Component {
    */
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value }, () => {
-      console.log(`state: ${this.state}, value: ${value}`);
-    });
+    this.setState({ [name]: value });
   }
 
   /**
@@ -44,13 +42,9 @@ export class PromoCreateContainer extends Component {
    */
   handleMultiChange = (options, name) => {
     if (name === 'program') {
-      this.setState({ [name]: [options] }, () => {
-        console.log(`state: ${this.state}, value: ${options}`);
-      });
+      this.setState({ [name]: [options] });
     }
-    this.setState({ [name]: options }, () => {
-      console.log(`state: ${this.state}, value: ${options}`);
-    });
+    this.setState({ [name]: options });
   }
 
   /**
@@ -59,10 +53,7 @@ export class PromoCreateContainer extends Component {
    * @param data data to put in the state
    */
   handleCSVImport = (name, data) => {
-    this.setState({ [name]: [...data] }, () => {
-      console.log(`state: ${this.state}, value: ${data}`);
-    });
-    this.setState({ csv: true });
+    this.setState({ [name]: [...data], csv: true });
   }
 
   /**
@@ -121,11 +112,9 @@ export class PromoCreateContainer extends Component {
             prevStep={prevStep}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
-            handleCSVImport={handleCSVImport}
             name="teachers"
             promo={promo}
             step={step}
-            csv={csv}
           />
         );
       case 4:
@@ -138,6 +127,7 @@ export class PromoCreateContainer extends Component {
             handleCSVImport={handleCSVImport}
             promo={promo}
             step={step}
+            csv={csv}
             name="students"
           />
         );
