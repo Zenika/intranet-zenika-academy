@@ -1,12 +1,15 @@
 import React from 'react';
 import bulmaCollapsible from '@creativebulma/bulma-collapsible';
 import SubModule from './AddSubModule';
+import './Program.scss';
 import '../layout/Layout.scss';
 
 class AddModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.id,
+      title: this.props.title,
       subModules: [],
       module: {
         title: '',
@@ -26,20 +29,43 @@ class AddModule extends React.Component {
     });
   }
 
-  handleChange = (e) => {
+  handleChange = async (e) => {
     const { value, id } = e.target;
-    this.setState((prevState) => {
+    await this.setState((prevState) => {
       const newItems = [...prevState.module.content];
       newItems[id].title = value;
       return { module: { ...prevState.module, content: newItems } };
     });
   };
 
+  deleteSubModule = async (key, id) => {
+    await this.setState((prevState) => {
+      const newId = prevState.idSubModules > 0 ? prevState.idSubModules - 1 : 0;
+      const newItems = prevState.module.content;
+      newItems.splice(id, 1);
+      const newSequenceArray = prevState.subModules.filter((node) => node.key !== key);
+      newSequenceArray.forEach((node, index) => newSequenceArray[index].id = index);
+      return {
+        subModules: newSequenceArray,
+        module:
+          { ...prevState.module, content: newItems },
+        idSubModules: newId,
+      };
+    }, () => this.props
+      .handleAddSubModuleContent('delete',
+        this.props.id, id));
+  };
+
   addSubModule = async () => {
     const { idSubModules } = this.state;
+    const key = Math.random()
+      .toString(36)
+      .substring(2, 15) + Math.random()
+      .toString(36)
+      .substring(2, 15);
     const newSubModule = {
       id: idSubModules,
-      html: [],
+      key,
     };
     await this.setState((prevState) => ({
       ...prevState,
@@ -47,15 +73,7 @@ class AddModule extends React.Component {
         ...prevState.module,
         content: [...prevState.module.content, { title: '', type: 3, content: [] }],
       },
-    }), () => newSubModule.html
-      .push(<SubModule
-        id={idSubModules}
-        idModule={this.props.id}
-        title={this.state.module.content[idSubModules].title}
-        content={this.state.module.content[idSubModules].content}
-        handleChange={this.handleChange}
-        handleAddSequenceContent={this.props.handleAddSequenceContent}
-      />));
+    }));
     await this.setState((prevState) => ({
       ...prevState,
       subModules: [
@@ -65,15 +83,23 @@ class AddModule extends React.Component {
       idSubModules: prevState.idSubModules + 1,
     }), () => this.props
       .handleAddSubModuleContent(this.state.module.content[idSubModules], this.props.id));
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.id !== prevState.id) {
+      return { id: nextProps.id };
+    }
+    return null;
   }
 
   render() {
     const {
-      id, title, handleChange,
+      handleChange, deleteModule, deleteIt,
     } = this.props;
     const {
-      subModules,
+      subModules, id, title,
     } = this.state;
+
     return (
       <div id={`moduleBox-${id}`} className="box mtmd">
         <div ref="collapsibles" id={`accordion${id}`}>
@@ -90,7 +116,7 @@ class AddModule extends React.Component {
             <div className="card">
               <header className="card-header">
                 <p className="card-header-title">
-              Nom du module n°
+              Module n°
                   {id + 1}
                 </p>
               </header>
@@ -108,13 +134,32 @@ class AddModule extends React.Component {
                   </span>
               &nbsp; &nbsp;Sous-Module
                 </button>
+                <button className="button is-danger card-footer-item" id="addSubModul" onClick={() => deleteModule(deleteIt, id)} type="button">
+                  <span
+                    className="icon is-small"
+                  >
+                    <i className="fas fa-minus" />
+                  </span>
+                </button>
               </footer>
             </div>
           </div>
         </div>
         <div className="field">
           {
-            subModules.map((node) => node.html)
+            subModules.map((node) => (
+              <SubModule
+                id={node.id}
+                key={node.key}
+                deleteIt={node.key}
+                idModule={this.props.id}
+                title={this.state.module.content[node.id].title}
+                content={this.state.module.content[node.id].content}
+                handleChange={this.handleChange}
+                handleAddSequenceContent={this.props.handleAddSequenceContent}
+                deleteSubModule={this.deleteSubModule}
+              />
+            ))
           }
         </div>
       </div>
