@@ -188,20 +188,20 @@ class ProgramForm extends React.Component {
       <h1 className="title is-1 is-spaced">Création d'un programme</h1>
     );
     const buttonForm = (
-      <section className="field is-grouped">
-        <section className="control">
+      <div className="field is-grouped">
+        <div className="control">
           <button className="button is-success" value={1} onClick={(e) => handleChange(e, program)} type="button">Valider</button>
-        </section>
-        <section className="control">
+        </div>
+        <div className="control">
           <Link to="/admin/program">
             <button className="button is-danger" type="button">Annuler</button>
           </Link>
-        </section>
-      </section>
+        </div>
+      </div>
     );
 
     return (
-      <article className="section box">
+      <article className="div box">
         {titleForm}
         <form>
           <h2 className="title is-2">
