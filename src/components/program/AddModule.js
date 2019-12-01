@@ -8,13 +8,13 @@ class AddModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      title: this.props.title,
+      id: props.id,
+      title: props.title,
       subModules: [],
       module: {
         title: '',
         type: 2,
-        content: [],
+        content: props.content,
       },
       idSubModules: 0,
     };
@@ -27,16 +27,31 @@ class AddModule extends React.Component {
       collapsed: false,
       allowMultiple: true,
     });
+
+    const { module } = this.state;
+    const createSubModules = module.content.map((node, i) => ({
+      id: i,
+      key: Math.random()
+        .toString(36)
+        .substring(2, 15) + Math.random()
+        .toString(36)
+        .substring(2, 15),
+    }));
+    this.setState(() => ({ subModules: createSubModules }));
   }
 
-  handleChange = async (e) => {
-    const { value, id } = e.target;
-    await this.setState((prevState) => {
-      const newItems = [...prevState.module.content];
-      newItems[id].title = value;
-      return { module: { ...prevState.module, content: newItems } };
-    });
-  };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.title !== prevState.title && nextProps.id !== prevState.id) {
+      return { ...prevState, title: nextProps.title, id: nextProps.id };
+    }
+    if (nextProps.title !== prevState.title) {
+      return { title: nextProps.title };
+    }
+    if (nextProps.id !== prevState.id) {
+      return { id: nextProps.id };
+    }
+    return null;
+  }
 
   deleteSubModule = async (key, id) => {
     await this.setState((prevState) => {
@@ -85,12 +100,14 @@ class AddModule extends React.Component {
       .handleAddSubModuleContent(this.state.module.content[idSubModules], this.props.id));
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.id !== prevState.id) {
-      return { id: nextProps.id };
-    }
-    return null;
-  }
+  handleChange = async (e) => {
+    const { value, id } = e.target;
+    await this.setState((prevState) => {
+      const newItems = [...prevState.module.content];
+      newItems[id].title = value;
+      return { module: { ...prevState.module, content: newItems } };
+    });
+  };
 
   render() {
     const {
@@ -107,6 +124,9 @@ class AddModule extends React.Component {
             <h3 className="title is-3 is-pulled-left">
               Module n°
               {id + 1}
+              :
+              &nbsp;
+              {title}
             </h3>
             <a href={`#collapsible-section${id}`} data-action="collapse" className="is-pulled-right is-active">
               <i className="fas fa-chevron-up" />

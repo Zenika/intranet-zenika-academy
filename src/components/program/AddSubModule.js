@@ -8,13 +8,13 @@ class AddSubModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      title: this.props.title,
+      id: props.id,
+      title: props.title,
       sequences: [],
       subModule: {
         title: '',
         type: 3,
-        content: [],
+        content: props.content,
       },
       idSequence: 0,
     };
@@ -27,6 +27,30 @@ class AddSubModule extends React.Component {
       collapsed: false,
       allowMultiple: true,
     });
+
+    const { subModule } = this.state;
+    const createSequences = subModule.content.map((node, i) => ({
+      id: i,
+      key: Math.random()
+        .toString(36)
+        .substring(2, 15) + Math.random()
+        .toString(36)
+        .substring(2, 15),
+    }));
+    this.setState(() => ({ sequences: createSequences }));
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.title !== prevState.title && nextProps.id !== prevState.id) {
+      return { ...prevState, title: nextProps.title, id: nextProps.id };
+    }
+    if (nextProps.title !== prevState.title) {
+      return { title: nextProps.title };
+    }
+    if (nextProps.id !== prevState.id) {
+      return { id: nextProps.id };
+    }
+    return null;
   }
 
   handleChange = async (e) => {
@@ -86,14 +110,6 @@ class AddSubModule extends React.Component {
         this.props.id, this.props.idModule));
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.id !== prevState.id) {
-      return { id: nextProps.id };
-    }
-    return null;
-  }
-
-
   render() {
     const {
       handleChange, deleteSubModule, deleteIt,
@@ -109,6 +125,9 @@ class AddSubModule extends React.Component {
             <h4 className="title is-4 is-pulled-left">
               Sous-Module n°
               {id + 1}
+              :
+              &nbsp;
+              {title}
             </h4>
             <a href={`#collapsible-sectionSub${id}`} data-action="collapse" className="is-pulled-right is-active">
               <i className="fas fa-chevron-up" />

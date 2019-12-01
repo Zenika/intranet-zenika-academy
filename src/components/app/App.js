@@ -23,6 +23,7 @@ import Home from '../home/Home';
 import Administration from '../dashboard/Dashboard';
 import './App.scss';
 import { PromoCreateContainer } from '../promoCreateForm/PromoCreateContainer';
+import ProgramFormContainer from '../program/ProgramFormContainer';
 
 class App extends React.Component {
   render() {
@@ -77,7 +78,7 @@ class App extends React.Component {
               key="create-program"
               exact
               path="/admin/program/create"
-              component={ProgramForm}
+              component={ProgramFormContainer}
             />
             <Route
               key="edit-parcours"

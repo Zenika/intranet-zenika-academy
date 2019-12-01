@@ -1,6 +1,4 @@
-// import DatePicker from "./datePicker";
 import React from 'react';
-import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import Module from './AddModule';
 import './Program.scss';
@@ -11,24 +9,24 @@ class ProgramForm extends React.Component {
     super(props);
     this.state = {
       modules: [],
-      program: {
-        title: '',
-        type: 1,
-        content: [],
-      },
+      program: props.program,
       idModules: 0,
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
-  createProgram = (e) => {
-    e.preventDefault();
+  componentDidMount() {
     const { program } = this.state;
-    Axios.post('http://localhost:4000/api/programs', program)
-      .then((response) => {
-        console.log(response);
-      });
-  };
+    const createModules = program.content.map((node, i) => ({
+      id: i,
+      key: Math.random()
+        .toString(36)
+        .substring(2, 15) + Math.random()
+        .toString(36)
+        .substring(2, 15),
+    }));
+    this.setState(() => ({ modules: createModules }));
+  }
 
   handleChangeTitleProgram = (e) => {
     const { value } = e.target;
@@ -175,50 +173,28 @@ class ProgramForm extends React.Component {
     });
   };
 
-
   render() {
-    const { id } = this.props.match.params;
     const {
       program, modules,
     } = this.state;
-    let titleForm;
-    let buttonForm;
-
-    if (id !== undefined) {
-      titleForm = (
-        <h1 className="title is-4 is-spaced">Edition d'un programme</h1>
-      );
-      buttonForm = (
-        <section className="field is-grouped">
-          <section className="control">
-            <Link to="/admin/program/1/edit">
-              <button className="button is-link">Editer</button>
-            </Link>
-          </section>
-          <section className="control">
-            <Link to="/admin/program">
-              <button className="button is-danger">Supprimer</button>
-            </Link>
-          </section>
+    const {
+      handleChange,
+    } = this.props;
+    const titleForm = (
+      <h1 className="title is-1 is-spaced">Création d'un programme</h1>
+    );
+    const buttonForm = (
+      <section className="field is-grouped">
+        <section className="control">
+          <button className="button is-success" value={1} onClick={(e) => handleChange(e, program)} type="button">Valider</button>
         </section>
-      );
-    } else {
-      titleForm = (
-        <h1 className="title is-1 is-spaced">Création d'un programme</h1>
-      );
-      buttonForm = (
-        <section className="field is-grouped">
-          <section className="control">
-            <button type="submit" onClick={this.createProgram} className="button is-link">Créer</button>
-          </section>
-          <section className="control">
-            <Link to="/admin/program">
-              <button className="button is-danger">Annuler</button>
-            </Link>
-          </section>
+        <section className="control">
+          <Link to="/admin/program">
+            <button className="button is-danger" type="button">Annuler</button>
+          </Link>
         </section>
-      );
-    }
+      </section>
+    );
 
     return (
       <article className="section box">
@@ -250,7 +226,7 @@ class ProgramForm extends React.Component {
                 </span>
                     &nbsp; &nbsp;Module
               </button>
-              <button className="button is-danger card-footer-item" id="addModule" onClick={() => this.cleanProgram()} type="button">
+              <button className="button is-danger card-footer-item" id="addModule" onClick={() => this.cleanProgram()} type="reset">
                 <span
                   className="icon is-small"
                 >
