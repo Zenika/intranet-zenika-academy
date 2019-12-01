@@ -16,7 +16,7 @@ class RecapProgramForm extends React.Component {
 
   createProgram = (e) => {
     e.preventDefault();
-    const { program } = this.state;
+    const { program } = this.props;
     Axios.post('http://localhost:4000/api/programs', program)
       .then((response) => {
         console.log(response);
@@ -61,6 +61,7 @@ class RecapProgramForm extends React.Component {
                               subModule.content.map((sequence, n) => (
                                 <li className="list-item">
                                   <h3 className="title is-5 is-spaced">
+                                    <i className="fad fa-level-up" />
                                     Séquence n°&nbsp;
                                     {n + 1}
                                     &nbsp;:&nbsp;
