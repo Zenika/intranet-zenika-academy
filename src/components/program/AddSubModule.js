@@ -37,7 +37,11 @@ class AddSubModule extends React.Component {
         .toString(36)
         .substring(2, 15),
     }));
-    this.setState(() => ({ sequences: createSequences }));
+    this.setState((prev) => ({
+      prev,
+      sequences: createSequences,
+      idSequence: createSequences.length,
+    }));
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {

@@ -25,7 +25,11 @@ class ProgramForm extends React.Component {
         .toString(36)
         .substring(2, 15),
     }));
-    this.setState(() => ({ modules: createModules }));
+    this.setState((prev) => ({
+      prev,
+      modules: createModules,
+      idModules: createModules.length,
+    }));
   }
 
   handleChangeTitleProgram = (e) => {
