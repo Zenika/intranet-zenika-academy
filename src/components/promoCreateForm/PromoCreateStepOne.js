@@ -5,37 +5,37 @@ import './PromoCreate.scss';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 import CreatableSelect from '../searchbarauto/CreatableSearchbar';
 
-const country = [
-  {
-    label: 'France',
-    value: 'France',
-  },
-  {
-    label: 'Maroc',
-    value: 'Maroc',
+// const country = [
+//   {
+//     label: 'France',
+//     value: 'France',
+//   },
+//   {
+//     label: 'Maroc',
+//     value: 'Maroc',
 
-  },
-  {
-    label: 'Espagne',
-    value: 'Espagne',
-  },
-];
+//   },
+//   {
+//     label: 'Espagne',
+//     value: 'Espagne',
+//   },
+// ];
 
-const city = [
-  {
-    label: 'Paris',
-    value: 'France',
-  },
-  {
-    label: 'Rennes',
-    value: 'France',
+// const city = [
+//   {
+//     label: 'Paris',
+//     value: 'France',
+//   },
+//   {
+//     label: 'Rennes',
+//     value: 'France',
 
-  },
-  {
-    label: 'Rabat',
-    value: 'Maroc',
-  },
-];
+//   },
+//   {
+//     label: 'Rabat',
+//     value: 'Maroc',
+//   },
+// ];
 
 function PromoCreateStepOne(props) {
   const {
@@ -74,14 +74,14 @@ function PromoCreateStepOne(props) {
             <DatePicker date={promo.endDate} name="endDate" defaultValue={promo.endDate} handleChange={(e) => handleChange(e)} />
           </section>
         </section>
-        <section className="field">
+        {/* <section className="field">
           <label className="label">Pays:</label>
           <CreatableSelect defaultValue={promo.country} name="country" options={country} handleChange={(e) => handleMultiChange(e, 'country')} searchKey="country" defaultLabel="Pays" />
-        </section>
+        </section> */}
         <section className="field">
           <label className="label">Ville:</label>
           <section className="field">
-            <CreatableSelect defaultValue={promo.city} name="city" isLoading={false} options={city} handleChange={(e) => handleMultiChange(e, 'city')} searchKey="city" defaultLabel="Ville" />
+            <input className="input" defaultValue={promo.city} name="city" isLoading={false} onChange={(e) => handleChange(e)} defaultLabel="Ville" />
           </section>
         </section>
         {buttonForm}
