@@ -5,7 +5,7 @@ module.exports = {
     .then((content) => res.send(content))
     .catch((e) => res.status(400).send(e)),
 
-  getPromotionById: (req, res, next) => Promotions.findOne({ where: { id: res.locals.promotion_id } })
+  getPromotionById: (req, res) => Promotions.findOne({ where: { id: res.locals.promotion_id } })
     .then((promotionCreated) => res.status(200).send(promotionCreated))
     .catch((e) => res.status(400).send(e)),
 
@@ -45,7 +45,7 @@ module.exports = {
 
   promotionUpdate: (req, res) => {
     const { promotion } = res.locals;
-    const promotionId = parseInt(res.locals.promotion_id);
+    const promotionId = parseInt(res.locals.promotion_id, 10);
     return Promotions.update({ ...promotion }, { where: { id: promotionId } })
       .then((promotionUpdated) => res.status(200).send(promotionUpdated))
       .catch((e) => res.status(400).send(e));
