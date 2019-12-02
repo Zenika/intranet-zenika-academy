@@ -2,8 +2,8 @@ import React from 'react';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 import DatePicker from '../datepicker/DatePicker';
 import './PromoCreate.scss';
-import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
-import CreatableSelect from '../searchbarauto/CreatableSearchbar';
+// import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
+// import CreatableSelect from '../searchbarauto/CreatableSearchbar';
 
 // const country = [
 //   {
