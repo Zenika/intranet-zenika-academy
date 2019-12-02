@@ -29,11 +29,18 @@ module.exports = {
     .then((promotionDetails) => res.status(200).send(promotionDetails))
     .catch((e) => res.status(400).send(e)),
 
-  promotionCreate: (req, res) => {
-    const { promotion } = res.locals;
-    return Promotions.create(promotion)
-      .then((promotionCreated) => res.status(201).send(promotionCreated))
-      .catch((e) => res.status(400).send(e));
+  promotionCreate: async (req, res) => {
+    const { newPromo, teachers } = req.body;
+    try {
+      const promo = await Promotions.create(newPromo);
+      await teachers.map((teacher) => Users.update(
+        { promotionId: promo.id },
+        { where: { id: teacher.value } },
+      ));
+      return res.status(201).send(promo);
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   },
 
   promotionUpdate: (req, res) => {

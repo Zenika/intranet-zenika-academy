@@ -9,7 +9,7 @@ const schemas = require('../service/joi/schemas/schemas');
 router.get('/', PromotionsController.getAllPromotion);
 
 router.post('/',
-  validator.joiObjectValidator(schemas.promotionSchemas.create, 'promotion'),
+  // validator.joiObjectValidator(schemas.promotionSchemas.create, 'promotion'),
   PromotionsController.promotionCreate);
 
 router.get('/:promotion_id',
