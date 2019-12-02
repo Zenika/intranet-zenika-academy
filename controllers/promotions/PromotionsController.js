@@ -1,4 +1,4 @@
-const { Users, Promotions } = require('../../models');
+const { Users, Promotions, Programs } = require('../../models');
 
 module.exports = {
   getAllPromotion: (req, res) => Promotions.findAll({ raw: true })
@@ -7,6 +7,26 @@ module.exports = {
 
   getPromotionById: (req, res, next) => Promotions.findOne({ where: { id: res.locals.promotion_id } })
     .then((promotionCreated) => res.status(200).send(promotionCreated))
+    .catch((e) => res.status(400).send(e)),
+
+  getPromotionDetailsById: (req, res) => Promotions
+    .findOne({ where: { id: res.locals.promotion_id } })
+    .then((promotion) => {
+      const result = Promise.all([
+        Programs.findOne({ where: { id: promotion.programId } }),
+        Users.findAll({ where: { promotionId: promotion.id } }),
+      ]).then((promiseAllResult) => [promotion, promiseAllResult]);
+      return result;
+    })
+    .then((result) => {
+      const promotionsDetail = {
+        promotion: result[0],
+        users: result[1][1],
+        program: result[1][0],
+      };
+      return promotionsDetail;
+    })
+    .then((promotionDetails) => res.status(200).send(promotionDetails))
     .catch((e) => res.status(400).send(e)),
 
   promotionCreate: (req, res) => {
