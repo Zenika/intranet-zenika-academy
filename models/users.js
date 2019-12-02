@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    promotionId: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     classMethods: {

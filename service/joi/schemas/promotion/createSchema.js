@@ -5,11 +5,19 @@ const create = Joi.object({
     .alphanum()
     .required(),
 
-  link: Joi.string()
+  city: Joi.string()
     .alphanum()
     .required(),
 
-  description: Joi.string()
+  programId: Joi.string()
+    .alphanum()
+    .required(),
+
+  startDate: Joi.string()
+    .alphanum()
+    .required(),
+
+  endDate: Joi.string()
     .alphanum()
     .required(),
 }).required();

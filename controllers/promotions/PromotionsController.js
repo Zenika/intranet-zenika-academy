@@ -5,7 +5,7 @@ module.exports = {
     .then((content) => res.send(content))
     .catch((e) => res.status(400).send(e)),
 
-  getPromotionById: (req, res, next) => Promotions.findOne({ where: { id: res.locals.promotion_id } })
+  getPromotionById: (req, res) => Promotions.findOne({ where: { id: res.locals.promotion_id } })
     .then((promotionCreated) => res.status(200).send(promotionCreated))
     .catch((e) => res.status(400).send(e)),
 
@@ -29,32 +29,23 @@ module.exports = {
     .then((promotionDetails) => res.status(200).send(promotionDetails))
     .catch((e) => res.status(400).send(e)),
 
-  promotionCreate: (req, res) => {
-    const { promotion } = res.locals;
-    return Promotions.create(promotion)
-      .then((promotionCreated) => res.status(201).send(promotionCreated))
-      .catch((e) => res.status(400).send(e));
-  },
-
-  getAllUsersFromPromo: async (req, res) => {
-    const promoId = Number(res.locals.promotion_id);
+  promotionCreate: async (req, res) => {
+    const { newPromo, teachers } = req.body;
     try {
-      const promoUsers = await Users.findAll({
-        attributes: { exclude: ['password'] },
-        includes: [{
-          model: Promotions,
-          where: { id: promoId },
-        }],
-      });
-      return res.status(200).json(promoUsers);
+      const promo = await Promotions.create(newPromo);
+      await teachers.map((teacher) => Users.update(
+        { promotionId: promo.id },
+        { where: { id: teacher.value } },
+      ));
+      return res.status(201).send(promo);
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).send(error);
     }
   },
 
   promotionUpdate: (req, res) => {
     const { promotion } = res.locals;
-    const promotionId = parseInt(res.locals.promotion_id);
+    const promotionId = parseInt(res.locals.promotion_id, 10);
     return Promotions.update({ ...promotion }, { where: { id: promotionId } })
       .then((promotionUpdated) => res.status(200).send(promotionUpdated))
       .catch((e) => res.status(400).send(e));
