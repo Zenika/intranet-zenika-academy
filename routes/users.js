@@ -8,11 +8,6 @@ const schemas = require('../service/joi/schemas/schemas');
 /* GET user. */
 router.get('/', UsersController.getAllUsers);
 
-router.get('/promo/:promotion_id',
-  validator.joiIdValidator('promotion_id'),
-  UsersController.getAllUsersFromPromo);
-
-
 router.post('/',
   validator.joiObjectValidator(schemas.userSchemas.create, 'user'),
   UsersController.userCreate);

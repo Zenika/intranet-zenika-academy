@@ -10,6 +10,9 @@ const create = Joi.object({
   email: Joi.string()
     .required(),
 
+  promotionId: Joi.number()
+    .required(),
+
   role: Joi.string()
     .required(),
 }).required();
