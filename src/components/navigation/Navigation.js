@@ -15,7 +15,7 @@ class NavigationBar extends Component {
       isNavAdmin: false,
     };
     this.setBurgerLink = this.setBurgerLink.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    // this.toggleModal = this.toggleModal.bind(this);
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
   }
@@ -73,7 +73,7 @@ class NavigationBar extends Component {
  * Allows to open or close de sign in Modal
  * @param {*} ev boolean
  */
-  toggleModal(ev) {
+  toggleModal = (ev) => {
     if (!ev) {
       this.setState({ modalState: false });
     } else {

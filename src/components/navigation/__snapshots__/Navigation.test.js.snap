@@ -48,76 +48,104 @@ exports[`Navbar renders correctly Displays the connexion Modal when sign in butt
         </section>
       </section>
     </section>
-    <section
-      className="modal is-active"
-      id="modalLogin"
+    <SignInModal
+      connect={[Function]}
+      toggleModal={[Function]}
     >
       <section
-        className="modal-background"
-      />
-      <section
-        className="modal-card"
+        className="modal is-active"
+        id="modalLogin"
       >
         <section
-          className="modal-card-body"
+          className="modal-background"
+        />
+        <section
+          className="modal-card"
         >
-          <form>
-            <section
-              className="field"
+          <header
+            className="modal-card-head"
+          >
+            <p
+              className="modal-card-title"
             >
-              <p
-                className="control has-icons-left"
+              Connexion
+            </p>
+          </header>
+          <section
+            className="modal-card-body"
+          >
+            <form>
+              <section
+                className="field"
               >
-                <input
-                  className="input"
-                  placeholder="Username"
-                  type="text"
-                />
-                <span
-                  className="icon is-small is-left"
-                />
-              </p>
-            </section>
-            <section
-              className="field"
-            >
-              <p
-                className="control has-icons-left"
-              >
-                <input
-                  className="input"
-                  placeholder="Password"
-                  type="password"
-                />
-                <span
-                  className="icon is-small is-left"
+                <p
+                  className="control has-icons-left"
                 >
-                  <i
-                    className="fas fa-lock"
+                  <input
+                    className="input"
+                    id="emailInput"
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email"
+                    required={true}
+                    type="text"
+                    value=""
                   />
-                </span>
-              </p>
-            </section>
-          </form>
+                  <span
+                    className="icon is-small is-left"
+                  />
+                </p>
+              </section>
+              <section
+                className="field"
+              >
+                <p
+                  className="control has-icons-left"
+                >
+                  <input
+                    className="input"
+                    id="passwordInput"
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    required={true}
+                    type="password"
+                    value=""
+                  />
+                  <span
+                    className="icon is-small is-left"
+                  >
+                    <i
+                      className="fas fa-lock"
+                    />
+                  </span>
+                </p>
+              </section>
+            </form>
+          </section>
+          <footer
+            className="modal-card-foot modalFooter"
+          >
+            <button
+              className="button is-success"
+              id="submitButton"
+              onClick={[Function]}
+              type="submit"
+            >
+              Se connecter
+            </button>
+            <button
+              className="button"
+              id="cancelButton"
+              onClick={[Function]}
+              type="button"
+            >
+              Annuler
+            </button>
+          </footer>
         </section>
-        <footer
-          className="modal-card-foot"
-        >
-          <button
-            className="button is-success"
-            onClick={[Function]}
-          >
-            Sign in
-          </button>
-          <button
-            className="button"
-            onClick={[Function]}
-          >
-            Cancel
-          </button>
-        </footer>
       </section>
-    </section>
+    </SignInModal>
   </nav>
 </NavigationBar>
 `;
@@ -168,76 +196,6 @@ exports[`Navbar renders correctly it renders correctly 1`] = `
             Se connecter
           </button>
         </section>
-      </section>
-    </section>
-    <section
-      className="modal "
-      id="modalLogin"
-    >
-      <section
-        className="modal-background"
-      />
-      <section
-        className="modal-card"
-      >
-        <section
-          className="modal-card-body"
-        >
-          <form>
-            <section
-              className="field"
-            >
-              <p
-                className="control has-icons-left"
-              >
-                <input
-                  className="input"
-                  placeholder="Username"
-                  type="text"
-                />
-                <span
-                  className="icon is-small is-left"
-                />
-              </p>
-            </section>
-            <section
-              className="field"
-            >
-              <p
-                className="control has-icons-left"
-              >
-                <input
-                  className="input"
-                  placeholder="Password"
-                  type="password"
-                />
-                <span
-                  className="icon is-small is-left"
-                >
-                  <i
-                    className="fas fa-lock"
-                  />
-                </span>
-              </p>
-            </section>
-          </form>
-        </section>
-        <footer
-          className="modal-card-foot"
-        >
-          <button
-            className="button is-success"
-            onClick={[Function]}
-          >
-            Sign in
-          </button>
-          <button
-            className="button"
-            onClick={[Function]}
-          >
-            Cancel
-          </button>
-        </footer>
       </section>
     </section>
   </nav>

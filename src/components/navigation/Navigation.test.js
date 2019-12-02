@@ -18,6 +18,21 @@ describe('Navbar renders correctly', () => {
     siButton.simulate('click');
 
     expect(navbar).toMatchSnapshot();
+    expect(navbar.find('#modalLogin').children()).toBeDefined();
+  });
+});
+
+describe('Testing Class Methods components', () => {
+  const navbar = shallow(<NavigationBar ev />);
+  const navbarInstance = navbar.instance();
+  test('Corresponding Class method should be called when sign in button is clicked', () => {
+    const ev = true;
+    jest.spyOn(navbarInstance, 'toggleModal');
+
+    const siButton = navbar.find('.signInDesktop');
+    siButton.simulate('click');
+
+    expect(navbarInstance.toggleModal).toHaveBeenCalledWith(ev);
   });
 });
 
@@ -41,10 +56,6 @@ describe('Navigation bar when the user isn\'t connected', () => {
     navbarInstance.componentDidMount();
   });
 
-  // afterEach(() => {
-  //   navbarInstance.unmount();
-  // });
-
   test('Shallow rendering', () => {
     expect(navbar.state('modalState')).toBe('');
     expect(navbar.state('loggedIn')).toBe(false);
@@ -54,7 +65,7 @@ describe('Navigation bar when the user isn\'t connected', () => {
     const siButton = navbar.find('.signInDesktop');
     siButton.simulate('click');
 
-    expect(navbar.state('modalState')).toBe('is-active');
+    expect(navbar.state('modalState')).toBe(true);
     expect(navbar.state('loggedIn')).toBe(false);
   });
 });
