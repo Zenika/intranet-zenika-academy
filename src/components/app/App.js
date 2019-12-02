@@ -27,7 +27,7 @@ import Administration from '../dashboard/Dashboard';
 import AdminHome from '../admin-home/AdminHome';
 import StudentHome from '../student-home/StudentHome';
 import './App.scss';
-
+import PromoData from '../promo/PromoData';
 
 class App extends React.Component {
   render() {
@@ -73,6 +73,11 @@ class App extends React.Component {
               key="edit-promo"
               path="/admin/promo/:id/edit"
               component={PromoForm}
+            />
+            <Route
+              key="show-promo-details"
+              path="/admin/promo/:id/details"
+              component={PromoData}
             />
             <Route exact path="/admin/module/list" component={ModuleList} />
             <Route
