@@ -32,7 +32,7 @@ describe('Modal signIn tests', () => {
     expect(container).toHaveLength(1);
   });
 
-  it('Should change email state with handle change', () => {
+  it('Should change email state with handle change on emailInput', () => {
     const input = wrapper.find('#emailInput');
     const mockEvent = {
       target: {
@@ -44,7 +44,7 @@ describe('Modal signIn tests', () => {
     expect(wrapper.state().email).toEqual('test');
   });
 
-  it('Should change password state with handle change', () => {
+  it('Should change password state with handle change on passwordInput', () => {
     const input = wrapper.find('#passwordInput');
     const mockEvent = {
       target: {

@@ -22,14 +22,43 @@ describe('PromoCreateContainer tests', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('should match the snapshot', () => {
+  it('Should have a title', () => {
+    expect(global.window.document.title).toBe('Création de promotion');
+  });
+
+  it('Should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
   it('Should have PromoCreateStepOne as a child', () => {
     const container = wrapper.find(PromoCreateStepOne);
-
     expect(container).toHaveLength(1);
+  });
+
+  it('Should change promo name state with handleChange() on PromoCreateStepOne pomoName input', () => {
+    const container = wrapper.find(PromoCreateStepOne);
+    const input = container.find('#promoName');
+    const mockEvent = {
+      target: {
+        name: 'title',
+        value: 'test',
+      },
+    };
+    input.simulate('change', mockEvent);
+    expect(wrapper.state().title).toEqual('test');
+  });
+
+  it('Should change promo city state with handleChange() on PromoCreateStepOne city input', () => {
+    const container = wrapper.find(PromoCreateStepOne);
+    const input = container.find('#city');
+    const mockEvent = {
+      target: {
+        name: 'city',
+        value: 'Paris',
+      },
+    };
+    input.simulate('change', mockEvent);
+    expect(wrapper.state().city).toEqual('Paris');
   });
 
   it('Should have PromoCreateStepTwo as a child when step state === 2', () => {

@@ -14,10 +14,10 @@ function PromoCreateStepOne(props) {
   const buttonForm = (
     <section className="field buttonField section">
       <section className="control">
-        <button type="button" className="button is-danger">Annuler</button>
+        <button id="cancelButton" type="button" className="button is-danger">Annuler</button>
       </section>
       <section className="control">
-        <button type="button" className="button is-link" onClick={nextStep}>Continuer</button>
+        <button id="resumeButton" type="button" className="button is-link" onClick={nextStep}>Continuer</button>
       </section>
     </section>
   );

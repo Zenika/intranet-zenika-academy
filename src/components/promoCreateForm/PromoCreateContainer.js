@@ -32,7 +32,7 @@ export class PromoCreateContainer extends Component {
    */
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    return this.setState({ [name]: value });
   }
 
   /**
@@ -42,9 +42,9 @@ export class PromoCreateContainer extends Component {
    */
   handleMultiChange = (options, name) => {
     if (name === 'program') {
-      this.setState({ [name]: [options] });
+      return this.setState({ [name]: [options] });
     }
-    this.setState({ [name]: options });
+    return this.setState({ [name]: options });
   }
 
   /**
@@ -52,16 +52,14 @@ export class PromoCreateContainer extends Component {
    * @param name name of the state to update
    * @param data data to put in the state
    */
-  handleCSVImport = (name, data) => {
-    this.setState({ [name]: [...data], csv: true });
-  }
+  handleCSVImport = (name, data) => this.setState({ [name]: [...data], csv: true })
 
   /**
    * Allows to navigate forward on multiform
    */
   nextStep = () => {
     const { step } = this.state;
-    this.setState({ step: step + 1 });
+    return this.setState({ step: step + 1 });
   }
 
   /**
@@ -69,7 +67,7 @@ export class PromoCreateContainer extends Component {
    */
   prevStep = () => {
     const { step } = this.state;
-    this.setState({ step: step - 1 });
+    return this.setState({ step: step - 1 });
   }
 
   render() {
