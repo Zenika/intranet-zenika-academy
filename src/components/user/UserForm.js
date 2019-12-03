@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
 import './UserProfile.scss';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 
@@ -8,56 +7,59 @@ import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 class UserForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      role: '',
+      user: props.user,
     };
+
+    this.handleChange = this.handleChange.bind(this);
     this.handleChangeRole = this.handleChangeRole.bind(this);
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    const { value, name } = e.target;
+    this.setState((prev) => ({
+      user: {
+        ...prev.user,
+        [name]: value,
+      },
+    }
+    ));
   };
 
   handleChangeRole = (e) => {
-    this.setState({ role: e.value });
-  };
-
-  createUser = (e) => {
-    e.preventDefault();
-    const user = this.state;
-    Axios.post('http://localhost:4000/api/users ', user)
-      .then((response) => {
-        console.log(response);
-      });
+    this.setState((prev) => ({
+      user: {
+        ...prev.user,
+        role: e.value,
+      },
+    }
+    ));
   };
 
   render() {
+    const { user } = this.state;
     const {
       firstName, lastName, email, role,
-    } = this.state;
+    } = user;
 
     const roleList = [
       { value: 'admin', label: 'Administrateur' },
       { value: 'teacher', label: 'Formateur' },
       { value: 'student', label: 'Etudiant' },
     ];
-
+    const { changeStep } = this.props;
     return (
       <>
         <article className="section box">
-          <h1 className="title is-2 mbmd">Création d&lsquo;utilisateur </h1>
-          <form onSubmit={this.createUser}>
+          <h1 className="title is-2 mprobmd">Création d&lsquo;utilisateur </h1>
+          <form onSubmit={() => changeStep(1, user)}>
             <div className="field is-grouped">
               <div className="control">
                 <label htmlFor="lastName" className="label">
-                  <input type="text" className="input" name="lastName" placeholder="Prénom" value={lastName} onChange={this.handleChange} />
+                  <input type="text" className="input" name="lastName" placeholder="Nom" value={lastName} onChange={this.handleChange} />
                 </label>
                 <label htmlFor="firstName" className="label">
-                  <input type="text" className="input" name="firstName" placeholder="Nom" value={firstName} onChange={this.handleChange} />
+                  <input type="text" className="input" name="firstName" placeholder="Prénom" value={firstName} onChange={this.handleChange} />
                 </label>
                 <label htmlFor="email" className="label">
                   <input type="email" className="input" name="email" placeholder="E-mail" value={email} onChange={this.handleChange} />
