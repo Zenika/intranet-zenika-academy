@@ -9,8 +9,8 @@ class Home extends Component {
   render() {
     return (
       <>
-        {/* <StudentHome /> */}
-        <AdminHome />
+        <StudentHome />
+        {/* <AdminHome /> */}
       </>
     );
   }
