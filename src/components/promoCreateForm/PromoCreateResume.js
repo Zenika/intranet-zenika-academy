@@ -57,76 +57,84 @@ class PromoCreateResume extends Component {
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d'une promo</h1>
+          <h1 className="title is-4 is-spaced">Création d&apos;une promo</h1>
           <BulmaSteps step={step} />
           <section className="field">
             <span className="title is-4 is-spaced">Résumé</span>
           </section>
           <section className="control">
             <section className="field">
-              <label className="label">Nom de la promo: </label>
+              <label htmlFor="promoTitle" className="label">
+                Nom de la promo:
+                <section id="promoTitle" className="field">
+                  <p>{promo.title ? promo.title : ''}</p>
+                </section>
+              </label>
+            </section>
+          </section>
+          <section>
+            <section className="control">
               <section className="field">
-                <p>{promo.title ? promo.title : ''}</p>
+                <label htmlFor="startDate" className="label">
+                  Date de début:
+                  <section className="field">
+                    <span>
+                      {' '}
+                      <time id="startDate">{startDate || ''}</time>
+                      {' '}
+                    </span>
+                  </section>
+                </label>
               </section>
             </section>
           </section>
           <section>
             <section className="control">
               <section className="field">
-                <label className="label">Date de début: </label>
-                <section className="field">
-                  <span>
-                    {' '}
-                    <time>{startDate || ''}</time>
-                    {' '}
-                  </span>
-                </section>
-              </section>
-            </section>
-          </section>
-          <section>
-            <section className="control">
-              <section className="field">
-                <label className="label">Date de fin: </label>
-                <section className="field">
-                  <span>
-                    {' '}
-                    <time>{endDate || ''}</time>
-                    {' '}
-                  </span>
-                </section>
+                <label htmlFor="endDate" className="label">
+                  Date de fin:
+                  <section className="field">
+                    <span>
+                      {' '}
+                      <time id="endDate">{endDate || ''}</time>
+                      {' '}
+                    </span>
+                  </section>
+                </label>
               </section>
             </section>
           </section>
           <section className="field">
-            <label className="label">Pays:</label>
-            <section className="field">
-              <p>{promo.country.label !== undefined ? promo.country.label : ''}</p>
-            </section>
+            <label htmlFor="city" className="label">
+              Ville:
+              <section id="city" className="field">
+                <p>{promo.city !== undefined ? promo.city : ''}</p>
+              </section>
+            </label>
           </section>
           <section className="field">
-            <label className="label">Ville:</label>
-            <section className="field">
-              <p>{promo.city !== undefined ? promo.city : ''}</p>
-            </section>
+            <label htmlFor="program" className="label">
+              Programme:
+              <section id="program" className="field">
+                <p>{promo.program.label !== undefined ? promo.program.label : ''}</p>
+              </section>
+            </label>
           </section>
           <section className="field">
-            <label className="label">Programme:</label>
-            <section className="field">
-              <p>{promo.program.label !== undefined ? promo.program.label : ''}</p>
-            </section>
+            <label htmlFor="teachers" className="label">
+              Formateurs:
+              <section id="teachers" className="field">
+                {promo.teachers.length ? promo.teachers.map((e) => <p key={e.value}>{e.label}</p>) : ''}
+              </section>
+            </label>
           </section>
           <section className="field">
-            <label className="label">Formateurs:</label>
-            <section className="field">
-              {promo.teachers.length ? promo.teachers.map((e, i) => <p key={i}>{e.Nom ? `${e.Nom} ${e.Prénom}` : e.label}</p>) : ''}
-            </section>
-          </section>
-          <section className="field">
-            <label className="label">Elèves:</label>
-            <section className="field">
-              {promo.students.length ? promo.students.map((e) => <p key={e.lastName}>{`${e.lastName}  ${e.firstName}  ${e.email}`}</p>) : ''}
-            </section>
+            <label htmlFor="students" className="label">
+              Elèves:
+              <section id="students" className="field">
+                {promo.students.length ? promo.students.map((e) => <p key={e.lastName}>{`${e.lastName}  ${e.firstName}  ${e.email}`}</p>) : ''}
+              </section>
+            </label>
           </section>
           {buttonForm}
         </article>
