@@ -37,7 +37,7 @@ class UserForm extends Component {
 
   render() {
     const {
-      firstName, lastName, email, role
+      firstName, lastName, email, role,
     } = this.state;
 
     const roleList = [
