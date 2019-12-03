@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContactList renders 1`] = `
+exports[`ContactList matches snapshot 1`] = `
 Array [
   <h1
     className="title is-2 mbmd"

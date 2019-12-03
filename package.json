@@ -12,12 +12,14 @@
     "eslint": "^6.6.0",
     "eslint-plugin-jest": "^23.0.3",
     "express": "^4.17.1",
+    "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "nuka-carousel": "^4.5.13",
     "query-string": "^6.8.3",
     "react": "^16.11.0",
     "react-csv-reader": "^2.0.2",
     "react-dom": "^16.11.0",
+    "react-moment": "^0.9.6",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-select": "^3.0.8",
@@ -30,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
-    "lint": "eslint"
+    "lint": "eslint ./src/components/**"
   },
   "browserslist": {
     "production": [
