@@ -59,7 +59,7 @@ function PromoCreateStepOne(props) {
           <label htmlFor="city" className="label">
             Ville:
             <section className="field">
-              <input id="city" className="input" defaultValue={promo.city} name="city" isLoading={false} onChange={(e) => handleChange(e)} defaultLabel="Ville" />
+              <input id="city" className="input" defaultValue={promo.city} name="city" onChange={(e) => handleChange(e)} placeholder="Ville" />
             </section>
           </label>
         </section>
