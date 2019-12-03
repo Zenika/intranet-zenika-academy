@@ -59,19 +59,6 @@ class ProgramForm extends React.Component {
   };
 
   handleAddSubModuleContent = async (value, idModule, id = 0) => {
-    if (value === 'delete') {
-      await this.setState((prevState) => {
-        const newItems = [...prevState.program.content];
-        newItems[idModule].content.splice(id, 1);
-        return {
-          program: {
-            ...prevState.program,
-            content: newItems,
-          },
-        };
-      });
-      return true;
-    }
     await this.setState((prevState) => {
       const newItems = [...prevState.program.content];
       newItems[idModule].content.push(value);
@@ -86,20 +73,6 @@ class ProgramForm extends React.Component {
   };
 
   handleAddSequenceContent = async (value, idSubModule, idModule, id = 0) => {
-    if (value === 'delete') {
-      await this.setState((prevState) => {
-        const moduleContent = [...prevState.program.content];
-        moduleContent[idModule].content[idSubModule].content
-          .splice(id, 1);
-        return {
-          program: {
-            ...prevState.program,
-            content: moduleContent,
-          },
-        };
-      });
-      return true;
-    }
     await this.setState((prevState) => {
       const moduleContent = [...prevState.program.content];
       moduleContent[idModule].content[idSubModule].content.push(value);

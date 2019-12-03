@@ -70,9 +70,7 @@ class AddModule extends React.Component {
           { ...prevState.module, content: newItems },
         idSubModules: newId,
       };
-    }, () => this.props
-      .handleAddSubModuleContent('delete',
-        this.props.id, id));
+    });
   };
 
   addSubModule = async () => {

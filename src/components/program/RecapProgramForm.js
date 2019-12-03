@@ -46,7 +46,7 @@ class RecapProgramForm extends React.Component {
                     &nbsp;:&nbsp;
                     {module.title}
                   </h3>
-                  <ul lassName="list">
+                  <ul className="list">
                     {
                       module.content.map((subModule, p) => (
                         <li className="list-item">
@@ -56,7 +56,7 @@ class RecapProgramForm extends React.Component {
                             &nbsp;:&nbsp;
                             {subModule.title}
                           </h3>
-                          <ul lassName="list">
+                          <ul className="list">
                             {
                               subModule.content.map((sequence, n) => (
                                 <li className="list-item">
