@@ -19,7 +19,7 @@ class ProgramFormContainer extends React.Component {
 
   handleChange = (e, program) => {
     const { value } = e.target;
-    this.setState({ step: parseInt(value, 10), program});
+    this.setState({ step: parseInt(value, 10), program });
   };
 
   render() {
