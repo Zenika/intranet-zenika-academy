@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
+import axios from 'axios';
+
 
 export class SignInModal extends Component {
   constructor(props) {
@@ -6,6 +10,8 @@ export class SignInModal extends Component {
     this.state = {
       email: '',
       password: '',
+      redirectToAdmin: false,
+      redirectToUser: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,23 +23,49 @@ export class SignInModal extends Component {
     this.setState({ [name]: value });
   }
 
+  handleSignIn(user) {
+    const { connect, toggleModal } = this.props;
+    axios.post('http://localhost:4000/api/users/signin', user)
+      .then((res) => {
+        sessionStorage.setItem('promoId', `${res.data.promoId}`);
+        sessionStorage.setItem('loggedIn', 'true');
+        if (res.data.role === 1) {
+          this.setState({ redirectToAdmin: true, redirectToUser: false });
+        } if (res.data.role === 3 || res.data.role === 2) {
+          this.setState({ redirectToUser: true, redirectToAdmin: false });
+        }
+        return connect();
+      })
+      .catch((err) => {
+        console.error(err);
+        toggleModal(false);
+      });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    const { connect } = this.props;
     const user = {
       email,
       password,
     };
 
     this.setState({ email: '', password: '' });
-    return connect(user);
+    return this.handleSignIn(user);
   }
 
   render() {
-    const { email, password } = this.state;
+    const {
+      email, password, redirectToUser, redirectToAdmin,
+    } = this.state;
     const { handleChange, handleSubmit } = this;
     const { toggleModal } = this.props;
+    if (redirectToUser === true) {
+      return <Redirect to="/home/user" />;
+    }
+    if (redirectToAdmin === true) {
+      return <Redirect to="/home/admin" />;
+    }
     return (
       <section id="modalLogin" className="modal is-active">
         <section className="modal-background" />

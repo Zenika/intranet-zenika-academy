@@ -67,12 +67,4 @@ describe('Modal signIn tests', () => {
     button.simulate('click');
     expect(toggle).toHaveBeenCalled();
   });
-
-  it('Should call connect() props on submit button click', () => {
-    const button = wrapper.find('#submitButton');
-    const { connect } = wrapper.instance().props;
-    const fakeEvent = { preventDefault: () => { } };
-    button.simulate('click', fakeEvent);
-    expect(connect).toHaveBeenCalled();
-  });
 });

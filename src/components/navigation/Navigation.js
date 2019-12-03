@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { SignInModal } from '../signInModal/SignInModal';
 import './Navigation.scss';
 import logo from './logo.png';
@@ -52,31 +51,8 @@ class NavigationBar extends Component {
   /**
    * Allows to connect or disconnect a user
    */
-  connect(user) {
-    return axios.post('http://localhost:4000/api/users/signin', user)
-      .then((res) => {
-        this.setState({ loggedIn: true });
-        sessionStorage.setItem('role', `${res.data.role}`);
-        sessionStorage.setItem('id', `${res.data.id}`);
-        sessionStorage.setItem('promoId', `${res.data.promotionId}`);
-        sessionStorage.setItem('loggedIn', 'true');
-
-        /** TO BE IMPLEMENTED WHEN BOTH ADMIN AND STUDENT HOME WILL EXIST */
-        // switch (res.data.role) {
-        //   case 1:
-        //     return <Redirect to="/home/admin" />;
-        //   case 2:
-        //   case 3:
-        //     return <Redirect to="/home/student" />;
-        //   default:
-        //     return <Redirect to="/" />;
-        // }
-      })
-      .catch((err) => {
-        console.error(err);
-        this.setState({ loggedIn: false });
-        this.toggleModal(false);
-      });
+  connect() {
+    return this.setState({ loggedIn: true });
   }
 
   disconnect() {
@@ -85,8 +61,7 @@ class NavigationBar extends Component {
       isNavAdmin: false,
       loggedIn: false,
     });
-    sessionStorage.clear();
-    return <Redirect to="/" />;
+    return sessionStorage.clear();
   }
 
   /**
@@ -313,9 +288,9 @@ class NavigationBar extends Component {
           && (
             <SignInModal
               toggleModal={this.toggleModal}
-              connect={this.connect}
               email={email}
               password={password}
+              connect={this.connect}
             />
           )}
       </nav>

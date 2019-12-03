@@ -15,7 +15,7 @@ export class PromoCreateStepThree extends Component {
 
   componentDidMount() {
     axios.get('http://localhost:4000/api/users')
-      .then((res) => res.data.forEach((teacher) => {
+      .then((res) => Object.keys(res.data).forEach((teacher) => {
         if (teacher.role === 2) {
           const obj = { label: `${teacher.firstName} ${teacher.lastName}`, value: teacher.id };
           this.setState((state) => {

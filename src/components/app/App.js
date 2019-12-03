@@ -22,6 +22,8 @@ import UserProfile from '../user/UserProfile';
 import UserForm from '../user/UserForm';
 import Home from '../home/Home';
 import Administration from '../dashboard/Dashboard';
+import AdminHome from '../admin-home/AdminHome';
+import StudentHome from '../student-home/StudentHome';
 import './App.scss';
 import { PromoCreateContainer } from '../promoCreateForm/PromoCreateContainer';
 import ProgramFormContainer from '../program/ProgramFormContainer';
@@ -45,6 +47,9 @@ class App extends React.Component {
               path="/ressources/create"
               component={RessourceForm}
             />
+            <Route path="/home/user" component={StudentHome} />
+            <Route path="/home/admin" component={AdminHome} />
+
             <Route
               key="edit-ressource"
               path="/ressources/:id/edit"
