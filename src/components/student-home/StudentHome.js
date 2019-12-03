@@ -37,12 +37,18 @@ class StudentHome extends Component {
       if (key === 'title') {
         program.push(<div key={key}>Titre : {programData[key]}</div>);
       }
-      if (key === 'createdAt') {
-        program.push(<div key={key}>Créée le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
-      }
-      if (key === 'updatedAt') {
-        program.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
-      }
+      // if (key === 'createdAt') {
+      //   program.push(<div key={key}>Créée le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
+      // }
+      // if (key === 'updatedAt') {
+      //   program.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
+      // }
+      // if (key === 'content') {
+      //   // program.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
+      //   programData[key].forEach(content =>{
+      //     console.log(content)
+      //   })
+      // }
     });
     return program;
   }
@@ -57,11 +63,14 @@ class StudentHome extends Component {
       if (key === 'title') {
         promotion.push(<div key={key}>Titre : {promotionData[key]}</div>);
       }
-      if (key === 'createdAt') {
-        promotion.push(<div key={key}>Créée le : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
+      if (key === 'startDate') {
+        promotion.push(<div key={key}>Début : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
       }
-      if (key === 'updatedAt') {
-        promotion.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
+      if (key === 'endDate') {
+        promotion.push(<div key={key}>Fin : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
+      }
+      if (key === 'city') {
+        promotion.push(<div key={key}>Ville : {promotionData[key]}</div>);
       }
     });
     return promotion;
