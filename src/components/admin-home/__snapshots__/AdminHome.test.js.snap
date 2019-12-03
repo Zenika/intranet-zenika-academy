@@ -8,19 +8,19 @@ Array [
     Bienvenue
   </h1>,
   <a
-    className="button is-primary"
+    className="button is-primary admin-home-link"
     href="/admin/promo/create"
   >
     Créer une promotion
   </a>,
   <a
-    className="button is-primary"
+    className="button is-primary admin-home-link"
     href="/admin/program/create"
   >
     Créer un programme
   </a>,
   <a
-    className="button is-primary"
+    className="button is-primary admin-home-link"
     href="/admin/user/create"
   >
     Créer un utilisateur

@@ -7,13 +7,33 @@ Array [
   >
     Bienvenue
   </h1>,
-  <h2
-    className="title is-4 mbmd"
-  >
-    Votre promotion :
-  </h2>,
-  <div>
-    Student Home
-  </div>,
+  <section>
+    <h1
+      className="studentsHomeSectionTitle"
+    >
+      Promotion : 
+    </h1>
+  </section>,
+  <section>
+    <h1
+      className="studentsHomeSectionTitle"
+    >
+      Eleves : 
+    </h1>
+  </section>,
+  <section>
+    <h1
+      className="studentsHomeSectionTitle"
+    >
+      Programme : 
+    </h1>
+  </section>,
+  <section>
+    <h1
+      className="studentsHomeSectionTitle"
+    >
+      Formateurs : 
+    </h1>
+  </section>,
 ]
 `;

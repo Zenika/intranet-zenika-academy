@@ -32,17 +32,23 @@ class StudentHome extends Component {
     const { promotionDetails } = this.state;
     const programData = promotionDetails.program ? promotionDetails.program : [];
     const keys = Object.keys(programData);
-    program.push(<h1 key="Program Title">Programme : </h1>);
+    program.push(<h1 className="studentsHomeSectionTitle" key="Program Title">Programme : </h1>);
     keys.forEach((key) => {
       if (key === 'title') {
         program.push(<div key={key}>Titre : {programData[key]}</div>);
       }
-      if (key === 'createdAt') {
-        program.push(<div key={key}>Créée le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
-      }
-      if (key === 'updatedAt') {
-        program.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
-      }
+      // if (key === 'createdAt') {
+      //   program.push(<div key={key}>Créée le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
+      // }
+      // if (key === 'updatedAt') {
+      //   program.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
+      // }
+      // if (key === 'content') {
+      //   // program.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
+      //   programData[key].forEach(content =>{
+      //     console.log(content)
+      //   })
+      // }
     });
     return program;
   }
@@ -52,39 +58,48 @@ class StudentHome extends Component {
     const { promotionDetails } = this.state;
     const promotionData = promotionDetails.promotion ? promotionDetails.promotion : [];
     const keys = Object.keys(promotionData);
-    promotion.push(<h1 key="promoTitle">Promotion : </h1>);
+    promotion.push(<h1 className="studentsHomeSectionTitle" key="promoTitle">Promotion : </h1>);
     keys.forEach((key) => {
       if (key === 'title') {
         promotion.push(<div key={key}>Titre : {promotionData[key]}</div>);
       }
-      if (key === 'createdAt') {
-        promotion.push(<div key={key}>Créée le : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
+      if (key === 'startDate') {
+        promotion.push(<div key={key}>Début : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
       }
-      if (key === 'updatedAt') {
-        promotion.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
+      if (key === 'endDate') {
+        promotion.push(<div key={key}>Fin : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
+      }
+      if (key === 'city') {
+        promotion.push(<div key={key}>Ville : {promotionData[key]}</div>);
       }
     });
     return promotion;
   }
 
-  displaystudents = () => {
+  displayStudents = () => {
     const students = [];
     const { promotionDetails } = this.state;
-    const studentsData = promotionDetails.users ? promotionDetails.users : [];
-    const keys = Object.keys(studentsData);
-    students.push(<h1 key="studentsTitle">Students : </h1>);
-    keys.forEach((key) => {
-      if (key === 'title') {
-        students.push(<div key={key}>Titre : {studentsData[key]}</div>);
-      }
-      if (key === 'createdAt') {
-        students.push(<div key={key}>Créée le : <Moment format="DD/MM/YYYY" key={key}>{studentsData[key]}</Moment></div>);
-      }
-      if (key === 'updatedAt') {
-        students.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{studentsData[key]}</Moment></div>);
+    const usersData = promotionDetails.users ? promotionDetails.users : [];
+    students.push(<h1 className="studentsHomeSectionTitle" key="promoStudentsTitle">Eleves : </h1>);
+    usersData.forEach((user) => {
+      if (user.role === 3) {
+        students.push(<div key={user.id}>{user.firstName} {user.lastName.toUpperCase()}</div>);
       }
     });
     return students;
+  }
+
+  displayTeachers = () => {
+    const teacher = [];
+    const { promotionDetails } = this.state;
+    const usersData = promotionDetails.users ? promotionDetails.users : [];
+    teacher.push(<h1 className="studentsHomeSectionTitle" key="promoteacherTitle">Formateurs : </h1>);
+    usersData.forEach((user) => {
+      if (user.role === 2) {
+        teacher.push(<div key={user.id}>{user.firstName} {user.lastName.toUpperCase()}</div>);
+      }
+    });
+    return teacher;
   }
 
   render() {
@@ -92,8 +107,9 @@ class StudentHome extends Component {
       <>
         <h1 className="title is-2 mbmd">Bienvenue</h1>
         <section>{this.displayPromotion()}</section>
+        <section>{this.displayStudents()}</section>
         <section>{this.displayProgram()}</section>
-        {/* <section>{this.displayStudents()}</section> */}
+        <section>{this.displayTeachers()}</section>
       </>
     );
   }
