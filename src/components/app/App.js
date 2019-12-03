@@ -19,6 +19,7 @@ import RssFeedForm from '../rssFeed/RssFeedForm';
 import WhoToFollowForm from '../whoToFollow/WhoToFollowForm';
 import WhoToFollowList from '../whoToFollow/WhoToFollowList';
 import UserProfile from '../user/UserProfile';
+import UserForm from '../user/UserForm';
 import Home from '../home/Home';
 import Administration from '../dashboard/Dashboard';
 import './App.scss';
@@ -51,6 +52,11 @@ class App extends React.Component {
             />
             <Route exact path="/rssFeed" component={RssFeedList} />
             <Route exact path="/whoToFollow" component={WhoToFollowList} />
+            <Route
+              key="create-promo"
+              path="/admin/user/create"
+              component={UserForm}
+            />
             <Route exact path="/admin/promo/list" component={PromoList} />
             <Route
               key="create-promo"
