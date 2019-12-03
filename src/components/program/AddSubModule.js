@@ -79,9 +79,7 @@ class AddSubModule extends React.Component {
           { ...prevState.subModule, content: newItems },
         idSequence: newId,
       };
-    }, () => this.props
-      .handleAddSequenceContent('delete',
-        this.props.id, this.props.idModule, id));
+    });
   };
 
   addSequence = async () => {
