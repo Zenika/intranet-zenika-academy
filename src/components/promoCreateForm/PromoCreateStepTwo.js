@@ -15,11 +15,13 @@ export class PromoCreateStepTwo extends Component {
   componentDidMount() {
     axios.get('http://localhost:4000/api/programs')
       .then((res) => res.data.forEach((program) => {
-        const obj = { label: program.title, value: program.id };
-        this.setState((state) => {
-          const programList = state.programs.push(obj);
-          return programList;
-        });
+        if (program.type === 1) {
+          const obj = { label: program.title, value: program.id };
+          this.setState((state) => {
+            const programList = state.programs.push(obj);
+            return programList;
+          });
+        }
       }))
       .catch((e) => console.error(e));
   }
