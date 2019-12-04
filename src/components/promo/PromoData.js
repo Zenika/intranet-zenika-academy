@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import Moment from 'react-moment';
 import './PromoData.scss';
 // import { CSSTransitionGroup } from 'react-transition-group';
 // import PropTypes from 'prop-types';
@@ -87,31 +88,25 @@ class PromoDetails extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const { users, program, promotion } = this.state;
-    console.log('users:', users);
     const teachers = users.filter((user) => user.role === 2);
     const students = users.filter((user) => user.role === 3);
-    // const startDate = promotion.startDate.split('-').reverse().join('/');
-    // const endDate = promotion.endDate.split('-').reverse().join('/');
-
-
     return (
       <>
         <div className="container">
           <h1 className="title is-1">{promotion.title}</h1>
-          <h2 className="subtitle is-4">
+          <h2 className="subtitle is-3">
 à
             {' '}
             {promotion.city}
             {' '}
             du
             {' '}
-            {/* {startDate} */}
+            <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment>
             {' '}
             au
             {' '}
-            {/* {endDate} */}
+            <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
           </h2>
           <div className="container">
             <div className="notification">
@@ -133,7 +128,7 @@ class PromoDetails extends React.Component {
           <div className="container">
             <div className="notification">
               <h3 className="title is-3">Programme</h3>
-              {program.title}
+              <p>{program.title}</p>
             </div>
           </div>
         </div>
