@@ -91,6 +91,7 @@ class App extends React.Component {
               component={ModuleForm}
             />
             <Route exact path="/admin/program" component={ProgramList} />
+            <Route exact path="/admin/promo/:id/details" component={PromoData} />
             <Route
               key="create-program"
               exact
