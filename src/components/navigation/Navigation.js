@@ -4,6 +4,7 @@ import { SignInModal } from '../signInModal/SignInModal';
 import './Navigation.scss';
 // import logo from './logo.png';
 
+
 class NavigationBar extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +15,7 @@ class NavigationBar extends Component {
       isNavAdmin: false,
     };
     this.setBurgerLink = this.setBurgerLink.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    // this.toggleModal = this.toggleModal.bind(this);
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
   }
@@ -72,7 +73,7 @@ class NavigationBar extends Component {
  * Allows to open or close de sign in Modal
  * @param {*} ev boolean
  */
-  toggleModal(ev) {
+  toggleModal = (ev) => {
     if (!ev) {
       this.setState({ modalState: false });
     } else {
@@ -272,8 +273,8 @@ class NavigationBar extends Component {
     const loggedOutNav = (
       <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
         <section className="navbar-item display-mobile">
-          <button type="button" onClick={() => this.toggleModal(true)} className="button">
-            Sign in
+          <button type="submit" onClick={() => this.toggleModal(true)} className="button">
+            Se connecter
           </button>
         </section>
         <section className="navbar-menu">
@@ -284,7 +285,7 @@ class NavigationBar extends Component {
           </section>
           <section className="navbar-end">
             <section className="navbar-item">
-              <button type="button" onClick={() => this.toggleModal(true)} className="button">
+              <button type="submit" onClick={() => this.toggleModal(true)} className="button signInDesktop">
                 Se connecter
               </button>
             </section>

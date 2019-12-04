@@ -15,6 +15,7 @@
     "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "nuka-carousel": "^4.5.13",
+    "prop-types": "^15.7.2",
     "query-string": "^6.8.3",
     "react": "^16.11.0",
     "react-csv-reader": "^2.0.2",
@@ -24,7 +25,7 @@
     "react-scripts": "3.2.0",
     "react-select": "^3.0.8",
     "react-slick": "^0.25.2",
-    "react-test-renderer": "^16.11.0",
+    "react-transition-group": "^4.3.0",
     "sass-loader": "^8.0.0"
   },
   "scripts": {
@@ -49,7 +50,14 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
     "eslint-config-airbnb": "^18.0.1",
-    "react-hot-loader": "^4.12.15"
+    "react-hot-loader": "^4.12.15",
+    "react-test-renderer": "^16.12.0"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
