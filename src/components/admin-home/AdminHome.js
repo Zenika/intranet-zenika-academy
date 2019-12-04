@@ -48,7 +48,7 @@ class AdminHome extends Component {
               <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
               {' à '}
               {promotion.city}
-              { ' ' }
+              {' '}
               <a href={`/admin/promo/${promotion.id}/details`} className="detailsLink">détails...</a>
             </li>
           ))}
