@@ -54,7 +54,7 @@ class RecapProgramForm extends React.Component {
         </section>
         <div className="field is-grouped">
           <div className="control">
-            <button type="submit" onClick={() => this.createUser(user)} className="button is-success">Créer</button>
+            <button type="submit" onClick={(e) => this.createUser(e)} className="button is-success">Créer</button>
           </div>
           <div className="control">
             <Link to="/admin/users">
