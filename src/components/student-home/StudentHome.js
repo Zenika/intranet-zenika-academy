@@ -13,8 +13,9 @@ class StudentHome extends Component {
   }
 
   componentDidMount() {
+    const id = sessionStorage.getItem('promoId');
     this._isMounted = true;
-    axios.get('http://localhost:4000/api/promotions/details/2')
+    axios.get(`http://localhost:4000/api/promotions/details/${id}`)
       .then((res) => {
         const promotionDetails = res.data;
         if (this._isMounted) {

@@ -24,6 +24,8 @@ import ProgramFormContainer from '../program/ProgramFormContainer';
 import UserCreateContainer from '../user/UserCreateContainer';
 import Home from '../home/Home';
 import Administration from '../dashboard/Dashboard';
+import AdminHome from '../admin-home/AdminHome';
+import StudentHome from '../student-home/StudentHome';
 import './App.scss';
 
 
@@ -46,6 +48,9 @@ class App extends React.Component {
               path="/ressources/create"
               component={RessourceForm}
             />
+            <Route path="/home/user" component={StudentHome} />
+            <Route path="/home/admin" component={AdminHome} />
+
             <Route
               key="edit-ressource"
               path="/ressources/:id/edit"

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { SignInModal } from '../signInModal/SignInModal';
 import './Navigation.scss';
-import logo from './logo.png';
+// import logo from './logo.png';
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -50,43 +49,23 @@ class NavigationBar extends Component {
 
 
   /**
-   * Allows to connect or disconnect a user
+   * Allows to connect a user
    */
-  connect(user) {
-    return axios.post('http://localhost:4000/api/users/signin', user)
-      .then((res) => {
-        this.setState({ loggedIn: true });
-        sessionStorage.setItem('role', `${res.data.role}`);
-        sessionStorage.setItem('id', `${res.data.id}`);
-        sessionStorage.setItem('promoId', `${res.data.promotionId}`);
-        sessionStorage.setItem('loggedIn', 'true');
-
-        /** TO BE IMPLEMENTED WHEN BOTH ADMIN AND STUDENT HOME WILL EXIST */
-        // switch (res.data.role) {
-        //   case 1:
-        //     return <Redirect to="/home/admin" />;
-        //   case 2:
-        //   case 3:
-        //     return <Redirect to="/home/student" />;
-        //   default:
-        //     return <Redirect to="/" />;
-        // }
-      })
-      .catch((err) => {
-        console.error(err);
-        this.setState({ loggedIn: false });
-        this.toggleModal(false);
-      });
+  connect() {
+    return this.setState({ loggedIn: true });
   }
 
+
+  /**
+   * Allows to disconnect a user
+   */
   disconnect() {
     this.setState({
       modalState: false,
       isNavAdmin: false,
       loggedIn: false,
     });
-    sessionStorage.clear();
-    return <Redirect to="/" />;
+    return sessionStorage.clear();
   }
 
   /**
@@ -105,140 +84,142 @@ class NavigationBar extends Component {
     const {
       loggedIn, modalState, isNavAdmin, email, password,
     } = this.state;
-    const navbarMenu = document.querySelector('#navMenu') || '';
-    let navbarMenuClass;
-    if (isNavAdmin && loggedIn) {
-      if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-front is-active') {
-        navbarMenuClass = 'navbar-menu navbar-menu-admin is-active';
-      } else {
-        navbarMenuClass = 'navbar-menu navbar-menu-admin';
-      }
-    } else if (!isNavAdmin || !loggedIn) {
-      if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-admin is-active') {
-        navbarMenuClass = 'navbar-menu navbar-menu-front is-active';
-      } else {
-        navbarMenuClass = 'navbar-menu navbar-menu-front';
-      }
-    }
-    const mainLink = (
-      <section>
-        <Link
-          tabIndex="0"
-          className="navbar-item"
-          onKeyUp={() => this.setNavbarState(false)}
-          to="/"
-        >
-          <img id="navbarLogo" src={logo} className="is-hidden-mobile" alt="logo zenika" />
-        </Link>
-        <Link
-          tabIndex="0"
-          className="navbar-item"
-          onKeyUp={() => this.setNavbarState(false)}
-          to="/"
-        >
-          <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">Accueil</span>
-        </Link>
-      </section>
-    );
+    // const navbarMenu = document.querySelector('#navMenu') || '';
+    // let navbarMenuClass;
+    // if (isNavAdmin && loggedIn) {
+    //   if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-front is-active') {
+    //     navbarMenuClass = 'navbar-menu navbar-menu-admin is-active';
+    //   } else {
+    //     navbarMenuClass = 'navbar-menu navbar-menu-admin';
+    //   }
+    // } else if (!isNavAdmin || !loggedIn) {
+    //   if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-admin is-active') {
+    //     navbarMenuClass = 'navbar-menu navbar-menu-front is-active';
+    //   } else {
+    //     navbarMenuClass = 'navbar-menu navbar-menu-front';
+    //   }
+    // }
+    // const mainLink = (
+    //   <section>
+    //     <Link
+    //       tabIndex="0"
+    //       className="navbar-item"
+    //       onKeyUp={() => this.setNavbarState(false)}
+    //       to="/"
+    //     >
+    //       <img id="navbarLogo" src={logo} className="is-hidden-mobile" alt="logo zenika" />
+    //     </Link>
+    //     <Link
+    //       tabIndex="0"
+    //       className="navbar-item"
+    //       onKeyUp={() => this.setNavbarState(false)}
+    //       to="/"
+    //     >
+    //       <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">
+    // Accueil
+    // </span>
+    // //     </Link>
+    //   </section>
+    // );
 
-    const adminLinks = (
-      <section className="navbar-start">
-        {mainLink}
-        {/* <section className="navbar-item">
-          <Link to="/admin/dashboard">
-            <span className="navbar-link is-arrowless">Dashboard</span>
-          </Link>
-        </section>
-        <section className="navbar-item has-dropdown is-hoverable">
-          <span className="navbar-link" onClick={this.setBurgerLink}>Promotions</span>
-          <section className="navbar-dropdown is-hidden-mobile is-boxed">
-            <Link to="/admin/promo/list">
-              <span className="navbar-item">Promo</span>
-            </Link>
-            <Link to="/admin/promo/create">
-              <span className="navbar-item">Créer</span>
-            </Link>
-          </section>
-        </section>
-        <section className="navbar-item has-dropdown is-hoverable">
-          <span className="navbar-link" onClick={this.setBurgerLink}>Programmes</span>
-          <section className="navbar-dropdown is-hidden-mobile is-boxed">
-            <Link to="/admin/program">
-              <span className="navbar-item">Programmes</span>
-            </Link>
-            <Link to="/admin/module/list">
-              <span className="navbar-item">Modules</span>
-            </Link>
-            <Link to="/admin/program/ressources">
-              <span className="navbar-item">Ressources</span>
-            </Link>
-          </section>
-        </section>
-        <section className="navbar-item has-dropdown is-hoverable">
-          <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
-          <section className="navbar-dropdown is-hidden-mobile is-boxed">
-            <Link to="/admin/community/rssfeed">
-              <span className="navbar-item">Flux RSS</span>
-            </Link>
-            <Link to="/admin/community/whotofollow">
-              <span className="navbar-item">Who to follow</span>
-            </Link>
-          </section>
-        </section> */}
-      </section>
-    );
+    // const adminLinks = (
+    //   <section className="navbar-start">
+    //     {mainLink}
+    //     {/* <section className="navbar-item">
+    //       <Link to="/admin/dashboard">
+    //         <span className="navbar-link is-arrowless">Dashboard</span>
+    //       </Link>
+    //     </section>
+    //     <section className="navbar-item has-dropdown is-hoverable">
+    //       <span className="navbar-link" onClick={this.setBurgerLink}>Promotions</span>
+    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
+    //         <Link to="/admin/promo/list">
+    //           <span className="navbar-item">Promo</span>
+    //         </Link>
+    //         <Link to="/admin/promo/create">
+    //           <span className="navbar-item">Créer</span>
+    //         </Link>
+    //       </section>
+    //     </section>
+    //     <section className="navbar-item has-dropdown is-hoverable">
+    //       <span className="navbar-link" onClick={this.setBurgerLink}>Programmes</span>
+    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
+    //         <Link to="/admin/program">
+    //           <span className="navbar-item">Programmes</span>
+    //         </Link>
+    //         <Link to="/admin/module/list">
+    //           <span className="navbar-item">Modules</span>
+    //         </Link>
+    //         <Link to="/admin/program/ressources">
+    //           <span className="navbar-item">Ressources</span>
+    //         </Link>
+    //       </section>
+    //     </section>
+    //     <section className="navbar-item has-dropdown is-hoverable">
+    //       <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
+    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
+    //         <Link to="/admin/community/rssfeed">
+    //           <span className="navbar-item">Flux RSS</span>
+    //         </Link>
+    //         <Link to="/admin/community/whotofollow">
+    //           <span className="navbar-item">Who to follow</span>
+    //         </Link>
+    //       </section>
+    //     </section> */}
+    //   </section>
+    // );
 
-    const notAdminLinks = (
-      <section className="navbar-start">
-        {mainLink}
-        {/* <section className="navbar-item has-dropdown is-hoverable">
-          <span className="navbar-link" onClick={this.setBurgerLink}>Ma formation</span>
-          <section className="navbar-dropdown is-hidden-mobile is-boxed">
-            <Link to="/agenda">
-              <span className="navbar-item">Agenda</span>
-            </Link>
-            <Link to="/contacts">
-              <span className="navbar-item">Mes Contacts</span>
-            </Link>
-            <Link to="/welcomeBooklet">
-              <span className="navbar-item">Livret d'accueil</span>
-            </Link>
-          </section>
-        </section>
-        <section className="navbar-item has-dropdown is-hoverable">
-          <span className="navbar-link" onClick={this.setBurgerLink}>Ressources</span>
-          <section className="navbar-dropdown is-hidden-mobile is-boxed">
-            <Link to="/ressources?author=Formateurs">
-              <span className="navbar-item">Formateurs</span>
-            </Link>
-            <Link to="/ressources?author=Eleves">
-              <span className="navbar-item">Elèves</span>
-            </Link>
-          </section>
-        </section>
-        <section className="navbar-item has-dropdown is-hoverable">
-          <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
-          <section className="navbar-dropdown is-hidden-mobile is-boxed">
-            <Link to="/rssFeed">
-              <span className="navbar-item">RSS écosystème</span>
-            </Link>
-            <Link to="/whoToFollow">
-              <span className="navbar-item">Who to follow</span>
-            </Link>
-          </section>
-        </section>
-        <section className="navbar-item">
-          <Link to="/admin/dashboard">
-            <span
-              className="navbar-link is-arrowless navBorder"
-              onClick={() => this.setNavbarState(true)}
-            >
-              Admin
-            </span>
-          </Link>
-        </section> */}
-      </section>
-    );
+    // const notAdminLinks = (
+    //   <section className="navbar-start">
+    //     {mainLink}
+    //     {/* <section className="navbar-item has-dropdown is-hoverable">
+    //       <span className="navbar-link" onClick={this.setBurgerLink}>Ma formation</span>
+    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
+    //         <Link to="/agenda">
+    //           <span className="navbar-item">Agenda</span>
+    //         </Link>
+    //         <Link to="/contacts">
+    //           <span className="navbar-item">Mes Contacts</span>
+    //         </Link>
+    //         <Link to="/welcomeBooklet">
+    //           <span className="navbar-item">Livret d'accueil</span>
+    //         </Link>
+    //       </section>
+    //     </section>
+    //     <section className="navbar-item has-dropdown is-hoverable">
+    //       <span className="navbar-link" onClick={this.setBurgerLink}>Ressources</span>
+    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
+    //         <Link to="/ressources?author=Formateurs">
+    //           <span className="navbar-item">Formateurs</span>
+    //         </Link>
+    //         <Link to="/ressources?author=Eleves">
+    //           <span className="navbar-item">Elèves</span>
+    //         </Link>
+    //       </section>
+    //     </section>
+    //     <section className="navbar-item has-dropdown is-hoverable">
+    //       <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
+    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
+    //         <Link to="/rssFeed">
+    //           <span className="navbar-item">RSS écosystème</span>
+    //         </Link>
+    //         <Link to="/whoToFollow">
+    //           <span className="navbar-item">Who to follow</span>
+    //         </Link>
+    //       </section>
+    //     </section>
+    //     <section className="navbar-item">
+    //       <Link to="/admin/dashboard">
+    //         <span
+    //           className="navbar-link is-arrowless navBorder"
+    //           onClick={() => this.setNavbarState(true)}
+    //         >
+    //           Admin
+    //         </span>
+    //       </Link>
+    //     </section> */}
+    //   </section>
+    // );
 
     const mainNav = (
       <nav
@@ -313,9 +294,9 @@ class NavigationBar extends Component {
           && (
             <SignInModal
               toggleModal={this.toggleModal}
-              connect={this.connect}
               email={email}
               password={password}
+              connect={this.connect}
             />
           )}
       </nav>
