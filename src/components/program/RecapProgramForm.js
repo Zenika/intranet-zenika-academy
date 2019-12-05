@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './Program.scss';
 import '../layout/Layout.scss';
 
@@ -8,6 +8,7 @@ class RecapProgramForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      redirectToReferrer: false,
     };
   }
 
@@ -18,15 +19,18 @@ class RecapProgramForm extends React.Component {
     e.preventDefault();
     const { program } = this.props;
     Axios.post('http://localhost:4000/api/programs', program)
-      .then((response) => {
-        console.log(response);
-      });
+      .then(() => this.setState(() => ({ redirectToReferrer: true })));
   };
 
   render() {
     const {
       handleChange, program,
     } = this.props;
+
+    const { redirectToReferrer } = this.state;
+    if (redirectToReferrer === true) {
+      return <Redirect to="/home/admin" />;
+    }
 
     return (
       <article className="section box">
