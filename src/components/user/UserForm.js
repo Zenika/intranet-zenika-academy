@@ -72,7 +72,7 @@ class UserForm extends Component {
             <div className="field is-grouped">
               <div className="control">
                 <button className="button is-info userProfileButton" type="submit">Valider</button>
-                <Link to="/admin/program">
+                <Link to="/home/admin">
                   <button className="button is-danger userProfileButton" type="button">Annuler</button>
                 </Link>
               </div>

@@ -166,7 +166,7 @@ class ProgramForm extends React.Component {
           <button className="button is-success" value={1} onClick={(e) => handleChange(e, program)} type="button">Valider</button>
         </div>
         <div className="control">
-          <Link to="/admin/program">
+          <Link to="/home/admin">
             <button className="button is-danger" type="button">Annuler</button>
           </Link>
         </div>

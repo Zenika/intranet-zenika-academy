@@ -92,7 +92,7 @@ class RecapProgramForm extends React.Component {
             <button className="button is-info" value={0} onClick={(e) => handleChange(e, program)} type="button">Modifier</button>
           </div>
           <div className="control">
-            <Link to="/admin/program">
+            <Link to="/home/admin">
               <button className="button is-danger" type="button">Annuler</button>
             </Link>
           </div>
