@@ -7,28 +7,36 @@ Array [
   >
     Bienvenue
   </h1>,
-  <section>
+  <section
+    className="studentHomeSection"
+  >
     <h1
       className="studentsHomeSectionTitle"
     >
       Promotion : 
     </h1>
   </section>,
-  <section>
+  <section
+    className="studentHomeSection"
+  >
     <h1
       className="studentsHomeSectionTitle"
     >
       Eleves : 
     </h1>
   </section>,
-  <section>
+  <section
+    className="studentHomeSection"
+  >
     <h1
       className="studentsHomeSectionTitle"
     >
       Programme : 
     </h1>
   </section>,
-  <section>
+  <section
+    className="studentHomeSection"
+  >
     <h1
       className="studentsHomeSectionTitle"
     >

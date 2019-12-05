@@ -13,16 +13,18 @@ export class PromoCreateStepTwo extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/api/programs')
-      .then((res) => res.data.forEach((program) => {
-        if (program.type === 1) {
-          const obj = { label: program.title, value: program.id };
-          this.setState((state) => {
-            const programList = state.programs.push(obj);
-            return programList;
-          });
-        }
-      }));
+    setTimeout(() => {
+      axios.get('http://localhost:4000/api/programs')
+        .then((res) => res.data.forEach((program) => {
+          if (program.type === 1) {
+            const obj = { label: program.title, value: program.id };
+            this.setState((state) => {
+              const programList = state.programs.push(obj);
+              return programList;
+            });
+          }
+        }));
+    }, 0);
   }
 
   render() {
@@ -34,10 +36,10 @@ export class PromoCreateStepTwo extends Component {
     const buttonForm = (
       <div className="field buttonField section">
         <div className="control">
-          <button type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
+          <button id="previousButton" type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
         </div>
         <div className="control">
-          <button type="button" className="button is-link" onClick={nextStep}>Continuer</button>
+          <button id="resumeButton" type="button" className="button is-link" onClick={nextStep}>Continuer</button>
         </div>
       </div>
     );

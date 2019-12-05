@@ -14,7 +14,9 @@ Enzyme.configure({ adapter: new Adapter() });
 let wrapper;
 beforeEach(() => {
   wrapper = mount(<PromoCreateContainer />);
+  wrapper.state().program = [{ label: 'js', value: 2 }, { label: 'java', value: 4 }];
 });
+
 
 describe('PromoCreateContainer tests', () => {
   it('Should exist', () => {
@@ -24,10 +26,6 @@ describe('PromoCreateContainer tests', () => {
 
   it('Should have a title', () => {
     expect(global.window.document.title).toBe('Création de promotion');
-  });
-
-  it('Should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should have PromoCreateStepOne as a child', () => {
@@ -78,6 +76,7 @@ describe('PromoCreateContainer tests', () => {
     const container = wrapper.find(PromoCreateStepFour);
     expect(container).toHaveLength(1);
   });
+
   it('Should have PromoCreateResume as a child when step state === 5', () => {
     wrapper.setState({ step: 5 });
     const container = wrapper.find(PromoCreateResume);

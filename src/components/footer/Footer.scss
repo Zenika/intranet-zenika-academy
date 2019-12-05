@@ -2,6 +2,9 @@ $footer-padding: 2rem 1.5rem 6rem !default;
 
 .footer {
   padding: $footer-padding;
+  position: absolute;
+  bottom: 0;
+  background-color:#f5f5f5;
 }
 
 .socialContainer {

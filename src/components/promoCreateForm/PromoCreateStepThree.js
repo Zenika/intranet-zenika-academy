@@ -14,16 +14,18 @@ export class PromoCreateStepThree extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/api/users')
-      .then((res) => res.data.forEach((teacher) => {
-        if (teacher.role === 2) {
-          const obj = { label: `${teacher.firstName} ${teacher.lastName}`, value: teacher.id };
-          this.setState((state) => {
-            const teacherList = state.teachers.push(obj);
-            return teacherList;
-          });
-        }
-      }));
+    setTimeout(() => {
+      axios.get('http://localhost:4000/api/users')
+        .then((res) => res.data.forEach((teacher) => {
+          if (teacher.role === 2) {
+            const obj = { label: `${teacher.firstName} ${teacher.lastName}`, value: teacher.id };
+            this.setState((state) => {
+              const teacherList = state.teachers.push(obj);
+              return teacherList;
+            });
+          }
+        }));
+    }, 0);
   }
 
   render() {
@@ -36,10 +38,10 @@ export class PromoCreateStepThree extends Component {
     const buttonForm = (
       <section className="field buttonField section">
         <section className="control">
-          <button type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
+          <button id="previousButton" type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
         </section>
         <section className="control">
-          <button type="button" className="button is-link" onClick={nextStep}>Continuer</button>
+          <button id="resumeButton" type="button" className="button is-link" onClick={nextStep}>Continuer</button>
         </section>
       </section>
     );
