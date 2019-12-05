@@ -14,7 +14,7 @@ export class PromoCreateStepTwo extends Component {
 
   componentDidMount() {
     axios.get('http://localhost:4000/api/programs')
-      .then((res) => Object.keys(res.data).forEach((program) => {
+      .then((res) => res.data.forEach((program) => {
         if (program.type === 1) {
           const obj = { label: program.title, value: program.id };
           this.setState((state) => {
@@ -22,8 +22,7 @@ export class PromoCreateStepTwo extends Component {
             return programList;
           });
         }
-      }))
-      .catch((e) => console.error(e));
+      }));
   }
 
   render() {

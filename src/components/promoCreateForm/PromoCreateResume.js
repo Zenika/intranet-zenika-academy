@@ -29,11 +29,9 @@ class PromoCreateResume extends Component {
             promotionId: res.data.id,
           };
           axios.post('http://localhost:4000/api/users', newStudent)
-            .then((studentRes) => console.log('new student', studentRes))
-            .catch((err) => console.error(err));
+            .then((studentRes) => console.log('new student', studentRes));
         });
-      })
-      .catch((err) => console.error('ERROR', err));
+      });
   }
 
   render() {
