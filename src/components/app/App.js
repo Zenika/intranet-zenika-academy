@@ -31,6 +31,12 @@ import PromoData from '../promo/PromoData';
 
 class App extends React.Component {
   render() {
+    const footer = (
+      <footer className="footer">
+        <Footer />
+      </footer>
+    );
+
     return (
       <Router>
         <header>
@@ -157,10 +163,6 @@ class App extends React.Component {
             <Route component={Notfound} />
           </Switch>
         </main>
-
-        <footer className="footer">
-          <Footer />
-        </footer>
       </Router>
     );
   }
