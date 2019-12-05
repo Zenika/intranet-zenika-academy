@@ -14,7 +14,7 @@ function PromoCreateStepOne(props) {
   const buttonForm = (
     <section className="field buttonField section">
       <section className="control">
-        <button id="cancelButton" type="button" className="button is-danger">Annuler</button>
+        <a href="/home/admin/" id="cancelButton" type="button" className="button is-danger">Annuler</a>
       </section>
       <section className="control">
         <button id="resumeButton" type="button" className="button is-link" onClick={nextStep}>Continuer</button>

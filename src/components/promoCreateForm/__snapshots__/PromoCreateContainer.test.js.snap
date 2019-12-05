@@ -11,7 +11,7 @@ exports[`PromoCreateContainer tests Should match the snapshot 1`] = `
         "city": "",
         "country": "",
         "endDate": "",
-        "program": Array [],
+        "program": 0,
         "startDate": "",
         "students": Array [],
         "teachers": Array [],
@@ -224,13 +224,14 @@ exports[`PromoCreateContainer tests Should match the snapshot 1`] = `
           <section
             className="control"
           >
-            <button
+            <a
               className="button is-danger"
+              href="/home/admin/"
               id="cancelButton"
               type="button"
             >
               Annuler
-            </button>
+            </a>
           </section>
           <section
             className="control"

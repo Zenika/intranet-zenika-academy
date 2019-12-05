@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import axios from 'axios';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
@@ -8,19 +10,22 @@ import './PromoCreate.scss';
 class PromoCreateResume extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      redirectionToHome: false,
+    };
     this.handleCreate = this.handleCreate.bind(this);
   }
 
   handleCreate() {
     const { promo } = this.props;
+    const { teachers } = promo;
     const newPromo = {
       title: promo.title,
       city: promo.city,
       startDate: promo.startDate,
       endDate: promo.endDate,
-      programId: promo.program.value,
+      programId: promo.program,
     };
-    const { teachers } = promo;
     axios.post('http://localhost:4000/api/promotions', { newPromo, teachers })
       .then((res) => {
         promo.students.forEach((student) => {
@@ -28,14 +33,15 @@ class PromoCreateResume extends Component {
             ...student,
             promotionId: res.data.id,
           };
-          axios.post('http://localhost:4000/api/users', newStudent)
-            .then((studentRes) => console.log('new student', studentRes));
+          axios.post('http://localhost:4000/api/users', newStudent);
         });
+        this.setState({ redirectionToHome: true });
       });
   }
 
   render() {
     const { step, promo, prevStep } = this.props;
+    const { redirectionToHome } = this.state;
     const { handleCreate } = this;
 
     const startDate = promo.startDate.split('-').reverse().join('-');
@@ -51,6 +57,10 @@ class PromoCreateResume extends Component {
         </section>
       </section>
     );
+
+    if (redirectionToHome) {
+      return <Redirect to="/home/admin" />;
+    }
 
     return (
       <div className="promoCreateForm">

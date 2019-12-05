@@ -15,7 +15,7 @@ export class PromoCreateContainer extends Component {
       endDate: '',
       students: [],
       teachers: [],
-      program: [],
+      program: 0,
       country: '',
       city: '',
       csv: false,
@@ -42,7 +42,7 @@ export class PromoCreateContainer extends Component {
    */
   handleMultiChange = (options, name) => {
     if (name === 'program') {
-      return this.setState({ [name]: [options] });
+      return this.setState({ [name]: options.value });
     }
     return this.setState({ [name]: options });
   }
