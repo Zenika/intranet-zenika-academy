@@ -107,10 +107,10 @@ class StudentHome extends Component {
     return (
       <>
         <h1 className="title is-2 mbmd">Bienvenue</h1>
-        <section>{this.displayPromotion()}</section>
-        <section>{this.displayStudents()}</section>
-        <section>{this.displayProgram()}</section>
-        <section>{this.displayTeachers()}</section>
+        <section className="studentHomeSection">{this.displayPromotion()}</section>
+        <section className="studentHomeSection">{this.displayStudents()}</section>
+        <section className="studentHomeSection">{this.displayProgram()}</section>
+        <section className="studentHomeSection">{this.displayTeachers()}</section>
       </>
     );
   }

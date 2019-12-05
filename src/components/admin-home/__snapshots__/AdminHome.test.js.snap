@@ -21,7 +21,7 @@ Array [
   </a>,
   <a
     className="button is-primary admin-home-link"
-    href="/admin/user/create"
+    href="/admin/users/create"
   >
     Créer un utilisateur
   </a>,
