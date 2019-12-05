@@ -33,9 +33,9 @@ class AdminHome extends Component {
       <>
         <h1 className="title is-2 mbmd">Bienvenue</h1>
 
-        <a href="/admin/promo/create" className="button is-primary admin-home-link">Créer une promotion</a>
-        <a href="/admin/program/create" className="button is-primary admin-home-link">Créer un programme</a>
-        <a href="/admin/users/create" className="button is-primary admin-home-link">Créer un utilisateur</a>
+        <a href="/admin/promo/create" className="button is-primary admin-home-link promo-creation">Créer une promotion</a>
+        <a href="/admin/program/create" className="button is-primary admin-home-link program-creation">Créer un programme</a>
+        <a href="/admin/users/create" className="button is-primary admin-home-link user-creation">Créer un utilisateur</a>
 
         <h2 className="title is-4 mbmd">Liste des promotions :</h2>
         <ul className="promosContainer">

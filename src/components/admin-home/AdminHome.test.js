@@ -4,6 +4,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import axios from 'axios';
 import Adapter from 'enzyme-adapter-react-16';
+import ReactTestUtils from 'react-dom/test-utils'; // ES6
 import AdminHome from './AdminHome';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -33,5 +34,21 @@ describe('AdminHome component', () => {
       );
       expect(getSpy).toBeCalled();
     });
+  });
+});
+
+describe('AdminHome component links tags', () => {
+  const adminHomeComponent = ReactTestUtils.renderIntoDocument(<AdminHome />);
+  it('should link to promo creation url', () => {
+    const a = ReactTestUtils.findRenderedDOMComponentWithClass(adminHomeComponent, 'promo-creation');
+    expect(a.getAttribute('href')).toBe('/admin/promo/create');
+  });
+  it('should link to program creation url', () => {
+    const a = ReactTestUtils.findRenderedDOMComponentWithClass(adminHomeComponent, 'program-creation');
+    expect(a.getAttribute('href')).toBe('/admin/program/create');
+  });
+  it('should link to user creation url', () => {
+    const a = ReactTestUtils.findRenderedDOMComponentWithClass(adminHomeComponent, 'user-creation');
+    expect(a.getAttribute('href')).toBe('/admin/users/create');
   });
 });
