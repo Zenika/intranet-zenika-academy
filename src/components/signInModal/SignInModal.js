@@ -108,26 +108,26 @@ export class SignInModal extends Component {
                   </span>
                 </p>
               </section>
+              <footer className=" modalFooter">
+                <button
+                  id="submitButton"
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="button is-success"
+                >
+                  Se connecter
+                </button>
+                <button
+                  id="cancelButton"
+                  type="button"
+                  onClick={() => toggleModal(false)}
+                  className="button"
+                >
+                  Annuler
+                </button>
+              </footer>
             </form>
           </section>
-          <footer className="modal-card-foot modalFooter">
-            <button
-              id="submitButton"
-              type="submit"
-              onClick={handleSubmit}
-              className="button is-success"
-            >
-              Se connecter
-            </button>
-            <button
-              id="cancelButton"
-              type="button"
-              onClick={() => toggleModal(false)}
-              className="button"
-            >
-              Annuler
-            </button>
-          </footer>
         </section>
       </section>
     );
