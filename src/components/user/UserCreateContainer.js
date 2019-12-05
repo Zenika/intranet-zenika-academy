@@ -24,6 +24,7 @@ class UserCreateContainer extends React.Component {
 
   render() {
     const { step, user } = this.state;
+
     return (
       <>
         { step === 0
