@@ -1,26 +1,33 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { PromoCreateStepTwo } from './PromoCreateStepTwo';
-import CreatableSelect from '../searchbarauto/CreatableSearchbar';
+import PromoCreateResume from './PromoCreateResume';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
 
 Enzyme.configure({ adapter: new Adapter() });
 
+const promo = {
+  title: 'test',
+  startDate: '2019-01-01',
+  endDate: '2019-01-01',
+  program: [{ label: 'js', value: 2 }, { label: 'java', value: 4 }],
+  teachers: [],
+  students: [],
+  city: 'testCity',
+};
+
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<PromoCreateStepTwo
-    nextStep={jest.fn()}
-    step={2}
-    promo={Object}
-    handleChange={jest.fn()}
-    handleMultiChange={jest.fn()}
+  wrapper = mount(<PromoCreateResume
     prevStep={jest.fn()}
+    step={5}
+    promo={promo}
   />);
 });
 
-describe('PromoCreateStepTwo tests', () => {
+
+describe('PromoCreateResume tests', () => {
   it('Should exist', () => {
     expect(wrapper).toBeDefined();
     expect(wrapper.exists()).toBe(true);
@@ -43,22 +50,17 @@ describe('PromoCreateStepTwo tests', () => {
     expect(fn).toHaveBeenCalled();
   });
 
-  it('Should have a resume button', () => {
-    const container = wrapper.find('#resumeButton');
+  it('Should have a confirm button', () => {
+    const container = wrapper.find('#confirmButton');
     expect(container).toHaveLength(1);
   });
 
-  it('Should call nexStep() props on resume button click', () => {
-    const button = wrapper.find('#resumeButton');
-    const fn = wrapper.props().nextStep;
-    button.simulate('click');
-    expect(fn).toHaveBeenCalled();
-  });
-
-  it('Should have one CreateTableSelect component as child', () => {
-    const container = wrapper.find(CreatableSelect);
-    expect(container).toHaveLength(1);
-  });
+  // it('Should call handleCreate() props on confirm button click', () => {
+  //   const button = wrapper.find('#confirmButton');
+  //   const handleCreate = jest.fn();
+  //   button.simulate('click');
+  //   expect(handleCreate).toHaveBeenCalled();
+  // });
 
   it('Should have BulmaSteps as a child', () => {
     const container = wrapper.find(BulmaSteps);

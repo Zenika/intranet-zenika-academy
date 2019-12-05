@@ -1,26 +1,33 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { PromoCreateStepTwo } from './PromoCreateStepTwo';
-import CreatableSelect from '../searchbarauto/CreatableSearchbar';
+import { PromoCreateStepFour } from './PromoCreateStepFour';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
 
 Enzyme.configure({ adapter: new Adapter() });
 
+const promo = {
+  students: [],
+};
+
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<PromoCreateStepTwo
+  wrapper = mount(<PromoCreateStepFour
     nextStep={jest.fn()}
-    step={2}
-    promo={Object}
+    step={4}
+    promo={promo}
     handleChange={jest.fn()}
     handleMultiChange={jest.fn()}
     prevStep={jest.fn()}
+    handleCSVImport={jest.fn()}
+    csv={Boolean}
+    name="students"
   />);
 });
 
-describe('PromoCreateStepTwo tests', () => {
+
+describe('PromoCreateStepFour tests', () => {
   it('Should exist', () => {
     expect(wrapper).toBeDefined();
     expect(wrapper.exists()).toBe(true);
@@ -53,11 +60,6 @@ describe('PromoCreateStepTwo tests', () => {
     const fn = wrapper.props().nextStep;
     button.simulate('click');
     expect(fn).toHaveBeenCalled();
-  });
-
-  it('Should have one CreateTableSelect component as child', () => {
-    const container = wrapper.find(CreatableSelect);
-    expect(container).toHaveLength(1);
   });
 
   it('Should have BulmaSteps as a child', () => {

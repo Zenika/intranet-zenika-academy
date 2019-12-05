@@ -1,18 +1,18 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { PromoCreateStepTwo } from './PromoCreateStepTwo';
-import CreatableSelect from '../searchbarauto/CreatableSearchbar';
+import { PromoCreateStepThree } from './PromoCreateStepThree';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
+import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 
 
 Enzyme.configure({ adapter: new Adapter() });
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<PromoCreateStepTwo
+  wrapper = mount(<PromoCreateStepThree
     nextStep={jest.fn()}
-    step={2}
+    step={3}
     promo={Object}
     handleChange={jest.fn()}
     handleMultiChange={jest.fn()}
@@ -20,7 +20,7 @@ beforeEach(() => {
   />);
 });
 
-describe('PromoCreateStepTwo tests', () => {
+describe('PromoCreateStepThree tests', () => {
   it('Should exist', () => {
     expect(wrapper).toBeDefined();
     expect(wrapper.exists()).toBe(true);
@@ -56,7 +56,7 @@ describe('PromoCreateStepTwo tests', () => {
   });
 
   it('Should have one CreateTableSelect component as child', () => {
-    const container = wrapper.find(CreatableSelect);
+    const container = wrapper.find(SearchbarAutoComplete);
     expect(container).toHaveLength(1);
   });
 

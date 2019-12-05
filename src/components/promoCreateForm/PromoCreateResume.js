@@ -24,8 +24,9 @@ class PromoCreateResume extends Component {
       city: promo.city,
       startDate: promo.startDate,
       endDate: promo.endDate,
-      programId: promo.program,
+      programId: promo.program[0].value,
     };
+
     axios.post('http://localhost:4000/api/promotions', { newPromo, teachers })
       .then((res) => {
         promo.students.forEach((student) => {
@@ -50,10 +51,10 @@ class PromoCreateResume extends Component {
     const buttonForm = (
       <section className="field buttonField">
         <section className="control">
-          <button type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
+          <button id="previousButton" type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
         </section>
         <section className="control">
-          <button type="button" onClick={handleCreate} className="button is-link">Valider</button>
+          <button id="confirmButton" type="button" onClick={handleCreate} className="button is-link">Valider</button>
         </section>
       </section>
     );
@@ -124,7 +125,7 @@ class PromoCreateResume extends Component {
             <label htmlFor="program" className="label">
               Programme:
               <section id="program" className="field">
-                <p>{promo.program.label !== undefined ? promo.program.label : ''}</p>
+                <p>{promo.program[0].label !== undefined ? promo.program[0].label : ''}</p>
               </section>
             </label>
           </section>
