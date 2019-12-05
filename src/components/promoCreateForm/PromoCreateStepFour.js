@@ -14,10 +14,10 @@ export class PromoCreateStepFour extends Component {
     const buttonForm = (
       <section className="field buttonField section">
         <section className="control">
-          <button type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
+          <button id="previousButton" type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
         </section>
         <section className="control">
-          <button type="button" className="button is-link" onClick={nextStep}>Continuer</button>
+          <button id="resumeButton" type="button" className="button is-link" onClick={nextStep}>Continuer</button>
         </section>
       </section>
     );
