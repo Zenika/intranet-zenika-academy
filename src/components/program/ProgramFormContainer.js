@@ -34,11 +34,10 @@ class ProgramFormContainer extends React.Component {
           ? (
             <ProgramForm
               program={program}
-              step
               handleChange={this.handleChange}
             />
           )
-          : <RecapProgramForm step program={program} handleChange={this.handleChange} />}
+          : <RecapProgramForm program={program} handleChange={this.handleChange} />}
       </>
     );
   }

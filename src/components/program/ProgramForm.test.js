@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import crypto from 'crypto';
 import ProgramForm from './ProgramForm';
@@ -60,6 +60,11 @@ describe('ProgramForm tests', () => {
   it('Should not have a module as a child if program is empty', () => {
     const container = wrapper.find(Module);
     expect(container).toHaveLength(0);
+  });
+
+  it('Should have /home/admin in cancel button href ', () => {
+    const button = wrapper.find('#cancelButton');
+    expect(button.props().href).toEqual('/home/admin/');
   });
 
   it('Should change program title in state on programTitle input change', () => {
@@ -129,5 +134,43 @@ describe('ProgramForm tests', () => {
     expect(wrapper.state().modules[id]).toBeInstanceOf(Object);
     expect(wrapper.state().program.content[id]).toBeInstanceOf(Object);
     fn.mockClear();
+  });
+
+  it('Should delete Module from Program on children component delete button click', () => {
+    wrapper = mount(<ProgramForm
+      program={{
+        title: '',
+        type: 1,
+        content: [{ title: 'module', type: 2, content: [] }],
+      }}
+      handleChange={jest.fn()}
+    />);
+    const moduleChild = mount(<Module
+      id={0}
+      key="test"
+      deleteIt="test"
+      title={wrapper.state().title}
+      content={[]}
+      handleChange={jest.fn()}
+      handleAddSubModuleContent={jest.fn()}
+      handleAddSequenceContent={jest.fn()}
+      deleteModule={wrapper.instance().deleteModule}
+    />);
+    wrapper.state().modules = [{ key: 'test', id: 0 }];
+    wrapper.state().idModules = 1;
+
+    const btnDelete = moduleChild.find('#deleteModule');
+    let id = wrapper.state().idModules - 1;
+    expect(wrapper.state().idModules).toEqual(1);
+    expect(wrapper.state().modules[id]).toBeInstanceOf(Object);
+    expect(wrapper.state().program.content[id]).toBeInstanceOf(Object);
+
+    btnDelete.simulate('click');
+
+    wrapper.instance().forceUpdate();
+    id = wrapper.state().idModules;
+    expect(wrapper.state().modules[id]).toBeUndefined();
+    expect(wrapper.state().program.content[id]).toBeUndefined();
+    expect(wrapper.state().idModules).toEqual(0);
   });
 });

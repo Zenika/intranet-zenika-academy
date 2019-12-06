@@ -123,12 +123,14 @@ class AddModule extends React.Component {
       <div id={`moduleBox-${id}`} className="box mtmd">
         <div ref="collapsibles" id={`accordion${id}`}>
           <div className="root">
-            <h3 className="title is-3 is-pulled-left">
+            <h3 id="moduleTitle" className="title is-3 is-pulled-left">
               Module n°
               {id + 1}
               :
               &nbsp;
-              {title}
+              <span>
+                {title}
+              </span>
             </h3>
             <a href={`#collapsible-section${id}`} data-action="collapse" className="is-pulled-right is-active">
               <i className="fas fa-chevron-up" />
@@ -156,7 +158,7 @@ class AddModule extends React.Component {
                   </span>
               &nbsp; &nbsp;Sous-Module
                 </button>
-                <button className="button is-danger card-footer-item" id="addSubModul" onClick={() => deleteModule(deleteIt, id)} type="button">
+                <button className="button is-danger card-footer-item" id="deleteModule" onClick={() => deleteModule(deleteIt, id)} type="button">
                   <span
                     className="icon is-small"
                   >
