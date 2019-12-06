@@ -60,6 +60,26 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ]
+    ],
+    "collectCoverageFrom": [
+      "./src/**/*.{js,jsx}*",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/nodes_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      },
+      "./src/components/": {
+        "branches": 40,
+        "statements": 40
+      }
+    }
   }
 }
