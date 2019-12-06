@@ -24,8 +24,9 @@ export class PromoCreateStepThree extends Component {
               return teacherList;
             });
           }
-        }));
-    }, 0);
+        }))
+        .catch((err) => console.error(err));
+    }, 100);
   }
 
   render() {
