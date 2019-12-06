@@ -121,28 +121,28 @@ exports[`Navbar renders correctly Displays the connexion Modal when sign in butt
                   </span>
                 </p>
               </section>
+              <footer
+                className=" modalFooter"
+              >
+                <button
+                  className="button is-success"
+                  id="submitButton"
+                  onClick={[Function]}
+                  type="submit"
+                >
+                  Se connecter
+                </button>
+                <button
+                  className="button"
+                  id="cancelButton"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Annuler
+                </button>
+              </footer>
             </form>
           </section>
-          <footer
-            className="modal-card-foot modalFooter"
-          >
-            <button
-              className="button is-success"
-              id="submitButton"
-              onClick={[Function]}
-              type="submit"
-            >
-              Se connecter
-            </button>
-            <button
-              className="button"
-              id="cancelButton"
-              onClick={[Function]}
-              type="button"
-            >
-              Annuler
-            </button>
-          </footer>
         </section>
       </section>
     </SignInModal>
