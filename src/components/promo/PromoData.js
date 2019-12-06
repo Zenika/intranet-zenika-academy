@@ -76,7 +76,8 @@ class PromoDetails extends Component {
   }
 
   componentDidMount() {
-    const url = `http://localhost:4000/api/promotions/details/${parseInt(this.props.match.params.id, 10)}`;
+    const { match } = this.props;
+    const url = `http://localhost:4000/api/promotions/details/${parseInt(match.params.id, 10)}`;
     Axios.get(url)
       .then((result) => {
         this.setState({
@@ -98,15 +99,15 @@ class PromoDetails extends Component {
             <div className="promoInfo">
               <h1 className="title is-1 promoTitle">{promotion.title}</h1>
               <h2 className="subtitle is-3">
-à
+                à
                 {' '}
                 {promotion.city}
                 {' '}
-            du
+                du
                 {' '}
                 <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment>
                 {' '}
-            au
+                au
                 {' '}
                 <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
               </h2>

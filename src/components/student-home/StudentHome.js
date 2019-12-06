@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
@@ -36,20 +35,13 @@ class StudentHome extends Component {
     program.push(<h1 className="studentsHomeSectionTitle" key="Program Title">Programme : </h1>);
     keys.forEach((key) => {
       if (key === 'title') {
-        program.push(<div key={key}>Titre : {programData[key]}</div>);
+        program.push(
+          <div key={key}>
+Titre :
+            {programData[key]}
+          </div>,
+        );
       }
-      // if (key === 'createdAt') {
-      //   program.push(<div key={key}>Créée le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
-      // }
-      // if (key === 'updatedAt') {
-      //   program.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
-      // }
-      // if (key === 'content') {
-      //   // program.push(<div key={key}>Mis à jour le : <Moment format="DD/MM/YYYY" key={key}>{programData[key]}</Moment></div>);
-      //   programData[key].forEach(content =>{
-      //     console.log(content)
-      //   })
-      // }
     });
     return program;
   }
@@ -62,16 +54,36 @@ class StudentHome extends Component {
     promotion.push(<h1 className="studentsHomeSectionTitle" key="promoTitle">Promotion : </h1>);
     keys.forEach((key) => {
       if (key === 'title') {
-        promotion.push(<div key={key}>Titre : {promotionData[key]}</div>);
+        promotion.push(
+          <div key={key}>
+Titre :
+            {promotionData[key]}
+          </div>,
+        );
       }
       if (key === 'startDate') {
-        promotion.push(<div key={key}>Début : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
+        promotion.push(
+          <div key={key}>
+Début :
+            <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment>
+          </div>,
+        );
       }
       if (key === 'endDate') {
-        promotion.push(<div key={key}>Fin : <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment></div>);
+        promotion.push(
+          <div key={key}>
+Fin :
+            <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment>
+          </div>,
+        );
       }
       if (key === 'city') {
-        promotion.push(<div key={key}>Ville : {promotionData[key]}</div>);
+        promotion.push(
+          <div key={key}>
+Ville :
+            {promotionData[key]}
+          </div>,
+        );
       }
     });
     return promotion;
@@ -84,7 +96,12 @@ class StudentHome extends Component {
     students.push(<h1 className="studentsHomeSectionTitle" key="promoStudentsTitle">Eleves : </h1>);
     usersData.forEach((user) => {
       if (user.role === 3) {
-        students.push(<div key={user.id}>{user.firstName} {user.lastName.toUpperCase()}</div>);
+        students.push(
+          <div key={user.id}>
+            {user.firstName}
+            {user.lastName.toUpperCase()}
+          </div>,
+        );
       }
     });
     return students;
@@ -97,7 +114,12 @@ class StudentHome extends Component {
     teacher.push(<h1 className="studentsHomeSectionTitle" key="promoteacherTitle">Formateurs : </h1>);
     usersData.forEach((user) => {
       if (user.role === 2) {
-        teacher.push(<div key={user.id}>{user.firstName} {user.lastName.toUpperCase()}</div>);
+        teacher.push(
+          <div key={user.id}>
+            {user.firstName}
+            {user.lastName.toUpperCase()}
+          </div>,
+        );
       }
     });
     return teacher;

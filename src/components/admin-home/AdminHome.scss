@@ -7,15 +7,17 @@
   display: inline;
 }
 
-.detailsLink {
-  color:blue;
+.promosContainer{
+  display: flex;
+  flex-direction: column;
 }
 
 .promoLineContainer{
   margin:.5rem 0;
 }
 
-.promosContainer{
-  display: flex;
-  flex-direction: column;
+.detailsLink {
+  color:blue;
 }
+
+
