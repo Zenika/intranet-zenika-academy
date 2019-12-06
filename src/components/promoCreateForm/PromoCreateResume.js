@@ -37,7 +37,8 @@ class PromoCreateResume extends Component {
           axios.post('http://localhost:4000/api/users', newStudent);
         });
         this.setState({ redirectionToHome: true });
-      });
+      })
+      .catch((err) => { throw new Error(err); });
   }
 
   render() {
@@ -125,7 +126,7 @@ class PromoCreateResume extends Component {
             <label htmlFor="program" className="label">
               Programme:
               <section id="program" className="field">
-                <p>{promo.program[0].label !== undefined ? promo.program[0].label : ''}</p>
+                <p>{promo.program.length ? promo.program[0].label : ''}</p>
               </section>
             </label>
           </section>
