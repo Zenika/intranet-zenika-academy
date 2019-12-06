@@ -64,11 +64,11 @@ describe('UserForm tests', () => {
     expect(wrapper.find('#email span').text()).toEqual(wrapper.state().user.email);
   });
 
-  it('Should call axios post with user info when you click on create button', async () => {
+  it('Should call axios post with user info when you click on create button', () => {
     const button = wrapper.find('#createButton');
     const state = wrapper.state().user;
     const getSpy = jest.spyOn(Axios, 'post');
-    await button.simulate('click', {
+    button.simulate('click', {
       preventDefault: () => {},
     });
     expect(getSpy).toHaveBeenCalledTimes(1);

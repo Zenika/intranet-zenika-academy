@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './Program.scss';
 import '../layout/Layout.scss';
 
@@ -92,9 +92,7 @@ class RecapProgramForm extends React.Component {
             <button className="button is-info" value={0} onClick={(e) => handleChange(e, program)} type="button">Modifier</button>
           </div>
           <div className="control">
-            <Link to="/home/admin">
-              <button className="button is-danger" type="button">Annuler</button>
-            </Link>
+            <a href="/home/admin/" id="cancelButton" type="button" className="button is-danger">Annuler</a>
           </div>
         </div>
       </article>

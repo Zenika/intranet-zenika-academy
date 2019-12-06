@@ -17,6 +17,10 @@ class ProgramFormContainer extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.title = 'Admin / Programme création';
+  }
+
   handleChange = (e, program) => {
     const { value } = e.target;
     this.setState({ step: parseInt(value, 10), program });
