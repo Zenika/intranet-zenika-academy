@@ -23,8 +23,9 @@ export class PromoCreateStepTwo extends Component {
               return programList;
             });
           }
-        }));
-    }, 0);
+        }))
+        .catch((err) => { throw new Error(err); });
+    }, 100);
   }
 
   render() {
