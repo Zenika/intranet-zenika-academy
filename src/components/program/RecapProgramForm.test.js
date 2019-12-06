@@ -79,7 +79,7 @@ describe('Recap Program tests', () => {
     expect(wrapper.find('#sequenceTitle-0 span').text()).toEqual(wrapper.props().program.content[0].content[0].content[0].title);
   });
 
-  it('Should call axios post with user info when you click on create button', () => {
+  it('Should call axios post with program info when you click on create button', () => {
     const button = wrapper.find('#createButton');
     const state = wrapper.props().program;
     const getSpy = jest.spyOn(Axios, 'post');
