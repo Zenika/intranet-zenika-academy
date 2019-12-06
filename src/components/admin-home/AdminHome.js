@@ -27,8 +27,8 @@ class AdminHome extends Component {
   }
 
   render() {
-    // eslint-disable-next-line react/destructuring-assignment
-    const promotions = this.state.promotions.length > 0 ? this.state.promotions : [];
+    let { promotions } = this.state;
+    promotions = promotions.length > 0 ? promotions : [];
     return (
       <>
         <h1 className="title is-2 mbmd">Bienvenue</h1>
