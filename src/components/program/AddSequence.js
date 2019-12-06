@@ -46,12 +46,14 @@ class AddSequence extends React.Component {
       <div id={`sequenceBox-${id}`} className="box mtmd">
         <div ref="collapsibles" id={`accordionSeq${id}`}>
           <div className="root">
-            <h5 className="title is-5 is-pulled-left">
+            <h5 id="sequenceTitle" className="title is-5 is-pulled-left">
               Séquence n°
               {id + 1}
               :
               &nbsp;
-              {title}
+              <span>
+                {title}
+              </span>
             </h5>
             <a href={`#collapsible-sectionSeq${id}`} data-action="collapse" className="is-pulled-right is-active">
               <i className="fas fa-chevron-up" />
@@ -73,7 +75,7 @@ class AddSequence extends React.Component {
                 </div>
               </div>
               <footer className="card-footer">
-                <button className="button is-danger card-footer-item" id="addSequen" onClick={() => deleteSequence(deleteIt, id)} type="button">
+                <button className="button is-danger card-footer-item" id="deleteSequence" onClick={() => deleteSequence(deleteIt, id)} type="button">
                   <span
                     className="icon is-small"
                   >

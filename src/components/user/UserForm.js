@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './UserProfile.scss';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 
@@ -13,6 +12,10 @@ class UserForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeRole = this.handleChangeRole.bind(this);
+  }
+
+  componentDidMount() {
+    document.title = "Admin / Création d'utilisateur";
   }
 
   handleChange = (e) => {
@@ -56,13 +59,13 @@ class UserForm extends Component {
             <div className="field is-grouped">
               <div className="control">
                 <label htmlFor="lastName" className="label">
-                  <input type="text" className="input" name="lastName" placeholder="Nom" value={lastName} onChange={this.handleChange} />
+                  <input id="userLastName" type="text" className="input" name="lastName" placeholder="Nom" defaultValue={lastName} onChange={this.handleChange} />
                 </label>
                 <label htmlFor="firstName" className="label">
-                  <input type="text" className="input" name="firstName" placeholder="Prénom" value={firstName} onChange={this.handleChange} />
+                  <input id="userFirstName" type="text" className="input" name="firstName" placeholder="Prénom" defaultValue={firstName} onChange={this.handleChange} />
                 </label>
                 <label htmlFor="email" className="label">
-                  <input type="email" className="input" name="email" placeholder="E-mail" value={email} onChange={this.handleChange} />
+                  <input id="userEmail" type="mail" className="input" name="email" placeholder="E-mail" defaultValue={email} onChange={this.handleChange} />
                 </label>
                 <section className="field">
                   <SearchbarAutoComplete name="roleList" options={roleList} defaultValue={role} handleChange={this.handleChangeRole} searchKey="value" defaultLabel="Rôle" isMulti={false} />
@@ -71,10 +74,7 @@ class UserForm extends Component {
             </div>
             <div className="field is-grouped">
               <div className="control">
-                <button className="button is-success userProfileButton" type="submit">Valider</button>
-                <Link to="/home/admin">
-                  <button className="button is-danger userProfileButton" type="button">Annuler</button>
-                </Link>
+                <button id="validateButton" className="button is-success userProfileButton" type="submit">Valider</button>
               </div>
             </div>
           </form>

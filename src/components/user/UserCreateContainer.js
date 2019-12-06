@@ -18,6 +18,10 @@ class UserCreateContainer extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.title = "Admin / Création d'utilisateur";
+  }
+
   changeStep = (step, user) => {
     this.setState({ step, user });
   };
@@ -32,15 +36,12 @@ class UserCreateContainer extends React.Component {
             <UserForm
               user={user}
               changeStep={this.changeStep}
-              handleChange={this.handleChange}
             />
           )
           : (
             <RecapUserForm
               user={user}
               changeStep={this.changeStep}
-              handleChangeRole={this.handleChangeRole}
-              handleChange={this.handleChange}
             />
           )}
       </>
