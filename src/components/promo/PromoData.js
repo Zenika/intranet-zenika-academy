@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Axios from 'axios';
 import Moment from 'react-moment';
 import './PromoData.scss';
@@ -65,7 +65,7 @@ import './PromoData.scss';
 // };
 
 
-class PromoDetails extends React.Component {
+class PromoDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -94,35 +94,43 @@ class PromoDetails extends React.Component {
     return (
       <>
         <div className="container">
-          <h1 className="title is-1">{promotion.title}</h1>
-          <h2 className="subtitle is-3">
+          <div className="PromoDataHeader">
+            <div className="promoInfo">
+              <h1 className="title is-1 promoTitle">{promotion.title}</h1>
+              <h2 className="subtitle is-3">
 à
-            {' '}
-            {promotion.city}
-            {' '}
+                {' '}
+                {promotion.city}
+                {' '}
             du
-            {' '}
-            <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment>
-            {' '}
+                {' '}
+                <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment>
+                {' '}
             au
-            {' '}
-            <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
-          </h2>
+                {' '}
+                <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
+              </h2>
+            </div>
+            <a href="/home/admin" className="button is-dark goBack">Revenir à l&apos;accueil</a>
+          </div>
           <div className="container">
             <div className="notification">
               <h3 className="title is-3">Formateurs</h3>
-              {
+              <ul className="promoTeachers">
+                {
                   teachers.map((teacher) => <li>{`${teacher.firstName} ${teacher.lastName}`}</li>)
                 }
+              </ul>
             </div>
           </div>
           <div className="container">
             <div className="notification">
               <h3 className="title is-3">Elèves</h3>
-
-              {
+              <ul className="promoStudents">
+                {
                   students.map((student) => <li>{`${student.firstName} ${student.lastName}`}</li>)
                 }
+              </ul>
             </div>
           </div>
           <div className="container">
