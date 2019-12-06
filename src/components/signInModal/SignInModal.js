@@ -29,6 +29,7 @@ export class SignInModal extends Component {
       .then((res) => {
         sessionStorage.setItem('promoId', `${res.data.promoId}`);
         sessionStorage.setItem('loggedIn', 'true');
+        sessionStorage.setItem('userRole', `${res.data.role}`);
         if (res.data.role === 1) {
           this.setState({ redirectToAdmin: true, redirectToUser: false });
         } if (res.data.role === 3 || res.data.role === 2) {

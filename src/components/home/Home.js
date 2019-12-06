@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <h1>Bienvenue sur l&apos;intranet de la Zénika Academy </h1>
+        <h1>Bienvenue sur l&apos;intranet de la Zenika Academy </h1>
       </>
     );
   }
