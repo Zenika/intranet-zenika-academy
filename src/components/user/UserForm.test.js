@@ -59,11 +59,6 @@ describe('UserForm tests', () => {
     expect(wrapper.state().user.email).toEqual('youcef.messao@gmail.com');
   });
 
-  it('Should have a cancel button', () => {
-    const button = wrapper.find('#cancelButton');
-    expect(button).toHaveLength(1);
-  });
-
   it('Should have a validate button', () => {
     const button = wrapper.find('#validateButton');
     expect(button).toHaveLength(1);

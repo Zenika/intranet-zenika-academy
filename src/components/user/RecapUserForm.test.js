@@ -40,11 +40,6 @@ describe('UserForm tests', () => {
     expect(global.window.document.title).toBe("Admin / Récapitulatif création d'utilisateur");
   });
 
-  it('Should have a cancel button', () => {
-    const button = wrapper.find('#cancelButton');
-    expect(button).toHaveLength(1);
-  });
-
   it('Should have a create button', () => {
     const button = wrapper.find('#createButton');
     expect(button).toHaveLength(1);
