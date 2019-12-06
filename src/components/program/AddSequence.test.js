@@ -3,6 +3,8 @@ import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import crypto from 'crypto';
 import Sequence from './AddSequence';
+import Module from './AddModule';
+import Submodule from './AddSubModule';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -40,21 +42,44 @@ describe('AddSequence tests', () => {
     expect(button).toHaveLength(1);
   });
 
-  it('Should change sequence title on title input change', async () => {
-    const input = wrapper.find('input');
+  it('Should change submodule title on title input change', () => {
+    wrapper = mount(<Submodule
+      id={0}
+      key="test-sub"
+      deleteIt="test-seq"
+      title=""
+      content={[]}
+      handleChange={jest.fn()}
+      handleAddSequenceContent={jest.fn()}
+      deleteSubModule={jest.fn()}
+    />);
+    wrapper.state().sequences = [{ key: 'test-seq', id: 0 }];
+    wrapper.state().idSequence = 1;
+    wrapper.state().subModule = { title: '', type: 3, content: [{ title: '', type: 4, content: [] }] };
+    const id = wrapper.state().idSequence - 1;
+    const moduleChild = mount(<Sequence
+      id={0}
+      key="test-seq"
+      deleteIt="test-seq"
+      title={wrapper.state().subModule.content[id].title}
+      handleChange={wrapper.instance().handleChange}
+      deleteSequence={jest.fn()}
+    />);
+    const input = moduleChild.find('input');
     const mockEvent = {
       target: {
         name: 'title',
         value: 'Sequence test',
+        id,
       },
     };
     input.simulate('change', mockEvent);
-    await wrapper.update();
+    wrapper.update();
     const title = wrapper.find('#sequenceTitle span').text();
     expect(title).toEqual('Sequence test');
   });
 
-  it('Should call parent delete function on delete sequence button click', async () => {
+  it('Should call parent delete function on delete sequence button click', () => {
     const btn = wrapper.find('#deleteSequence');
     const fn = wrapper.props().deleteSequence;
     btn.simulate('click', fn('test-seq', 0));

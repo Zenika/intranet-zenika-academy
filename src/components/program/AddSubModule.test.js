@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import crypto from 'crypto';
 import Submodule from './AddSubModule';
 import Sequence from './AddSequence';
+import Module from './AddModule';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -50,20 +51,6 @@ describe('AddSubmodule tests', () => {
     expect(button).toHaveLength(1);
   });
 
-  it('Should change sub module title on title input change', async () => {
-    const input = wrapper.find('input');
-    const mockEvent = {
-      target: {
-        name: 'title',
-        value: 'SubModule test',
-      },
-    };
-    input.simulate('change', mockEvent);
-    await wrapper.update();
-    const title = wrapper.find('#subModuleTitle span').text();
-    expect(title).toEqual('SubModule test');
-  });
-
   it('Should add a Sequence (child component) on Add Sequence button click', async () => {
     const btn = wrapper.find('#addSequence');
     const instance = wrapper.instance();
@@ -84,7 +71,47 @@ describe('AddSubmodule tests', () => {
     fn.mockClear();
   });
 
-  it('Should call parent delete function on delete sub module button click', async () => {
+  it('Should change submodule title on title input change', () => {
+    wrapper = mount(<Module
+      id={0}
+      key="test"
+      deleteIt="test"
+      title=""
+      content={[]}
+      handleChange={jest.fn()}
+      handleAddSubModuleContent={jest.fn()}
+      handleAddSequenceContent={jest.fn()}
+      deleteModule={jest.fn()}
+    />);
+    wrapper.state().subModules = [{ key: 'test-sub', id: 0 }];
+    wrapper.state().idSubModules = 1;
+    wrapper.state().module = { title: '', type: 2, content: [{ title: '', type: 3, content: [] }] };
+    const id = wrapper.state().idSubModules - 1;
+    const moduleChild = mount(<Submodule
+      id={0}
+      key="test-sub"
+      deleteIt="test-sub"
+      title={wrapper.state().module.content[id].title}
+      content={[]}
+      handleChange={wrapper.instance().handleChange}
+      handleAddSequenceContent={jest.fn()}
+      deleteSubModule={jest.fn()}
+    />);
+    const input = moduleChild.find('input');
+    const mockEvent = {
+      target: {
+        name: 'title',
+        value: 'SubModule test',
+        id,
+      },
+    };
+    input.simulate('change', mockEvent);
+    wrapper.update();
+    const title = wrapper.find('#subModuleTitle span').text();
+    expect(title).toEqual('SubModule test');
+  });
+
+  it('Should call parent delete function on delete sub module button click', () => {
     const btn = wrapper.find('#deleteSubModule');
     const fn = wrapper.props().deleteSubModule;
     btn.simulate('click', fn('test-sub', 0));
@@ -132,5 +159,4 @@ describe('AddSubmodule tests', () => {
     expect(wrapper.state().subModule.content[id]).toBeUndefined();
     expect(wrapper.state().idSequence).toEqual(0);
   });
-
 });

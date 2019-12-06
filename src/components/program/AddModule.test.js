@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import crypto from 'crypto';
 import Module from './AddModule';
 import SubModule from './AddSubModule';
+import ProgramForm from './ProgramForm';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -51,16 +52,39 @@ describe('AddModule tests', () => {
     expect(button).toHaveLength(1);
   });
 
-  it('Should change module title on title input change', async () => {
-    const input = wrapper.find('input');
+  it('Should change module title on title input change', () => {
+    wrapper = mount(<ProgramForm
+      program={{
+        title: '',
+        type: 1,
+        content: [{ title: '', type: 2, content: [] }],
+      }}
+      handleChange={jest.fn()}
+    />);
+    wrapper.state().modules = [{ key: 'test', id: 0 }];
+    wrapper.state().idModules = 1;
+    const id = wrapper.state().idModules - 1;
+    const moduleChild = mount(<Module
+      id={0}
+      key="test"
+      deleteIt="test"
+      title={wrapper.state().program.content[id].title}
+      content={[]}
+      handleChange={wrapper.instance().handleChange}
+      handleAddSubModuleContent={jest.fn()}
+      handleAddSequenceContent={jest.fn()}
+      deleteModule={jest.fn()}
+    />);
+    const input = moduleChild.find('input');
     const mockEvent = {
       target: {
         name: 'title',
         value: 'Module test',
+        id,
       },
     };
     input.simulate('change', mockEvent);
-    await wrapper.update();
+    wrapper.update();
     const title = wrapper.find('#moduleTitle span').text();
     expect(title).toEqual('Module test');
   });
@@ -85,7 +109,7 @@ describe('AddModule tests', () => {
     fn.mockClear();
   });
 
-  it('Should call parent delete function on delete module button click', async () => {
+  it('Should call parent delete function on delete module button click', () => {
     const btn = wrapper.find('#deleteModule');
     const fn = wrapper.props().deleteModule;
     btn.simulate('click', fn('test', 0));
