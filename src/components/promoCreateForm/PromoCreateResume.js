@@ -38,7 +38,7 @@ class PromoCreateResume extends Component {
         });
         this.setState({ redirectionToHome: true });
       })
-      .catch((err) => { throw new Error(err); });
+      .catch((err) => console.error(err));
   }
 
   render() {
