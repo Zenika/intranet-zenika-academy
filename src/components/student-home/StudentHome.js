@@ -38,6 +38,7 @@ class StudentHome extends Component {
         program.push(
           <div key={key}>
 Titre :
+            { ' ' }
             {programData[key]}
           </div>,
         );
@@ -57,6 +58,7 @@ Titre :
         promotion.push(
           <div key={key}>
 Titre :
+            { ' ' }
             {promotionData[key]}
           </div>,
         );
@@ -65,6 +67,7 @@ Titre :
         promotion.push(
           <div key={key}>
 Début :
+            { ' ' }
             <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment>
           </div>,
         );
@@ -73,6 +76,7 @@ Début :
         promotion.push(
           <div key={key}>
 Fin :
+            { ' ' }
             <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment>
           </div>,
         );
@@ -81,6 +85,7 @@ Fin :
         promotion.push(
           <div key={key}>
 Ville :
+            { ' ' }
             {promotionData[key]}
           </div>,
         );
@@ -99,6 +104,7 @@ Ville :
         students.push(
           <div key={user.id}>
             {user.firstName}
+            { ' ' }
             {user.lastName.toUpperCase()}
           </div>,
         );
@@ -117,6 +123,7 @@ Ville :
         teacher.push(
           <div key={user.id}>
             {user.firstName}
+            { ' ' }
             {user.lastName.toUpperCase()}
           </div>,
         );
