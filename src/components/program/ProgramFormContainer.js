@@ -17,6 +17,10 @@ class ProgramFormContainer extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.title = 'Admin / Programme création';
+  }
+
   handleChange = (e, program) => {
     const { value } = e.target;
     this.setState({ step: parseInt(value, 10), program });
@@ -30,11 +34,10 @@ class ProgramFormContainer extends React.Component {
           ? (
             <ProgramForm
               program={program}
-              step
               handleChange={this.handleChange}
             />
           )
-          : <RecapProgramForm step program={program} handleChange={this.handleChange} />}
+          : <RecapProgramForm program={program} handleChange={this.handleChange} />}
       </>
     );
   }

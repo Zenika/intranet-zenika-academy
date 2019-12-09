@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Module from './AddModule';
 import './Program.scss';
 import '../layout/Layout.scss';
@@ -16,6 +15,7 @@ class ProgramForm extends React.Component {
   }
 
   componentDidMount() {
+    document.title = 'Admin / Programme création';
     const { program } = this.state;
     const createModules = program.content.map((node, i) => ({
       id: i,
@@ -58,7 +58,7 @@ class ProgramForm extends React.Component {
     });
   };
 
-  handleAddSubModuleContent = async (value, idModule, id = 0) => {
+  handleAddSubModuleContent = async (value, idModule) => {
     await this.setState((prevState) => {
       const newItems = [...prevState.program.content];
       newItems[idModule].content.push(value);
@@ -72,7 +72,7 @@ class ProgramForm extends React.Component {
     return true;
   };
 
-  handleAddSequenceContent = async (value, idSubModule, idModule, id = 0) => {
+  handleAddSequenceContent = async (value, idSubModule, idModule) => {
     await this.setState((prevState) => {
       const moduleContent = [...prevState.program.content];
       moduleContent[idModule].content[idSubModule].content.push(value);
@@ -86,7 +86,7 @@ class ProgramForm extends React.Component {
     return true;
   };
 
-  cleanProgram = () => {
+  clearProgram = () => {
     this.setState(() => ({
       modules: [],
       program: {
@@ -163,12 +163,10 @@ class ProgramForm extends React.Component {
     const buttonForm = (
       <div className="field is-grouped">
         <div className="control">
-          <button className="button is-success" value={1} onClick={(e) => handleChange(e, program)} type="button">Valider</button>
+          <button className="button is-success" id="validateProgramForm" value={1} onClick={(e) => handleChange(e, program)} type="button">Valider</button>
         </div>
         <div className="control">
-          <Link to="/home/admin">
-            <button className="button is-danger" type="button">Annuler</button>
-          </Link>
+          <a href="/home/admin/" id="cancelButton" type="button" className="button is-danger">Annuler</a>
         </div>
       </div>
     );
@@ -179,7 +177,9 @@ class ProgramForm extends React.Component {
         <form>
           <h2 className="title is-2">
                Programme&nbsp;
-            {program.title}
+            <span>
+              {program.title}
+            </span>
           </h2>
           <div className="card">
             <header className="card-header">
@@ -190,7 +190,7 @@ class ProgramForm extends React.Component {
             <div className="card-content">
               <div className="content">
                 <label htmlFor="title" className="label">
-                  <input className="input" name="title" type="text" placeholder="Nom du programme" value={program.title} onChange={(e) => this.handleChangeTitleProgram(e)} />
+                  <input className="input" name="title" type="text" id="programTitle" placeholder="Nom du programme" value={program.title} onChange={(e) => this.handleChangeTitleProgram(e)} />
                 </label>
               </div>
             </div>
@@ -203,7 +203,7 @@ class ProgramForm extends React.Component {
                 </span>
                     &nbsp; &nbsp;Module
               </button>
-              <button className="button is-danger card-footer-item" id="addModule" onClick={() => this.cleanProgram()} type="reset">
+              <button className="button is-danger card-footer-item" id="clearProgram" onClick={() => this.clearProgram()} type="reset">
                 <span
                   className="icon is-small"
                 >

@@ -124,12 +124,14 @@ class AddSubModule extends React.Component {
       <div id={`subModuleBox-${id}`} className="box mtmd">
         <div ref="collapsibles" id={`accordionSub${id}`}>
           <div className="root">
-            <h4 className="title is-4 is-pulled-left">
+            <h4 id="subModuleTitle" className="title is-4 is-pulled-left">
               Sous-Module n°
               {id + 1}
               :
               &nbsp;
-              {title}
+              <span>
+                {title}
+              </span>
             </h4>
             <a href={`#collapsible-sectionSub${id}`} data-action="collapse" className="is-pulled-right is-active">
               <i className="fas fa-chevron-up" />
@@ -159,7 +161,7 @@ class AddSubModule extends React.Component {
                   </span>
               &nbsp; &nbsp;Séquence
                 </button>
-                <button className="button is-danger card-footer-item" id="addSequenc" onClick={() => deleteSubModule(deleteIt, id)} type="button">
+                <button className="button is-danger card-footer-item" id="deleteSubModule" onClick={() => deleteSubModule(deleteIt, id)} type="button">
                   <span
                     className="icon is-small"
                   >

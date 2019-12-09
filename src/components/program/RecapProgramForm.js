@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './Program.scss';
 import '../layout/Layout.scss';
 
@@ -13,6 +13,7 @@ class RecapProgramForm extends React.Component {
   }
 
   componentDidMount() {
+    document.title = 'Admin / Récapitulatif création de programme';
   }
 
   createProgram = (e) => {
@@ -36,41 +37,49 @@ class RecapProgramForm extends React.Component {
       <article className="section box">
         <h1 className="title is-1 is-spaced">Récapitulatif</h1>
         <section className="box">
-          <h2 className="title is-2 is-spaced">
+          <h2 id="programTitle" className="title is-2 is-spaced">
             Programme&nbsp;
-            {program.title}
+            <span>
+              {program.title}
+            </span>
           </h2>
-          <ul className="list">
+          <ul id="recapProgramList" className="list">
             {
               program.content.map((module, i) => (
-                <li className="list-item">
-                  <h3 className="title is-3 is-spaced">
+                <li key={`moduleTitle-${module.title}`} className="list-item">
+                  <h3 id={`moduleTitle-${i}`} className="title is-3 is-spaced">
                     Module n°&nbsp;
                     {i + 1}
                     &nbsp;:&nbsp;
-                    {module.title}
+                    <span>
+                      {module.title}
+                    </span>
                   </h3>
                   <ul className="list">
                     {
                       module.content.map((subModule, p) => (
-                        <li className="list-item">
-                          <h3 className="title is-4 is-spaced">
+                        <li key={`subModuleTitle-${subModule.title}`} className="list-item">
+                          <h4 id={`subModuleTitle-${p}`} className="title is-4 is-spaced">
                             Sous-module n°&nbsp;
                             {p + 1}
                             &nbsp;:&nbsp;
-                            {subModule.title}
-                          </h3>
+                            <span>
+                              {subModule.title}
+                            </span>
+                          </h4>
                           <ul className="list">
                             {
                               subModule.content.map((sequence, n) => (
-                                <li className="list-item">
-                                  <h3 className="title is-5 is-spaced">
+                                <li key={`sequenceTitle-${sequence.title}`} className="list-item">
+                                  <h5 id={`sequenceTitle-${n}`} className="title is-5 is-spaced">
                                     <i className="fad fa-level-up" />
                                     Séquence n°&nbsp;
                                     {n + 1}
                                     &nbsp;:&nbsp;
-                                    {sequence.title}
-                                  </h3>
+                                    <span>
+                                      {sequence.title}
+                                    </span>
+                                  </h5>
                                 </li>
                               ))
                             }
@@ -86,15 +95,13 @@ class RecapProgramForm extends React.Component {
         </section>
         <div className="field is-grouped">
           <div className="control">
-            <button type="submit" onClick={this.createProgram} className="button is-success">Créer</button>
+            <button type="submit" id="createButton" onClick={this.createProgram} className="button is-success">Créer</button>
           </div>
           <div className="control">
-            <button className="button is-info" value={0} onClick={(e) => handleChange(e, program)} type="button">Modifier</button>
+            <button className="button is-info" id="modifyButton" value={0} onClick={(e) => handleChange(e, program)} type="button">Modifier</button>
           </div>
           <div className="control">
-            <Link to="/home/admin">
-              <button className="button is-danger" type="button">Annuler</button>
-            </Link>
+            <a href="/home/admin/" id="cancelButton" type="button" className="button is-danger">Annuler</a>
           </div>
         </div>
       </article>
