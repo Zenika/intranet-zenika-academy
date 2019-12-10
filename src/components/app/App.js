@@ -29,6 +29,7 @@ import StudentHome from '../student-home/StudentHome';
 import './App.scss';
 import PromoData from '../promo/PromoData';
 import ProgramDetails from '../programDetails/ProgramDetails';
+import ProgramData from '../program/ProgramData';
 
 class App extends React.Component {
   render() {
@@ -84,7 +85,7 @@ class App extends React.Component {
             />
             <Route
               key="show-promo-details"
-              path="/admin/promo/:id/details"
+              path="/:role/promo/:id/details"
               component={PromoData}
             />
             <Route exact path="/admin/module/list" component={ModuleList} />
@@ -100,6 +101,7 @@ class App extends React.Component {
             />
             <Route exact path="/admin/program" component={ProgramList} />
             <Route exact path="/admin/promo/:id/details" component={PromoData} />
+            <Route exact path="/admin/program/:id/details" component={ProgramData} />
             <Route
               key="create-program"
               exact
@@ -165,6 +167,9 @@ class App extends React.Component {
             <Route component={Notfound} />
           </Switch>
         </main>
+        <footer className="footer">
+          <Footer />
+        </footer>
       </Router>
     );
   }
