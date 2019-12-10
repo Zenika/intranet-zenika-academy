@@ -51,28 +51,30 @@ Programme :
     const promotion = [];
     const { promotionDetails } = this.state;
     const promotionData = promotionDetails.promotion ? promotionDetails.promotion : [];
-    promotion.push(<h1 className="studentsHomeSectionTitle" key="promoTitle">Promotion : </h1>);
     promotion.push(
-      <div>
+      <>
+        <h1 className="studentsHomeSectionTitle" key="promoTitle">Promotion : </h1>
+        <div>
 Titre :
-        { ' ' }
-        {promotionData.title}
-      </div>,
-      <div>
+          { ' ' }
+          {promotionData.title}
+        </div>
+        <div>
 Début :
-        { ' ' }
-        <Moment format="DD/MM/YYYY">{promotionData.startDate}</Moment>
-      </div>,
-      <div>
+          { ' ' }
+          <Moment format="DD/MM/YYYY">{promotionData.startDate}</Moment>
+        </div>
+        <div>
 Fin :
-        { ' ' }
-        <Moment format="DD/MM/YYYY">{promotionData.endDate}</Moment>
-      </div>,
-      <div>
+          { ' ' }
+          <Moment format="DD/MM/YYYY">{promotionData.endDate}</Moment>
+        </div>
+        <div>
 Ville :
-        { ' ' }
-        {promotionData.city}
-      </div>,
+          { ' ' }
+          {promotionData.city}
+        </div>
+      </>,
     );
     return promotion;
   }
