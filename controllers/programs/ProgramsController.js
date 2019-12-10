@@ -4,6 +4,10 @@ function containObject(array) {
   return array.some((val) => val instanceof Object);
 }
 
+function containIds(array) {
+  return array.some((val) => typeof val === 'number');
+}
+
 function createObject(program) {
   return Programs.create(program).then((contentCreated) => contentCreated.get('id'));
 }
@@ -21,6 +25,35 @@ async function recursiveProgramCreate(list) {
   return id;
 }
 
+async function createProgramObject(program) {
+  const list = { ...program };
+  if (containIds(program.content)) {
+    await Promise.all(program.content.map(async (node) => {
+      if (typeof node === 'number' && node > 0) {
+        const newItemArray = await Programs.findAll({ where: { id: node }, raw: true });
+        newItemArray[0].content = newItemArray[0].content.split(';');
+        const cleanItem = {
+          ...newItemArray[0],
+          content: newItemArray[0].content.map((id) => parseInt(id, 10)),
+        };
+        const p = await createProgramObject(cleanItem);
+        list.content.push(p);
+      }
+    }));
+  }
+  const cleanList = { ...list, content: list.content.filter((node) => typeof node !== 'number') };
+  return cleanList;
+}
+
+async function recursiveProgramDelete(list) {
+  if (containObject(list.content)) {
+    await Promise.all(list.content.map(async (node) => {
+      await recursiveProgramDelete(node);
+    }));
+  }
+  await Programs.destroy({ where: { id: list.id } });
+}
+
 module.exports = {
 
   getAllPrograms: (req, res) => Programs.findAll({ raw: false })
@@ -30,6 +63,20 @@ module.exports = {
   getProgramById: (req, res) => Programs.findOne({ where: { id: res.locals.program_id } })
     .then((programCreated) => res.status(200).send(programCreated))
     .catch((e) => res.status(400).send({ error: e.message })),
+
+  getProgramContentById: (req, res) => Programs
+    .findAll({ where: { id: res.locals.program_id }, raw: true })
+    .then((programCreated) => {
+      const arrayId = programCreated[0].content.split(';');
+      const cleanItem = {
+        ...programCreated[0],
+        content: arrayId.map((id) => parseInt(id, 10)),
+      };
+      return createProgramObject(cleanItem);
+    })
+    .then((programCreated) => res.status(200).send(programCreated))
+    .catch((e) => res.status(400).send({ error: e.message })),
+
 
   programCreate: (req, res) => recursiveProgramCreate(res.locals.programs)
     .then(() => res.status(201).send({ message: 'Created' }))
@@ -44,7 +91,7 @@ module.exports = {
       .catch((e) => res.status(400).send({ error: e.message }));
   },
 
-  programDelete: (req, res) => Programs.destroy({ where: { id: res.locals.program_id } })
+  programDelete: (req, res) => recursiveProgramDelete(res.locals.programs)
     .then(() => res.status(200).send('Deleted'))
     .catch((e) => res.status(400).send({ error: e.message })),
 };

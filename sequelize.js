@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const UsersModel = require('./models/users');
 const PromotionsModel = require('./models/promotions');
-const ProgramsModel = require('./models/promotions');
+const ProgramsModel = require('./models/programs');
 const RssFeedsModel = require('./models/rssFeeds');
 
 const sequelize = new Sequelize('zenika_academy', 'root', 'root', {

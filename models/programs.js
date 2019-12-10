@@ -19,8 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       get() {
         if (!this.getDataValue('content')) return [];
         const array = this.getDataValue('content').split(';');
-        array.forEach((id) => parseInt(id, 10));
-        return array;
+        return array.map((id) => parseInt(id, 10));
       },
       set(val) {
         this.setDataValue('content', val.join(';'));
