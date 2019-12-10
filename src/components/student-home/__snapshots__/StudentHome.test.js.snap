@@ -15,6 +15,32 @@ Array [
     >
       Promotion : 
     </h1>
+    <div>
+      Titre :
+       
+    </div>
+    <div>
+      Début :
+       
+      <time
+        dateTime={"2019-12-10T15:42:38.263Z"}
+      >
+        10/12/2019
+      </time>
+    </div>
+    <div>
+      Fin :
+       
+      <time
+        dateTime={"2019-12-10T15:42:38.264Z"}
+      >
+        10/12/2019
+      </time>
+    </div>
+    <div>
+      Ville :
+       
+    </div>
   </section>,
   <section
     className="studentHomeSection"
@@ -31,8 +57,18 @@ Array [
     <h1
       className="studentsHomeSectionTitle"
     >
-      Programme : 
+      Programme :
+       
     </h1>
+    <div>
+       
+      <a
+        className="detailsLink"
+        href="/home/user/program/undefined"
+      >
+        détails...
+      </a>
+    </div>
   </section>,
   <section
     className="studentHomeSection"
