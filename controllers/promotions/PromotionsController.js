@@ -51,7 +51,32 @@ module.exports = {
       .catch((e) => res.status(400).send(e));
   },
 
-  promotionDelete: (req, res) => Promotions.destroy({ where: { id: res.locals.promotion_id } })
-    .then(() => res.status(200).send('Deleted'))
-    .catch((e) => res.status(400).send(e)),
+  promotionDelete: async (req, res) => {
+    try {
+      const users = await Users.findAll({
+        attributes: { exclude: ['password'] },
+        includes: [{
+          model: Promotions,
+          where: { id: res.locals.promotion_id },
+        }],
+      });
+
+      users.forEach((user) => {
+        if (user.role === 3) {
+          Users.destroy({ where: { id: user.id } });
+        } else if (user.role === 2) {
+          Users.update(
+            { promotionId: res.locals.promotion_id },
+            { where: { id: user.id } },
+          );
+        }
+      });
+
+      const deletedPromo = await Promotions.destroy({ where: { id: res.locals.promotion_id } });
+
+      return res.status(200).json(deletedPromo).send('Deleted');
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
 };
