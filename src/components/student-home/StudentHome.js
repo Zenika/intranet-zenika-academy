@@ -36,11 +36,14 @@ class StudentHome extends Component {
     keys.forEach((key) => {
       if (key === 'title') {
         program.push(
-          <div key={key}>
-Titre :
-            { ' ' }
-            {programData[key]}
-          </div>,
+          <>
+            <div key={key}>
+              { ' ' }
+              {programData[key]}
+              { ' ' }
+              <a href={`/home/user/program/${programData.id}`} className="detailsLink">détails...</a>
+            </div>
+          </>,
         );
       }
     });
