@@ -73,6 +73,7 @@ class PromoDetails extends Component {
       users: [],
       program: {},
       promotion: {},
+      isAdmin: false,
       redirectToAdmin: false,
     };
     this.handleDelete = this.handleDelete.bind(this);
@@ -81,6 +82,10 @@ class PromoDetails extends Component {
   }
 
   componentDidMount() {
+    const role = sessionStorage.getItem('userRole');
+    if (JSON.parse(role) === 1) {
+      this.setState({ isAdmin: true });
+    }
     const { match } = this.props;
     const url = `http://localhost:4000/api/promotions/details/${parseInt(match.params.id, 10)}`;
     Axios.get(url)
@@ -132,11 +137,12 @@ class PromoDetails extends Component {
 
   render() {
     const {
-      users, program, promotion, redirectToAdmin,
+      users, program, promotion, redirectToAdmin, isAdmin,
     } = this.state;
     const { handleDeleteClick, handleDeleteEnterKey } = this;
     const teachers = users.filter((user) => user.role === 2);
     const students = users.filter((user) => user.role === 3);
+
     if (redirectToAdmin) {
       return <Redirect to="/home/admin" />;
     }
@@ -160,15 +166,19 @@ class PromoDetails extends Component {
                 <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
               </h2>
             </div>
-            <button
-              type="button"
-              className="button is-danger"
-              onClick={() => handleDeleteClick(promotion.id)}
-              onKeyUp={() => handleDeleteEnterKey(promotion.id)}
-            >
-              Supprimer
-            </button>
-            <a href="/home/admin" className="button is-dark goBack">Revenir à l&apos;accueil</a>
+            {isAdmin && (
+              <div className="buttonContainer">
+                <a href="/home/admin" className="button is-dark goBack">Revenir à l&apos;accueil</a>
+                <button
+                  type="button"
+                  className="button is-danger"
+                  onClick={() => handleDeleteClick(promotion.id)}
+                  onKeyUp={() => handleDeleteEnterKey(promotion.id)}
+                >
+                  Supprimer
+                </button>
+              </div>
+            )}
           </div>
           <div className="container">
             <div className="notification">

@@ -2,6 +2,12 @@
   margin-bottom: 1rem;
 }
 
+.buttonContainer{
+  display: flex;
+  width: 20rem;
+  justify-content: space-between;
+}
+
 .PromoDataHeader {
   display: flex;
   flex-flow: row nowrap;
