@@ -12,6 +12,10 @@ router.post('/',
   validator.joiObjectValidator(schemas.programSchemas.create, 'programs'),
   ProgramsController.programCreate);
 
+router.delete('/',
+  validator.joiObjectValidator(schemas.programSchemas.deleteSchema, 'programs'),
+  ProgramsController.programDelete);
+
 router.get('/:program_id',
   validator.joiIdValidator('program_id'),
   ProgramsController.getProgramById);
@@ -24,9 +28,5 @@ router.put('/:program_id/update',
   validator.joiIdValidator('program_id'),
   validator.joiObjectValidator(schemas.programSchemas.update, 'programs'),
   ProgramsController.programUpdate);
-
-router.delete('/:program',
-  validator.joiObjectValidator(schemas.programSchemas.deleteSchema, 'programs'),
-  ProgramsController.programDelete);
 
 module.exports = router;

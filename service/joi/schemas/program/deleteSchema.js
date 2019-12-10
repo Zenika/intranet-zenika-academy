@@ -13,6 +13,10 @@ const create = Joi.object({
     .required(),
 
   content: Joi.array(),
+
+  updatedAt: Joi.string(),
+
+  createdAt: Joi.string(),
 }).required();
 
 module.exports = create;
