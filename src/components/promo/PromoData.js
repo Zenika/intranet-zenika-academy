@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import Moment from 'react-moment';
 import './PromoData.scss';
@@ -72,7 +73,11 @@ class PromoDetails extends Component {
       users: [],
       program: {},
       promotion: {},
+      redirectToAdmin: false,
     };
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleDeleteEnterKey = this.handleDeleteEnterKey.bind(this);
   }
 
   componentDidMount() {
@@ -88,10 +93,53 @@ class PromoDetails extends Component {
       });
   }
 
+  /**
+   * Allows to delete a promo in the DB
+   * delete students
+   * update teachers with promoId null
+   * @param {*} id Promo Id
+   */
+  handleDelete(id) {
+    const url = `http://localhost:4000/api/promotions/${id}`;
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('Voulez vous supprimer cette promotion?')) {
+      Axios.delete(url)
+        .then(() => {
+          this.setState({ redirectToAdmin: true });
+        })
+        .catch((err) => console.error(err));
+    }
+  }
+
+  /**
+   * Allows to call the delete method on mouse click
+   * @param {*} id Promo Id
+   */
+  handleDeleteClick(id) {
+    return this.handleDelete(id);
+  }
+
+  /**
+ * Allows to call the delete method on enter Key press
+ * @param {*} id Promo Id
+ */
+  handleDeleteEnterKey(e, id) {
+    if (e.key === 'Enter') {
+      return this.handleDelete(id);
+    }
+    return false;
+  }
+
   render() {
-    const { users, program, promotion } = this.state;
+    const {
+      users, program, promotion, redirectToAdmin,
+    } = this.state;
+    const { handleDeleteClick, handleDeleteEnterKey } = this;
     const teachers = users.filter((user) => user.role === 2);
     const students = users.filter((user) => user.role === 3);
+    if (redirectToAdmin) {
+      return <Redirect to="/home/admin" />;
+    }
     return (
       <>
         <div className="container">
@@ -112,6 +160,14 @@ class PromoDetails extends Component {
                 <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
               </h2>
             </div>
+            <button
+              type="button"
+              className="button is-danger"
+              onClick={() => handleDeleteClick(promotion.id)}
+              onKeyUp={() => handleDeleteEnterKey(promotion.id)}
+            >
+              Supprimer
+            </button>
             <a href="/home/admin" className="button is-dark goBack">Revenir à l&apos;accueil</a>
           </div>
           <div className="container">
