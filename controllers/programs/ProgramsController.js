@@ -67,12 +67,15 @@ module.exports = {
   getProgramContentById: (req, res) => Programs
     .findAll({ where: { id: res.locals.program_id }, raw: true })
     .then((programCreated) => {
-      const arrayId = programCreated[0].content.split(';');
-      const cleanItem = {
-        ...programCreated[0],
-        content: arrayId.map((id) => parseInt(id, 10)),
-      };
-      return createProgramObject(cleanItem);
+      if (programCreated[0].content) {
+        const arrayId = programCreated[0].content.split(';');
+        const cleanItem = {
+          ...programCreated[0],
+          content: arrayId.map((id) => parseInt(id, 10)),
+        };
+        return createProgramObject(cleanItem);
+      }
+      return programCreated[0];
     })
     .then((programCreated) => res.status(200).send(programCreated))
     .catch((e) => res.status(400).send({ error: e.message })),
