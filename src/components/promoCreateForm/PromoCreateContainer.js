@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import PromoCreateStepOne from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import { PromoCreateStepThree } from './PromoCreateStepThree';
 import { PromoCreateStepFour } from './PromoCreateStepFour';
 import PromoCreateResume from './PromoCreateResume';
+
 
 export class PromoCreateContainer extends Component {
   constructor() {
@@ -24,19 +26,40 @@ export class PromoCreateContainer extends Component {
   }
 
   componentDidMount() {
-    const { location } = this.props;
-    const { data } = location;
+    const { match } = this.props;
     document.title = 'Création de promotion';
     if (window.location.toString().indexOf('edit') !== -1) {
-      console.log('data', data);
       document.title = 'Edition de promotion';
-      this.setState({
-        edit: true,
-        title: data.promotion.title,
-        city: data.promotion.city,
-        startDate: data.promotion.startDate.substr(0, data.promotion.startDate.indexOf('T')),
-        endDate: data.promotion.endDate.substr(0, data.promotion.endDate.indexOf('T')),
-      });
+      const url = `http://localhost:4000/api/promotions/details/${parseInt(match.params.id, 10)}`;
+      Axios.get(url)
+        .then((result) => {
+          result.data.users.forEach((user) => {
+            if (user.role === 2) {
+              const obj = { label: `${user.firstName} ${user.lastName}`, value: user.id };
+              this.setState((state) => {
+                const teacherList = state.teachers.push(obj);
+                return teacherList;
+              });
+            }
+            if (user.role === 3) {
+              const obj = {
+                firstName: user.firstName, lastName: user.lastName, email: user.email, role: 'student',
+              };
+              this.setState((state) => {
+                const studentList = state.students.push(obj);
+                return studentList;
+              });
+            }
+          });
+          this.setState({
+            edit: true,
+            title: result.data.promotion.title,
+            city: result.data.promotion.city,
+            startDate: result.data.promotion.startDate.substr(0, result.data.promotion.startDate.indexOf('T')),
+            endDate: result.data.promotion.endDate.substr(0, result.data.promotion.endDate.indexOf('T')),
+            program: [{ label: result.data.program.title, value: result.data.program.id }],
+          });
+        });
     }
   }
 
@@ -66,7 +89,9 @@ export class PromoCreateContainer extends Component {
    * @param name name of the state to update
    * @param data data to put in the state
    */
-  handleCSVImport = (name, data) => this.setState({ [name]: [...data], csv: true })
+  handleCSVImport = (name, data) => {
+    this.setState({ [name]: [...data], csv: true });
+  }
 
   /**
    * Allows to navigate forward on multiform

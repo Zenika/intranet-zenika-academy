@@ -154,9 +154,10 @@ class PromoDetails extends Component {
     }
 
     if (redirectToPromoEdit) {
+      const path = `/admin/promo/edit/${promotion.id}`;
       return (
         <Redirect to={{
-          pathname: '/admin/promo/edit',
+          pathname: path,
           data: { teachers, students, promotion },
         }}
         />

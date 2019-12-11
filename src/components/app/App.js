@@ -79,7 +79,7 @@ class App extends React.Component {
             />
             <Route
               key="edit-promo"
-              path="/admin/promo/edit"
+              path="/admin/promo/edit/:id"
               component={PromoCreateContainer}
             />
             <Route
