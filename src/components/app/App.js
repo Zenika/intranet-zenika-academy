@@ -28,6 +28,7 @@ import AdminHome from '../admin-home/AdminHome';
 import StudentHome from '../student-home/StudentHome';
 import './App.scss';
 import PromoData from '../promo/PromoData';
+import ProgramDetails from '../programDetails/ProgramDetails';
 
 class App extends React.Component {
   render() {
@@ -54,7 +55,8 @@ class App extends React.Component {
               path="/ressources/create"
               component={RessourceForm}
             />
-            <Route path="/home/user" component={StudentHome} />
+            <Route exact path="/home/user" component={StudentHome} />
+            <Route path="/home/user/program/:id" component={ProgramDetails} />
             <Route path="/home/admin" component={AdminHome} />
 
             <Route
