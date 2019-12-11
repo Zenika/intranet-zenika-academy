@@ -19,11 +19,25 @@ export class PromoCreateContainer extends Component {
       country: '',
       city: '',
       csv: false,
+      edit: false,
     };
   }
 
   componentDidMount() {
+    const { location } = this.props;
+    const { data } = location;
     document.title = 'Création de promotion';
+    if (window.location.toString().indexOf('edit') !== -1) {
+      console.log('data', data);
+      document.title = 'Edition de promotion';
+      this.setState({
+        edit: true,
+        title: data.promotion.title,
+        city: data.promotion.city,
+        startDate: data.promotion.startDate.substr(0, data.promotion.startDate.indexOf('T')),
+        endDate: data.promotion.endDate.substr(0, data.promotion.endDate.indexOf('T')),
+      });
+    }
   }
 
   /**
@@ -72,7 +86,7 @@ export class PromoCreateContainer extends Component {
 
   render() {
     const {
-      step, title, startDate, endDate, teachers, students, program, country, city, csv,
+      step, title, startDate, endDate, teachers, students, program, country, city, csv, edit,
     } = this.state;
     const promo = {
       title, startDate, endDate, teachers, students, program, country, city,
@@ -90,6 +104,7 @@ export class PromoCreateContainer extends Component {
             promo={promo}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
+            edit={edit}
           />
         );
       case 2:
@@ -101,6 +116,8 @@ export class PromoCreateContainer extends Component {
             handleMultiChange={handleMultiChange}
             promo={promo}
             step={step}
+            edit={edit}
+
           />
         );
       case 3:
@@ -113,6 +130,7 @@ export class PromoCreateContainer extends Component {
             name="teachers"
             promo={promo}
             step={step}
+            edit={edit}
           />
         );
       case 4:
@@ -127,6 +145,7 @@ export class PromoCreateContainer extends Component {
             step={step}
             csv={csv}
             name="students"
+            edit={edit}
           />
         );
       default:
@@ -136,6 +155,7 @@ export class PromoCreateContainer extends Component {
             prevStep={prevStep}
             promo={promo}
             step={step}
+            edit={edit}
           />
         );
     }

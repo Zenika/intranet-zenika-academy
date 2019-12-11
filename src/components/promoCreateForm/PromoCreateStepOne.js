@@ -8,7 +8,7 @@ import './PromoCreate.scss';
 
 function PromoCreateStepOne(props) {
   const {
-    nextStep, step, handleChange, promo,
+    nextStep, step, handleChange, promo, edit,
   } = props;
 
   const buttonForm = (
@@ -25,7 +25,7 @@ function PromoCreateStepOne(props) {
   return (
     <div className="promoCreateForm">
       <article className="section box">
-        <h1 className="title is-4 is-spaced">Création d&apos;une promo</h1>
+        <h1 className="title is-4 is-spaced">{`${edit ? 'Edition' : 'Création'} d'une promo`}</h1>
         <BulmaSteps step={step} />
         <section className="control">
           <label htmlFor="promoName" className="label">

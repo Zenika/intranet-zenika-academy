@@ -7,7 +7,7 @@ import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 export class PromoCreateStepFour extends Component {
   render() {
     const {
-      nextStep, prevStep, step, handleCSVImport, name, promo,
+      nextStep, prevStep, step, handleCSVImport, name, promo, edit,
     } = this.props;
     const selected = !!(promo.students.length && promo.students.length > 0);
 
@@ -25,7 +25,7 @@ export class PromoCreateStepFour extends Component {
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d&apos;une promo</h1>
+          <h1 className="title is-4 is-spaced">{`${edit ? 'Edition' : 'Création'} d'une promo`}</h1>
           <BulmaSteps step={step} />
           <section className="control">
             <span htmlFor="students" className="label">

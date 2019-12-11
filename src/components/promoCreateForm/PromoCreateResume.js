@@ -42,7 +42,9 @@ class PromoCreateResume extends Component {
   }
 
   render() {
-    const { step, promo, prevStep } = this.props;
+    const {
+      step, promo, prevStep, edit,
+    } = this.props;
     const { redirectionToHome } = this.state;
     const { handleCreate } = this;
 
@@ -67,7 +69,7 @@ class PromoCreateResume extends Component {
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d&apos;une promo</h1>
+          <h1 className="title is-4 is-spaced">{`${edit ? 'Edition' : 'Création'} d'une promo`}</h1>
           <BulmaSteps step={step} />
           <section className="field">
             <span className="title is-4 is-spaced">Résumé</span>
