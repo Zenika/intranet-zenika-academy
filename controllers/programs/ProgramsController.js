@@ -36,8 +36,8 @@ async function createProgramObject(program) {
           ...newItemArray[0],
           content: newItemArray[0].content.map((id) => parseInt(id, 10)),
         };
-        const p = await createProgramObject(cleanItem);
-        list.content.push(p);
+        const newObject = await createProgramObject(cleanItem);
+        list.content.push(newObject);
       }
     }));
   }
