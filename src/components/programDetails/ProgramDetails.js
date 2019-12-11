@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './ProgramDetails.scss';
 
 class ProgramDetails extends Component {
   _isMounted = false;
@@ -12,11 +13,10 @@ class ProgramDetails extends Component {
   }
 
   componentDidMount() {
-    // const id = sessionStorage.getItem('promoId');
     const { match } = this.props;
     const { id } = match.params;
     this._isMounted = true;
-    axios.get(`http://localhost:4000/api/programs/${id}`)
+    axios.get(`http://localhost:4000/api/programs/${id}/details`)
       .then((res) => {
         const programDetails = res.data;
         if (this._isMounted) {
@@ -32,33 +32,50 @@ class ProgramDetails extends Component {
   displayProgram = () => {
     const program = [];
     const { programDetails } = this.state;
-    const keys = Object.keys(programDetails);
+    const hasContent = programDetails.content ? programDetails : null;
+    let module;
+    let moduleTitle;
+    let subModule;
+    let subModuleTitle;
+    let sequence;
+    let sequenceTitle;
+    if (hasContent !== null) {
+      module = hasContent.content.length > 0 ? hasContent.content[0] : null;
+      moduleTitle = module.title.toUpperCase();
+      if (module !== null) {
+        subModule = module.content.length > 0 ? module.content[0] : null;
+        subModuleTitle = subModule.title;
+        if (subModule !== null) {
+          sequence = subModule.content.length > 0 ? subModule.content[0] : null;
+          sequenceTitle = sequence.title;
+        }
+      }
+    }
+
     program.push(
-      <h1 className="title is-2 mbmd" key="Program Title">
+      <>
+        <h1 className="title is-2 mbmd" key="Program Title">
 Programme
-        {' '}
-        {programDetails.title}
-      </h1>,
+          {' '}
+          {programDetails.title}
+        </h1>
+        <div className="moduleTitle">{moduleTitle}</div>
+        <div className="subModuleTitle">
+-
+          {' '}
+          {subModuleTitle}
+        </div>
+        <div className="sequenceTitle">
+-
+          {' '}
+          {sequenceTitle}
+        </div>
+      </>,
     );
-    // keys.forEach((key) => {
-    //   if (key === 'title') {
-    //     program.push(
-    //       <>
-    //         <div key={key}>
-    //           { ' ' }
-    //           {programDetails[key]}
-    //           { ' ' }
-    //           {/* <a href={`/home/user/program/${programDetails.id}`} className="detailsLink">détails...</a> */}
-    //         </div>
-    //       </>,
-    //     );
-    //   }
-    // });
     return program;
   }
 
   render() {
-    const { programDetails } = this.state;
     return (
       <>
         <section className="studentHomeSection">{this.displayProgram()}</section>
