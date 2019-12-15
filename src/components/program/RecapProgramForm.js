@@ -12,10 +12,6 @@ class RecapProgramForm extends React.Component {
     };
   }
 
-  componentDidMount() {
-    document.title = 'Admin / Récapitulatif création de programme';
-  }
-
   createProgram = (e) => {
     e.preventDefault();
     const { program } = this.props;
@@ -23,14 +19,34 @@ class RecapProgramForm extends React.Component {
       .then(() => this.setState(() => ({ redirectToReferrer: true })));
   };
 
+  editProgram = (e) => {
+    e.preventDefault();
+    const { program } = this.props;
+    Axios.put(`http://localhost:4000/api/programs/${program.id}/update`, program)
+      .then(() => this.setState(() => ({ redirectToReferrer: true })));
+  };
+
   render() {
     const {
-      handleChange, program,
+      handleChange, program, edit,
     } = this.props;
 
     const { redirectToReferrer } = this.state;
     if (redirectToReferrer === true) {
       return <Redirect to="/home/admin" />;
+    }
+
+    let actionButton;
+    if (edit === 0) {
+      actionButton = (
+        <button type="submit" id="createButton" onClick={this.createProgram} className="button is-success">Valider la création</button>
+
+      );
+    } else {
+      actionButton = (
+        <button type="submit" id="editButton" onClick={this.editProgram} className="button is-success">Valider l'édition</button>
+
+      );
     }
 
     return (
@@ -95,7 +111,7 @@ class RecapProgramForm extends React.Component {
         </section>
         <div className="field is-grouped">
           <div className="control">
-            <button type="submit" id="createButton" onClick={this.createProgram} className="button is-success">Créer</button>
+            { actionButton }
           </div>
           <div className="control">
             <button className="button is-info" id="modifyButton" value={0} onClick={(e) => handleChange(e, program)} type="button">Modifier</button>

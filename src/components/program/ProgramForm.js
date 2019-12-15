@@ -15,21 +15,7 @@ class ProgramForm extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Admin / Programme création';
-    const { program } = this.state;
-    const createModules = program.content.map((node, i) => ({
-      id: i,
-      key: Math.random()
-        .toString(36)
-        .substring(2, 15) + Math.random()
-        .toString(36)
-        .substring(2, 15),
-    }));
-    this.setState((prev) => ({
-      prev,
-      modules: createModules,
-      idModules: createModules.length,
-    }));
+    this.generateModule();
   }
 
   handleChangeTitleProgram = (e) => {
@@ -150,16 +136,41 @@ class ProgramForm extends React.Component {
     });
   };
 
+  generateModule() {
+    const { program } = this.state;
+    const createModules = program.content.map((node, i) => ({
+      id: i,
+      key: Math.random()
+        .toString(36)
+        .substring(2, 15) + Math.random()
+        .toString(36)
+        .substring(2, 15),
+    }));
+    this.setState((prev) => ({
+      prev,
+      modules: createModules,
+      idModules: createModules.length,
+    }));
+  }
+
   render() {
     const {
       program, modules,
     } = this.state;
     const {
-      handleChange,
+      handleChange, edit,
     } = this.props;
-    const titleForm = (
-      <h1 className="title is-1 is-spaced">Création d'un programme</h1>
-    );
+    let titleForm;
+
+    if (edit === 0) {
+      titleForm = (
+        <h1 className="title is-1 is-spaced">Création d'un programme</h1>
+      );
+    } else {
+      titleForm = (
+        <h1 className="title is-1 is-spaced">Edition d'un programme</h1>
+      );
+    }
     const buttonForm = (
       <div className="field is-grouped">
         <div className="control">

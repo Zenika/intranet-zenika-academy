@@ -48,10 +48,6 @@ describe('Recap Program tests', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('Should have a title', () => {
-    expect(global.window.document.title).toBe('Admin / Récapitulatif création de programme');
-  });
-
   it('Should have a create button', () => {
     const button = wrapper.find('#createButton');
     expect(button).toHaveLength(1);
@@ -73,7 +69,6 @@ describe('Recap Program tests', () => {
       + wrapper.props().program.content[0].content[0].content.length;
     expect(wrapper.find('li')).toHaveLength(totalLi);
     expect(wrapper.find('#recapProgramList')).toHaveLength(1);
-    expect(wrapper.find('#programTitle span').text()).toEqual(wrapper.props().program.title);
     expect(wrapper.find('#moduleTitle-0 span').text()).toEqual(wrapper.props().program.content[0].title);
     expect(wrapper.find('#subModuleTitle-0 span').text()).toEqual(wrapper.props().program.content[0].content[0].title);
     expect(wrapper.find('#sequenceTitle-0 span').text()).toEqual(wrapper.props().program.content[0].content[0].content[0].title);
