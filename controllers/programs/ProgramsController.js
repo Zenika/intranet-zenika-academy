@@ -8,19 +8,34 @@ function containIds(array) {
   return array.some((val) => typeof val === 'number');
 }
 
-function createObject(program) {
-  return Programs.create(program).then((contentCreated) => contentCreated.get('id'));
+function createObject(programElement) {
+  return Programs.create(programElement).then((contentCreated) => contentCreated.get('id'));
 }
 
-async function recursiveProgramCreate(list) {
-  const copy = { ...list };
-  if (containObject(list.content)) {
-    await Promise.all(list.content.map(async (node) => {
+function updateObject(programElement) {
+  const toUpdate = { ...programElement };
+  toUpdate.content.sort((a, b) => a - b);
+  return Programs.update(
+    { title: toUpdate.title, content: toUpdate.content },
+    { where: { id: toUpdate.id } },
+  );
+}
+
+async function recursiveProgramCreate(programElement) {
+  const copy = { ...programElement };
+  if (containObject(programElement.content)) {
+    await Promise.all(programElement.content.map(async (node) => {
       const id = await recursiveProgramCreate(node);
       copy.content.push(id);
     }));
   }
   const cleanList = { ...copy, content: copy.content.filter((node) => typeof node === 'number') };
+
+  // If the element already exist, we only want to update content and title
+  if (programElement.id) {
+    await updateObject(cleanList);
+    return programElement.id;
+  }
   const id = await createObject(cleanList);
   return id;
 }
@@ -37,12 +52,12 @@ async function createProgramObject(program) {
           content: newItemArray[0].content.map((id) => parseInt(id, 10)),
         };
         const newObject = await createProgramObject(cleanItem);
+        newObject.content.sort((a, b) => a.id - b.id);
         list.content.push(newObject);
       }
     }));
   }
-  const cleanList = { ...list, content: list.content.filter((node) => typeof node !== 'number') };
-  return cleanList;
+  return { ...list, content: list.content.filter((node) => typeof node !== 'number').sort((a, b) => a.id - b.id) };
 }
 
 async function recursiveProgramDelete(list) {
@@ -54,7 +69,46 @@ async function recursiveProgramDelete(list) {
   await Programs.destroy({ where: { id: list.id } });
 }
 
+async function recursiveDeleteOnUpdate(oldElement, updatedProgram) {
+  if (containObject(oldElement.content)) {
+    oldElement.content.map(async (node) => {
+      if (containObject(updatedProgram.content)) {
+        const itStay = updatedProgram.content.findIndex((e2) => node.id === e2.id);
+        if (itStay === -1) await recursiveProgramDelete(node);
+        else if (containObject(node.content)) {
+          await recursiveDeleteOnUpdate(node, updatedProgram.content[itStay]);
+        }
+      } else await recursiveProgramDelete(node);
+    });
+  }
+}
+
+function cleanProgramObject(programCreated) {
+  if (programCreated[0].content) {
+    const arrayId = programCreated[0].content.split(';');
+    const cleanItem = {
+      ...programCreated[0],
+      content: arrayId.map((id) => parseInt(id, 10)),
+    };
+    return createProgramObject(cleanItem);
+  }
+  return programCreated[0];
+}
+
 module.exports = {
+
+  programUpdate: (req, res) => {
+    const updatedProgram = res.locals.programs;
+    const id = res.locals.program_id;
+    if (id !== updatedProgram.id) res.status(400).send({ error: 'Id ne correspond pas au programme' });
+    Programs
+      .findAll({ where: { id: res.locals.program_id }, raw: true })
+      .then((programCreated) => cleanProgramObject(programCreated))
+      .then((oldProgram) => recursiveDeleteOnUpdate(oldProgram, updatedProgram))
+      .then(() => recursiveProgramCreate(updatedProgram))
+      .then(() => res.status(200).send('Updated'))
+      .catch((e) => res.status(400).send({ error: e.message }));
+  },
 
   getAllPrograms: (req, res) => Programs.findAll({ raw: false })
     .then((content) => res.send(content))
@@ -66,33 +120,14 @@ module.exports = {
 
   getProgramContentById: (req, res) => Programs
     .findAll({ where: { id: res.locals.program_id }, raw: true })
-    .then((programCreated) => {
-      if (programCreated[0].content) {
-        const arrayId = programCreated[0].content.split(';');
-        const cleanItem = {
-          ...programCreated[0],
-          content: arrayId.map((id) => parseInt(id, 10)),
-        };
-        return createProgramObject(cleanItem);
-      }
-      return programCreated[0];
-    })
-    .then((programCreated) => res.status(200).send(programCreated))
+    .then((programCreated) => cleanProgramObject(programCreated))
+    .then((programCleaned) => res.status(200).send(programCleaned))
     .catch((e) => res.status(400).send({ error: e.message })),
 
 
   programCreate: (req, res) => recursiveProgramCreate(res.locals.programs)
     .then(() => res.status(201).send({ message: 'Created' }))
     .catch((e) => res.status(400).send({ error: e.message })),
-
-  programUpdate: (req, res) => {
-    const { programs } = res.locals;
-    const programId = parseInt(res.locals.program_id, 10);
-
-    return Programs.update({ title: programs.title }, { where: { id: programId } })
-      .then((programUpdated) => res.status(200).send(programUpdated))
-      .catch((e) => res.status(400).send({ error: e.message }));
-  },
 
   programDelete: (req, res) => recursiveProgramDelete(res.locals.programs)
     .then(() => res.status(200).send('Deleted'))
