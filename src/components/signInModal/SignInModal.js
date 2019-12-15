@@ -39,8 +39,7 @@ export class SignInModal extends Component {
       })
       .catch((err) => {
         toggleModal(false);
-        alert('Impossible de vous authentifier');
-        throw new Error(err);
+        console.error(err);
       });
   }
 

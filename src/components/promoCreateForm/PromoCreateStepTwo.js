@@ -24,7 +24,7 @@ export class PromoCreateStepTwo extends Component {
             });
           }
         }))
-        .catch((err) => { throw new Error(err); });
+        .catch((err) => console.error(err));
     }, 100);
   }
 

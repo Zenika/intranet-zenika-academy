@@ -31,18 +31,19 @@ class StudentHome extends Component {
     const program = [];
     const { promotionDetails } = this.state;
     const programData = promotionDetails.program ? promotionDetails.program : [];
-    const keys = Object.keys(programData);
-    program.push(<h1 className="studentsHomeSectionTitle" key="Program Title">Programme : </h1>);
-    keys.forEach((key) => {
-      if (key === 'title') {
-        program.push(
-          <div key={key}>
-Titre :
-            {programData[key]}
-          </div>,
-        );
-      }
-    });
+    program.push(
+      <>
+        <h1 className="studentsHomeSectionTitle" key="Program Title">
+Programme :
+          {' '}
+        </h1>
+        <div>
+          {programData.title}
+          {' '}
+          <a href={`/home/user/program/${programData.id}`} className="detailsLink">détails...</a>
+        </div>
+      </>,
+    );
     return program;
   }
 
@@ -50,42 +51,31 @@ Titre :
     const promotion = [];
     const { promotionDetails } = this.state;
     const promotionData = promotionDetails.promotion ? promotionDetails.promotion : [];
-    const keys = Object.keys(promotionData);
-    promotion.push(<h1 className="studentsHomeSectionTitle" key="promoTitle">Promotion : </h1>);
-    keys.forEach((key) => {
-      if (key === 'title') {
-        promotion.push(
-          <div key={key}>
+    promotion.push(
+      <>
+        <h1 className="studentsHomeSectionTitle" key="promoTitle">Promotion : </h1>
+        <div>
 Titre :
-            {promotionData[key]}
-          </div>,
-        );
-      }
-      if (key === 'startDate') {
-        promotion.push(
-          <div key={key}>
+          { ' ' }
+          {promotionData.title}
+        </div>
+        <div>
 Début :
-            <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment>
-          </div>,
-        );
-      }
-      if (key === 'endDate') {
-        promotion.push(
-          <div key={key}>
+          { ' ' }
+          <Moment format="DD/MM/YYYY">{promotionData.startDate}</Moment>
+        </div>
+        <div>
 Fin :
-            <Moment format="DD/MM/YYYY" key={key}>{promotionData[key]}</Moment>
-          </div>,
-        );
-      }
-      if (key === 'city') {
-        promotion.push(
-          <div key={key}>
+          { ' ' }
+          <Moment format="DD/MM/YYYY">{promotionData.endDate}</Moment>
+        </div>
+        <div>
 Ville :
-            {promotionData[key]}
-          </div>,
-        );
-      }
-    });
+          { ' ' }
+          {promotionData.city}
+        </div>
+      </>,
+    );
     return promotion;
   }
 
@@ -99,6 +89,7 @@ Ville :
         students.push(
           <div key={user.id}>
             {user.firstName}
+            { ' ' }
             {user.lastName.toUpperCase()}
           </div>,
         );
@@ -117,6 +108,7 @@ Ville :
         teacher.push(
           <div key={user.id}>
             {user.firstName}
+            { ' ' }
             {user.lastName.toUpperCase()}
           </div>,
         );
