@@ -17,9 +17,9 @@ class PromoCreateResume extends Component {
   }
 
   handleCreate() {
-    const { promo } = this.props;
-    const { teachers } = promo;
-    const newPromo = {
+    const { promo, edit, promoId } = this.props;
+    const { teachers, students } = promo;
+    const promoData = {
       title: promo.title,
       city: promo.city,
       startDate: promo.startDate,
@@ -27,9 +27,24 @@ class PromoCreateResume extends Component {
       programId: promo.program[0].value,
     };
 
-    axios.post('http://localhost:4000/api/promotions', { newPromo, teachers })
+    if (edit) {
+      const users = {
+        students,
+        teachers,
+      };
+      console.log("COUCOU", users);
+
+      return axios.put(`http://localhost:4000/api/promotions/${promoId}/update`, { promoData, users })
+        .then((res) => {
+          console.log("UPDATE", res);
+
+          // this.setState({ redirectionToHome: true });
+        })
+        .catch((err) => console.error(err));
+    }
+    axios.post('http://localhost:4000/api/promotions', { promoData, teachers })
       .then((res) => {
-        promo.students.forEach((student) => {
+        students.forEach((student) => {
           const newStudent = {
             ...student,
             promotionId: res.data.id,

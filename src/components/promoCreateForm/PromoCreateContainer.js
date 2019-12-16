@@ -22,6 +22,7 @@ export class PromoCreateContainer extends Component {
       city: '',
       csv: false,
       edit: false,
+      promoId: 0,
     };
   }
 
@@ -30,10 +31,12 @@ export class PromoCreateContainer extends Component {
     document.title = 'Création de promotion';
     if (window.location.toString().indexOf('edit') !== -1) {
       document.title = 'Edition de promotion';
-      const url = `http://localhost:4000/api/promotions/details/${parseInt(match.params.id, 10)}`;
+      const { id } = match.params;
+      const url = `http://localhost:4000/api/promotions/details/${parseInt(id, 10)}`;
       Axios.get(url)
         .then((result) => {
-          result.data.users.forEach((user) => {
+          const { users, promotion, program } = result.data;
+          users.forEach((user) => {
             if (user.role === 2) {
               const obj = { label: `${user.firstName} ${user.lastName}`, value: user.id };
               this.setState((state) => {
@@ -53,11 +56,12 @@ export class PromoCreateContainer extends Component {
           });
           this.setState({
             edit: true,
-            title: result.data.promotion.title,
-            city: result.data.promotion.city,
-            startDate: result.data.promotion.startDate.substr(0, result.data.promotion.startDate.indexOf('T')),
-            endDate: result.data.promotion.endDate.substr(0, result.data.promotion.endDate.indexOf('T')),
-            program: [{ label: result.data.program.title, value: result.data.program.id }],
+            promoId: promotion.id,
+            title: promotion.title,
+            city: promotion.city,
+            startDate: promotion.startDate.substr(0, promotion.startDate.indexOf('T')),
+            endDate: promotion.endDate.substr(0, promotion.endDate.indexOf('T')),
+            program: [{ label: program.title, value: program.id }],
           });
         });
     }
@@ -111,7 +115,8 @@ export class PromoCreateContainer extends Component {
 
   render() {
     const {
-      step, title, startDate, endDate, teachers, students, program, country, city, csv, edit,
+      step, title, startDate, endDate, teachers, students, program, country,
+      city, csv, edit, promoId,
     } = this.state;
     const promo = {
       title, startDate, endDate, teachers, students, program, country, city,
@@ -180,6 +185,7 @@ export class PromoCreateContainer extends Component {
             prevStep={prevStep}
             promo={promo}
             step={step}
+            promoId={promoId}
             edit={edit}
           />
         );
