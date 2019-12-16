@@ -28,6 +28,7 @@ class StudentHome extends Component {
     if (redirectToUser) {
       return <Redirect to={`/user/promo/${promotionId}/details`} />;
     }
+    return (<h1>Hello!</h1>);
   }
 }
 
