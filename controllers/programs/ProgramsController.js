@@ -14,6 +14,7 @@ function createObject(programElement) {
 
 function updateObject(programElement) {
   const toUpdate = { ...programElement };
+  // sort content to get program's element in the right order
   toUpdate.content.sort((a, b) => a - b);
   return Programs.update(
     { title: toUpdate.title, content: toUpdate.content },
@@ -29,9 +30,10 @@ async function recursiveProgramCreate(programElement) {
       copy.content.push(id);
     }));
   }
+  // remove the element from content and only keep his id that we get after creation
   const cleanList = { ...copy, content: copy.content.filter((node) => typeof node === 'number') };
 
-  // If the element already exist, we only want to update content and title
+  // If the element already exist, we only want to update his content and title
   if (programElement.id) {
     await updateObject(cleanList);
     return programElement.id;
@@ -40,12 +42,15 @@ async function recursiveProgramCreate(programElement) {
   return id;
 }
 
+// Create a program object tree from database object
 async function createProgramObject(program) {
   const list = { ...program };
   if (containIds(program.content)) {
     await Promise.all(program.content.map(async (node) => {
+      // if node is an id, we get it from database
       if (typeof node === 'number' && node > 0) {
         const newItemArray = await Programs.findAll({ where: { id: node }, raw: true });
+        // transform string of id into an array of ids
         newItemArray[0].content = newItemArray[0].content.split(';');
         const cleanItem = {
           ...newItemArray[0],
@@ -57,6 +62,8 @@ async function createProgramObject(program) {
       }
     }));
   }
+  // remove the ids from content and only keep the elements that we fetch using the ids
+  // and sort the content
   return { ...list, content: list.content.filter((node) => typeof node !== 'number').sort((a, b) => a.id - b.id) };
 }
 
@@ -70,11 +77,15 @@ async function recursiveProgramDelete(list) {
 }
 
 async function recursiveDeleteOnUpdate(oldElement, updatedProgram) {
+  // If the element got no content, there's nothing to delete.
   if (containObject(oldElement.content)) {
     oldElement.content.map(async (node) => {
       if (containObject(updatedProgram.content)) {
+        // Compare the element in the old program and the updated program to find
+        // if we deleted it or not
         const itStay = updatedProgram.content.findIndex((e2) => node.id === e2.id);
         if (itStay === -1) await recursiveProgramDelete(node);
+        // if the old element is not deleted, re-call the function to check in his content
         else if (containObject(node.content)) {
           await recursiveDeleteOnUpdate(node, updatedProgram.content[itStay]);
         }
@@ -83,8 +94,10 @@ async function recursiveDeleteOnUpdate(oldElement, updatedProgram) {
   }
 }
 
+// Clean the program object we get from Database
 function cleanProgramObject(programCreated) {
   if (programCreated[0].content) {
+    // transform string of id into an array of ids
     const arrayId = programCreated[0].content.split(';');
     const cleanItem = {
       ...programCreated[0],
@@ -102,7 +115,7 @@ module.exports = {
     const id = res.locals.program_id;
     if (id !== updatedProgram.id) res.status(400).send({ error: 'Id ne correspond pas au programme' });
     Programs
-      .findAll({ where: { id: res.locals.program_id }, raw: true })
+      .findAll({ where: { id }, raw: true })
       .then((programCreated) => cleanProgramObject(programCreated))
       .then((oldProgram) => recursiveDeleteOnUpdate(oldProgram, updatedProgram))
       .then(() => recursiveProgramCreate(updatedProgram))
@@ -123,7 +136,6 @@ module.exports = {
     .then((programCreated) => cleanProgramObject(programCreated))
     .then((programCleaned) => res.status(200).send(programCleaned))
     .catch((e) => res.status(400).send({ error: e.message })),
-
 
   programCreate: (req, res) => recursiveProgramCreate(res.locals.programs)
     .then(() => res.status(201).send({ message: 'Created' }))
