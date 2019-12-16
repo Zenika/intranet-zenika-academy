@@ -107,9 +107,10 @@ class App extends React.Component {
               component={ProgramFormContainer}
             />
             <Route
-              key="edit-parcours"
+              key="edit-program"
+              exact
               path="/admin/program/:id/edit"
-              component={ProgramForm}
+              component={ProgramFormContainer}
             />
             <Route
               exact

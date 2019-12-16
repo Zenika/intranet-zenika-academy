@@ -33,10 +33,6 @@ describe('ProgramForm tests', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('Should have a title', () => {
-    expect(global.window.document.title).toBe('Admin / Programme création');
-  });
-
   it('Should have a cancel button', () => {
     const button = wrapper.find('#cancelButton');
     expect(button).toHaveLength(1);
