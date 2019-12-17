@@ -10,6 +10,7 @@ class ProgramDetails extends Component {
     this.state = {
       programDetails: [],
     };
+    this.titles = [];
   }
 
   componentDidMount() {
@@ -29,56 +30,39 @@ class ProgramDetails extends Component {
     this._isMounted = false;
   }
 
-  displayProgram = () => {
-    const program = [];
-    const { programDetails } = this.state;
-    const hasContent = programDetails.content ? programDetails : null;
-    let module;
-    let moduleTitle;
-    let subModule;
-    let subModuleTitle;
-    let sequence;
-    let sequenceTitle;
-    if (hasContent !== null) {
-      module = hasContent.content.length > 0 ? hasContent.content[0] : null;
-      moduleTitle = module.title.toUpperCase();
-      if (module !== null) {
-        subModule = module.content.length > 0 ? module.content[0] : null;
-        subModuleTitle = subModule.title;
-        if (subModule !== null) {
-          sequence = subModule.content.length > 0 ? subModule.content[0] : null;
-          sequenceTitle = sequence.title;
-        }
-      }
+  display = (programDetails) => {
+    if (programDetails.content) {
+      programDetails.content.forEach(this.display);
     }
+  }
 
-    program.push(
-      <>
-        <h1 className="title is-2 mbmd" key="Program Title">
-Programme
-          {' '}
+  record = (programDetails) => {
+    let className;
+    if (programDetails.content) {
+      if (programDetails.type === 1) {
+        className = 'programTitle';
+      } else if (programDetails.type === 2) {
+        className = 'moduleTitle';
+      } else if (programDetails.type === 3) {
+        className = 'subModuleTitle';
+      } else if (programDetails.type === 4) {
+        className = 'sequenceTitle';
+      }
+      this.titles.push(
+        <div key={programDetails.title} className={className}>
           {programDetails.title}
-        </h1>
-        <div className="moduleTitle">{moduleTitle}</div>
-        <div className="subModuleTitle">
--
-          {' '}
-          {subModuleTitle}
-        </div>
-        <div className="sequenceTitle">
--
-          {' '}
-          {sequenceTitle}
-        </div>
-      </>,
-    );
-    return program;
+        </div>,
+      );
+      programDetails.content.forEach(this.record);
+    }
   }
 
   render() {
+    const { programDetails } = this.state;
+    this.record(programDetails);
     return (
       <>
-        <section className="studentHomeSection">{this.displayProgram()}</section>
+        <section className="studentHomeSection">{this.titles}</section>
       </>
     );
   }
