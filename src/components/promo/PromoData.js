@@ -90,6 +90,7 @@ class PromoDetails extends Component {
     }
     const { match } = this.props;
     const url = `http://localhost:4000/api/promotions/details/${parseInt(match.params.id, 10)}`;
+    console.log('match :', match.params.role);
     Axios.get(url)
       .then((result) => {
         this.setState({
