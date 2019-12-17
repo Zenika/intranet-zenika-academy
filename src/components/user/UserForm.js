@@ -76,6 +76,9 @@ class UserForm extends Component {
               <div className="control">
                 <button id="validateButton" className="button is-success userProfileButton" type="submit">Valider</button>
               </div>
+              <div className="control">
+                <a href="/home/admin/" id="cancelButton" type="button" className="button is-danger">Annuler</a>
+              </div>
             </div>
           </form>
         </article>

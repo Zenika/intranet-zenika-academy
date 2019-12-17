@@ -64,6 +64,16 @@ describe('UserForm tests', () => {
     expect(button).toHaveLength(1);
   });
 
+  it('Should have a cancel button', () => {
+    const button = wrapper.find('#cancelButton');
+    expect(button).toHaveLength(1);
+  });
+
+  it('Should have /home/admin in cancel button href ', () => {
+    const button = wrapper.find('#cancelButton');
+    expect(button.props().href).toEqual('/home/admin/');
+  });
+
   it('Should call changeStep() props onsubmit', () => {
     const form = wrapper.find('form');
     const fn = wrapper.props().changeStep;
