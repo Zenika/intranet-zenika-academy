@@ -3,7 +3,11 @@ const { Users, Promotions, Programs } = require('../../models');
 
 const saltRounds = 10;
 
-const removeTeachers = async (promoId) => {
+/**
+ * Allows to Update the promotionId of a promotion teachers to Null
+ * @param {*} promoId
+ */
+const updateTeachersToNull = async (promoId) => {
   const teachersToRemove = await Users.findAll({
     where: {
       promotionId: promoId,
@@ -11,20 +15,33 @@ const removeTeachers = async (promoId) => {
     },
     raw: true,
   });
-  if (teachersToRemove) {
-    await Promise.all(
-      await teachersToRemove.forEach(async (teacherToRemove) => {
-        await Users.update(
-          { promotionId: null },
-          { where: { id: teacherToRemove.id } },
-        ))
-      } 
-    );
-  }
-return teachersToRemove;
+  const ids = teachersToRemove.map((t) => t.id);
+
+  await Users.update(
+    { promotionId: null },
+    { where: { id: ids } },
+  );
 };
 
-const removeStudents = async (promoId) => {
+/**
+ * Update the promotionId of teachers
+ * @param {*} teachers Array of teachers from req.body
+ * @param {*} promoId PromotionId to set for each teacher
+ */
+const updateTeachersWithPromoId = async (teachers, promoId) => {
+  const ids = teachers.map((t) => t.value);
+
+  await Users.update(
+    { promotionId: promoId },
+    { where: { id: ids } },
+  );
+};
+
+/**
+ * Allows to update the promotionId of a promotion students to Null
+ * @param {*} promoId
+ */
+const updateStudentsToNull = async (promoId) => {
   const studentsToRemove = await Users.findAll({
     where: {
       promotionId: promoId,
@@ -32,72 +49,45 @@ const removeStudents = async (promoId) => {
     },
     raw: true,
   });
-  if (studentsToRemove) {
-    await Promise.all(
-      await studentsToRemove.forEach(async (studentToRemove) => Users.update(
-        { promotionId: null },
-        { where: { id: studentToRemove.id } },
-      )),
-    );
-  }
-  return studentsToRemove;
+
+  const ids = studentsToRemove.map((t) => t.id);
+  await Users.update(
+    { promotionId: null },
+    { where: { id: ids } },
+  );
 };
 
-const updateTeachers = async (teachers, promoId) => {
-  const updatedTeachers = await teachers.forEach(async (teacher) => {
-    await Users.update(
-      { promotionId: promoId },
-      { where: { id: teacher.value } },
-    );
-  });
-  return updatedTeachers;
+/**
+ * Allows to update the promotionId of existing students
+ * or create new ones with the promotionId if they don't exist
+ * @param {*} students Array of students
+ * @param {*} promoId promotion id to set
+ */
+const upsertNewStudents = async (students, promoId) => {
+  await Promise.all(
+    students.map(async (student) => {
+      const foundStudent = await Users.findOne({ where: { email: student.email } });
+      // UNKNOWN STUDENT CREATION//
+      if (foundStudent === null) {
+        const hash = await bcrypt.hash('student', saltRounds);
+        const newStudent = {
+          ...student,
+          promotionId: promoId,
+          password: hash,
+          role: 3,
+        };
+        await Users.create(newStudent);
+      }
+      // EXISTING STUDENTS UPDATE//
+      if (foundStudent) {
+        await Users.update(
+          { promotionId: promoId },
+          { where: { id: foundStudent.id } },
+        );
+      }
+    }),
+  );
 };
-
-
-// const updateStudents = async (students, promoId) => {
-//   const registeredPomoStudents = await Users.findAll({ where: { promotionId: promoId, role: 3 } });
-
-//   console.log('PROMOSTUD', registeredPomoStudents);
-
-//   // DELETING EXISTING STUDENTS NOT IN PROMO ANYMORE
-//   if (registeredPomoStudents) {
-//     await Promise.all(
-//       registeredPomoStudents.forEach((registeredStudent) => students.some(
-//         async (updatedStudent) => {
-//           if (registeredStudent.id !== updatedStudent.id) {
-//             await Users.destroy(
-//               { where: { id: registeredStudent.id } },
-//             );
-//           }
-//         },
-//       )),
-//     );
-//   }
-
-//   // STUDENTS UPDATE
-//   await students.forEach(async (student) => {
-//     const foundStudent = await Users.findOne({ where: { email: student.email } });
-//     // EXISTING STUDENTS UPDATE//
-//     if (foundStudent && foundStudent.promotionId !== promoId) {
-//       await Users.update(
-//         { promotionId: promoId },
-//         { where: { id: foundStudent.id } },
-//       );
-//     }
-
-//     // UNKNOWN STUDENT CREATION//
-//     if (!foundStudent) {
-//       const hash = await bcrypt.hash(student.password, saltRounds);
-//       const newStudent = {
-//         ...student,
-//         promotionId: promoId,
-//         password: hash,
-//       };
-//       await Users.create(newStudent);
-//     }
-//   });
-//   return students;
-// };
 
 
 module.exports = {
@@ -148,11 +138,10 @@ module.exports = {
     const { promoData, users } = req.body;
     const id = res.locals.promotion_id;
     try {
-      await removeTeachers(id);
-      await updateTeachers(users.teachers, id);
-      await removeStudents(id);
-
-      // await updateStudents(users.students, id);
+      await updateTeachersToNull(id);
+      await updateTeachersWithPromoId(users.teachers, id);
+      await updateStudentsToNull(id);
+      await upsertNewStudents(users.students, id);
       const promoUpdated = await Promotions.update({ ...promoData }, { where: { id } });
       return res.status(201).send(promoUpdated);
     } catch (error) {
@@ -169,17 +158,15 @@ module.exports = {
           where: { id: res.locals.promotion_id },
         }],
       });
-
-      users.forEach((user) => {
-        if (user.role === 3) {
-          Users.destroy({ where: { id: user.id } });
-        } else if (user.role === 2) {
-          Users.update(
-            { promotionId: null },
-            { where: { id: user.id } },
-          );
-        }
-      });
+      Promise.all(
+        users.forEach(async (user) => {
+          if (user.role === 3) {
+            await Users.destroy({ where: { id: user.id } });
+          } else if (user.role === 2) {
+            await updateTeachersToNull(user.promotionId);
+          }
+        }),
+      );
 
       const deletedPromo = await Promotions.destroy({ where: { id: res.locals.promotion_id } });
 
