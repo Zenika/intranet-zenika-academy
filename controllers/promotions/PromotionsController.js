@@ -29,7 +29,7 @@ const updateTeachersToNull = async (promoId) => {
  * @param {*} promoId PromotionId to set for each teacher
  */
 const updateTeachersWithPromoId = async (teachers, promoId) => {
-  const ids = teachers.map((t) => t.value);
+  const ids = teachers.map((t) => t.id);
 
   await Users.update(
     { promotionId: promoId },
@@ -120,12 +120,12 @@ module.exports = {
     .catch((e) => res.status(400).send(e)),
 
   promotionCreate: async (req, res) => {
-    const { promoData, teachers } = req.body;
+    const { promoData, teachersToUpsert } = req.body;
     try {
       const promo = await Promotions.create(promoData);
-      await teachers.map((teacher) => Users.update(
+      await teachersToUpsert.map((teacher) => Users.update(
         { promotionId: promo.id },
-        { where: { id: teacher.value } },
+        { where: { id: teacher.id } },
       ));
 
       return res.status(201).send(promo);
@@ -139,7 +139,7 @@ module.exports = {
     const id = res.locals.promotion_id;
     try {
       await updateTeachersToNull(id);
-      await updateTeachersWithPromoId(users.teachers, id);
+      await updateTeachersWithPromoId(users.teachersToUpsert, id);
       await updateStudentsToNull(id);
       await upsertNewStudents(users.students, id);
       const promoUpdated = await Promotions.update({ ...promoData }, { where: { id } });
