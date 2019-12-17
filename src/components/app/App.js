@@ -8,7 +8,7 @@ import Notfound from '../notfound/Notfound';
 import NavigationBar from '../navigation/Navigation';
 import Footer from '../footer/Footer';
 import PromoList from '../promo/PromoList';
-import PromoForm from '../promo/PromoForm';
+// import PromoForm from '../promo/PromoForm';
 import RessourceForm from '../ressources/RessourceForm';
 import ProgramList from '../program/ProgramList';
 import ProgramForm from '../program/ProgramForm';
@@ -79,8 +79,8 @@ class App extends React.Component {
             />
             <Route
               key="edit-promo"
-              path="/admin/promo/:id/edit"
-              component={PromoForm}
+              path="/admin/promo/edit/:id"
+              component={PromoCreateContainer}
             />
             <Route
               key="show-promo-details"

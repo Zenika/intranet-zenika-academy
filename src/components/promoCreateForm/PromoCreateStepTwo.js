@@ -30,7 +30,7 @@ export class PromoCreateStepTwo extends Component {
 
   render() {
     const {
-      nextStep, prevStep, step, promo, handleMultiChange,
+      nextStep, prevStep, step, promo, handleMultiChange, edit,
     } = this.props;
     const { programs } = this.state;
 
@@ -47,7 +47,7 @@ export class PromoCreateStepTwo extends Component {
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d&apos;une promo</h1>
+          <h1 className="title is-4 is-spaced">{`${edit ? 'Edition' : 'Création'} d'une promo`}</h1>
           <BulmaSteps step={step} />
           <div className="control">
             <span className="label">Choisir un programme : </span>

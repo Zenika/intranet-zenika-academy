@@ -75,10 +75,12 @@ class PromoDetails extends Component {
       promotion: {},
       isAdmin: false,
       redirectToAdmin: false,
+      redirectToPromoEdit: false,
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleDeleteEnterKey = this.handleDeleteEnterKey.bind(this);
+    this.goToPromoEdit = this.goToPromoEdit.bind(this);
   }
 
   componentDidMount() {
@@ -135,16 +137,31 @@ class PromoDetails extends Component {
     return false;
   }
 
+  goToPromoEdit() {
+    return this.setState({ redirectToPromoEdit: true });
+  }
+
   render() {
     const {
-      users, program, promotion, redirectToAdmin, isAdmin,
+      users, program, promotion, redirectToAdmin, isAdmin, redirectToPromoEdit,
     } = this.state;
-    const { handleDeleteClick, handleDeleteEnterKey } = this;
+    const { handleDeleteClick, handleDeleteEnterKey, goToPromoEdit } = this;
     const teachers = users.filter((user) => user.role === 2);
     const students = users.filter((user) => user.role === 3);
 
     if (redirectToAdmin) {
       return <Redirect to="/home/admin" />;
+    }
+
+    if (redirectToPromoEdit) {
+      const path = `/admin/promo/edit/${promotion.id}`;
+      return (
+        <Redirect to={{
+          pathname: path,
+          data: { teachers, students, promotion },
+        }}
+        />
+      );
     }
     return (
       <>
@@ -169,6 +186,13 @@ class PromoDetails extends Component {
             {isAdmin && (
               <div className="buttonContainer">
                 <a href="/home/admin" className="button is-dark goBack">Revenir à l&apos;accueil</a>
+                <button
+                  type="button"
+                  className="button is-warning"
+                  onClick={goToPromoEdit}
+                >
+                  Editer
+                </button>
                 <button
                   type="button"
                   className="button is-danger"

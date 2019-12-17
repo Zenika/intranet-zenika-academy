@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import PromoCreateStepOne from './PromoCreateStepOne';
 import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import { PromoCreateStepThree } from './PromoCreateStepThree';
 import { PromoCreateStepFour } from './PromoCreateStepFour';
 import PromoCreateResume from './PromoCreateResume';
+
 
 export class PromoCreateContainer extends Component {
   constructor() {
@@ -19,11 +21,50 @@ export class PromoCreateContainer extends Component {
       country: '',
       city: '',
       csv: false,
+      edit: false,
+      promoId: 0,
     };
   }
 
   componentDidMount() {
+    const { match } = this.props;
     document.title = 'Création de promotion';
+    if (window.location.toString().indexOf('edit') !== -1) {
+      document.title = 'Edition de promotion';
+      const { id } = match.params;
+      const url = `http://localhost:4000/api/promotions/details/${parseInt(id, 10)}`;
+      Axios.get(url)
+        .then((result) => {
+          const { users, promotion, program } = result.data;
+          users.forEach((user) => {
+            if (user.role === 2) {
+              const obj = { label: `${user.firstName} ${user.lastName}`, value: user.id };
+              this.setState((state) => {
+                const teacherList = state.teachers.push(obj);
+                return teacherList;
+              });
+            }
+            if (user.role === 3) {
+              const obj = {
+                firstName: user.firstName, lastName: user.lastName, email: user.email, role: 'student',
+              };
+              this.setState((state) => {
+                const studentList = state.students.push(obj);
+                return studentList;
+              });
+            }
+          });
+          this.setState({
+            edit: true,
+            promoId: promotion.id,
+            title: promotion.title,
+            city: promotion.city,
+            startDate: promotion.startDate.substr(0, promotion.startDate.indexOf('T')),
+            endDate: promotion.endDate.substr(0, promotion.endDate.indexOf('T')),
+            program: [{ label: program.title, value: program.id }],
+          });
+        });
+    }
   }
 
   /**
@@ -52,7 +93,9 @@ export class PromoCreateContainer extends Component {
    * @param name name of the state to update
    * @param data data to put in the state
    */
-  handleCSVImport = (name, data) => this.setState({ [name]: [...data], csv: true })
+  handleCSVImport = (name, data) => {
+    this.setState({ [name]: [...data], csv: true });
+  }
 
   /**
    * Allows to navigate forward on multiform
@@ -72,7 +115,8 @@ export class PromoCreateContainer extends Component {
 
   render() {
     const {
-      step, title, startDate, endDate, teachers, students, program, country, city, csv,
+      step, title, startDate, endDate, teachers, students, program, country,
+      city, csv, edit, promoId,
     } = this.state;
     const promo = {
       title, startDate, endDate, teachers, students, program, country, city,
@@ -90,6 +134,7 @@ export class PromoCreateContainer extends Component {
             promo={promo}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
+            edit={edit}
           />
         );
       case 2:
@@ -101,6 +146,8 @@ export class PromoCreateContainer extends Component {
             handleMultiChange={handleMultiChange}
             promo={promo}
             step={step}
+            edit={edit}
+
           />
         );
       case 3:
@@ -113,6 +160,7 @@ export class PromoCreateContainer extends Component {
             name="teachers"
             promo={promo}
             step={step}
+            edit={edit}
           />
         );
       case 4:
@@ -127,6 +175,7 @@ export class PromoCreateContainer extends Component {
             step={step}
             csv={csv}
             name="students"
+            edit={edit}
           />
         );
       default:
@@ -136,6 +185,8 @@ export class PromoCreateContainer extends Component {
             prevStep={prevStep}
             promo={promo}
             step={step}
+            promoId={promoId}
+            edit={edit}
           />
         );
     }
