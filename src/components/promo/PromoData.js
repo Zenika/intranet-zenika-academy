@@ -90,7 +90,6 @@ class PromoDetails extends Component {
     }
     const { match } = this.props;
     const url = `http://localhost:4000/api/promotions/details/${parseInt(match.params.id, 10)}`;
-    console.log('match :', match.params.role);
     Axios.get(url)
       .then((result) => {
         this.setState({
@@ -228,7 +227,10 @@ class PromoDetails extends Component {
           <div className="container">
             <div className="notification">
               <h3 className="title is-3">Programme</h3>
-              <p>{program.title}</p>
+              <p>
+                {program.title}
+              </p>
+              <a href={`/home/program/details/${program.id}`} className="detailsLink">détails...</a>
             </div>
           </div>
         </div>
