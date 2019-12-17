@@ -24,7 +24,7 @@ function updateObject(programElement) {
 
 async function recursiveProgramCreate(programElement) {
   const copy = { ...programElement };
-  if (containObject(programElement.content)) {
+  if (programElement.content instanceof Array && containObject(programElement.content)) {
     await Promise.all(programElement.content.map(async (node) => {
       const id = await recursiveProgramCreate(node);
       copy.content.push(id);
@@ -45,7 +45,7 @@ async function recursiveProgramCreate(programElement) {
 // Create a program object tree from database object
 async function createProgramObject(program) {
   const list = { ...program };
-  if (containIds(program.content)) {
+  if (program.content instanceof Array && containIds(program.content)) {
     await Promise.all(program.content.map(async (node) => {
       // if node is an id, we get it from database
       if (typeof node === 'number' && node > 0) {
@@ -68,7 +68,7 @@ async function createProgramObject(program) {
 }
 
 async function recursiveProgramDelete(list) {
-  if (containObject(list.content)) {
+  if (list.content instanceof Array && containObject(list.content)) {
     await Promise.all(list.content.map(async (node) => {
       await recursiveProgramDelete(node);
     }));
@@ -78,7 +78,7 @@ async function recursiveProgramDelete(list) {
 
 async function recursiveDeleteOnUpdate(oldElement, updatedProgram) {
   // If the element got no content, there's nothing to delete.
-  if (containObject(oldElement.content)) {
+  if (oldElement.content instanceof Array && containObject(oldElement.content)) {
     oldElement.content.map(async (node) => {
       if (containObject(updatedProgram.content)) {
         // Compare the element in the old program and the updated program to find
