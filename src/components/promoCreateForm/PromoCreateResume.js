@@ -17,9 +17,15 @@ class PromoCreateResume extends Component {
   }
 
   handleCreate() {
-    const { promo } = this.props;
-    const { teachers } = promo;
-    const newPromo = {
+    const { promo, edit, promoId } = this.props;
+    const { teachers, students } = promo;
+    const teachersToUpsert = teachers.map((teacher) => {
+      const obj = {
+        id: teacher.value,
+      };
+      return obj;
+    });
+    const promoData = {
       title: promo.title,
       city: promo.city,
       startDate: promo.startDate,
@@ -27,9 +33,21 @@ class PromoCreateResume extends Component {
       programId: promo.program[0].value,
     };
 
-    axios.post('http://localhost:4000/api/promotions', { newPromo, teachers })
+
+    if (edit) {
+      const users = {
+        students,
+        teachersToUpsert,
+      };
+      return axios.put(`http://localhost:4000/api/promotions/${promoId}/update`, { promoData, users })
+        .then(() => {
+          this.setState({ redirectionToHome: true });
+        })
+        .catch((err) => console.error(err));
+    }
+    return axios.post('http://localhost:4000/api/promotions', { promoData, teachersToUpsert })
       .then((res) => {
-        promo.students.forEach((student) => {
+        students.forEach((student) => {
           const newStudent = {
             ...student,
             promotionId: res.data.id,
@@ -42,7 +60,9 @@ class PromoCreateResume extends Component {
   }
 
   render() {
-    const { step, promo, prevStep } = this.props;
+    const {
+      step, promo, prevStep, edit,
+    } = this.props;
     const { redirectionToHome } = this.state;
     const { handleCreate } = this;
 
@@ -67,7 +87,7 @@ class PromoCreateResume extends Component {
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">Création d&apos;une promo</h1>
+          <h1 className="title is-4 is-spaced">{`${edit ? 'Edition' : 'Création'} d'une promo`}</h1>
           <BulmaSteps step={step} />
           <section className="field">
             <span className="title is-4 is-spaced">Résumé</span>
