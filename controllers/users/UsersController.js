@@ -35,6 +35,8 @@ module.exports = {
       default:
         break;
     }
+    const foundUser = await Users.findOne({ where: { email: user.email } });
+    if (foundUser) { res.status(409).json({ message: 'User already exists' }); }
     try {
       user.password = await bcrypt.hash(user.password, saltRounds);
       const userCreated = await Users.create(user);

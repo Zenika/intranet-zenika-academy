@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     promotionId: {
       type: DataTypes.INTEGER,
+      allowNull: true,
     },
   },
   {

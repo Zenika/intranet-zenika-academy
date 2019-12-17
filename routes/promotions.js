@@ -22,7 +22,7 @@ router.get('/details/:promotion_id',
 
 router.put('/:promotion_id/update',
   validator.joiIdValidator('promotion_id'),
-  validator.joiObjectValidator(schemas.promotionSchemas.update, 'promotion'),
+  // validator.joiObjectValidator(schemas.promotionSchemas.update, 'promotion'),
   PromotionsController.promotionUpdate);
 
 router.delete('/:promotion_id',
