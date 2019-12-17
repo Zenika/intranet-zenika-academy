@@ -138,19 +138,21 @@ class ProgramForm extends React.Component {
 
   generateModule() {
     const { program } = this.state;
-    const createModules = program.content.map((node, i) => ({
-      id: i,
-      key: Math.random()
-        .toString(36)
-        .substring(2, 15) + Math.random()
-        .toString(36)
-        .substring(2, 15),
-    }));
-    this.setState((prev) => ({
-      prev,
-      modules: createModules,
-      idModules: createModules.length,
-    }));
+    if (program.content instanceof Array) {
+      const createModules = program.content.map((node, i) => ({
+        id: i,
+        key: Math.random()
+          .toString(36)
+          .substring(2, 15) + Math.random()
+          .toString(36)
+          .substring(2, 15),
+      }));
+      this.setState((prev) => ({
+        prev,
+        modules: createModules,
+        idModules: createModules.length,
+      }));
+    }
   }
 
   render() {
