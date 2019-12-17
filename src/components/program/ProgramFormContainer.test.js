@@ -9,7 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<ProgramFormContainer />);
+  wrapper = mount(<ProgramFormContainer match={{ params: {} }} />);
   wrapper.state().step = 0;
   wrapper.state().program = {
     title: '',
