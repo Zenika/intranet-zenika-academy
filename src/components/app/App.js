@@ -11,7 +11,7 @@ import PromoList from '../promo/PromoList';
 // import PromoForm from '../promo/PromoForm';
 import RessourceForm from '../ressources/RessourceForm';
 import ProgramList from '../program/ProgramList';
-import ProgramForm from '../program/ProgramForm';
+// import ProgramForm from '../program/ProgramForm';
 import ModuleList from '../module/ModuleList';
 import ModuleForm from '../module/ModuleForm';
 import RssFeedList from '../rssFeed/RssFeedList';
@@ -57,7 +57,7 @@ class App extends React.Component {
               component={RessourceForm}
             />
             <Route exact path="/home/user" component={StudentHome} />
-            <Route path="/home/user/program/:id" component={ProgramDetails} />
+            <Route path="/home/program/details/:id" component={ProgramDetails} />
             <Route path="/home/admin" component={AdminHome} />
 
             <Route

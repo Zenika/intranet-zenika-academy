@@ -77,7 +77,7 @@ class AdminHome extends Component {
                     <li className="promoLineContainer">
                       <h1 className="promotionTitle">{program.title}</h1>
                       {' '}
-                      <a href={`/admin/program/${program.id}/details`} className="detailsLink">détails...</a>
+                      <a href={`/home/program/details/${program.id}`} className="detailsLink">détails...</a>
                     </li>
                   );
                 }
