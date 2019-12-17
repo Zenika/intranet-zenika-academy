@@ -73,7 +73,9 @@ class RecapProgramForm extends React.Component {
             <div className="control">
               <button type="submit" id="createButton" onClick={(e) => this.createUser(e)} className="button is-success">Créer</button>
             </div>
-            <div className="control" />
+            <div className="control">
+              <a href="/home/admin/" id="cancelButton" type="button" className="button is-danger">Annuler</a>
+            </div>
           </div>
         </article>
       );
