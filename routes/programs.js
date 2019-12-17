@@ -12,8 +12,8 @@ router.post('/',
   validator.joiObjectValidator(schemas.programSchemas.create, 'programs'),
   ProgramsController.programCreate);
 
-router.delete('/',
-  validator.joiObjectValidator(schemas.programSchemas.deleteSchema, 'programs'),
+router.delete('/:program_id',
+  validator.joiIdValidator('program_id'),
   ProgramsController.programDelete);
 
 router.get('/:program_id',

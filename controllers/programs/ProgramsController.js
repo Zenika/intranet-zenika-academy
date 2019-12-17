@@ -141,7 +141,9 @@ module.exports = {
     .then(() => res.status(201).send({ message: 'Created' }))
     .catch((e) => res.status(400).send({ error: e.message })),
 
-  programDelete: (req, res) => recursiveProgramDelete(res.locals.programs)
+  programDelete: (req, res) => Programs.findAll({ where: { id: res.locals.program_id }, raw: true })
+    .then((programCreated) => cleanProgramObject(programCreated))
+    .then((toDelete) => recursiveProgramDelete(toDelete))
     .then(() => res.status(200).send('Deleted'))
     .catch((e) => res.status(400).send({ error: e.message })),
 };
