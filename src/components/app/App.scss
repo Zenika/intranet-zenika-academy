@@ -1,9 +1,18 @@
-root{
-  position: relative;
+html, body {
+  height: 100%;
 }
 
-// .fluid{
-//   width: 100%;
-//   padding-left:32px;
-//   padding-right:32px;
-// }
+.fluid{
+  max-width:none;
+  width: 100%;
+  padding-left:32px;
+  padding-right:32px;
+  padding-bottom: 10rem;
+}
+
+.header {
+  z-index: 100;
+  position: sticky;
+  top: 0px;
+  padding-bottom: 0.5rem;
+}
