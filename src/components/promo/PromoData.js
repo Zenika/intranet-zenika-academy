@@ -86,6 +86,9 @@ class PromoDetails extends Component {
     const { handleDeleteClick, handleDeleteEnterKey, goToPromoEdit } = this;
     const teachers = users.filter((user) => user.role === 2);
     const students = users.filter((user) => user.role === 3);
+    const programTitle = program ? program.title : 'Pas de programme associé';
+    const detailLink = program ? <a href={`/home/program/details/${program.id}`} className="detailsLink">détails...</a>
+      : null;
 
     if (redirectToAdmin) {
       return <Redirect to="/home/admin" />;
@@ -166,9 +169,9 @@ class PromoDetails extends Component {
             <div className="notification">
               <h3 className="title is-3">Programme</h3>
               <p>
-                {program.title}
+                {programTitle}
               </p>
-              <a href={`/home/program/details/${program.id}`} className="detailsLink">détails...</a>
+              {detailLink}
             </div>
           </div>
         </div>
