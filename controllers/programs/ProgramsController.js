@@ -22,6 +22,11 @@ function updateObject(programElement) {
   );
 }
 
+// In this controller we use a lot of recursive function because we only got one table
+// in database called "program" where we store all the program content
+// content are differentiate by type and we store reference
+// to other content by a string of ids in database
+
 async function recursiveProgramCreate(programElement) {
   const copy = { ...programElement };
   if (programElement.content instanceof Array && containObject(programElement.content)) {
