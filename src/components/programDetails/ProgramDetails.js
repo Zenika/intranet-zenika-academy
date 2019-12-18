@@ -57,21 +57,43 @@ class ProgramDetails extends Component {
   }
 
   record = (programDetails) => {
-    let className;
+    let content;
     if (programDetails.content) {
       if (programDetails.type === 1) {
-        className = 'programTitle';
+        content = (
+          <li>
+            <h1 key={programDetails.title} className="programTitle">
+              {programDetails.title}
+            </h1>
+          </li>
+        );
       } else if (programDetails.type === 2) {
-        className = 'moduleTitle';
+        content = (
+          <li>
+            <h2 key={programDetails.title} className="moduleTitle">
+              {programDetails.title}
+            </h2>
+          </li>
+        );
       } else if (programDetails.type === 3) {
-        className = 'subModuleTitle';
+        content = (
+          <li>
+            <h3 key={programDetails.title} className="subModuleTitle">
+              {programDetails.title}
+            </h3>
+          </li>
+        );
       } else if (programDetails.type === 4) {
-        className = 'sequenceTitle';
+        content = (
+          <li>
+            <h4 key={programDetails.title} className="sequenceTitle">
+              {programDetails.title}
+            </h4>
+          </li>
+        );
       }
       this.titles.push(
-        <div key={programDetails.title} className={className}>
-          {programDetails.title}
-        </div>,
+        content,
       );
       programDetails.content.forEach(this.record);
     }
@@ -164,7 +186,7 @@ class ProgramDetails extends Component {
             </button>
           </div>
         )}
-        <section className="studentHomeSection">{this.titles}</section>
+        <ul className="studentHomeSection">{this.titles}</ul>
       </>
     );
   }
