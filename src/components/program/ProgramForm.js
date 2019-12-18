@@ -216,7 +216,7 @@ class ProgramForm extends React.Component {
                 </span>
                     &nbsp; &nbsp;Module
               </button>
-              <button className="button is-danger card-footer-item" id="clearProgram" onClick={() => this.clearProgram()} type="reset">
+              <button className="button is-danger card-footer-item" id="clearProgram" onClick={() => this.clearProgram()} type="submit">
                 <span
                   className="icon is-small"
                 >

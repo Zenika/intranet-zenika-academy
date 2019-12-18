@@ -1,7 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProgramDetails component matches snapshot 1`] = `
-<section
-  className="studentHomeSection"
-/>
+Array [
+  <div
+    className="buttonContainer"
+  >
+    <a
+      className="button is-dark goBack"
+      href="/user/promo/null/details"
+    >
+      Revenir à l'accueil
+    </a>
+  </div>,
+  <section
+    className="studentHomeSection"
+  />,
+]
 `;

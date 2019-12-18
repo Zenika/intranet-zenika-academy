@@ -25,13 +25,29 @@ Array [
   >
     Créer un utilisateur
   </a>,
-  <h2
-    className="title is-4 mbmd"
+  <div
+    className="notification"
   >
-    Liste des promotions :
-  </h2>,
-  <ul
-    className="promosContainer"
-  />,
+    <h2
+      className="title is-4 mbmd"
+    >
+      Liste des promotions :
+    </h2>
+    <ul
+      className="promosContainer"
+    />
+  </div>,
+  <div
+    className="notification"
+  >
+    <h2
+      className="title is-4 mbmd"
+    >
+      Liste des programmes :
+    </h2>
+    <ul
+      className="promosContainer"
+    />
+  </div>,
 ]
 `;
