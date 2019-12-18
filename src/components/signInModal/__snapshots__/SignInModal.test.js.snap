@@ -37,7 +37,7 @@ exports[`Modal signIn tests should match the snapshot 1`] = `
               onChange={[Function]}
               placeholder="Email"
               required={true}
-              type="text"
+              type="email"
               value=""
             />
             <span

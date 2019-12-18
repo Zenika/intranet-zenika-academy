@@ -12,7 +12,7 @@ Array [
       Revenir à l'accueil
     </a>
   </div>,
-  <section
+  <ul
     className="studentHomeSection"
   />,
 ]

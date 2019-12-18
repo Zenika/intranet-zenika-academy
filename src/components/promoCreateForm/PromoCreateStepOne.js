@@ -12,7 +12,7 @@ function PromoCreateStepOne(props) {
   } = props;
 
   const buttonForm = (
-    <section className="field buttonField section">
+    <section className="field buttonField">
       <section className="control">
         <a href="/home/admin/" id="cancelButton" type="button" className="button is-danger">Annuler</a>
       </section>
@@ -45,16 +45,6 @@ function PromoCreateStepOne(props) {
             <DatePicker date={promo.endDate} name="endDate" defaultValue={promo.endDate} handleChange={(e) => handleChange(e)} />
           </section>
         </section>
-        {/* <section className="field">
-          <label className="label">Pays:</label>
-          <CreatableSelect
-          defaultValue={promo.country}
-          name="country"
-          options={country}
-          handleChange={(e) => handleMultiChange(e, 'country')}
-          searchKey="country"
-          defaultLabel="Pays" />
-        </section> */}
         <section className="field">
           <label htmlFor="city" className="label">
             Ville:

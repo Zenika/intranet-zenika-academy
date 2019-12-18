@@ -11,7 +11,6 @@ class ProgramDetails extends Component {
     this.state = {
       programDetails: [],
       isAdmin: false,
-      // redirectToStudentHome: false,
       redirectToProgramEdit: false,
       redirectToAdmin: false,
       programId: null,
@@ -54,39 +53,39 @@ class ProgramDetails extends Component {
     if (programDetails.content) {
       programDetails.content.forEach(this.display);
     }
-  }
+  };
 
   record = (programDetails) => {
     let content;
     if (programDetails.content) {
       if (programDetails.type === 1) {
         content = (
-          <li>
-            <h1 key={programDetails.title} className="programTitle">
+          <li key={programDetails.id}>
+            <h1 className="programTitle">
               {programDetails.title}
             </h1>
           </li>
         );
       } else if (programDetails.type === 2) {
         content = (
-          <li>
-            <h2 key={programDetails.title} className="moduleTitle">
+          <li key={programDetails.id}>
+            <h2 className="moduleTitle">
               {programDetails.title}
             </h2>
           </li>
         );
       } else if (programDetails.type === 3) {
         content = (
-          <li>
-            <h3 key={programDetails.title} className="subModuleTitle">
+          <li key={programDetails.id}>
+            <h3 className="subModuleTitle">
               {programDetails.title}
             </h3>
           </li>
         );
       } else if (programDetails.type === 4) {
         content = (
-          <li>
-            <h4 key={programDetails.title} className="sequenceTitle">
+          <li key={programDetails.id}>
+            <h4 className="sequenceTitle">
               {programDetails.title}
             </h4>
           </li>
@@ -97,7 +96,7 @@ class ProgramDetails extends Component {
       );
       programDetails.content.forEach(this.record);
     }
-  }
+  };
 
   goToProgramEdit() {
     return this.setState({ redirectToProgramEdit: true });
@@ -109,7 +108,7 @@ class ProgramDetails extends Component {
  */
   handleDelete(id) {
     const url = `http://localhost:4000/api/programs/${id}`;
-    // eslint-disable-next-line no-restricted-globals
+    // eslint-disable-next-line no-restricted-globals,no-alert
     if (confirm('Voulez vous supprimer ce programme?')) {
       axios.delete(url)
         .then(() => {
@@ -143,8 +142,7 @@ class ProgramDetails extends Component {
       programDetails, isAdmin, redirectToProgramEdit, programId, redirectToAdmin, promotionId,
     } = this.state;
     const { goToProgramEdit, handleDeleteClick, handleDeleteEnterKey } = this;
-    this.record(programDetails);
-
+    if (this.titles.length === 0) this.record(programDetails);
     if (redirectToAdmin) {
       return <Redirect to="/home/admin" />;
     }

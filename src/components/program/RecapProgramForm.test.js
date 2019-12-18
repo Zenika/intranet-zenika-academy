@@ -38,6 +38,7 @@ const program = {
 beforeEach(() => {
   wrapper = mount(<RecapProgramForm
     program={program}
+    edit={0}
     handleChange={jest.fn()}
   />);
 });

@@ -1,16 +1,23 @@
 @import "~bulma/sass/utilities/initial-variables.sass";
-$navbar-breakpoint: 680px;
+$navbar-breakpoint: 720px;
 @import "~bulma/bulma.sass";
 
 a {
-    color: #4a4a4a
+    color: #4a4a4a;
+}
+
+#adminNavText{
+    align-items: center;
+    display: flex;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem;
+    position: relative;
 }
 
 .navBarLoggedOut {
     margin: 1.4rem;
     display: flex;
 }
-
 
 #navbarLogo, #navBarAvatar  {
     max-height: 3.75rem;
@@ -62,13 +69,13 @@ a:hover{
     }
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 808px) {
     .navbar-menu {
         font-size: 0.85rem;
     }
 }
 
-@media screen and (max-width: 679px) {
+@media screen and (max-width: 720px) {
     #display-breakpoint{
         display: block;
     }
@@ -98,7 +105,7 @@ a:hover{
     }
 }
 
-@media screen and (min-width: 679px) {
+@media screen and (min-width: 720px) {
     .navbar-item.is-hoverable:focus-within .navbar-dropdown {
         display: none;
     }

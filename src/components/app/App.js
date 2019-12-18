@@ -25,7 +25,12 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/home/user" component={StudentHome} />
-            <Route path="/home/program/details/:id" component={ProgramDetails} />
+            <Route
+              exact
+              key="program-detail"
+              path="/program/:id/details"
+              component={ProgramDetails}
+            />
             <Route path="/home/admin" component={AdminHome} />
             <Route
               key="create-promo"

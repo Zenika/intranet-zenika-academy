@@ -40,7 +40,7 @@ class RecapProgramForm extends React.Component {
         <article className="section box">
           <h2 className="title is-2 is-spaced">Récapitulatif du formulaire d&lsquo;utilisateur</h2>
           <section className="box">
-            <h2 className="title is-2 is-spaced">
+            <h2 className="title is-4 is-spaced">
               <ul className="list" id="recapUserList">
                 <li id="lastName" className="list-item">
                 Nom :&nbsp;
@@ -71,7 +71,7 @@ class RecapProgramForm extends React.Component {
           </section>
           <div className="field is-grouped">
             <div className="control">
-              <button type="submit" id="createButton" onClick={(e) => this.createUser(e)} className="button is-success">Créer</button>
+              <button type="button" id="createButton" onClick={(e) => this.createUser(e)} className="button is-success">Créer</button>
             </div>
             <div className="control">
               <a href="/home/admin/" id="cancelButton" type="button" className="button is-danger">Annuler</a>

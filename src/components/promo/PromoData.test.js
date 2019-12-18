@@ -1,7 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
 import { shallow } from 'enzyme';
-import TestUtils from 'react-dom/test-utils';
 import PromoData from './PromoData';
 
 jest.mock('Axios', () => {
@@ -64,15 +63,14 @@ jest.mock('Axios', () => {
   };
 });
 
-describe('Component PromoData', () => {
-  const match = { params: { id: 1 } };
-  const axiosMock = jest.spyOn(Axios, 'get');
-  const promoData = shallow(<PromoData match={match} />);
-  const promoDataInstance = promoData.instance();
+const match = { params: { id: 1 } };
+const axiosMock = jest.spyOn(Axios, 'get');
+let promoData;
+beforeEach(() => {
+  promoData = shallow(<PromoData match={match} />);
+});
 
-  beforeEach(() => {
-    promoDataInstance.componentDidMount();
-  });
+describe('Component PromoData', () => {
   test('it renders correctly', () => {
     expect(promoData).toMatchSnapshot();
   });
@@ -91,17 +89,5 @@ describe('Component PromoData', () => {
   test('Students section exists', () => {
     expect(promoData.find('.promoStudents')).toBeDefined();
     expect(promoData.find('.promoStudents')).toHaveLength(1);
-  });
-});
-
-describe('Go back button', () => {
-  const match = { params: { id: 1 } };
-  const detailsPage = TestUtils.renderIntoDocument(<PromoData match={match} />);
-  const goBackButton = TestUtils.findRenderedDOMComponentWithClass(detailsPage, 'goBack');
-
-  test('should link to Admin home page', () => {
-    expect(goBackButton).toBeDefined();
-    expect(goBackButton.textContent).toEqual('Revenir à l\'accueil');
-    expect(goBackButton.getAttribute('href')).toBe('/home/admin');
   });
 });

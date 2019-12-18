@@ -87,7 +87,7 @@ class PromoDetails extends Component {
     const teachers = users.filter((user) => user.role === 2);
     const students = users.filter((user) => user.role === 3);
     const programTitle = program ? program.title : 'Pas de programme associé';
-    const detailLink = program ? <a href={`/home/program/details/${program.id}`} className="detailsLink">détails...</a>
+    const detailLink = program ? <a href={`/program/${program.id}/details`} className="detailsLink">détails...</a>
       : null;
 
     if (redirectToAdmin) {
@@ -126,7 +126,7 @@ class PromoDetails extends Component {
             </div>
             {isAdmin && (
               <div className="buttonContainer">
-                <a href="/home/admin" className="button is-dark goBack">Revenir à l&apos;accueil</a>
+                <a href="/home/admin" id="backButton" className="button is-dark goBack">Revenir à l&apos;accueil</a>
                 <button
                   type="button"
                   className="button is-warning"

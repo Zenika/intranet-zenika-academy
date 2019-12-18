@@ -7,7 +7,7 @@ exports[`Navbar renders correctly Displays the connexion Modal when sign in butt
     className="navbar is-primary"
     role="navigation"
   >
-    <section
+    <div
       className="navbar-item display-mobile"
     >
       <button
@@ -17,25 +17,25 @@ exports[`Navbar renders correctly Displays the connexion Modal when sign in butt
       >
         Se connecter
       </button>
-    </section>
-    <section
+    </div>
+    <div
       className="navbar-menu"
     >
-      <section
+      <div
         className="navBarLoggedOut"
       >
-        <section
+        <div
           className="navbar-start"
         >
           <p>
             There is no fate but what we make
           </p>
-        </section>
-      </section>
-      <section
+        </div>
+      </div>
+      <div
         className="navbar-end"
       >
-        <section
+        <div
           className="navbar-item"
         >
           <button
@@ -45,9 +45,9 @@ exports[`Navbar renders correctly Displays the connexion Modal when sign in butt
           >
             Se connecter
           </button>
-        </section>
-      </section>
-    </section>
+        </div>
+      </div>
+    </div>
     <SignInModal
       connect={[Function]}
       toggleModal={[Function]}
@@ -88,7 +88,7 @@ exports[`Navbar renders correctly Displays the connexion Modal when sign in butt
                     onChange={[Function]}
                     placeholder="Email"
                     required={true}
-                    type="text"
+                    type="email"
                     value=""
                   />
                   <span
@@ -157,7 +157,7 @@ exports[`Navbar renders correctly it renders correctly 1`] = `
     className="navbar is-primary"
     role="navigation"
   >
-    <section
+    <div
       className="navbar-item display-mobile"
     >
       <button
@@ -167,25 +167,25 @@ exports[`Navbar renders correctly it renders correctly 1`] = `
       >
         Se connecter
       </button>
-    </section>
-    <section
+    </div>
+    <div
       className="navbar-menu"
     >
-      <section
+      <div
         className="navBarLoggedOut"
       >
-        <section
+        <div
           className="navbar-start"
         >
           <p>
             There is no fate but what we make
           </p>
-        </section>
-      </section>
-      <section
+        </div>
+      </div>
+      <div
         className="navbar-end"
       >
-        <section
+        <div
           className="navbar-item"
         >
           <button
@@ -195,9 +195,9 @@ exports[`Navbar renders correctly it renders correctly 1`] = `
           >
             Se connecter
           </button>
-        </section>
-      </section>
-    </section>
+        </div>
+      </div>
+    </div>
   </nav>
 </NavigationBar>
 `;

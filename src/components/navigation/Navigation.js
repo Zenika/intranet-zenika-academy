@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { SignInModal } from '../signInModal/SignInModal';
 import './Navigation.scss';
-// import logo from './logo.png';
+import logo from './logo.png';
 
 
 class NavigationBar extends Component {
@@ -13,15 +13,17 @@ class NavigationBar extends Component {
       modalState: false,
       loggedIn: false,
       isNavAdmin: false,
+      promoId: null,
+      programId: null,
     };
     this.setBurgerLink = this.setBurgerLink.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
-    this.handleSetBurgerLinkEnterPRess = this.handleSetBurgerLinkEnterPRess.bind(this);
+    this.handleSetBurgerLinkEnterPress = this.handleSetBurgerLinkEnterPress.bind(this);
     this.handleSetBurgerLinkClick = this.handleSetBurgerLinkClick.bind(this);
     this.handleSetNavbarStateClick = this.handleSetNavbarStateClick.bind(this);
-    this.handleSetNavbarStateEnterPRess = this.handleSetNavbarStateEnterPRess.bind(this);
+    this.handleSetNavbarStateEnterPress = this.handleSetNavbarStateEnterPress.bind(this);
     this.handleSetBurgerBarClick = this.handleSetBurgerBarClick.bind(this);
     this.handleSetBurgerBarEnterPress = this.handleSetBurgerBarEnterPress.bind(this);
   }
@@ -31,6 +33,7 @@ class NavigationBar extends Component {
     isUserLogged = JSON.parse(isUserLogged);
     if (isUserLogged != null && isUserLogged) {
       this.setState({ loggedIn: true });
+      this.connect();
     } else {
       this.setState({ loggedIn: false, modalState: '' });
     }
@@ -41,14 +44,12 @@ class NavigationBar extends Component {
     sessionStorage.setItem('navbarAdmin', state);
   }
 
-
   setBurgerBar = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector(`#${burger.dataset.target}`);
     burger.classList.toggle('is-active');
     nav.classList.toggle('is-active');
   };
-
 
   setBurgerLink = (e) => {
     const navLink = e.currentTarget;
@@ -65,13 +66,13 @@ class NavigationBar extends Component {
     } else {
       this.setState({ modalState: true });
     }
-  }
+  };
 
   handleSetBurgerLinkClick(e) {
     this.setBurgerLink(e);
   }
 
-  handleSetBurgerLinkEnterPRess(e) {
+  handleSetBurgerLinkEnterPress(e) {
     if (e.keyCode === 13) {
       this.setBurgerLink(e);
     }
@@ -81,7 +82,7 @@ class NavigationBar extends Component {
     this.setNavbarState(state);
   }
 
-  handleSetNavbarStateEnterPRess(e, state) {
+  handleSetNavbarStateEnterPress(e, state) {
     if (e.keyCode === 13) {
       this.setNavbarState(state);
     }
@@ -96,7 +97,6 @@ class NavigationBar extends Component {
       this.setBurgerBar();
     }
   }
-
 
   /**
    * Allows to disconnect a user
@@ -114,200 +114,149 @@ class NavigationBar extends Component {
    * Allows to connect a user
    */
   connect() {
-    return this.setState({ loggedIn: true });
+    const promoId = JSON.parse(sessionStorage.getItem('promoId'));
+    const programId = JSON.parse(sessionStorage.getItem('programId'));
+    const role = JSON.parse(sessionStorage.getItem('userRole'));
+    if (role === 1) this.setState({ isNavAdmin: true });
+    this.setState({ promoId, programId, loggedIn: true });
   }
 
   render() {
     const {
-      loggedIn, modalState, isNavAdmin, email, password,
+      loggedIn, modalState, isNavAdmin, email, password, promoId, programId,
     } = this.state;
-    // const navbarMenu = document.querySelector('#navMenu') || '';
-    // let navbarMenuClass;
-    // if (isNavAdmin && loggedIn) {
-    //   if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-front is-active') {
-    //     navbarMenuClass = 'navbar-menu navbar-menu-admin is-active';
-    //   } else {
-    //     navbarMenuClass = 'navbar-menu navbar-menu-admin';
-    //   }
-    // } else if (!isNavAdmin || !loggedIn) {
-    //   if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-admin is-active') {
-    //     navbarMenuClass = 'navbar-menu navbar-menu-front is-active';
-    //   } else {
-    //     navbarMenuClass = 'navbar-menu navbar-menu-front';
-    //   }
-    // }
-    // const mainLink = (
-    //   <section>
-    //     <Link
-    //       tabIndex="0"
-    //       className="navbar-item"
-    //       onKeyUp={() => this.setNavbarState(false)}
-    //       to="/"
-    //     >
-    //       <img id="navbarLogo" src={logo} className="is-hidden-mobile" alt="logo zenika" />
-    //     </Link>
-    //     <Link
-    //       tabIndex="0"
-    //       className="navbar-item"
-    //       onKeyUp={() => this.setNavbarState(false)}
-    //       to="/"
-    //     >
-    //       <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">
-    //         Accueil
-    //       </span>
-    //     </Link>
-    //   </section>
-    // );
+    const navbarMenu = document.querySelector('#navMenu') || '';
+    let navbarMenuClass;
+    if (isNavAdmin && loggedIn) {
+      if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-front is-active') {
+        navbarMenuClass = 'navbar-menu navbar-menu-admin is-active';
+      } else {
+        navbarMenuClass = 'navbar-menu navbar-menu-admin';
+      }
+    } else if (!isNavAdmin || !loggedIn) {
+      if (navbarMenu.className
+       && navbarMenu.className === 'navbar-menu navbar-menu-admin is-active') {
+        navbarMenuClass = 'navbar-menu navbar-menu-front is-active';
+      } else {
+        navbarMenuClass = 'navbar-menu navbar-menu-front';
+      }
+    }
+    const mainLink = (
+      <div className="navbar-item is-arrowless">
+        <Link
+          tabIndex="0"
+          className="navbar-link is-arrowless is-hidden-mobile"
+          to={isNavAdmin ? '/home/admin' : '/'}
+        >
+          <img id="navbarLogo" src={logo} className="is-hidden-mobile" alt="logo zenika" />
+        </Link>
+        <Link
+          tabIndex="0"
+          className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet"
+          to={isNavAdmin ? '/home/admin' : '/'}
+        >
+          <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">
+             Accueil
+          </span>
+        </Link>
+      </div>
+    );
 
-    // const adminLinks = (
-    //   <section className="navbar-start">
-    //     {mainLink}
-    //     <section className="navbar-item">
-    //       <Link to="/admin/dashboard">
-    //         <span className="navbar-link is-arrowless">Dashboard</span>
-    //       </Link>
-    //     </section>
-    //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span
-    //         role="button"
-    //         tabIndex="0"
-    //         className="navbar-link"
-    //         onClick={this.handleSetBurgerLinkClick}
-    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
-    //       >
-    //         Promotions
-    //       </span>
-    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
-    //         <Link to="/admin/promo/list">
-    //           <span className="navbar-item">Promo</span>
-    //         </Link>
-    //         <Link to="/admin/promo/create">
-    //           <span className="navbar-item">Créer</span>
-    //         </Link>
-    //       </section>
-    //     </section>
-    //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span
-    //         role="button"
-    //         tabIndex="0"
-    //         className="navbar-link"
-    //         onClick={this.handleSetBurgerLinkClick}
-    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
-    //       >
-    //         Programmes
-    //       </span>
-    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
-    //         <Link to="/admin/program">
-    //           <span className="navbar-item">Programmes</span>
-    //         </Link>
-    //         <Link to="/admin/module/list">
-    //           <span className="navbar-item">Modules</span>
-    //         </Link>
-    //         <Link to="/admin/program/ressources">
-    //           <span className="navbar-item">Ressources</span>
-    //         </Link>
-    //       </section>
-    //     </section>
-    //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span
-    //         role="button"
-    //         tabIndex="0"
-    //         className="navbar-link"
-    //         onClick={this.handleSetBurgerLinkClick}
-    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
-    //       >
-    //         Communauté
-    //       </span>
-    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
-    //         <Link to="/admin/community/rssfeed">
-    //           <span className="navbar-item">Flux RSS</span>
-    //         </Link>
-    //         <Link to="/admin/community/whotofollow">
-    //           <span className="navbar-item">Who to follow</span>
-    //         </Link>
-    //       </section>
-    //     </section>
-    //   </section>
-    // );
+    const adminLinks = (
+      <div className="navbar-start">
+        {mainLink}
+        <div className="navbar-item has-dropdown is-hoverable">
+          <span
+            role="button"
+            tabIndex="0"
+            className="navbar-link"
+            onClick={this.handleSetBurgerLinkClick}
+            onKeyUp={this.handleSetBurgerLinkEnterPress}
+          >
+             Promotions
+          </span>
+          <div className="navbar-dropdown is-hidden-mobile is-boxed">
+            <Link to="/admin/promo/create">
+              <span className="navbar-item">Créer</span>
+            </Link>
+          </div>
+        </div>
+        <div className="navbar-item has-dropdown is-hoverable">
+          <span
+            role="button"
+            tabIndex="0"
+            className="navbar-link"
+            onClick={this.handleSetBurgerLinkClick}
+            onKeyUp={this.handleSetBurgerLinkEnterPress}
+          >
+             Programmes
+          </span>
+          <div className="navbar-dropdown is-hidden-mobile is-boxed">
+            <Link to="/admin/program/create">
+              <span className="navbar-item">Créer</span>
+            </Link>
+          </div>
+        </div>
+        <div className="navbar-item has-dropdown is-hoverable">
+          <span
+            role="button"
+            tabIndex="0"
+            className="navbar-link"
+            onClick={this.handleSetBurgerLinkClick}
+            onKeyUp={this.handleSetBurgerLinkEnterPress}
+          >
+             Utilisateurs
+          </span>
+          <div className="navbar-dropdown is-hidden-mobile is-boxed">
+            <Link to="/admin/users/create">
+              <span
+                className="navbar-item"
+              >
+Créer
+              </span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
 
-    // const notAdminLinks = (
-    //   <section className="navbar-start">
-    //     {mainLink}
-    //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span
-    //         role="button"
-    //         tabIndex="0"
-    //         className="navbar-link"
-    //         onClick={this.handleSetBurgerLinkClick}
-    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
-    //       >
-    //         Ma formation
-    //       </span>
-    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
-    //         <Link to="/agenda">
-    //           <span className="navbar-item">Agenda</span>
-    //         </Link>
-    //         <Link to="/contacts">
-    //           <span className="navbar-item">Mes Contacts</span>
-    //         </Link>
-    //         <Link to="/welcomeBooklet">
-    //           <span className="navbar-item">Livret d&apos;accueil</span>
-    //         </Link>
-    //       </section>
-    //     </section>
-    //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span
-    //         role="button"
-    //         tabIndex="0"
-    //         className="navbar-link"
-    //         onClick={this.handleSetBurgerLinkClick}
-    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
-    //       >
-    //         Ressources
-    //       </span>
-    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
-    //         <Link to="/ressources?author=Formateurs">
-    //           <span className="navbar-item">Formateurs</span>
-    //         </Link>
-    //         <Link to="/ressources?author=Eleves">
-    //           <span className="navbar-item">Elèves</span>
-    //         </Link>
-    //       </section>
-    //     </section>
-    //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span
-    //         role="button"
-    //         tabIndex="0"
-    //         className="navbar-link"
-    //         onClick={this.handleSetBurgerLinkClick}
-    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
-    //       >
-    //         Communauté
-    //       </span>
-    //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
-    //         <Link to="/rssFeed">
-    //           <span className="navbar-item">RSS écosystème</span>
-    //         </Link>
-    //         <Link to="/whoToFollow">
-    //           <span className="navbar-item">Who to follow</span>
-    //         </Link>
-    //       </section>
-    //     </section>
-    //     <section className="navbar-item">
-    //       <Link to="/admin/dashboard">
-    //         <span
-    //           role="button"
-    //           tabIndex="0"
-    //           className="navbar-link is-arrowless navBorder"
-    //           onClick={() => this.handleSetNavbarStateClick(true)}
-    //           onKeyUp={() => this.handleSetNavbarStateEnterPRess(true)}
-    //         >
-    //           Admin
-    //         </span>
-    //       </Link>
-    //     </section>
-    //   </section>
-    // );
+    const notAdminLinks = (
+      <div className="navbar-start">
+        {mainLink}
+        <div className="navbar-item has-dropdown is-hoverable">
+          <span
+            role="button"
+            tabIndex="0"
+            className="navbar-link"
+            onClick={this.handleSetBurgerLinkClick}
+            onKeyUp={this.handleSetBurgerLinkEnterPress}
+          >
+             Promotion
+          </span>
+          <div className="navbar-dropdown is-hidden-mobile is-boxed">
+            <Link to={`/user/promo/${promoId}/details`}>
+              <span className="navbar-item">Détail</span>
+            </Link>
+          </div>
+        </div>
+        <div className="navbar-item has-dropdown is-hoverable">
+          <span
+            role="button"
+            tabIndex="0"
+            className="navbar-link"
+            onClick={this.handleSetBurgerLinkClick}
+            onKeyUp={this.handleSetBurgerLinkEnterPress}
+          >
+             Programme
+          </span>
+          <div className="navbar-dropdown is-hidden-mobile is-boxed">
+            <Link to={`/program/${programId}/details`}>
+              <span className="navbar-item">Détail</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
 
     const mainNav = (
       <nav
@@ -315,7 +264,7 @@ class NavigationBar extends Component {
         role="navigation"
         aria-label="main navigation"
       >
-        {/* <section className="navbar-brand">
+        <div className="navbar-brand">
           <span
             role="button"
             tabIndex="0"
@@ -328,59 +277,64 @@ class NavigationBar extends Component {
             <span />
             <span />
           </span>
-        </section>
-        <section className={navbarMenuClass} id="navMenu">
+        </div>
+        <div className={navbarMenuClass} id="navMenu">
           {isNavAdmin ? adminLinks : notAdminLinks}
-          <section className="navbar-end">
-            <section className="navbar-item has-dropdown is-hoverable">
-              <Link to="/profile">
-                <span className="navbar-link is-arrowless display-desktop">
-                  <img
-                    src="http://blogue-ton-ecole.ac-dijon.fr/wp-content/uploads/2016/07/Avatar_girl_face.png"
-                    alt="placeholde-avatar"
-                    id="navBarAvatar"
-                  />
-                </span>
-                <span className="navbar-link is-arrowless display-mobile">Mon Profil</span>
+          <div className="navbar-end">
+            {isNavAdmin
+            && (
+            <div className="navbar-item has-dropdown">
+              <span id="adminNavText" className="display-desktop">
+                <i className="fas fa-users-cog" />
+                &nbsp;Admin
+              </span>
+
+            </div>
+            )}
+            <div
+              className="navbar-item"
+            >
+              <Link
+                onClick={() => this.disconnect()}
+                to="/"
+                className={isNavAdmin ? 'icon-signout-admin is-hidden-mobile' : 'icon-signout is-hidden-mobile'}
+              >
+                <i className="fas fa-sign-out-alt display-desktop" />
               </Link>
-            </section>
-            <section className="navbar-item is-hidden-mobile is-hidden-touch">
-              <span>Bienvenue, Anne-Lise!</span>
-            </section> */}
-        <section
-          className="navbar-item"
-        >
-          <Link onClick={() => this.disconnect()} to="/" className={isNavAdmin ? 'icon-signout-admin' : 'icon-signout'}>
-            <i className="fas fa-sign-out-alt display-desktop" />
-            <span className="navbar-link is-arrowless display-mobile">Se déconnecter</span>
-          </Link>
-        </section>
-        {/* </section>
-        </section> */}
+              <Link
+                onClick={() => this.disconnect()}
+                to="/"
+                className="display-mobile"
+              >
+                <span className="navbar-link is-arrowless display-mobile"> Se déconnecter</span>
+              </Link>
+            </div>
+          </div>
+        </div>
       </nav>
     );
 
     const loggedOutNav = (
       <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
-        <section className="navbar-item display-mobile">
+        <div className="navbar-item display-mobile">
           <button type="submit" onClick={() => this.toggleModal(true)} className="button">
             Se connecter
           </button>
-        </section>
-        <section className="navbar-menu">
-          <section className="navBarLoggedOut">
-            <section className="navbar-start">
+        </div>
+        <div className="navbar-menu">
+          <div className="navBarLoggedOut">
+            <div className="navbar-start">
               <p>There is no fate but what we make</p>
-            </section>
-          </section>
-          <section className="navbar-end">
-            <section className="navbar-item">
+            </div>
+          </div>
+          <div className="navbar-end">
+            <div className="navbar-item">
               <button type="submit" onClick={() => this.toggleModal(true)} className="button signInDesktop">
                 Se connecter
               </button>
-            </section>
-          </section>
-        </section>
+            </div>
+          </div>
+        </div>
         {modalState
           && (
             <SignInModal

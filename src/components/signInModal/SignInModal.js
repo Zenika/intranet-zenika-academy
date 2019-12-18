@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-
 import axios from 'axios';
 
 
@@ -30,12 +29,18 @@ export class SignInModal extends Component {
         sessionStorage.setItem('promoId', `${res.data.promoId}`);
         sessionStorage.setItem('loggedIn', 'true');
         sessionStorage.setItem('userRole', `${res.data.role}`);
-        if (res.data.role === 1) {
-          this.setState({ redirectToAdmin: true, redirectToUser: false });
-        } if (res.data.role === 3 || res.data.role === 2) {
-          this.setState({ redirectToUser: true, redirectToAdmin: false });
+        if (res.data.promoId) {
+          const url = `http://localhost:4000/api/promotions/details/${res.data.promoId}`;
+          axios.get(url)
+            .then((result) => {
+              sessionStorage.setItem('programId', `${result.data.program.id}`);
+              this.setState({ redirectToUser: false, redirectToAdmin: true });
+              if (res.data.role === 3 || res.data.role === 2) {
+                this.setState({ redirectToUser: true, redirectToAdmin: false });
+              }
+              return connect();
+            });
         }
-        return connect();
       })
       .catch((err) => {
         toggleModal(false);

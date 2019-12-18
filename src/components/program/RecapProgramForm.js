@@ -44,7 +44,7 @@ class RecapProgramForm extends React.Component {
       );
     } else {
       actionButton = (
-        <button type="submit" id="editButton" onClick={this.editProgram} className="button is-success">Valider l'édition</button>
+        <button type="submit" id="editButton" onClick={this.editProgram} className="button is-success">Valider l&lsquo;édition</button>
 
       );
     }

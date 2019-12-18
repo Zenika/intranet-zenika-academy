@@ -21,7 +21,6 @@ class CreatableSearchbar extends Component {
       const { optionsToSave } = this.state;
       const newOption = createOption(inputValue);
       optionsToSave.push(newOption);
-      // ajout en base de données à implémenter ici
       this.setState({
         isLoading: false,
         optionsToSave,

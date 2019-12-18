@@ -6,7 +6,6 @@ class StudentHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      promotionDetails: [],
       redirectToUser: false,
       promotionId: '',
     };
@@ -21,6 +20,7 @@ class StudentHome extends Component {
         promotionId: id,
       });
     }
+    return true;
   }
 
   render() {

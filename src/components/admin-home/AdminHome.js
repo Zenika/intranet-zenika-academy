@@ -74,13 +74,14 @@ class AdminHome extends Component {
               programs.map((program) => {
                 if (program.type === 1) {
                   return (
-                    <li className="promoLineContainer">
+                    <li key={program.id} className="promoLineContainer">
                       <h1 className="promotionTitle">{program.title}</h1>
                       {' '}
-                      <a href={`/home/program/details/${program.id}`} className="detailsLink">détails...</a>
+                      <a href={`/program/${program.id}/details`} className="detailsLink">détails...</a>
                     </li>
                   );
                 }
+                return true;
               })
             }
           </ul>
