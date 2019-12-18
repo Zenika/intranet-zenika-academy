@@ -63,12 +63,6 @@ exports[`Component PromoData it renders correctly 1`] = `
           />
         </h2>
       </div>
-      <a
-        className="button is-dark goBack"
-        href="/home/admin"
-      >
-        Revenir à l'accueil
-      </a>
     </div>
     <div
       className="container"
@@ -114,6 +108,12 @@ exports[`Component PromoData it renders correctly 1`] = `
           Programme
         </h3>
         <p />
+        <a
+          className="detailsLink"
+          href="/home/program/details/undefined"
+        >
+          détails...
+        </a>
       </div>
     </div>
   </div>

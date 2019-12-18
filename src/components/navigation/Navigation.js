@@ -15,9 +15,15 @@ class NavigationBar extends Component {
       isNavAdmin: false,
     };
     this.setBurgerLink = this.setBurgerLink.bind(this);
-    // this.toggleModal = this.toggleModal.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
+    this.handleSetBurgerLinkEnterPRess = this.handleSetBurgerLinkEnterPRess.bind(this);
+    this.handleSetBurgerLinkClick = this.handleSetBurgerLinkClick.bind(this);
+    this.handleSetNavbarStateClick = this.handleSetNavbarStateClick.bind(this);
+    this.handleSetNavbarStateEnterPRess = this.handleSetNavbarStateEnterPRess.bind(this);
+    this.handleSetBurgerBarClick = this.handleSetBurgerBarClick.bind(this);
+    this.handleSetBurgerBarEnterPress = this.handleSetBurgerBarEnterPress.bind(this);
   }
 
   componentDidMount() {
@@ -43,17 +49,52 @@ class NavigationBar extends Component {
     nav.classList.toggle('is-active');
   };
 
+
   setBurgerLink = (e) => {
     const navLink = e.currentTarget;
     navLink.nextElementSibling.classList.toggle('is-hidden-mobile');
   };
 
-
   /**
-   * Allows to connect a user
+   * Allows to open or close de sign in Modal
+   * @param {*} ev boolean
    */
-  connect() {
-    return this.setState({ loggedIn: true });
+  toggleModal = (ev) => {
+    if (!ev) {
+      this.setState({ modalState: false });
+    } else {
+      this.setState({ modalState: true });
+    }
+  }
+
+  handleSetBurgerLinkClick(e) {
+    this.setBurgerLink(e);
+  }
+
+  handleSetBurgerLinkEnterPRess(e) {
+    if (e.keyCode === 13) {
+      this.setBurgerLink(e);
+    }
+  }
+
+  handleSetNavbarStateClick(state) {
+    this.setNavbarState(state);
+  }
+
+  handleSetNavbarStateEnterPRess(e, state) {
+    if (e.keyCode === 13) {
+      this.setNavbarState(state);
+    }
+  }
+
+  handleSetBurgerBarClick() {
+    this.setBurgerBar();
+  }
+
+  handleSetBurgerBarEnterPress(e) {
+    if (e.keyCode === 13) {
+      this.setBurgerBar();
+    }
   }
 
 
@@ -70,15 +111,10 @@ class NavigationBar extends Component {
   }
 
   /**
- * Allows to open or close de sign in Modal
- * @param {*} ev boolean
- */
-  toggleModal = (ev) => {
-    if (!ev) {
-      this.setState({ modalState: false });
-    } else {
-      this.setState({ modalState: true });
-    }
+   * Allows to connect a user
+   */
+  connect() {
+    return this.setState({ loggedIn: true });
   }
 
   render() {
@@ -117,22 +153,30 @@ class NavigationBar extends Component {
     //       to="/"
     //     >
     //       <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">
-    // Accueil
-    // </span>
-    // //     </Link>
+    //         Accueil
+    //       </span>
+    //     </Link>
     //   </section>
     // );
 
     // const adminLinks = (
     //   <section className="navbar-start">
     //     {mainLink}
-    //     {/* <section className="navbar-item">
+    //     <section className="navbar-item">
     //       <Link to="/admin/dashboard">
     //         <span className="navbar-link is-arrowless">Dashboard</span>
     //       </Link>
     //     </section>
     //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span className="navbar-link" onClick={this.setBurgerLink}>Promotions</span>
+    //       <span
+    //         role="button"
+    //         tabIndex="0"
+    //         className="navbar-link"
+    //         onClick={this.handleSetBurgerLinkClick}
+    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
+    //       >
+    //         Promotions
+    //       </span>
     //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
     //         <Link to="/admin/promo/list">
     //           <span className="navbar-item">Promo</span>
@@ -143,7 +187,15 @@ class NavigationBar extends Component {
     //       </section>
     //     </section>
     //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span className="navbar-link" onClick={this.setBurgerLink}>Programmes</span>
+    //       <span
+    //         role="button"
+    //         tabIndex="0"
+    //         className="navbar-link"
+    //         onClick={this.handleSetBurgerLinkClick}
+    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
+    //       >
+    //         Programmes
+    //       </span>
     //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
     //         <Link to="/admin/program">
     //           <span className="navbar-item">Programmes</span>
@@ -157,7 +209,15 @@ class NavigationBar extends Component {
     //       </section>
     //     </section>
     //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
+    //       <span
+    //         role="button"
+    //         tabIndex="0"
+    //         className="navbar-link"
+    //         onClick={this.handleSetBurgerLinkClick}
+    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
+    //       >
+    //         Communauté
+    //       </span>
     //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
     //         <Link to="/admin/community/rssfeed">
     //           <span className="navbar-item">Flux RSS</span>
@@ -166,15 +226,23 @@ class NavigationBar extends Component {
     //           <span className="navbar-item">Who to follow</span>
     //         </Link>
     //       </section>
-    //     </section> */}
+    //     </section>
     //   </section>
     // );
 
     // const notAdminLinks = (
     //   <section className="navbar-start">
     //     {mainLink}
-    //     {/* <section className="navbar-item has-dropdown is-hoverable">
-    //       <span className="navbar-link" onClick={this.setBurgerLink}>Ma formation</span>
+    //     <section className="navbar-item has-dropdown is-hoverable">
+    //       <span
+    //         role="button"
+    //         tabIndex="0"
+    //         className="navbar-link"
+    //         onClick={this.handleSetBurgerLinkClick}
+    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
+    //       >
+    //         Ma formation
+    //       </span>
     //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
     //         <Link to="/agenda">
     //           <span className="navbar-item">Agenda</span>
@@ -183,12 +251,20 @@ class NavigationBar extends Component {
     //           <span className="navbar-item">Mes Contacts</span>
     //         </Link>
     //         <Link to="/welcomeBooklet">
-    //           <span className="navbar-item">Livret d'accueil</span>
+    //           <span className="navbar-item">Livret d&apos;accueil</span>
     //         </Link>
     //       </section>
     //     </section>
     //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span className="navbar-link" onClick={this.setBurgerLink}>Ressources</span>
+    //       <span
+    //         role="button"
+    //         tabIndex="0"
+    //         className="navbar-link"
+    //         onClick={this.handleSetBurgerLinkClick}
+    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
+    //       >
+    //         Ressources
+    //       </span>
     //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
     //         <Link to="/ressources?author=Formateurs">
     //           <span className="navbar-item">Formateurs</span>
@@ -199,7 +275,15 @@ class NavigationBar extends Component {
     //       </section>
     //     </section>
     //     <section className="navbar-item has-dropdown is-hoverable">
-    //       <span className="navbar-link" onClick={this.setBurgerLink}>Communauté</span>
+    //       <span
+    //         role="button"
+    //         tabIndex="0"
+    //         className="navbar-link"
+    //         onClick={this.handleSetBurgerLinkClick}
+    //         onKeyUp={this.handleSetBurgerLinkEnterPRess}
+    //       >
+    //         Communauté
+    //       </span>
     //       <section className="navbar-dropdown is-hidden-mobile is-boxed">
     //         <Link to="/rssFeed">
     //           <span className="navbar-item">RSS écosystème</span>
@@ -212,13 +296,16 @@ class NavigationBar extends Component {
     //     <section className="navbar-item">
     //       <Link to="/admin/dashboard">
     //         <span
+    //           role="button"
+    //           tabIndex="0"
     //           className="navbar-link is-arrowless navBorder"
-    //           onClick={() => this.setNavbarState(true)}
+    //           onClick={() => this.handleSetNavbarStateClick(true)}
+    //           onKeyUp={() => this.handleSetNavbarStateEnterPRess(true)}
     //         >
     //           Admin
     //         </span>
     //       </Link>
-    //     </section> */}
+    //     </section>
     //   </section>
     // );
 
@@ -230,8 +317,11 @@ class NavigationBar extends Component {
       >
         {/* <section className="navbar-brand">
           <span
+            role="button"
+            tabIndex="0"
             className="navbar-burger burger"
-            onClick={() => this.setBurgerBar()}
+            onClick={() => this.handleSetBurgerBarClick()}
+            onKeyUp={() => this.handleSetBurgerBarEnterPress()}
             data-target="navMenu"
           >
             <span />
@@ -265,8 +355,8 @@ class NavigationBar extends Component {
             <span className="navbar-link is-arrowless display-mobile">Se déconnecter</span>
           </Link>
         </section>
-        {/* </section> */}
-        {/* </section > */}
+        {/* </section>
+        </section> */}
       </nav>
     );
 
