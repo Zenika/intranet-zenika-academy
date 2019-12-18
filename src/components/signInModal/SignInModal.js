@@ -82,7 +82,7 @@ export class SignInModal extends Component {
                     id="emailInput"
                     required
                     className="input"
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email"
                     onChange={handleChange}
