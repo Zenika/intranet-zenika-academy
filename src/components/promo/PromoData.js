@@ -88,7 +88,7 @@ class PromoDetails extends Component {
     const teachers = users.filter((user) => user.role === 2);
     const students = users.filter((user) => user.role === 3);
     const programTitle = program ? program.title : 'Pas de programme associé';
-    const detailLink = program ? <a href={`/home/program/details/${program.id}`} title="Détails du programme" className="detailsLink">détails...</a>
+    const detailLink = program ? <a href={`/program/${program.id}/details`} title="Détails du programme" className="detailsLink">détails...</a>
       : null;
 
     if (redirectToAdmin) {

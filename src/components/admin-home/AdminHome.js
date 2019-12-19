@@ -78,7 +78,7 @@ class AdminHome extends Component {
                     <li key={program.id} className="promoLineContainer">
                       <h1 className="promotionTitle">{program.title}</h1>
                       {' '}
-                      <a href={`/home/program/details/${program.id}`} className="detailsLink" title="Détails du programme">détails...</a>
+                      <a href={`/program/${program.id}/details`} className="detailsLink" title="Détails du programme">détails...</a>
                     </li>
                   );
                 }
