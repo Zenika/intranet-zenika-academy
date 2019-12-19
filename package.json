@@ -31,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src/components/**/*.js"
+    "lint": "eslint ./src/components/**/*.js",
+    "coverage": "npm test -- --coverage"
   },
   "browserslist": {
     "production": [
