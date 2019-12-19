@@ -27,7 +27,9 @@ exports[`Navbar renders correctly Displays the connexion Modal when sign in butt
         <div
           className="navbar-start"
         >
-          <p>
+          <p
+            lang="en"
+          >
             There is no fate but what we make
           </p>
         </div>
@@ -177,7 +179,9 @@ exports[`Navbar renders correctly it renders correctly 1`] = `
         <div
           className="navbar-start"
         >
-          <p>
+          <p
+            lang="en"
+          >
             There is no fate but what we make
           </p>
         </div>
