@@ -9,7 +9,11 @@ You can find the documentation of the API here https://app.swaggerhub.com/apis-d
 
 The backend-server project is here : https://gitlab.com/zacademy-paris-2019/zintranetback_groupe2
 
-We use React.JS 16.11, Bulma
+We use React.JS 16.11 and Sass/Bulma for design
+
+The project is linted using Eslint with Airbnb Config : https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb
+
+This project is tested with Jest/Enzyme
 
 To install the project you need to :
 
