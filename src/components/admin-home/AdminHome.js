@@ -16,6 +16,7 @@ class AdminHome extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    document.title = 'Page d\'accueil Admin';
     axios.get('http://localhost:4000/api/promotions')
       .then((res) => {
         const promotions = res.data;
@@ -62,7 +63,7 @@ class AdminHome extends Component {
                 {' à '}
                 {promotion.city}
                 {' '}
-                <a href={`/admin/promo/${promotion.id}/details`} className="detailsLink">détails...</a>
+                <a href={`/admin/promo/${promotion.id}/details`} className="detailsLink" title="Détails de la promo">détails...</a>
               </li>
             ))}
           </ul>
@@ -77,7 +78,7 @@ class AdminHome extends Component {
                     <li key={program.id} className="promoLineContainer">
                       <h1 className="promotionTitle">{program.title}</h1>
                       {' '}
-                      <a href={`/program/${program.id}/details`} className="detailsLink">détails...</a>
+                      <a href={`/home/program/details/${program.id}`} className="detailsLink" title="Détails du programme">détails...</a>
                     </li>
                   );
                 }
