@@ -11,7 +11,8 @@
     "log": "pm2 logs",
     "test": "jest test/*.test.js",
     "test:userController": "./node_modules/.bin/jest --forceExit test/user/User.test.js",
-    "migrate": "sequelize-cli db:migrate"
+    "migrate": "sequelize-cli db:migrate",
+    "lint": "eslint ./controllers/**"
   },
   "dependencies": {
     "@hapi/joi": "^16.1.7",

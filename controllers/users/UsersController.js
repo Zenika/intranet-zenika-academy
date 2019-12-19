@@ -74,7 +74,6 @@ module.exports = {
     }
   },
 
-
   userDelete: async (req, res) => {
     try {
       await Users.destroy({ where: { id: res.locals.user_id } });

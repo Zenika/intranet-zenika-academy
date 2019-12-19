@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const promotions = require('./routes/promotions');
-const rssFeed = require('./routes/rssFeed');
 const users = require('./routes/users');
 const programs = require('./routes/programs');
 
@@ -21,7 +20,6 @@ app.use((req, res, next) => {
 app.use('/api/users', users);
 app.use('/api/programs', programs);
 app.use('/api/promotions', promotions);
-app.use('/api/rssFeed', rssFeed);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
