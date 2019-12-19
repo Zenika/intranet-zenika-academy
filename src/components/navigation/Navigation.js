@@ -324,7 +324,7 @@ class NavigationBar extends Component {
         <div className="navbar-menu">
           <div className="navBarLoggedOut">
             <div className="navbar-start">
-              <p>There is no fate but what we make</p>
+              <p lang="en">There is no fate but what we make</p>
             </div>
           </div>
           <div className="navbar-end">

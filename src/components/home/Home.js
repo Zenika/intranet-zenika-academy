@@ -3,6 +3,10 @@ import '../app/index.scss';
 import '../app/App.scss';
 
 class Home extends Component {
+  componentDidMount() {
+    document.title = 'Page d\'accueil Zintranet';
+  }
+
   render() {
     return (
       <>

@@ -110,7 +110,8 @@ exports[`Component PromoData it renders correctly 1`] = `
         <p />
         <a
           className="detailsLink"
-          href="/program/undefined/details"
+          href="/home/program/details/undefined"
+          title="Détails du programme"
         >
           détails...
         </a>

@@ -18,7 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <header>
+        <header className="header">
           <NavigationBar />
         </header>
         <main className="container fluid">
