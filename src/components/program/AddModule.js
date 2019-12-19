@@ -66,7 +66,6 @@ class AddModule extends React.Component {
       const newSequenceArray = prevState.subModules.filter((node) => node.key !== key);
       newSequenceArray.forEach((node, index) => {
         newSequenceArray[index].id = index;
-        return true;
       });
       return {
         subModules: newSequenceArray,
@@ -78,8 +77,7 @@ class AddModule extends React.Component {
   };
 
   addSubModule = async () => {
-    const { idSubModules, module } = this.state;
-    const { id, handleAddSubModuleContent } = this.props;
+    const { idSubModules } = this.state;
     const key = Math.random()
       .toString(36)
       .substring(2, 15) + Math.random()
@@ -103,7 +101,8 @@ class AddModule extends React.Component {
         newSubModule,
       ],
       idSubModules: prevState.idSubModules + 1,
-    }), () => handleAddSubModuleContent(module.content[idSubModules], id));
+    }), () => this.props
+      .handleAddSubModuleContent(this.state.module.content[idSubModules], this.props.id));
   };
 
   handleChange = async (e) => {
@@ -117,12 +116,10 @@ class AddModule extends React.Component {
 
   render() {
     const {
-      handleChange, deleteModule, deleteIt, handleAddSequenceContent,
+      handleChange, deleteModule, deleteIt,
     } = this.props;
-    // eslint-disable-next-line react/destructuring-assignment
-    const propsId = this.props.id;
     const {
-      subModules, id, title, module,
+      subModules, id, title,
     } = this.state;
 
     return (
@@ -183,11 +180,11 @@ class AddModule extends React.Component {
                 id={node.id}
                 key={node.key}
                 deleteIt={node.key}
-                idModule={propsId}
-                title={module.content[node.id].title}
-                content={module.content[node.id].content}
+                idModule={this.props.id}
+                title={this.state.module.content[node.id].title}
+                content={this.state.module.content[node.id].content}
                 handleChange={this.handleChange}
-                handleAddSequenceContent={handleAddSequenceContent}
+                handleAddSequenceContent={this.props.handleAddSequenceContent}
                 deleteSubModule={this.deleteSubModule}
               />
             ))
