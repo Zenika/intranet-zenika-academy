@@ -46,7 +46,7 @@ class AddSequence extends React.Component {
       <div id={`sequenceBox-${id}`} className="box mtmd">
         <div ref="collapsibles" id={`accordionSeq${id}`}>
           <div className="root">
-            <h5 id="sequenceTitle" className="title is-5 is-pulled-left">
+            <h5 id="sequenceTitle" className="title is-6 is-pulled-left">
               Séquence n°
               {id + 1}
               :

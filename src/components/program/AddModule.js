@@ -123,7 +123,7 @@ class AddModule extends React.Component {
       <div id={`moduleBox-${id}`} className="box mtmd">
         <div ref="collapsibles" id={`accordion${id}`}>
           <div className="root">
-            <h3 id="moduleTitle" className="title is-3 is-pulled-left">
+            <h3 id="moduleTitle" className="title is-4 is-pulled-left">
               Module n°
               {id + 1}
               :

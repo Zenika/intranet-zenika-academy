@@ -25,7 +25,7 @@ export class PromoCreateStepFour extends Component {
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-4 is-spaced">{`${edit ? 'Edition' : 'Création'} d'une promo`}</h1>
+          <h1 className="title is-2 is-spaced">{`${edit ? 'Edition' : 'Création'} d'une promo`}</h1>
           <BulmaSteps step={step} />
           <section className="control">
             <span htmlFor="students" className="label">
