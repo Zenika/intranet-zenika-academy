@@ -34,13 +34,13 @@ export class SignInModal extends Component {
           axios.get(url)
             .then((result) => {
               sessionStorage.setItem('programId', `${result.data.program.id}`);
-              this.setState({ redirectToUser: false, redirectToAdmin: true });
-              if (res.data.role === 3 || res.data.role === 2) {
-                this.setState({ redirectToUser: true, redirectToAdmin: false });
-              }
-              return connect();
             });
         }
+        this.setState({ redirectToUser: false, redirectToAdmin: true });
+        if (res.data.role === 3 || res.data.role === 2) {
+          this.setState({ redirectToUser: true, redirectToAdmin: false });
+        }
+        return connect();
       })
       .catch(() => {
         toggleModal(false);
