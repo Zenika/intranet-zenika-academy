@@ -124,7 +124,7 @@ class AddSubModule extends React.Component {
       <div id={`subModuleBox-${id}`} className="box mtmd">
         <div ref="collapsibles" id={`accordionSub${id}`}>
           <div className="root">
-            <h4 id="subModuleTitle" className="title is-4 is-pulled-left">
+            <h4 id="subModuleTitle" className="title is-5 is-pulled-left">
               Sous-Module n°
               {id + 1}
               :

@@ -51,9 +51,9 @@ class RecapProgramForm extends React.Component {
 
     return (
       <article className="section box">
-        <h1 className="title is-1 is-spaced">Récapitulatif</h1>
+        <h1 className="title is-2 is-spaced">Récapitulatif</h1>
         <section className="box">
-          <h2 id="programTitle" className="title is-2 is-spaced">
+          <h2 id="programTitle" className="title is-3 is-spaced">
             Programme&nbsp;
             <span>
               {program.title}
@@ -63,7 +63,7 @@ class RecapProgramForm extends React.Component {
             {
               program.content.map((module, i) => (
                 <li key={`moduleTitle-${module.title}`} className="list-item">
-                  <h3 id={`moduleTitle-${i}`} className="title is-3 is-spaced">
+                  <h3 id={`moduleTitle-${i}`} className="title is-4 is-spaced">
                     Module n°&nbsp;
                     {i + 1}
                     &nbsp;:&nbsp;
@@ -75,7 +75,7 @@ class RecapProgramForm extends React.Component {
                     {
                       module.content.map((subModule, p) => (
                         <li key={`subModuleTitle-${subModule.title}`} className="list-item">
-                          <h4 id={`subModuleTitle-${p}`} className="title is-4 is-spaced">
+                          <h4 id={`subModuleTitle-${p}`} className="title is-5 is-spaced">
                             Sous-module n°&nbsp;
                             {p + 1}
                             &nbsp;:&nbsp;
@@ -87,7 +87,7 @@ class RecapProgramForm extends React.Component {
                             {
                               subModule.content.map((sequence, n) => (
                                 <li key={`sequenceTitle-${sequence.title}`} className="list-item">
-                                  <h5 id={`sequenceTitle-${n}`} className="title is-5 is-spaced">
+                                  <h5 id={`sequenceTitle-${n}`} className="title is-6 is-spaced">
                                     <i className="fad fa-level-up" />
                                     Séquence n°&nbsp;
                                     {n + 1}

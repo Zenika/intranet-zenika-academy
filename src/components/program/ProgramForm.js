@@ -166,11 +166,11 @@ class ProgramForm extends React.Component {
 
     if (edit === 0) {
       titleForm = (
-        <h1 className="title is-1 is-spaced">Création d'un programme</h1>
+        <h1 className="title is-2 is-spaced">Création d&lsquo;un programme</h1>
       );
     } else {
       titleForm = (
-        <h1 className="title is-1 is-spaced">Edition d'un programme</h1>
+        <h1 className="title is-2 is-spaced">Edition d&lsquo;un programme</h1>
       );
     }
     const buttonForm = (
@@ -188,7 +188,7 @@ class ProgramForm extends React.Component {
       <article className="div box">
         {titleForm}
         <form>
-          <h2 className="title is-2">
+          <h2 className="title is-3">
                Programme&nbsp;
             <span>
               {program.title}
