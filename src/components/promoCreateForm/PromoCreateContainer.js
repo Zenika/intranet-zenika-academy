@@ -11,6 +11,7 @@ export class PromoCreateContainer extends Component {
   constructor() {
     super();
     this.state = {
+
       step: 1,
       title: '',
       startDate: '',
@@ -119,7 +120,7 @@ export class PromoCreateContainer extends Component {
       city, csv, edit, promoId,
     } = this.state;
     const promo = {
-      title, startDate, endDate, teachers, students, program, country, city,
+      title, startDate, endDate, teachers, students, program, country, city, promoId,
     };
     const {
       nextStep, prevStep, handleChange, handleMultiChange, handleCSVImport,
