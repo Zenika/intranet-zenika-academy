@@ -7,7 +7,11 @@ You can find the documentation of the API here https://app.swaggerhub.com/apis-d
 
 The front-server project is here : https://gitlab.com/zacademy-paris-2019/zintranet_groupe2
 
-We use NodeJS.JS 12.11, Express 4.17, MySQL and Sequelize
+We use Node.JS 12.11, Express 4.17, MySQL and Sequelize
+
+The project is linted using Eslint with Airbnb Config : https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb
+
+This project is tested with Jest
 
 To install the project you need to :
 
