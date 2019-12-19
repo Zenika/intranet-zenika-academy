@@ -46,13 +46,13 @@ class PromoDetails extends Component {
    */
   handleDelete(id) {
     const url = `http://localhost:4000/api/promotions/${id}`;
-    // eslint-disable-next-line no-restricted-globals
+    // eslint-disable-next-line no-restricted-globals,no-alert
     if (confirm('Voulez vous supprimer cette promotion?')) {
       Axios.delete(url)
         .then(() => {
           this.setState({ redirectToAdmin: true });
         })
-        .catch((err) => console.error(err));
+        .catch((err) => err);
     }
   }
 

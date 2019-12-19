@@ -23,6 +23,7 @@ class AddModule extends React.Component {
 
   componentDidMount() {
     this.collapsibles = bulmaCollapsible.attach('.is-collapsible', {
+      // eslint-disable-next-line react/no-string-refs
       container: this.refs.collapsibles,
       collapsed: false,
       allowMultiple: true,
@@ -63,7 +64,10 @@ class AddModule extends React.Component {
       const newItems = prevState.module.content;
       newItems.splice(id, 1);
       const newSequenceArray = prevState.subModules.filter((node) => node.key !== key);
-      newSequenceArray.forEach((node, index) => newSequenceArray[index].id = index);
+      newSequenceArray.forEach((node, index) => {
+        newSequenceArray[index].id = index;
+        return true;
+      });
       return {
         subModules: newSequenceArray,
         module:
@@ -74,7 +78,8 @@ class AddModule extends React.Component {
   };
 
   addSubModule = async () => {
-    const { idSubModules } = this.state;
+    const { idSubModules, module } = this.state;
+    const { id, handleAddSubModuleContent } = this.props;
     const key = Math.random()
       .toString(36)
       .substring(2, 15) + Math.random()
@@ -98,8 +103,7 @@ class AddModule extends React.Component {
         newSubModule,
       ],
       idSubModules: prevState.idSubModules + 1,
-    }), () => this.props
-      .handleAddSubModuleContent(this.state.module.content[idSubModules], this.props.id));
+    }), () => handleAddSubModuleContent(module.content[idSubModules], id));
   };
 
   handleChange = async (e) => {
@@ -113,14 +117,17 @@ class AddModule extends React.Component {
 
   render() {
     const {
-      handleChange, deleteModule, deleteIt,
+      handleChange, deleteModule, deleteIt, handleAddSequenceContent,
     } = this.props;
+    // eslint-disable-next-line react/destructuring-assignment
+    const propsId = this.props.id;
     const {
-      subModules, id, title,
+      subModules, id, title, module,
     } = this.state;
 
     return (
       <div id={`moduleBox-${id}`} className="box mtmd">
+        {/* eslint-disable-next-line react/no-string-refs */}
         <div ref="collapsibles" id={`accordion${id}`}>
           <div className="root">
             <h3 id="moduleTitle" className="title is-4 is-pulled-left">
@@ -176,11 +183,11 @@ class AddModule extends React.Component {
                 id={node.id}
                 key={node.key}
                 deleteIt={node.key}
-                idModule={this.props.id}
-                title={this.state.module.content[node.id].title}
-                content={this.state.module.content[node.id].content}
+                idModule={propsId}
+                title={module.content[node.id].title}
+                content={module.content[node.id].content}
                 handleChange={this.handleChange}
-                handleAddSequenceContent={this.props.handleAddSequenceContent}
+                handleAddSequenceContent={handleAddSequenceContent}
                 deleteSubModule={this.deleteSubModule}
               />
             ))

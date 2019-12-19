@@ -14,6 +14,7 @@ class AddSequence extends React.Component {
 
   componentDidMount() {
     this.collapsibles = bulmaCollapsible.attach('.is-collapsible', {
+      // eslint-disable-next-line react/no-string-refs
       container: this.refs.collapsibles,
       collapsed: false,
       allowMultiple: true,
@@ -44,6 +45,7 @@ class AddSequence extends React.Component {
 
     return (
       <div id={`sequenceBox-${id}`} className="box mtmd">
+        {/* eslint-disable-next-line react/no-string-refs */}
         <div ref="collapsibles" id={`accordionSeq${id}`}>
           <div className="root">
             <h5 id="sequenceTitle" className="title is-6 is-pulled-left">

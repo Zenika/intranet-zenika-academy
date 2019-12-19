@@ -3,7 +3,6 @@ import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import crypto from 'crypto';
 import Sequence from './AddSequence';
-import Module from './AddModule';
 import Submodule from './AddSubModule';
 
 Enzyme.configure({ adapter: new Adapter() });
