@@ -135,7 +135,7 @@ class NavigationBar extends Component {
       }
     } else if (!isNavAdmin || !loggedIn) {
       if (navbarMenu.className
-       && navbarMenu.className === 'navbar-menu navbar-menu-admin is-active') {
+        && navbarMenu.className === 'navbar-menu navbar-menu-admin is-active') {
         navbarMenuClass = 'navbar-menu navbar-menu-front is-active';
       } else {
         navbarMenuClass = 'navbar-menu navbar-menu-front';
@@ -156,7 +156,7 @@ class NavigationBar extends Component {
           to={isNavAdmin ? '/home/admin' : '/'}
         >
           <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">
-             Accueil
+            Accueil
           </span>
         </Link>
       </div>
@@ -173,7 +173,7 @@ class NavigationBar extends Component {
             onClick={this.handleSetBurgerLinkClick}
             onKeyUp={this.handleSetBurgerLinkEnterPress}
           >
-             Promotions
+            Promotions
           </span>
           <div className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/admin/promo/create">
@@ -189,7 +189,7 @@ class NavigationBar extends Component {
             onClick={this.handleSetBurgerLinkClick}
             onKeyUp={this.handleSetBurgerLinkEnterPress}
           >
-             Programmes
+            Programmes
           </span>
           <div className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/admin/program/create">
@@ -205,14 +205,14 @@ class NavigationBar extends Component {
             onClick={this.handleSetBurgerLinkClick}
             onKeyUp={this.handleSetBurgerLinkEnterPress}
           >
-             Utilisateurs
+            Utilisateurs
           </span>
           <div className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/admin/users/create">
               <span
                 className="navbar-item"
               >
-Créer
+                Créer
               </span>
             </Link>
           </div>
@@ -231,7 +231,7 @@ Créer
             onClick={this.handleSetBurgerLinkClick}
             onKeyUp={this.handleSetBurgerLinkEnterPress}
           >
-             Promotion
+            Promotion
           </span>
           <div className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to={`/user/promo/${promoId}/details`}>
@@ -247,7 +247,7 @@ Créer
             onClick={this.handleSetBurgerLinkClick}
             onKeyUp={this.handleSetBurgerLinkEnterPress}
           >
-             Programme
+            Programme
           </span>
           <div className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to={`/program/${programId}/details`}>
@@ -282,15 +282,15 @@ Créer
           {isNavAdmin ? adminLinks : notAdminLinks}
           <div className="navbar-end">
             {isNavAdmin
-            && (
-            <div className="navbar-item has-dropdown">
-              <span id="adminNavText" className="display-desktop">
-                <i className="fas fa-users-cog" />
-                &nbsp;Admin
-              </span>
+              && (
+                <div className="navbar-item has-dropdown">
+                  <span id="adminNavText" className="display-desktop">
+                    <i className="fas fa-users-cog" />
+                    &nbsp;Admin
+                  </span>
 
-            </div>
-            )}
+                </div>
+              )}
             <div
               className="navbar-item"
             >
