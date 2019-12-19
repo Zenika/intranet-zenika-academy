@@ -146,14 +146,14 @@ class NavigationBar extends Component {
         <Link
           tabIndex="0"
           className="navbar-link is-arrowless is-hidden-mobile"
-          to={isNavAdmin ? '/home/admin' : '/'}
+          to={isNavAdmin ? '/home/admin' : `/user/promo/${promoId}/details`}
         >
           <img id="navbarLogo" src={logo} className="is-hidden-mobile" alt="logo zenika" />
         </Link>
         <Link
           tabIndex="0"
           className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet"
-          to={isNavAdmin ? '/home/admin' : '/'}
+          to={isNavAdmin ? '/home/admin' : `/user/promo/${promoId}/details`}
         >
           <span className="navbar-link is-arrowless is-hidden-desktop is-hidden-tablet">
             Accueil
