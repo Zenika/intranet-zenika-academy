@@ -236,8 +236,8 @@ class ProgramForm extends React.Component {
                   id={node.id}
                   key={node.key}
                   deleteIt={node.key}
-                  title={this.state.program.content[node.id].title}
-                  content={this.state.program.content[node.id].content}
+                  title={program.content[node.id].title}
+                  content={program.content[node.id].content}
                   handleChange={this.handleChange}
                   handleAddSubModuleContent={this.handleAddSubModuleContent}
                   handleAddSequenceContent={this.handleAddSequenceContent}
