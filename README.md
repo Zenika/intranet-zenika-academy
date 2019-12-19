@@ -41,7 +41,7 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.<br />
 
-### `npm run test -- --coverage`
+### `npm run coverage`
 
 Launches the test runner in the interactive watch mode and see coverage.<br />
 
