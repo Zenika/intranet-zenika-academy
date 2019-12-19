@@ -23,6 +23,7 @@ class AddSubModule extends React.Component {
 
   componentDidMount() {
     this.collapsibles = bulmaCollapsible.attach('.is-collapsible', {
+      // eslint-disable-next-line react/no-string-refs
       container: this.refs.collapsibles,
       collapsed: false,
       allowMultiple: true,
@@ -109,9 +110,12 @@ class AddSubModule extends React.Component {
         newSequence,
       ],
       idSequence: prevState.idSequence + 1,
-    }), () => this.props
-      .handleAddSequenceContent(this.state.subModule.content[idSequence],
-        this.props.id, this.props.idModule));
+    }), () => {
+      const { handleAddSequenceContent, idModule, id } = this.props;
+      const { subModule } = this.state;
+      handleAddSequenceContent(subModule.content[idSequence],
+        id, idModule);
+    });
   };
 
   render() {
@@ -119,7 +123,7 @@ class AddSubModule extends React.Component {
       handleChange, deleteSubModule, deleteIt,
     } = this.props;
     const {
-      sequences, id, title,
+      sequences, id, title, subModule,
     } = this.state;
 
     return (
@@ -182,8 +186,8 @@ class AddSubModule extends React.Component {
                 id={node.id}
                 key={node.key}
                 deleteIt={node.key}
-                title={this.state.subModule.content[node.id].title}
-                content={this.state.subModule.content[node.id].content}
+                title={subModule.content[node.id].title}
+                content={subModule.content[node.id].content}
                 handleChange={this.handleChange}
                 deleteSequence={this.deleteSequence}
               />

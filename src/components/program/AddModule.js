@@ -78,6 +78,7 @@ class AddModule extends React.Component {
 
   addSubModule = async () => {
     const { idSubModules } = this.state;
+    const { handleAddSubModuleContent, id: idProps } = this.props;
     const key = Math.random()
       .toString(36)
       .substring(2, 15) + Math.random()
@@ -101,8 +102,10 @@ class AddModule extends React.Component {
         newSubModule,
       ],
       idSubModules: prevState.idSubModules + 1,
-    }), () => this.props
-      .handleAddSubModuleContent(this.state.module.content[idSubModules], this.props.id));
+    }), () => {
+      const { module } = this.state;
+      handleAddSubModuleContent(module.content[idSubModules], idProps);
+    });
   };
 
   handleChange = async (e) => {
@@ -116,10 +119,10 @@ class AddModule extends React.Component {
 
   render() {
     const {
-      handleChange, deleteModule, deleteIt,
+      handleChange, deleteModule, deleteIt, handleAddSequenceContent, id: propsId,
     } = this.props;
     const {
-      subModules, id, title,
+      subModules, id, title, module,
     } = this.state;
 
     return (
@@ -180,11 +183,11 @@ class AddModule extends React.Component {
                 id={node.id}
                 key={node.key}
                 deleteIt={node.key}
-                idModule={this.props.id}
-                title={this.state.module.content[node.id].title}
-                content={this.state.module.content[node.id].content}
+                idModule={propsId}
+                title={module.content[node.id].title}
+                content={module.content[node.id].content}
                 handleChange={this.handleChange}
-                handleAddSequenceContent={this.props.handleAddSequenceContent}
+                handleAddSequenceContent={handleAddSequenceContent}
                 deleteSubModule={this.deleteSubModule}
               />
             ))
