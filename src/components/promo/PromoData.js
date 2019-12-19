@@ -150,7 +150,7 @@ class PromoDetails extends Component {
               <h3 className="title is-3">Formateurs</h3>
               <ul className="promoTeachers">
                 {
-                  teachers.map((teacher) => <li>{`${teacher.firstName} ${teacher.lastName}`}</li>)
+                  teachers.map((teacher) => <li key={`teacher-${teacher.id}`}>{`${teacher.firstName} ${teacher.lastName}`}</li>)
                 }
               </ul>
             </div>
@@ -160,7 +160,7 @@ class PromoDetails extends Component {
               <h3 className="title is-3">Elèves</h3>
               <ul className="promoStudents">
                 {
-                  students.map((student) => <li>{`${student.firstName} ${student.lastName}`}</li>)
+                  students.map((student) => <li key={`student-${student.id}`}>{`${student.firstName} ${student.lastName}`}</li>)
                 }
               </ul>
             </div>
