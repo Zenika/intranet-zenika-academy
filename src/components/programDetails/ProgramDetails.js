@@ -114,7 +114,7 @@ class ProgramDetails extends Component {
         .then(() => {
           this.setState({ redirectToAdmin: true });
         })
-        .catch((err) => console.error(err));
+        .catch((err) => err);
     }
   }
 

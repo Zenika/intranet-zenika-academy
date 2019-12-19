@@ -124,7 +124,10 @@ class ProgramForm extends React.Component {
       const newItems = [...prevState.program.content];
       newItems.splice(id, 1);
       const newModuleArray = prevState.modules.filter((node) => node.key !== key);
-      newModuleArray.forEach((node, index) => newModuleArray[index].id = index);
+      newModuleArray.forEach((node, index) => {
+        newModuleArray[index].id = index;
+        return true;
+      });
       return {
         idModules: newId,
         modules: newModuleArray,
@@ -234,8 +237,8 @@ class ProgramForm extends React.Component {
                   id={node.id}
                   key={node.key}
                   deleteIt={node.key}
-                  title={this.state.program.content[node.id].title}
-                  content={this.state.program.content[node.id].content}
+                  title={program.content[node.id].title}
+                  content={program.content[node.id].content}
                   handleChange={this.handleChange}
                   handleAddSubModuleContent={this.handleAddSubModuleContent}
                   handleAddSequenceContent={this.handleAddSequenceContent}

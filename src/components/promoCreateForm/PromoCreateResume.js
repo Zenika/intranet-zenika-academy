@@ -43,7 +43,7 @@ class PromoCreateResume extends Component {
         .then(() => {
           this.setState({ redirectionToHome: true });
         })
-        .catch((err) => console.error(err));
+        .catch((err) => err);
     }
     return axios.post('http://localhost:4000/api/promotions', { promoData, teachersToUpsert })
       .then((res) => {
@@ -56,7 +56,7 @@ class PromoCreateResume extends Component {
         });
         this.setState({ redirectionToHome: true });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => err);
   }
 
   render() {

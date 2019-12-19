@@ -42,9 +42,8 @@ export class SignInModal extends Component {
             });
         }
       })
-      .catch((err) => {
+      .catch(() => {
         toggleModal(false);
-        console.error(err);
       });
   }
 

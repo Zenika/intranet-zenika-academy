@@ -23,6 +23,7 @@ class AddSubModule extends React.Component {
 
   componentDidMount() {
     this.collapsibles = bulmaCollapsible.attach('.is-collapsible', {
+      // eslint-disable-next-line react/no-string-refs
       container: this.refs.collapsibles,
       collapsed: false,
       allowMultiple: true,
@@ -72,7 +73,10 @@ class AddSubModule extends React.Component {
       const newItems = prevState.subModule.content;
       newItems.splice(id, 1);
       const newSequenceArray = prevState.sequences.filter((node) => node.key !== key);
-      newSequenceArray.forEach((node, index) => newSequenceArray[index].id = index);
+      newSequenceArray.forEach((node, index) => {
+        newSequenceArray[index].id = index;
+        return true;
+      });
       return {
         sequences: newSequenceArray,
         subModule:
@@ -83,7 +87,8 @@ class AddSubModule extends React.Component {
   };
 
   addSequence = async () => {
-    const { idSequence } = this.state;
+    const { idSequence, subModule } = this.state;
+    const { handleAddSequenceContent, id, idModule } = this.props;
     const key = Math.random()
       .toString(36)
       .substring(2, 15) + Math.random()
@@ -107,9 +112,8 @@ class AddSubModule extends React.Component {
         newSequence,
       ],
       idSequence: prevState.idSequence + 1,
-    }), () => this.props
-      .handleAddSequenceContent(this.state.subModule.content[idSequence],
-        this.props.id, this.props.idModule));
+    }), () => handleAddSequenceContent(subModule.content[idSequence],
+      id, idModule));
   };
 
   render() {
@@ -117,11 +121,12 @@ class AddSubModule extends React.Component {
       handleChange, deleteSubModule, deleteIt,
     } = this.props;
     const {
-      sequences, id, title,
+      sequences, id, title, subModule,
     } = this.state;
 
     return (
       <div id={`subModuleBox-${id}`} className="box mtmd">
+        {/* eslint-disable-next-line react/no-string-refs */}
         <div ref="collapsibles" id={`accordionSub${id}`}>
           <div className="root">
             <h4 id="subModuleTitle" className="title is-5 is-pulled-left">
@@ -179,8 +184,8 @@ class AddSubModule extends React.Component {
                 id={node.id}
                 key={node.key}
                 deleteIt={node.key}
-                title={this.state.subModule.content[node.id].title}
-                content={this.state.subModule.content[node.id].content}
+                title={subModule.content[node.id].title}
+                content={subModule.content[node.id].content}
                 handleChange={this.handleChange}
                 deleteSequence={this.deleteSequence}
               />
