@@ -40,7 +40,7 @@ export class SignInModal extends Component {
         if (res.data.role === 3 || res.data.role === 2) {
           this.setState({ redirectToUser: true, redirectToAdmin: false });
         }
-        return connect();
+        setTimeout(() => connect(), 100);
       })
       .catch(() => {
         toggleModal(false);
