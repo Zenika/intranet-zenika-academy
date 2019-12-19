@@ -23,7 +23,6 @@ class AddSubModule extends React.Component {
 
   componentDidMount() {
     this.collapsibles = bulmaCollapsible.attach('.is-collapsible', {
-      // eslint-disable-next-line react/no-string-refs
       container: this.refs.collapsibles,
       collapsed: false,
       allowMultiple: true,
@@ -75,7 +74,6 @@ class AddSubModule extends React.Component {
       const newSequenceArray = prevState.sequences.filter((node) => node.key !== key);
       newSequenceArray.forEach((node, index) => {
         newSequenceArray[index].id = index;
-        return true;
       });
       return {
         sequences: newSequenceArray,
@@ -87,8 +85,7 @@ class AddSubModule extends React.Component {
   };
 
   addSequence = async () => {
-    const { idSequence, subModule } = this.state;
-    const { handleAddSequenceContent, id, idModule } = this.props;
+    const { idSequence } = this.state;
     const key = Math.random()
       .toString(36)
       .substring(2, 15) + Math.random()
@@ -112,8 +109,9 @@ class AddSubModule extends React.Component {
         newSequence,
       ],
       idSequence: prevState.idSequence + 1,
-    }), () => handleAddSequenceContent(subModule.content[idSequence],
-      id, idModule));
+    }), () => this.props
+      .handleAddSequenceContent(this.state.subModule.content[idSequence],
+        this.props.id, this.props.idModule));
   };
 
   render() {
@@ -121,7 +119,7 @@ class AddSubModule extends React.Component {
       handleChange, deleteSubModule, deleteIt,
     } = this.props;
     const {
-      sequences, id, title, subModule,
+      sequences, id, title,
     } = this.state;
 
     return (
@@ -184,8 +182,8 @@ class AddSubModule extends React.Component {
                 id={node.id}
                 key={node.key}
                 deleteIt={node.key}
-                title={subModule.content[node.id].title}
-                content={subModule.content[node.id].content}
+                title={this.state.subModule.content[node.id].title}
+                content={this.state.subModule.content[node.id].content}
                 handleChange={this.handleChange}
                 deleteSequence={this.deleteSequence}
               />
