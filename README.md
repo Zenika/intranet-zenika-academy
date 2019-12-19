@@ -11,6 +11,8 @@ We use NodeJS.JS 12.11, Express 4.17, MySQL and Sequelize
 
 To install the project you need to :
 
+### `Install NodeJS V.12 on your computer`
+
 ### `Install MYSQL and create a database "zenika_academy"`
 
 After that you will need to 
