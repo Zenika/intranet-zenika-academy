@@ -10,7 +10,7 @@ const Footer = () => (
     <div className="content has-text-centered">
       <address>
         <strong>ZENIKA ACADEMY - </strong>
-              10 rue Milan 75009 Paris -
+              10 rue Milan 75009 Paris France -
         <a href="info@zenika.com"> info@zenika.com - </a>
         <a href="tel:+33(0)1 45 26 19 15">+33(0)1 45 26 19 15</a>
       </address>
