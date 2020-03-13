@@ -1,0 +1,85 @@
+{
+  "name": "zenika-academy",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@creativebulma/bulma-collapsible": "^1.0.4",
+    "axios": "^0.19.0",
+    "bulma": "^0.8.0",
+    "bulma-o-steps": "^1.0.9",
+    "emotion": "^10.0.23",
+    "eslint": "^6.6.0",
+    "eslint-plugin-jest": "^23.0.3",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.8.3",
+    "react": "^16.11.0",
+    "react-csv-reader": "^2.0.2",
+    "react-dom": "^16.11.0",
+    "react-moment": "^0.9.6",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-select": "^3.0.8",
+    "react-slick": "^0.25.2",
+    "react-transition-group": "^4.3.0",
+    "sass-loader": "^8.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll",
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src/components/**/*.js",
+    "coverage": "npm test -- --coverage"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
+    "eslint-config-airbnb": "^18.0.1",
+    "jest-localstorage-mock": "^2.4.0",
+    "eslint-plugin-react": "^7.17.0",
+    "react-hot-loader": "^4.12.15",
+    "react-test-renderer": "^16.12.0"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "./src/**/*.{js,jsx}",
+      "!/node_modules/",
+      "!./src/index.js",
+      "!./src/serviceWorker.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/nodes_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      },
+      "./src/components/": {
+        "branches": 40,
+        "statements": 40
+      }
+    }
+  }
+}

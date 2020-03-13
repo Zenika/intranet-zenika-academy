@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component PromoData it renders correctly 1`] = `
+<Fragment>
+  <div
+    className="container"
+  >
+    <div
+      className="PromoDataHeader"
+    >
+      <div
+        className="promoInfo"
+      >
+        <h1
+          className="title is-1 promoTitle"
+        />
+        <h2
+          className="subtitle is-3"
+        >
+          à
+           
+           
+          du
+           
+          <t
+            ago={false}
+            calendar={false}
+            decimal={false}
+            element={null}
+            filter={[Function]}
+            format="DD/MM/YYYY"
+            fromNow={false}
+            interval={60000}
+            local={false}
+            onChange={[Function]}
+            titleFormat=""
+            toNow={false}
+            unit={null}
+            unix={false}
+            utc={false}
+            withTitle={false}
+          />
+           
+          au
+           
+          <t
+            ago={false}
+            calendar={false}
+            decimal={false}
+            element={null}
+            filter={[Function]}
+            format="DD/MM/YYYY"
+            fromNow={false}
+            interval={60000}
+            local={false}
+            onChange={[Function]}
+            titleFormat=""
+            toNow={false}
+            unit={null}
+            unix={false}
+            utc={false}
+            withTitle={false}
+          />
+        </h2>
+      </div>
+    </div>
+    <div
+      className="container"
+    >
+      <div
+        className="notification"
+      >
+        <h3
+          className="title is-3"
+        >
+          Formateurs
+        </h3>
+        <ul
+          className="promoTeachers"
+        />
+      </div>
+    </div>
+    <div
+      className="container"
+    >
+      <div
+        className="notification"
+      >
+        <h3
+          className="title is-3"
+        >
+          Elèves
+        </h3>
+        <ul
+          className="promoStudents"
+        />
+      </div>
+    </div>
+    <div
+      className="container"
+    >
+      <div
+        className="notification"
+      >
+        <h3
+          className="title is-3"
+        >
+          Programme
+        </h3>
+        <p />
+        <a
+          className="detailsLink"
+          href="/program/undefined/details"
+          title="Détails du programme"
+        >
+          détails...
+        </a>
+      </div>
+    </div>
+  </div>
+</Fragment>
+`;

@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar renders correctly Displays the connexion Modal when sign in button is clicked 1`] = `
+<NavigationBar>
+  <nav
+    aria-label="main navigation"
+    className="navbar is-primary"
+    role="navigation"
+  >
+    <div
+      className="navbar-item display-mobile"
+    >
+      <button
+        className="button"
+        onClick={[Function]}
+        type="submit"
+      >
+        Se connecter
+      </button>
+    </div>
+    <div
+      className="navbar-menu"
+    >
+      <div
+        className="navBarLoggedOut"
+      >
+        <div
+          className="navbar-start"
+        >
+          <p
+            lang="en"
+          >
+            There is no fate but what we make
+          </p>
+        </div>
+      </div>
+      <div
+        className="navbar-end"
+      >
+        <div
+          className="navbar-item"
+        >
+          <button
+            className="button signInDesktop"
+            onClick={[Function]}
+            type="submit"
+          >
+            Se connecter
+          </button>
+        </div>
+      </div>
+    </div>
+    <SignInModal
+      connect={[Function]}
+      toggleModal={[Function]}
+    >
+      <section
+        className="modal is-active"
+        id="modalLogin"
+      >
+        <section
+          className="modal-background"
+        />
+        <section
+          className="modal-card"
+        >
+          <header
+            className="modal-card-head"
+          >
+            <p
+              className="modal-card-title"
+            >
+              Connexion
+            </p>
+          </header>
+          <section
+            className="modal-card-body"
+          >
+            <form>
+              <section
+                className="field"
+              >
+                <p
+                  className="control has-icons-left"
+                >
+                  <input
+                    className="input"
+                    id="emailInput"
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email"
+                    required={true}
+                    type="email"
+                    value=""
+                  />
+                  <span
+                    className="icon is-small is-left"
+                  />
+                </p>
+              </section>
+              <section
+                className="field"
+              >
+                <p
+                  className="control has-icons-left"
+                >
+                  <input
+                    className="input"
+                    id="passwordInput"
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    required={true}
+                    type="password"
+                    value=""
+                  />
+                  <span
+                    className="icon is-small is-left"
+                  >
+                    <i
+                      className="fas fa-lock"
+                    />
+                  </span>
+                </p>
+              </section>
+              <footer
+                className=" modalFooter"
+              >
+                <button
+                  className="button is-success"
+                  id="submitButton"
+                  onClick={[Function]}
+                  type="submit"
+                >
+                  Se connecter
+                </button>
+                <button
+                  className="button"
+                  id="cancelButton"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Annuler
+                </button>
+              </footer>
+            </form>
+          </section>
+        </section>
+      </section>
+    </SignInModal>
+  </nav>
+</NavigationBar>
+`;
+
+exports[`Navbar renders correctly it renders correctly 1`] = `
+<NavigationBar>
+  <nav
+    aria-label="main navigation"
+    className="navbar is-primary"
+    role="navigation"
+  >
+    <div
+      className="navbar-item display-mobile"
+    >
+      <button
+        className="button"
+        onClick={[Function]}
+        type="submit"
+      >
+        Se connecter
+      </button>
+    </div>
+    <div
+      className="navbar-menu"
+    >
+      <div
+        className="navBarLoggedOut"
+      >
+        <div
+          className="navbar-start"
+        >
+          <p
+            lang="en"
+          >
+            There is no fate but what we make
+          </p>
+        </div>
+      </div>
+      <div
+        className="navbar-end"
+      >
+        <div
+          className="navbar-item"
+        >
+          <button
+            className="button signInDesktop"
+            onClick={[Function]}
+            type="submit"
+          >
+            Se connecter
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</NavigationBar>
+`;
