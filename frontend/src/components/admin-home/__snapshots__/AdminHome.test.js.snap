@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminHome component matches snapshot 1`] = `
+Array [
+  <h1
+    className="title is-2 mbmd"
+  >
+    Bienvenue
+  </h1>,
+  <a
+    className="button is-primary admin-home-link promo-creation"
+    href="/admin/promo/create"
+  >
+    Créer une promotion
+  </a>,
+  <a
+    className="button is-primary admin-home-link program-creation"
+    href="/admin/program/create"
+  >
+    Créer un programme
+  </a>,
+  <a
+    className="button is-primary admin-home-link user-creation"
+    href="/admin/users/create"
+  >
+    Créer un utilisateur
+  </a>,
+  <div
+    className="notification"
+  >
+    <h2
+      className="title is-4 mbmd"
+    >
+      Liste des promotions :
+    </h2>
+    <ul
+      className="promosContainer"
+    />
+  </div>,
+  <div
+    className="notification"
+  >
+    <h2
+      className="title is-4 mbmd"
+    >
+      Liste des programmes :
+    </h2>
+    <ul
+      className="promosContainer"
+    />
+  </div>,
+]
+`;

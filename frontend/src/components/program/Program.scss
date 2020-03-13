@@ -1,0 +1,17 @@
+[id^="moduleBox"] {
+    background-color: #F0F8FF;
+}
+
+[id^="subModuleBox"]{
+    background-color: #F8F8FF;
+}
+
+[id^="sequenceBox"]{
+    background-color: #F5F5F5;
+}
+
+.root {
+    display: flow-root;
+}
+
+[id^="add"], [id^="delete"], #clearProgram { padding: 0; }
