@@ -1,0 +1,58 @@
+version: 2.1
+
+jobs:
+  backend-build:
+    docker:
+      - image: circleci/node:12
+        environment:
+          MYSQL_HOST: localhost
+          MYSQL_PORT: 3306
+          MYSQL_DATABASE: zintranet
+          MYSQL_USER: zintranet
+          MYSQL_PASSWORD: zintranet
+      - image: mysql:8
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: zintranet
+          MYSQL_USER: zintranet
+          MYSQL_PASSWORD: zintranet
+    steps:
+      - checkout
+      - run:
+          command: npm ci
+          working_directory: backend
+      - run:
+          command: npm run lint
+          working_directory: backend
+      - run:
+          command: npm run migrate
+          working_directory: backend
+      - run:
+          command: npm test
+          working_directory: backend
+
+  frontend-build:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run:
+          command: npm ci
+          working_directory: frontend
+      - run:
+          command: npm run build
+          working_directory: frontend
+      - run:
+          command: npm run lint
+          working_directory: frontend
+      - run:
+          # using test:ci because npm test does not terminate on CircleCI
+          # even though it should according to https://create-react-app.dev/docs/running-tests
+          command: npm run test:ci
+          working_directory: frontend
+
+workflows:
+  build:
+    jobs:
+      - backend-build
+      - frontend-build

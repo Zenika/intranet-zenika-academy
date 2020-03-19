@@ -30,8 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
+    "test:ci": "npm test -- --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src/components/**/*.js",
+    "lint": "eslint ./src/**/*.js",
     "coverage": "npm test -- --coverage"
   },
   "browserslist": {
