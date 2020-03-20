@@ -29,5 +29,4 @@ module.exports = {
     httpRequest.set('Origin', 'http://localhost:4000');
     return httpRequest;
   },
-
 };

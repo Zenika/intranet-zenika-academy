@@ -6,7 +6,6 @@ import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
 import './PromoCreate.scss';
 
-
 class PromoCreateResume extends Component {
   constructor(props) {
     super(props);
@@ -33,19 +32,26 @@ class PromoCreateResume extends Component {
       programId: promo.program[0].value,
     };
 
-
     if (edit) {
       const users = {
         students,
         teachersToUpsert,
       };
-      return axios.put(`http://localhost:4000/api/promotions/${promoId}/update`, { promoData, users })
+      return axios
+        .put(`http://localhost:4000/api/promotions/${promoId}/update`, {
+          promoData,
+          users,
+        })
         .then(() => {
           this.setState({ redirectionToHome: true });
         })
         .catch((err) => err);
     }
-    return axios.post('http://localhost:4000/api/promotions', { promoData, teachersToUpsert })
+    return axios
+      .post('http://localhost:4000/api/promotions', {
+        promoData,
+        teachersToUpsert,
+      })
       .then((res) => {
         students.forEach((student) => {
           const newStudent = {
@@ -60,22 +66,40 @@ class PromoCreateResume extends Component {
   }
 
   render() {
-    const {
-      step, promo, prevStep, edit,
-    } = this.props;
+    const { step, promo, prevStep, edit } = this.props;
     const { redirectionToHome } = this.state;
     const { handleCreate } = this;
 
-    const startDate = promo.startDate.split('-').reverse().join('-');
-    const endDate = promo.endDate.split('-').reverse().join('-');
+    const startDate = promo.startDate
+      .split('-')
+      .reverse()
+      .join('-');
+    const endDate = promo.endDate
+      .split('-')
+      .reverse()
+      .join('-');
 
     const buttonForm = (
       <section className="field buttonField">
         <section className="control">
-          <button id="previousButton" type="button" className="button is-danger" onClick={prevStep}>Revenir</button>
+          <button
+            id="previousButton"
+            type="button"
+            className="button is-danger"
+            onClick={prevStep}
+          >
+            Revenir
+          </button>
         </section>
         <section className="control">
-          <button id="confirmButton" type="button" onClick={handleCreate} className="button is-link">Valider</button>
+          <button
+            id="confirmButton"
+            type="button"
+            onClick={handleCreate}
+            className="button is-link"
+          >
+            Valider
+          </button>
         </section>
       </section>
     );
@@ -87,7 +111,9 @@ class PromoCreateResume extends Component {
     return (
       <div className="promoCreateForm">
         <article className="section box">
-          <h1 className="title is-2 is-spaced">{`${edit ? 'Edition' : 'Création'} d'une promo`}</h1>
+          <h1 className="title is-2 is-spaced">{`${
+            edit ? 'Edition' : 'Création'
+          } d'une promo`}</h1>
           <BulmaSteps step={step} />
           <section className="field">
             <span className="title is-4 is-spaced">Résumé</span>
@@ -110,8 +136,7 @@ class PromoCreateResume extends Component {
                   <section className="field">
                     <span>
                       {' '}
-                      <time id="startDate">{startDate || ''}</time>
-                      {' '}
+                      <time id="startDate">{startDate || ''}</time>{' '}
                     </span>
                   </section>
                 </label>
@@ -126,8 +151,7 @@ class PromoCreateResume extends Component {
                   <section className="field">
                     <span>
                       {' '}
-                      <time id="endDate">{endDate || ''}</time>
-                      {' '}
+                      <time id="endDate">{endDate || ''}</time>{' '}
                     </span>
                   </section>
                 </label>
@@ -154,7 +178,9 @@ class PromoCreateResume extends Component {
             <label htmlFor="teachers" className="label">
               Formateurs:
               <section id="teachers" className="field">
-                {promo.teachers.length ? promo.teachers.map((e) => <p key={e.value}>{e.label}</p>) : ''}
+                {promo.teachers.length
+                  ? promo.teachers.map((e) => <p key={e.value}>{e.label}</p>)
+                  : ''}
               </section>
             </label>
           </section>
@@ -162,7 +188,13 @@ class PromoCreateResume extends Component {
             <label htmlFor="students" className="label">
               Elèves:
               <section id="students" className="field">
-                {promo.students.length ? promo.students.map((e) => <p key={e.lastName}>{`${e.lastName}  ${e.firstName}  ${e.email}`}</p>) : ''}
+                {promo.students.length
+                  ? promo.students.map((e) => (
+                      <p
+                        key={e.lastName}
+                      >{`${e.lastName}  ${e.firstName}  ${e.email}`}</p>
+                    ))
+                  : ''}
               </section>
             </label>
           </section>

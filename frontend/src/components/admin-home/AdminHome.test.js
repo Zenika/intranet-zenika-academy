@@ -29,9 +29,7 @@ describe('AdminHome component', () => {
   describe('when rendered', () => {
     it('should fetch promotions', () => {
       const getSpy = jest.spyOn(axios, 'get');
-      shallow(
-        <AdminHome />,
-      );
+      shallow(<AdminHome />);
       expect(getSpy).toBeCalled();
     });
   });
@@ -40,15 +38,24 @@ describe('AdminHome component', () => {
 describe('AdminHome component links tags', () => {
   const adminHomeComponent = ReactTestUtils.renderIntoDocument(<AdminHome />);
   it('should link to promo creation url', () => {
-    const a = ReactTestUtils.findRenderedDOMComponentWithClass(adminHomeComponent, 'promo-creation');
+    const a = ReactTestUtils.findRenderedDOMComponentWithClass(
+      adminHomeComponent,
+      'promo-creation',
+    );
     expect(a.getAttribute('href')).toBe('/admin/promo/create');
   });
   it('should link to program creation url', () => {
-    const a = ReactTestUtils.findRenderedDOMComponentWithClass(adminHomeComponent, 'program-creation');
+    const a = ReactTestUtils.findRenderedDOMComponentWithClass(
+      adminHomeComponent,
+      'program-creation',
+    );
     expect(a.getAttribute('href')).toBe('/admin/program/create');
   });
   it('should link to user creation url', () => {
-    const a = ReactTestUtils.findRenderedDOMComponentWithClass(adminHomeComponent, 'user-creation');
+    const a = ReactTestUtils.findRenderedDOMComponentWithClass(
+      adminHomeComponent,
+      'user-creation',
+    );
     expect(a.getAttribute('href')).toBe('/admin/users/create');
   });
 });

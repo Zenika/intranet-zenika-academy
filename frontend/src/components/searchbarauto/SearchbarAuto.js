@@ -7,9 +7,14 @@ const animatedComponents = makeAnimated();
 class SearchbarAuto extends Component {
   render() {
     const {
-      options, defaultValue, handleChange, isMulti, name, defaultLabel, className,
+      options,
+      defaultValue,
+      handleChange,
+      isMulti,
+      name,
+      defaultLabel,
+      className,
     } = this.props;
-
 
     return (
       <Select
@@ -22,7 +27,9 @@ class SearchbarAuto extends Component {
         onChange={(e) => handleChange(e)}
         defaultValue={defaultValue}
         closeMenuOnSelect={!isMulti}
-        noOptionsMessage={(inputValues) => `${inputValues.inputValue} n'est pas trouvé, demandez au canard !`}
+        noOptionsMessage={(inputValues) =>
+          `${inputValues.inputValue} n'est pas trouvé, demandez au canard !`
+        }
         getOptionLabel={(option) => option.label}
         getOptionValue={(option) => option.value}
       />

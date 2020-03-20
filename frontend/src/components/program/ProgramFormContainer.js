@@ -22,16 +22,21 @@ class ProgramFormContainer extends React.Component {
   componentDidMount() {
     const { match } = this.props;
     if (match.params.id) {
-      const url = `http://localhost:4000/api/programs/${parseInt(match.params.id, 10)}/details`;
-      return Axios.get(url)
-        .then((result) => {
-          document.title = 'Admin / Programme édition';
-          this.setState({
+      const url = `http://localhost:4000/api/programs/${parseInt(
+        match.params.id,
+        10,
+      )}/details`;
+      return Axios.get(url).then((result) => {
+        document.title = 'Admin / Programme édition';
+        this.setState(
+          {
             program: result.data,
             step: 0,
             edit: 1,
-          }, () => this.forceUpdate());
-        });
+          },
+          () => this.forceUpdate(),
+        );
+      });
     }
     this.setState({ step: 0 });
     document.title = 'Admin / Programme création';
@@ -47,15 +52,19 @@ class ProgramFormContainer extends React.Component {
     const { step, program, edit } = this.state;
     return (
       <>
-        { step === 0
-          ? (
-            <ProgramForm
-              program={program}
-              edit={edit}
-              handleChange={this.handleChange}
-            />
-          )
-          : <RecapProgramForm program={program} edit={edit} handleChange={this.handleChange} />}
+        {step === 0 ? (
+          <ProgramForm
+            program={program}
+            edit={edit}
+            handleChange={this.handleChange}
+          />
+        ) : (
+          <RecapProgramForm
+            program={program}
+            edit={edit}
+            handleChange={this.handleChange}
+          />
+        )}
       </>
     );
   }

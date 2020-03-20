@@ -16,16 +16,18 @@ Object.defineProperty(global.self, 'crypto', {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<Submodule
-    id={0}
-    key="test-sub"
-    deleteIt="test-sub"
-    title=""
-    content={[]}
-    handleChange={jest.fn()}
-    handleAddSequenceContent={jest.fn()}
-    deleteSubModule={jest.fn()}
-  />);
+  wrapper = mount(
+    <Submodule
+      id={0}
+      key="test-sub"
+      deleteIt="test-sub"
+      title=""
+      content={[]}
+      handleChange={jest.fn()}
+      handleAddSequenceContent={jest.fn()}
+      deleteSubModule={jest.fn()}
+    />,
+  );
   wrapper.state().sequences = [];
   wrapper.state().idSequence = 0;
   wrapper.state().subModule = {
@@ -72,31 +74,39 @@ describe('AddSubmodule tests', () => {
   });
 
   it('Should change submodule title on title input change', () => {
-    wrapper = mount(<Module
-      id={0}
-      key="test"
-      deleteIt="test"
-      title=""
-      content={[]}
-      handleChange={jest.fn()}
-      handleAddSubModuleContent={jest.fn()}
-      handleAddSequenceContent={jest.fn()}
-      deleteModule={jest.fn()}
-    />);
+    wrapper = mount(
+      <Module
+        id={0}
+        key="test"
+        deleteIt="test"
+        title=""
+        content={[]}
+        handleChange={jest.fn()}
+        handleAddSubModuleContent={jest.fn()}
+        handleAddSequenceContent={jest.fn()}
+        deleteModule={jest.fn()}
+      />,
+    );
     wrapper.state().subModules = [{ key: 'test-sub', id: 0 }];
     wrapper.state().idSubModules = 1;
-    wrapper.state().module = { title: '', type: 2, content: [{ title: '', type: 3, content: [] }] };
+    wrapper.state().module = {
+      title: '',
+      type: 2,
+      content: [{ title: '', type: 3, content: [] }],
+    };
     const id = wrapper.state().idSubModules - 1;
-    const moduleChild = mount(<Submodule
-      id={0}
-      key="test-sub"
-      deleteIt="test-sub"
-      title={wrapper.state().module.content[id].title}
-      content={[]}
-      handleChange={wrapper.instance().handleChange}
-      handleAddSequenceContent={jest.fn()}
-      deleteSubModule={jest.fn()}
-    />);
+    const moduleChild = mount(
+      <Submodule
+        id={0}
+        key="test-sub"
+        deleteIt="test-sub"
+        title={wrapper.state().module.content[id].title}
+        content={[]}
+        handleChange={wrapper.instance().handleChange}
+        handleAddSequenceContent={jest.fn()}
+        deleteSubModule={jest.fn()}
+      />,
+    );
     const input = moduleChild.find('input');
     const mockEvent = {
       target: {
@@ -119,25 +129,29 @@ describe('AddSubmodule tests', () => {
   });
 
   it('Should delete Sequence from SubModule on children component delete button click', () => {
-    wrapper = mount(<Submodule
-      id={0}
-      key="test-sub"
-      deleteIt="test-sub"
-      title=""
-      content={[]}
-      handleChange={jest.fn()}
-      handleAddSequenceContent={jest.fn()}
-      deleteSubModule={jest.fn()}
-    />);
-    const moduleChild = mount(<Sequence
-      id={0}
-      key="test-seq"
-      deleteIt="test-seq"
-      title=""
-      content={[]}
-      handleChange={jest.fn()}
-      deleteSequence={wrapper.instance().deleteSequence}
-    />);
+    wrapper = mount(
+      <Submodule
+        id={0}
+        key="test-sub"
+        deleteIt="test-sub"
+        title=""
+        content={[]}
+        handleChange={jest.fn()}
+        handleAddSequenceContent={jest.fn()}
+        deleteSubModule={jest.fn()}
+      />,
+    );
+    const moduleChild = mount(
+      <Sequence
+        id={0}
+        key="test-seq"
+        deleteIt="test-seq"
+        title=""
+        content={[]}
+        handleChange={jest.fn()}
+        deleteSequence={wrapper.instance().deleteSequence}
+      />,
+    );
     wrapper.state().sequences = [{ key: 'test-seq', id: 0 }];
     wrapper.state().idSequence = 1;
     wrapper.state().subModule = {

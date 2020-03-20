@@ -3,7 +3,6 @@ import CSVReader from 'react-csv-reader';
 import CsvPickerButton from './CsvPickerButton';
 import './CsvPicker.scss';
 
-
 const papaparseOptions = {
   header: true,
   dynamicTyping: true,
@@ -21,13 +20,17 @@ export default class CsvPicker extends Component {
     handleCSVImport(name, e);
   }
 
-
   render() {
     /* Name of the input */
     const { name, selected } = this.props;
     return (
       <>
-        <CSVReader id="csvPicker" name={name} parserOptions={papaparseOptions} onFileLoaded={(e) => this.onDataImport(e)} />
+        <CSVReader
+          id="csvPicker"
+          name={name}
+          parserOptions={papaparseOptions}
+          onFileLoaded={(e) => this.onDataImport(e)}
+        />
         <div className="csvPickerControls">
           <CsvPickerButton selected={selected} />
         </div>

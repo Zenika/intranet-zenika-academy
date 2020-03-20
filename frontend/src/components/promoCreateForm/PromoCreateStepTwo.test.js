@@ -6,7 +6,6 @@ import { PromoCreateStepTwo } from './PromoCreateStepTwo';
 import CreatableSelect from '../searchbarauto/CreatableSearchbar';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
-
 jest.mock('axios', () => {
   const data = [
     {
@@ -35,7 +34,6 @@ jest.mock('axios', () => {
   };
 });
 
-
 Enzyme.configure({ adapter: new Adapter() });
 
 let wrapper;
@@ -43,14 +41,16 @@ let mockAxios;
 beforeEach(() => {
   mockAxios = jest.spyOn(axios, 'get');
 
-  wrapper = mount(<PromoCreateStepTwo
-    nextStep={jest.fn()}
-    step={2}
-    promo={Object}
-    handleChange={jest.fn()}
-    handleMultiChange={jest.fn()}
-    prevStep={jest.fn()}
-  />);
+  wrapper = mount(
+    <PromoCreateStepTwo
+      nextStep={jest.fn()}
+      step={2}
+      promo={Object}
+      handleChange={jest.fn()}
+      handleMultiChange={jest.fn()}
+      prevStep={jest.fn()}
+    />,
+  );
 });
 
 afterEach(() => {
@@ -71,7 +71,6 @@ describe('PromoCreateStepTwo tests', () => {
     expect(wrapper).toBeDefined();
     expect(wrapper.exists()).toBe(true);
   });
-
 
   it('Should have promoCreateForm className', () => {
     const container = wrapper.find('.promoCreateForm');

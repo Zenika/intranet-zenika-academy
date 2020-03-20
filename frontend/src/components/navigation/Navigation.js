@@ -4,7 +4,6 @@ import { SignInModal } from '../signInModal/SignInModal';
 import './Navigation.scss';
 import logo from './logo.png';
 
-
 class NavigationBar extends Component {
   constructor(props) {
     super(props);
@@ -20,12 +19,18 @@ class NavigationBar extends Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
-    this.handleSetBurgerLinkEnterPress = this.handleSetBurgerLinkEnterPress.bind(this);
+    this.handleSetBurgerLinkEnterPress = this.handleSetBurgerLinkEnterPress.bind(
+      this,
+    );
     this.handleSetBurgerLinkClick = this.handleSetBurgerLinkClick.bind(this);
     this.handleSetNavbarStateClick = this.handleSetNavbarStateClick.bind(this);
-    this.handleSetNavbarStateEnterPress = this.handleSetNavbarStateEnterPress.bind(this);
+    this.handleSetNavbarStateEnterPress = this.handleSetNavbarStateEnterPress.bind(
+      this,
+    );
     this.handleSetBurgerBarClick = this.handleSetBurgerBarClick.bind(this);
-    this.handleSetBurgerBarEnterPress = this.handleSetBurgerBarEnterPress.bind(this);
+    this.handleSetBurgerBarEnterPress = this.handleSetBurgerBarEnterPress.bind(
+      this,
+    );
   }
 
   componentDidMount() {
@@ -123,19 +128,30 @@ class NavigationBar extends Component {
 
   render() {
     const {
-      loggedIn, modalState, isNavAdmin, email, password, promoId, programId,
+      loggedIn,
+      modalState,
+      isNavAdmin,
+      email,
+      password,
+      promoId,
+      programId,
     } = this.state;
     const navbarMenu = document.querySelector('#navMenu') || '';
     let navbarMenuClass;
     if (isNavAdmin && loggedIn) {
-      if (navbarMenu.className && navbarMenu.className === 'navbar-menu navbar-menu-front is-active') {
+      if (
+        navbarMenu.className &&
+        navbarMenu.className === 'navbar-menu navbar-menu-front is-active'
+      ) {
         navbarMenuClass = 'navbar-menu navbar-menu-admin is-active';
       } else {
         navbarMenuClass = 'navbar-menu navbar-menu-admin';
       }
     } else if (!isNavAdmin || !loggedIn) {
-      if (navbarMenu.className
-        && navbarMenu.className === 'navbar-menu navbar-menu-admin is-active') {
+      if (
+        navbarMenu.className &&
+        navbarMenu.className === 'navbar-menu navbar-menu-admin is-active'
+      ) {
         navbarMenuClass = 'navbar-menu navbar-menu-front is-active';
       } else {
         navbarMenuClass = 'navbar-menu navbar-menu-front';
@@ -148,7 +164,12 @@ class NavigationBar extends Component {
           className="navbar-link is-arrowless is-hidden-mobile"
           to={isNavAdmin ? '/home/admin' : `/user/promo/${promoId}/details`}
         >
-          <img id="navbarLogo" src={logo} className="is-hidden-mobile" alt="logo zenika" />
+          <img
+            id="navbarLogo"
+            src={logo}
+            className="is-hidden-mobile"
+            alt="logo zenika"
+          />
         </Link>
         <Link
           tabIndex="0"
@@ -209,11 +230,7 @@ class NavigationBar extends Component {
           </span>
           <div className="navbar-dropdown is-hidden-mobile is-boxed">
             <Link to="/admin/users/create">
-              <span
-                className="navbar-item"
-              >
-                Créer
-              </span>
+              <span className="navbar-item">Créer</span>
             </Link>
           </div>
         </div>
@@ -281,23 +298,23 @@ class NavigationBar extends Component {
         <div className={navbarMenuClass} id="navMenu">
           {isNavAdmin ? adminLinks : notAdminLinks}
           <div className="navbar-end">
-            {isNavAdmin
-              && (
-                <div className="navbar-item has-dropdown">
-                  <span id="adminNavText" className="display-desktop">
-                    <i className="fas fa-users-cog" />
-                    &nbsp;Admin
-                  </span>
-
-                </div>
-              )}
-            <div
-              className="navbar-item"
-            >
+            {isNavAdmin && (
+              <div className="navbar-item has-dropdown">
+                <span id="adminNavText" className="display-desktop">
+                  <i className="fas fa-users-cog" />
+                  &nbsp;Admin
+                </span>
+              </div>
+            )}
+            <div className="navbar-item">
               <Link
                 onClick={() => this.disconnect()}
                 to="/"
-                className={isNavAdmin ? 'icon-signout-admin is-hidden-mobile' : 'icon-signout is-hidden-mobile'}
+                className={
+                  isNavAdmin
+                    ? 'icon-signout-admin is-hidden-mobile'
+                    : 'icon-signout is-hidden-mobile'
+                }
               >
                 <i className="fas fa-sign-out-alt display-desktop" />
               </Link>
@@ -306,7 +323,10 @@ class NavigationBar extends Component {
                 to="/"
                 className="display-mobile"
               >
-                <span className="navbar-link is-arrowless display-mobile"> Se déconnecter</span>
+                <span className="navbar-link is-arrowless display-mobile">
+                  {' '}
+                  Se déconnecter
+                </span>
               </Link>
             </div>
           </div>
@@ -315,9 +335,17 @@ class NavigationBar extends Component {
     );
 
     const loggedOutNav = (
-      <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
+      <nav
+        className="navbar is-primary"
+        role="navigation"
+        aria-label="main navigation"
+      >
         <div className="navbar-item display-mobile">
-          <button type="submit" onClick={() => this.toggleModal(true)} className="button">
+          <button
+            type="submit"
+            onClick={() => this.toggleModal(true)}
+            className="button"
+          >
             Se connecter
           </button>
         </div>
@@ -329,21 +357,24 @@ class NavigationBar extends Component {
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
-              <button type="submit" onClick={() => this.toggleModal(true)} className="button signInDesktop">
+              <button
+                type="submit"
+                onClick={() => this.toggleModal(true)}
+                className="button signInDesktop"
+              >
                 Se connecter
               </button>
             </div>
           </div>
         </div>
-        {modalState
-          && (
-            <SignInModal
-              toggleModal={this.toggleModal}
-              email={email}
-              password={password}
-              connect={this.connect}
-            />
-          )}
+        {modalState && (
+          <SignInModal
+            toggleModal={this.toggleModal}
+            email={email}
+            password={password}
+            connect={this.connect}
+          />
+        )}
       </nav>
     );
 

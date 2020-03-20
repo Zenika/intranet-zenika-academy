@@ -10,7 +10,7 @@ const Notfound = () => (
     <p className="subtitle is-3">Voilà qui n&lsquo;était pas prévu ... </p>
     <div>
       <Link to="/" id="goBack">
-                    Retourner à l&lsquo;accueil
+        Retourner à l&lsquo;accueil
       </Link>
     </div>
   </div>

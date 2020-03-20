@@ -32,11 +32,13 @@ class AddModule extends React.Component {
     const { module } = this.state;
     const createSubModules = module.content.map((node, i) => ({
       id: i,
-      key: Math.random()
-        .toString(36)
-        .substring(2, 15) + Math.random()
-        .toString(36)
-        .substring(2, 15),
+      key:
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15),
     }));
     this.setState((prev) => ({
       prev,
@@ -63,14 +65,15 @@ class AddModule extends React.Component {
       const newId = prevState.idSubModules > 0 ? prevState.idSubModules - 1 : 0;
       const newItems = prevState.module.content;
       newItems.splice(id, 1);
-      const newSequenceArray = prevState.subModules.filter((node) => node.key !== key);
+      const newSequenceArray = prevState.subModules.filter(
+        (node) => node.key !== key,
+      );
       newSequenceArray.forEach((node, index) => {
         newSequenceArray[index].id = index;
       });
       return {
         subModules: newSequenceArray,
-        module:
-          { ...prevState.module, content: newItems },
+        module: { ...prevState.module, content: newItems },
         idSubModules: newId,
       };
     });
@@ -79,11 +82,13 @@ class AddModule extends React.Component {
   addSubModule = async () => {
     const { idSubModules } = this.state;
     const { handleAddSubModuleContent, id: idProps } = this.props;
-    const key = Math.random()
-      .toString(36)
-      .substring(2, 15) + Math.random()
-      .toString(36)
-      .substring(2, 15);
+    const key =
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15);
     const newSubModule = {
       id: idSubModules,
       key,
@@ -92,20 +97,23 @@ class AddModule extends React.Component {
       ...prevState,
       module: {
         ...prevState.module,
-        content: [...prevState.module.content, { title: '', type: 3, content: [] }],
+        content: [
+          ...prevState.module.content,
+          { title: '', type: 3, content: [] },
+        ],
       },
     }));
-    await this.setState((prevState) => ({
-      ...prevState,
-      subModules: [
-        ...prevState.subModules,
-        newSubModule,
-      ],
-      idSubModules: prevState.idSubModules + 1,
-    }), () => {
-      const { module } = this.state;
-      handleAddSubModuleContent(module.content[idSubModules], idProps);
-    });
+    await this.setState(
+      (prevState) => ({
+        ...prevState,
+        subModules: [...prevState.subModules, newSubModule],
+        idSubModules: prevState.idSubModules + 1,
+      }),
+      () => {
+        const { module } = this.state;
+        handleAddSubModuleContent(module.content[idSubModules], idProps);
+      },
+    );
   };
 
   handleChange = async (e) => {
@@ -119,11 +127,13 @@ class AddModule extends React.Component {
 
   render() {
     const {
-      handleChange, deleteModule, deleteIt, handleAddSequenceContent, id: propsId,
+      handleChange,
+      deleteModule,
+      deleteIt,
+      handleAddSequenceContent,
+      id: propsId,
     } = this.props;
-    const {
-      subModules, id, title, module,
-    } = this.state;
+    const { subModules, id, title, module } = this.state;
 
     return (
       <div id={`moduleBox-${id}`} className="box mtmd">
@@ -132,43 +142,64 @@ class AddModule extends React.Component {
           <div className="root">
             <h3 id="moduleTitle" className="title is-4 is-pulled-left">
               Module n°
-              {id + 1}
-              :
-              &nbsp;
-              <span>
-                {title}
-              </span>
+              {id + 1}: &nbsp;
+              <span>{title}</span>
             </h3>
-            <a href={`#collapsible-section${id}`} data-action="collapse" className="is-pulled-right is-active">
+            <a
+              href={`#collapsible-section${id}`}
+              data-action="collapse"
+              className="is-pulled-right is-active"
+            >
               <i className="fas fa-chevron-up" />
             </a>
           </div>
-          <div id={`collapsible-section${id}`} className="is-collapsible is-active" aria-expanded="true" data-parent={`accordion${id}`}>
+          <div
+            id={`collapsible-section${id}`}
+            className="is-collapsible is-active"
+            aria-expanded="true"
+            data-parent={`accordion${id}`}
+          >
             <div className="card">
               <header className="card-header">
                 <p className="card-header-title">
-              Module n°
+                  Module n°
                   {id + 1}
                 </p>
               </header>
               <div className="card-content">
                 <div className="content">
                   <label htmlFor="title" className="label">
-                    <input className="input" id={id} name="title" type="text" placeholder="Nom du module" defaultValue={title} onChange={(e) => handleChange(e)} />
+                    <input
+                      className="input"
+                      id={id}
+                      name="title"
+                      type="text"
+                      placeholder="Nom du module"
+                      defaultValue={title}
+                      onChange={(e) => handleChange(e)}
+                    />
                   </label>
                 </div>
               </div>
               <footer className="card-footer">
-                <button className="button is-success card-footer-item" id="addSubModule" onClick={() => this.addSubModule()} type="button">
+                <button
+                  className="button is-success card-footer-item"
+                  id="addSubModule"
+                  onClick={() => this.addSubModule()}
+                  type="button"
+                >
                   <span className="icon is-small">
                     <i className="fas fa-plus" />
                   </span>
-              &nbsp; &nbsp;Sous-Module
+                  &nbsp; &nbsp;Sous-Module
                 </button>
-                <button className="button is-danger card-footer-item" id="deleteModule" onClick={() => deleteModule(deleteIt, id)} type="button">
-                  <span
-                    className="icon is-small"
-                  >
+                <button
+                  className="button is-danger card-footer-item"
+                  id="deleteModule"
+                  onClick={() => deleteModule(deleteIt, id)}
+                  type="button"
+                >
+                  <span className="icon is-small">
                     <i className="fas fa-minus" />
                   </span>
                 </button>
@@ -177,21 +208,19 @@ class AddModule extends React.Component {
           </div>
         </div>
         <div className="field">
-          {
-            subModules.map((node) => (
-              <SubModule
-                id={node.id}
-                key={node.key}
-                deleteIt={node.key}
-                idModule={propsId}
-                title={module.content[node.id].title}
-                content={module.content[node.id].content}
-                handleChange={this.handleChange}
-                handleAddSequenceContent={handleAddSequenceContent}
-                deleteSubModule={this.deleteSubModule}
-              />
-            ))
-          }
+          {subModules.map((node) => (
+            <SubModule
+              id={node.id}
+              key={node.key}
+              deleteIt={node.key}
+              idModule={propsId}
+              title={module.content[node.id].title}
+              content={module.content[node.id].content}
+              handleChange={this.handleChange}
+              handleAddSequenceContent={handleAddSequenceContent}
+              deleteSubModule={this.deleteSubModule}
+            />
+          ))}
         </div>
       </div>
     );

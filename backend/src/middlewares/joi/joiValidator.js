@@ -22,7 +22,9 @@ module.exports = {
         .integer()
         .required(),
     });
-    const { error, value } = schema.validate({ id: parseInt(req.params[property], 10) });
+    const { error, value } = schema.validate({
+      id: parseInt(req.params[property], 10),
+    });
     const valid = error == null;
 
     if (valid) {

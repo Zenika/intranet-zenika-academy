@@ -1,8 +1,8 @@
-@import "~bulma/sass/utilities/_all.sass";
-@import "~bulma/sass/base/_all.sass";
-@import "~bulma/sass/elements/button.sass";
-@import "~bulma/sass/layout/section.sass";
-@import "~bulma-o-steps/bulma-steps.sass";
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/base/_all.sass';
+@import '~bulma/sass/elements/button.sass';
+@import '~bulma/sass/layout/section.sass';
+@import '~bulma-o-steps/bulma-steps.sass';
 @import '~@creativebulma/bulma-collapsible';
 @import '~bulma/bulma';
 
@@ -16,8 +16,8 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,11 +25,11 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-#root{
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;

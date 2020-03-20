@@ -20,14 +20,14 @@ jest.mock('axios', () => {
 });
 
 const user = {
-  firstName: 'Yuu', lastName: 'Mess', email: 'youcef.messao@gmail.com', role: 'admin',
+  firstName: 'Yuu',
+  lastName: 'Mess',
+  email: 'youcef.messao@gmail.com',
+  role: 'admin',
 };
 
 beforeEach(() => {
-  wrapper = mount(<RecapUserForm
-    user={user}
-    changeStep={jest.fn()}
-  />);
+  wrapper = mount(<RecapUserForm user={user} changeStep={jest.fn()} />);
 });
 
 describe('UserForm tests', () => {
@@ -37,7 +37,9 @@ describe('UserForm tests', () => {
   });
 
   it('Should have a title', () => {
-    expect(global.window.document.title).toBe("Admin / Récapitulatif création d'utilisateur");
+    expect(global.window.document.title).toBe(
+      "Admin / Récapitulatif création d'utilisateur",
+    );
   });
 
   it('Should have a create button', () => {
@@ -64,9 +66,15 @@ describe('UserForm tests', () => {
     expect(wrapper.find('li')).toHaveLength(4);
     expect(wrapper.find('#recapUserList')).toHaveLength(1);
     expect(wrapper.find('#role span').text()).toEqual(roleDetail);
-    expect(wrapper.find('#firstName span').text()).toEqual(wrapper.state().user.firstName);
-    expect(wrapper.find('#lastName span').text()).toEqual(wrapper.state().user.lastName);
-    expect(wrapper.find('#email span').text()).toEqual(wrapper.state().user.email);
+    expect(wrapper.find('#firstName span').text()).toEqual(
+      wrapper.state().user.firstName,
+    );
+    expect(wrapper.find('#lastName span').text()).toEqual(
+      wrapper.state().user.lastName,
+    );
+    expect(wrapper.find('#email span').text()).toEqual(
+      wrapper.state().user.email,
+    );
   });
 
   it('Should call axios post with user info when you click on create button', () => {
@@ -77,7 +85,10 @@ describe('UserForm tests', () => {
       preventDefault: () => {},
     });
     expect(getSpy).toHaveBeenCalledTimes(1);
-    expect(getSpy).toHaveBeenCalledWith('http://localhost:4000/api/users ', state);
+    expect(getSpy).toHaveBeenCalledWith(
+      'http://localhost:4000/api/users ',
+      state,
+    );
     getSpy.mockClear();
   });
 });

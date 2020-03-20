@@ -5,18 +5,19 @@ import PromoCreateStepOne from './PromoCreateStepOne';
 import DatePicker from '../datepicker/DatePicker';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
-
 Enzyme.configure({ adapter: new Adapter() });
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<PromoCreateStepOne
-    nextStep={jest.fn()}
-    step={1}
-    promo={Object}
-    handleChange={jest.fn()}
-    handleMultiChange={jest.fn()}
-  />);
+  wrapper = mount(
+    <PromoCreateStepOne
+      nextStep={jest.fn()}
+      step={1}
+      promo={Object}
+      handleChange={jest.fn()}
+      handleMultiChange={jest.fn()}
+    />,
+  );
 });
 
 describe('PromoCreateStepOne tests', () => {

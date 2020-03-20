@@ -5,14 +5,11 @@ const update = Joi.object({
     .integer()
     .required(),
 
-  title: Joi.string()
-    .alphanum(),
+  title: Joi.string().alphanum(),
 
-  link: Joi.string()
-    .alphanum(),
+  link: Joi.string().alphanum(),
 
-  description: Joi.string()
-    .alphanum(),
+  description: Joi.string().alphanum(),
 }).required();
 
 module.exports = update;

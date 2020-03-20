@@ -17,16 +17,16 @@ describe('ProgramDetails component', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
   it('matches snapshot', () => {
-    const component = renderer.create(<ProgramDetails match={{ params: { id: 1 } }} />);
+    const component = renderer.create(
+      <ProgramDetails match={{ params: { id: 1 } }} />,
+    );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
   describe('when rendered', () => {
     it('should fetch a program details', () => {
       const getSpy = jest.spyOn(axios, 'get');
-      shallow(
-        <ProgramDetails match={{ params: { id: 1 } }} />,
-      );
+      shallow(<ProgramDetails match={{ params: { id: 1 } }} />);
       expect(getSpy).toBeCalled();
     });
   });

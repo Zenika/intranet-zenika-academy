@@ -31,19 +31,11 @@ class UserCreateContainer extends React.Component {
 
     return (
       <>
-        { step === 0
-          ? (
-            <UserForm
-              user={user}
-              changeStep={this.changeStep}
-            />
-          )
-          : (
-            <RecapUserForm
-              user={user}
-              changeStep={this.changeStep}
-            />
-          )}
+        {step === 0 ? (
+          <UserForm user={user} changeStep={this.changeStep} />
+        ) : (
+          <RecapUserForm user={user} changeStep={this.changeStep} />
+        )}
       </>
     );
   }

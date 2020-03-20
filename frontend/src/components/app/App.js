@@ -52,8 +52,16 @@ class App extends React.Component {
               path="/:role/promo/:id/details"
               component={PromoData}
             />
-            <Route exact path="/admin/promo/:id/details" component={PromoData} />
-            <Route exact path="/admin/program/:id/details" component={ProgramData} />
+            <Route
+              exact
+              path="/admin/promo/:id/details"
+              component={PromoData}
+            />
+            <Route
+              exact
+              path="/admin/program/:id/details"
+              component={ProgramData}
+            />
             <Route
               key="create-program"
               exact

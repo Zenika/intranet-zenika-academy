@@ -15,14 +15,16 @@ Object.defineProperty(global.self, 'crypto', {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<ProgramForm
-    program={{
-      title: '',
-      type: 1,
-      content: [],
-    }}
-    handleChange={jest.fn()}
-  />);
+  wrapper = mount(
+    <ProgramForm
+      program={{
+        title: '',
+        type: 1,
+        content: [],
+      }}
+      handleChange={jest.fn()}
+    />,
+  );
   wrapper.state().modules = [];
   wrapper.state().idModules = 0;
 });
@@ -82,11 +84,13 @@ describe('ProgramForm tests', () => {
     const fn = jest.spyOn(instance, 'clearProgram');
     wrapper.state().modules = [{ id: 0, key: 'keyTest123' }];
     wrapper.state().idModules = 1;
-    wrapper.state().program.content = [{
-      title: '',
-      type: 2,
-      content: [],
-    }];
+    wrapper.state().program.content = [
+      {
+        title: '',
+        type: 2,
+        content: [],
+      },
+    ];
 
     const mockEvent = {
       target: {
@@ -98,11 +102,13 @@ describe('ProgramForm tests', () => {
     expect(wrapper.state().program.title).toEqual('Programme test');
     expect(wrapper.state().idModules).toEqual(1);
     expect(wrapper.state().modules).toEqual([{ id: 0, key: 'keyTest123' }]);
-    expect(wrapper.state().program.content).toEqual([{
-      title: '',
-      type: 2,
-      content: [],
-    }]);
+    expect(wrapper.state().program.content).toEqual([
+      {
+        title: '',
+        type: 2,
+        content: [],
+      },
+    ]);
 
     btn.simulate('click');
     expect(fn).toHaveBeenCalledTimes(1);
@@ -133,25 +139,29 @@ describe('ProgramForm tests', () => {
   });
 
   it('Should delete Module from Program on children component delete button click', () => {
-    wrapper = mount(<ProgramForm
-      program={{
-        title: '',
-        type: 1,
-        content: [{ title: 'module', type: 2, content: [] }],
-      }}
-      handleChange={jest.fn()}
-    />);
-    const moduleChild = mount(<Module
-      id={0}
-      key="test"
-      deleteIt="test"
-      title={wrapper.state().title}
-      content={[]}
-      handleChange={jest.fn()}
-      handleAddSubModuleContent={jest.fn()}
-      handleAddSequenceContent={jest.fn()}
-      deleteModule={wrapper.instance().deleteModule}
-    />);
+    wrapper = mount(
+      <ProgramForm
+        program={{
+          title: '',
+          type: 1,
+          content: [{ title: 'module', type: 2, content: [] }],
+        }}
+        handleChange={jest.fn()}
+      />,
+    );
+    const moduleChild = mount(
+      <Module
+        id={0}
+        key="test"
+        deleteIt="test"
+        title={wrapper.state().title}
+        content={[]}
+        handleChange={jest.fn()}
+        handleAddSubModuleContent={jest.fn()}
+        handleAddSequenceContent={jest.fn()}
+        deleteModule={wrapper.instance().deleteModule}
+      />,
+    );
     wrapper.state().modules = [{ key: 'test', id: 0 }];
     wrapper.state().idModules = 1;
 

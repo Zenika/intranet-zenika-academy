@@ -28,15 +28,17 @@ class PromoDetails extends Component {
       this.setState({ isAdmin: true });
     }
     const { match } = this.props;
-    const url = `http://localhost:4000/api/promotions/details/${parseInt(match.params.id, 10)}`;
-    Axios.get(url)
-      .then((result) => {
-        this.setState({
-          users: result.data.users,
-          program: result.data.program,
-          promotion: result.data.promotion,
-        });
+    const url = `http://localhost:4000/api/promotions/details/${parseInt(
+      match.params.id,
+      10,
+    )}`;
+    Axios.get(url).then((result) => {
+      this.setState({
+        users: result.data.users,
+        program: result.data.program,
+        promotion: result.data.promotion,
       });
+    });
   }
 
   /**
@@ -66,9 +68,9 @@ class PromoDetails extends Component {
   }
 
   /**
- * Allows to call the delete method on enter Key press
- * @param {*} id Promo Id
- */
+   * Allows to call the delete method on enter Key press
+   * @param {*} id Promo Id
+   */
   handleDeleteEnterKey(e, id) {
     if (e.key === 'Enter') {
       return this.handleDelete(id);
@@ -82,14 +84,26 @@ class PromoDetails extends Component {
 
   render() {
     const {
-      users, program, promotion, redirectToAdmin, isAdmin, redirectToPromoEdit,
+      users,
+      program,
+      promotion,
+      redirectToAdmin,
+      isAdmin,
+      redirectToPromoEdit,
     } = this.state;
     const { handleDeleteClick, handleDeleteEnterKey, goToPromoEdit } = this;
     const teachers = users.filter((user) => user.role === 2);
     const students = users.filter((user) => user.role === 3);
     const programTitle = program ? program.title : 'Pas de programme associé';
-    const detailLink = program ? <a href={`/program/${program.id}/details`} title="Détails du programme" className="detailsLink">détails...</a>
-      : null;
+    const detailLink = program ? (
+      <a
+        href={`/program/${program.id}/details`}
+        title="Détails du programme"
+        className="detailsLink"
+      >
+        détails...
+      </a>
+    ) : null;
 
     if (redirectToAdmin) {
       return <Redirect to="/home/admin" />;
@@ -98,10 +112,11 @@ class PromoDetails extends Component {
     if (redirectToPromoEdit) {
       const path = `/admin/promo/edit/${promotion.id}`;
       return (
-        <Redirect to={{
-          pathname: path,
-          data: { teachers, students, promotion },
-        }}
+        <Redirect
+          to={{
+            pathname: path,
+            data: { teachers, students, promotion },
+          }}
         />
       );
     }
@@ -112,22 +127,20 @@ class PromoDetails extends Component {
             <div className="promoInfo">
               <h1 className="title is-1 promoTitle">{promotion.title}</h1>
               <h2 className="subtitle is-3">
-                à
-                {' '}
-                {promotion.city}
-                {' '}
-                du
-                {' '}
-                <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment>
-                {' '}
-                au
-                {' '}
+                à {promotion.city} du{' '}
+                <Moment format="DD/MM/YYYY">{promotion.startDate}</Moment> au{' '}
                 <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
               </h2>
             </div>
             {isAdmin && (
               <div className="buttonContainer">
-                <a href="/home/admin" className="button is-dark goBack" title="Revenir à l'accueil">Revenir à l&apos;accueil</a>
+                <a
+                  href="/home/admin"
+                  className="button is-dark goBack"
+                  title="Revenir à l'accueil"
+                >
+                  Revenir à l&apos;accueil
+                </a>
                 <button
                   title=" Edition d'une promo"
                   type="button"
@@ -152,9 +165,11 @@ class PromoDetails extends Component {
             <div className="notification">
               <h3 className="title is-3">Formateurs</h3>
               <ul className="promoTeachers">
-                {
-                  teachers.map((teacher) => <li key={`teacher-${teacher.id}`}>{`${teacher.firstName} ${teacher.lastName}`}</li>)
-                }
+                {teachers.map((teacher) => (
+                  <li
+                    key={`teacher-${teacher.id}`}
+                  >{`${teacher.firstName} ${teacher.lastName}`}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -162,18 +177,18 @@ class PromoDetails extends Component {
             <div className="notification">
               <h3 className="title is-3">Elèves</h3>
               <ul className="promoStudents">
-                {
-                  students.map((student) => <li key={`student-${student.id}`}>{`${student.firstName} ${student.lastName}`}</li>)
-                }
+                {students.map((student) => (
+                  <li
+                    key={`student-${student.id}`}
+                  >{`${student.firstName} ${student.lastName}`}</li>
+                ))}
               </ul>
             </div>
           </div>
           <div className="container">
             <div className="notification">
               <h3 className="title is-3">Programme</h3>
-              <p>
-                {programTitle}
-              </p>
+              <p>{programTitle}</p>
               {detailLink}
             </div>
           </div>

@@ -9,8 +9,7 @@ describe('Test User Controller Api call', () => {
   let testStudentUserRole = 0;
 
   it('Get all Users (fail)', async (done) => {
-    await httpMethod.get('/api/user')
-      .expect(404);
+    await httpMethod.get('/api/user').expect(404);
     done();
   });
 
@@ -41,7 +40,9 @@ describe('Test User Controller Api call', () => {
       email: 'tatayoyo@gmail.com',
     };
 
-    const response = await httpMethod.put(`/api/users/${testAdminUserId}/update`, bodyUpdate).expect(200);
+    const response = await httpMethod
+      .put(`/api/users/${testAdminUserId}/update`, bodyUpdate)
+      .expect(200);
 
     expect(response.body[0]).toBe(1);
 
@@ -80,7 +81,9 @@ describe('Test User Controller Api call', () => {
       email: 'tatayoyo@gmail.com',
     };
 
-    const response = await httpMethod.put(`/api/users/${testStudentUserId}/update`, bodyUpdate).expect(200);
+    const response = await httpMethod
+      .put(`/api/users/${testStudentUserId}/update`, bodyUpdate)
+      .expect(200);
 
     expect(response.body[0]).toBe(1);
 

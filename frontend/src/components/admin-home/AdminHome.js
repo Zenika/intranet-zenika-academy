@@ -16,22 +16,20 @@ class AdminHome extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    document.title = 'Page d\'accueil Admin';
-    axios.get('http://localhost:4000/api/promotions')
-      .then((res) => {
-        const promotions = res.data;
-        if (this._isMounted) {
-          this.setState({ promotions });
-        }
-      });
+    document.title = "Page d'accueil Admin";
+    axios.get('http://localhost:4000/api/promotions').then((res) => {
+      const promotions = res.data;
+      if (this._isMounted) {
+        this.setState({ promotions });
+      }
+    });
 
-    axios.get('http://localhost:4000/api/programs')
-      .then((res) => {
-        const programs = res.data;
-        if (this._isMounted) {
-          this.setState({ programs });
-        }
-      });
+    axios.get('http://localhost:4000/api/programs').then((res) => {
+      const programs = res.data;
+      if (this._isMounted) {
+        this.setState({ programs });
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -47,9 +45,24 @@ class AdminHome extends Component {
       <>
         <h1 className="title is-2 mbmd">Bienvenue</h1>
 
-        <a href="/admin/promo/create" className="button is-primary admin-home-link promo-creation">Créer une promotion</a>
-        <a href="/admin/program/create" className="button is-primary admin-home-link program-creation">Créer un programme</a>
-        <a href="/admin/users/create" className="button is-primary admin-home-link user-creation">Créer un utilisateur</a>
+        <a
+          href="/admin/promo/create"
+          className="button is-primary admin-home-link promo-creation"
+        >
+          Créer une promotion
+        </a>
+        <a
+          href="/admin/program/create"
+          className="button is-primary admin-home-link program-creation"
+        >
+          Créer un programme
+        </a>
+        <a
+          href="/admin/users/create"
+          className="button is-primary admin-home-link user-creation"
+        >
+          Créer un utilisateur
+        </a>
         <div className="notification">
           <h2 className="title is-4 mbmd">Liste des promotions :</h2>
           <ul className="promosContainer">
@@ -61,9 +74,14 @@ class AdminHome extends Component {
                 {' au '}
                 <Moment format="DD/MM/YYYY">{promotion.endDate}</Moment>
                 {' à '}
-                {promotion.city}
-                {' '}
-                <a href={`/admin/promo/${promotion.id}/details`} className="detailsLink" title="Détails de la promo">détails...</a>
+                {promotion.city}{' '}
+                <a
+                  href={`/admin/promo/${promotion.id}/details`}
+                  className="detailsLink"
+                  title="Détails de la promo"
+                >
+                  détails...
+                </a>
               </li>
             ))}
           </ul>
@@ -71,20 +89,23 @@ class AdminHome extends Component {
         <div className="notification">
           <h2 className="title is-4 mbmd">Liste des programmes :</h2>
           <ul className="promosContainer">
-            {
-              programs.map((program) => {
-                if (program.type === 1) {
-                  return (
-                    <li key={program.id} className="promoLineContainer">
-                      <h1 className="promotionTitle">{program.title}</h1>
-                      {' '}
-                      <a href={`/program/${program.id}/details`} className="detailsLink" title="Détails du programme">détails...</a>
-                    </li>
-                  );
-                }
-                return true;
-              })
-            }
+            {programs.map((program) => {
+              if (program.type === 1) {
+                return (
+                  <li key={program.id} className="promoLineContainer">
+                    <h1 className="promotionTitle">{program.title}</h1>{' '}
+                    <a
+                      href={`/program/${program.id}/details`}
+                      className="detailsLink"
+                      title="Détails du programme"
+                    >
+                      détails...
+                    </a>
+                  </li>
+                );
+              }
+              return true;
+            })}
           </ul>
         </div>
       </>

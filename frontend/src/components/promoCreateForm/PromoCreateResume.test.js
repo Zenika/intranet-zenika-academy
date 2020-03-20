@@ -4,14 +4,16 @@ import Adapter from 'enzyme-adapter-react-16';
 import PromoCreateResume from './PromoCreateResume';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
-
 Enzyme.configure({ adapter: new Adapter() });
 
 const promo = {
   title: 'test',
   startDate: '2019-01-01',
   endDate: '2019-01-01',
-  program: [{ label: 'js', value: 2 }, { label: 'java', value: 4 }],
+  program: [
+    { label: 'js', value: 2 },
+    { label: 'java', value: 4 },
+  ],
   teachers: [],
   students: [],
   city: 'testCity',
@@ -19,13 +21,10 @@ const promo = {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<PromoCreateResume
-    prevStep={jest.fn()}
-    step={5}
-    promo={promo}
-  />);
+  wrapper = mount(
+    <PromoCreateResume prevStep={jest.fn()} step={5} promo={promo} />,
+  );
 });
-
 
 describe('PromoCreateResume tests', () => {
   it('Should exist', () => {

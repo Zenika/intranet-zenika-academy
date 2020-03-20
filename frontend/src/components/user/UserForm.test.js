@@ -7,10 +7,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<UserForm
-    user={Object}
-    changeStep={jest.fn()}
-  />);
+  wrapper = mount(<UserForm user={Object} changeStep={jest.fn()} />);
 });
 
 describe('UserForm tests', () => {

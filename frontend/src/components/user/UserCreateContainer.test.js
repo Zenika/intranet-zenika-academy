@@ -19,7 +19,6 @@ beforeEach(() => {
   };
 });
 
-
 describe('UserCreateContainer tests', () => {
   it('Should exist', () => {
     expect(wrapper).toBeDefined();
@@ -51,7 +50,10 @@ describe('UserCreateContainer tests', () => {
 
   it('Should call changeStep() props onsubmit in user form (component children) and change state', () => {
     const user = {
-      firstName: 'Yuu', lastName: 'Mess', email: 'youcef.messao@gmail.com', role: '',
+      firstName: 'Yuu',
+      lastName: 'Mess',
+      email: 'youcef.messao@gmail.com',
+      role: '',
     };
     const container = wrapper.find(UserForm);
     const form = container.find('form');

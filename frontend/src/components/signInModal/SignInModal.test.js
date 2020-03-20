@@ -9,7 +9,9 @@ let wrapper;
 beforeEach(() => {
   const toggleModal = jest.fn();
   const connect = jest.fn();
-  wrapper = shallow(<SignInModal toggleModal={toggleModal} connect={connect} />);
+  wrapper = shallow(
+    <SignInModal toggleModal={toggleModal} connect={connect} />,
+  );
 });
 
 describe('Modal signIn tests', () => {

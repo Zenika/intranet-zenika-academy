@@ -42,27 +42,31 @@ describe('ProgramFormContainer tests', () => {
 
   it('Should call handleChange() props onsubmit in program form (component children) and change state', () => {
     const program = {
-      title: 'Titre test', type: 1, content: [],
+      title: 'Titre test',
+      type: 1,
+      content: [],
     };
     const container = wrapper.find(ProgramForm);
     const btn = container.find('#validateProgramForm');
     container.instance().setState({ program });
     const fn = container.props().handleChange;
-    btn.simulate('click', fn(({ target: { value: '1' } }), program));
+    btn.simulate('click', fn({ target: { value: '1' } }, program));
     expect(wrapper.state().program).toEqual(program);
     expect(wrapper.state().step).toEqual(1);
   });
 
   it('Should call handleChange() props on modify button click in program recap (component children) and change state', () => {
     const program = {
-      title: 'Titre test', type: 1, content: [],
+      title: 'Titre test',
+      type: 1,
+      content: [],
     };
     wrapper.setState({ step: 1 });
     const container = wrapper.find(RecapProgramForm);
     const btn = container.find('#modifyButton');
     container.instance().setState({ program });
     const fn = container.props().handleChange;
-    btn.simulate('click', fn(({ target: { value: '0' } }), program));
+    btn.simulate('click', fn({ target: { value: '0' } }, program));
     expect(wrapper.state().step).toEqual(0);
   });
 });

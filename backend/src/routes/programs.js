@@ -8,25 +8,35 @@ const schemas = require('../service/joi/schemas/schemas');
 /* GET program. */
 router.get('/', ProgramsController.getAllPrograms);
 
-router.post('/',
+router.post(
+  '/',
   validator.joiObjectValidator(schemas.programSchemas.create, 'programs'),
-  ProgramsController.programCreate);
+  ProgramsController.programCreate,
+);
 
-router.delete('/:program_id',
+router.delete(
+  '/:program_id',
   validator.joiIdValidator('program_id'),
-  ProgramsController.programDelete);
+  ProgramsController.programDelete,
+);
 
-router.get('/:program_id',
+router.get(
+  '/:program_id',
   validator.joiIdValidator('program_id'),
-  ProgramsController.getProgramById);
+  ProgramsController.getProgramById,
+);
 
-router.get('/:program_id/details',
+router.get(
+  '/:program_id/details',
   validator.joiIdValidator('program_id'),
-  ProgramsController.getProgramContentById);
+  ProgramsController.getProgramContentById,
+);
 
-router.put('/:program_id/update',
+router.put(
+  '/:program_id/update',
   validator.joiIdValidator('program_id'),
   validator.joiObjectValidator(schemas.programSchemas.update, 'programs'),
-  ProgramsController.programUpdate);
+  ProgramsController.programUpdate,
+);
 
 module.exports = router;

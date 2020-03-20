@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import { PromoCreateStepFour } from './PromoCreateStepFour';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 
-
 Enzyme.configure({ adapter: new Adapter() });
 
 const promo = {
@@ -13,19 +12,20 @@ const promo = {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<PromoCreateStepFour
-    nextStep={jest.fn()}
-    step={4}
-    promo={promo}
-    handleChange={jest.fn()}
-    handleMultiChange={jest.fn()}
-    prevStep={jest.fn()}
-    handleCSVImport={jest.fn()}
-    csv={Boolean}
-    name="students"
-  />);
+  wrapper = mount(
+    <PromoCreateStepFour
+      nextStep={jest.fn()}
+      step={4}
+      promo={promo}
+      handleChange={jest.fn()}
+      handleMultiChange={jest.fn()}
+      prevStep={jest.fn()}
+      handleCSVImport={jest.fn()}
+      csv={Boolean}
+      name="students"
+    />,
+  );
 });
-
 
 describe('PromoCreateStepFour tests', () => {
   it('Should exist', () => {

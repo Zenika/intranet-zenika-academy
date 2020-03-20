@@ -22,25 +22,31 @@ jest.mock('axios', () => {
 const program = {
   title: 'Progamme Test Java',
   type: 1,
-  content: [{
-    title: 'Module Test Java',
-    type: 2,
-    content: [{
-      title: 'Sous moduleTest Java',
-      type: 3,
-      content: [{
-        title: 'Sequence Test Java', type: 4, content: [{ }],
-      }],
-    }],
-  }],
+  content: [
+    {
+      title: 'Module Test Java',
+      type: 2,
+      content: [
+        {
+          title: 'Sous moduleTest Java',
+          type: 3,
+          content: [
+            {
+              title: 'Sequence Test Java',
+              type: 4,
+              content: [{}],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 beforeEach(() => {
-  wrapper = mount(<RecapProgramForm
-    program={program}
-    edit={0}
-    handleChange={jest.fn()}
-  />);
+  wrapper = mount(
+    <RecapProgramForm program={program} edit={0} handleChange={jest.fn()} />,
+  );
 });
 
 describe('Recap Program tests', () => {
@@ -65,14 +71,21 @@ describe('Recap Program tests', () => {
   });
 
   it('Should have right information in recap', () => {
-    const totalLi = wrapper.props().program.content.length
-      + wrapper.props().program.content[0].content.length
-      + wrapper.props().program.content[0].content[0].content.length;
+    const totalLi =
+      wrapper.props().program.content.length +
+      wrapper.props().program.content[0].content.length +
+      wrapper.props().program.content[0].content[0].content.length;
     expect(wrapper.find('li')).toHaveLength(totalLi);
     expect(wrapper.find('#recapProgramList')).toHaveLength(1);
-    expect(wrapper.find('#moduleTitle-0 span').text()).toEqual(wrapper.props().program.content[0].title);
-    expect(wrapper.find('#subModuleTitle-0 span').text()).toEqual(wrapper.props().program.content[0].content[0].title);
-    expect(wrapper.find('#sequenceTitle-0 span').text()).toEqual(wrapper.props().program.content[0].content[0].content[0].title);
+    expect(wrapper.find('#moduleTitle-0 span').text()).toEqual(
+      wrapper.props().program.content[0].title,
+    );
+    expect(wrapper.find('#subModuleTitle-0 span').text()).toEqual(
+      wrapper.props().program.content[0].content[0].title,
+    );
+    expect(wrapper.find('#sequenceTitle-0 span').text()).toEqual(
+      wrapper.props().program.content[0].content[0].content[0].title,
+    );
   });
 
   it('Should call axios post with program info when you click on create button', () => {
@@ -83,7 +96,10 @@ describe('Recap Program tests', () => {
       preventDefault: () => {},
     });
     expect(getSpy).toHaveBeenCalledTimes(1);
-    expect(getSpy).toHaveBeenCalledWith('http://localhost:4000/api/programs', state);
+    expect(getSpy).toHaveBeenCalledWith(
+      'http://localhost:4000/api/programs',
+      state,
+    );
     getSpy.mockClear();
   });
 
@@ -91,7 +107,7 @@ describe('Recap Program tests', () => {
     const button = wrapper.find('#modifyButton');
     const state = wrapper.props().program;
     const fn = wrapper.props().handleChange;
-    button.simulate('click', fn(({ target: { value: '1' } }), state));
+    button.simulate('click', fn({ target: { value: '1' } }, state));
     expect(fn).toHaveBeenCalledTimes(2);
   });
 

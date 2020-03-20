@@ -7,23 +7,30 @@ const validator = require('../middlewares/joi/joiValidator');
 /* GET promotion. */
 router.get('/', PromotionsController.getAllPromotion);
 
-router.post('/',
-  PromotionsController.promotionCreate);
+router.post('/', PromotionsController.promotionCreate);
 
-router.get('/:promotion_id',
+router.get(
+  '/:promotion_id',
   validator.joiIdValidator('promotion_id'),
-  PromotionsController.getPromotionById);
+  PromotionsController.getPromotionById,
+);
 
-router.get('/details/:promotion_id',
+router.get(
+  '/details/:promotion_id',
   validator.joiIdValidator('promotion_id'),
-  PromotionsController.getPromotionDetailsById);
+  PromotionsController.getPromotionDetailsById,
+);
 
-router.put('/:promotion_id/update',
+router.put(
+  '/:promotion_id/update',
   validator.joiIdValidator('promotion_id'),
-  PromotionsController.promotionUpdate);
+  PromotionsController.promotionUpdate,
+);
 
-router.delete('/:promotion_id',
+router.delete(
+  '/:promotion_id',
   validator.joiIdValidator('promotion_id'),
-  PromotionsController.promotionDelete);
+  PromotionsController.promotionDelete,
+);
 
 module.exports = router;

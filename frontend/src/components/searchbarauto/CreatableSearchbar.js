@@ -30,7 +30,12 @@ class CreatableSearchbar extends Component {
 
   render() {
     const {
-      options, defaultValue, handleChange, isMulti, name, defaultLabel,
+      options,
+      defaultValue,
+      handleChange,
+      isMulti,
+      name,
+      defaultLabel,
     } = this.props;
     const { isLoading } = this.state;
     return (
@@ -40,7 +45,9 @@ class CreatableSearchbar extends Component {
         name={name}
         defaultValue={defaultValue}
         onChange={(e) => handleChange(e)}
-        formatCreateLabel={(inputValue) => `Créer un nouveau  ${defaultLabel} : ${inputValue}`}
+        formatCreateLabel={(inputValue) =>
+          `Créer un nouveau  ${defaultLabel} : ${inputValue}`
+        }
         placeholder={defaultLabel}
         options={options}
         isMulti={isMulti}

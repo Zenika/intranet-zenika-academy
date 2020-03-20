@@ -36,7 +36,7 @@ describe('Testing Class Methods components', () => {
   });
 });
 
-describe('Navigation bar when the user isn\'t connected', () => {
+describe("Navigation bar when the user isn't connected", () => {
   const navbar = shallow(<NavigationBar />);
   const navbarInstance = navbar.instance();
   const nav = <NavigationBar />;
@@ -47,7 +47,10 @@ describe('Navigation bar when the user isn\'t connected', () => {
     expect(TestUtils.isElementOfType(nav, NavigationBar)).toBe(true);
 
     const rendered = TestUtils.renderIntoDocument(<NavigationBar />);
-    const siButton = TestUtils.findRenderedDOMComponentWithClass(rendered, 'signInDesktop');
+    const siButton = TestUtils.findRenderedDOMComponentWithClass(
+      rendered,
+      'signInDesktop',
+    );
 
     expect(siButton.textContent).toEqual('Se connecter');
   });

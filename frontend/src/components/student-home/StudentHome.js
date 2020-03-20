@@ -12,7 +12,7 @@ class StudentHome extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Page d\'accueil Eleve';
+    document.title = "Page d'accueil Eleve";
     const id = sessionStorage.getItem('promoId');
     const role = sessionStorage.getItem('userRole');
     if (JSON.parse(role) === 2 || JSON.parse(role) === 3) {
@@ -29,7 +29,7 @@ class StudentHome extends Component {
     if (redirectToUser) {
       return <Redirect to={`/user/promo/${promotionId}/details`} />;
     }
-    return (<h1>Hello!</h1>);
+    return <h1>Hello!</h1>;
   }
 }
 

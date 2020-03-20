@@ -17,10 +17,7 @@ const updateTeachersToNull = async (promoId) => {
   });
   const ids = teachersToRemove.map((t) => t.id);
 
-  await Users.update(
-    { promotionId: null },
-    { where: { id: ids } },
-  );
+  await Users.update({ promotionId: null }, { where: { id: ids } });
 };
 
 /**
@@ -31,10 +28,7 @@ const updateTeachersToNull = async (promoId) => {
 const updateTeachersWithPromoId = async (teachers, promoId) => {
   const ids = teachers.map((t) => t.id);
 
-  await Users.update(
-    { promotionId: promoId },
-    { where: { id: ids } },
-  );
+  await Users.update({ promotionId: promoId }, { where: { id: ids } });
 };
 
 /**
@@ -51,10 +45,7 @@ const updateStudentsToNull = async (promoId) => {
   });
 
   const ids = studentsToRemove.map((t) => t.id);
-  await Users.update(
-    { promotionId: null },
-    { where: { id: ids } },
-  );
+  await Users.update({ promotionId: null }, { where: { id: ids } });
 };
 
 /**
@@ -66,7 +57,9 @@ const updateStudentsToNull = async (promoId) => {
 const upsertNewStudents = async (students, promoId) => {
   await Promise.all(
     students.map(async (student) => {
-      const foundStudent = await Users.findOne({ where: { email: student.email } });
+      const foundStudent = await Users.findOne({
+        where: { email: student.email },
+      });
       // UNKNOWN STUDENT CREATION//
       if (foundStudent === null) {
         const hash = await bcrypt.hash('student', saltRounds);
@@ -89,44 +82,44 @@ const upsertNewStudents = async (students, promoId) => {
   );
 };
 
-
 module.exports = {
-  getAllPromotion: (req, res) => Promotions.findAll({ raw: true })
-    .then((content) => res.send(content))
-    .catch((e) => res.status(400).send(e)),
+  getAllPromotion: (req, res) =>
+    Promotions.findAll({ raw: true })
+      .then((content) => res.send(content))
+      .catch((e) => res.status(400).send(e)),
 
-  getPromotionById: (req, res) => Promotions.findOne({ where: { id: res.locals.promotion_id } })
-    .then((promotionCreated) => res.status(200).send(promotionCreated))
-    .catch((e) => res.status(400).send(e)),
+  getPromotionById: (req, res) =>
+    Promotions.findOne({ where: { id: res.locals.promotion_id } })
+      .then((promotionCreated) => res.status(200).send(promotionCreated))
+      .catch((e) => res.status(400).send(e)),
 
-  getPromotionDetailsById: (req, res) => Promotions
-    .findOne({ where: { id: res.locals.promotion_id } })
-    .then((promotion) => {
-      const result = Promise.all([
-        Programs.findOne({ where: { id: promotion.programId } }),
-        Users.findAll({ where: { promotionId: promotion.id } }),
-      ]).then((promiseAllResult) => [promotion, promiseAllResult]);
-      return result;
-    })
-    .then((result) => {
-      const promotionsDetail = {
-        promotion: result[0],
-        users: result[1][1],
-        program: result[1][0],
-      };
-      return promotionsDetail;
-    })
-    .then((promotionDetails) => res.status(200).send(promotionDetails))
-    .catch((e) => res.status(400).send(e)),
+  getPromotionDetailsById: (req, res) =>
+    Promotions.findOne({ where: { id: res.locals.promotion_id } })
+      .then((promotion) => {
+        const result = Promise.all([
+          Programs.findOne({ where: { id: promotion.programId } }),
+          Users.findAll({ where: { promotionId: promotion.id } }),
+        ]).then((promiseAllResult) => [promotion, promiseAllResult]);
+        return result;
+      })
+      .then((result) => {
+        const promotionsDetail = {
+          promotion: result[0],
+          users: result[1][1],
+          program: result[1][0],
+        };
+        return promotionsDetail;
+      })
+      .then((promotionDetails) => res.status(200).send(promotionDetails))
+      .catch((e) => res.status(400).send(e)),
 
   promotionCreate: async (req, res) => {
     const { promoData, teachersToUpsert } = req.body;
     try {
       const promo = await Promotions.create(promoData);
-      await teachersToUpsert.map((teacher) => Users.update(
-        { promotionId: promo.id },
-        { where: { id: teacher.id } },
-      ));
+      await teachersToUpsert.map((teacher) =>
+        Users.update({ promotionId: promo.id }, { where: { id: teacher.id } }),
+      );
 
       return res.status(201).send(promo);
     } catch (error) {
@@ -142,7 +135,10 @@ module.exports = {
       await updateTeachersWithPromoId(users.teachersToUpsert, id);
       await updateStudentsToNull(id);
       await upsertNewStudents(users.students, id);
-      const promoUpdated = await Promotions.update({ ...promoData }, { where: { id } });
+      const promoUpdated = await Promotions.update(
+        { ...promoData },
+        { where: { id } },
+      );
       return res.status(201).send(promoUpdated);
     } catch (error) {
       return res.status(409).json(error);
@@ -151,19 +147,23 @@ module.exports = {
 
   promotionDelete: async (req, res) => {
     try {
-      const users = await Users
-        .findAll({ where: { promotionId: res.locals.promotion_id }, raw: true });
+      const users = await Users.findAll({
+        where: { promotionId: res.locals.promotion_id },
+        raw: true,
+      });
       if (users instanceof Array && users.length > 0) {
-        await Promise.all(users.map(async (user) => {
-          if (user.role === 3) {
-            await Users.destroy({ where: { id: user.id } });
-          } else if (user.role === 2) {
-            await Users.update(
-              { promotionId: null },
-              { where: { id: user.id } },
-            );
-          }
-        }));
+        await Promise.all(
+          users.map(async (user) => {
+            if (user.role === 3) {
+              await Users.destroy({ where: { id: user.id } });
+            } else if (user.role === 2) {
+              await Users.update(
+                { promotionId: null },
+                { where: { id: user.id } },
+              );
+            }
+          }),
+        );
       }
       await Promotions.destroy({ where: { id: res.locals.promotion_id } });
       return res.status(200).send('Deleted');

@@ -5,19 +5,20 @@ import { PromoCreateStepThree } from './PromoCreateStepThree';
 import { BulmaSteps } from '../bulma-steps/BulmaSteps';
 import SearchbarAutoComplete from '../searchbarauto/SearchbarAuto';
 
-
 Enzyme.configure({ adapter: new Adapter() });
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<PromoCreateStepThree
-    nextStep={jest.fn()}
-    step={3}
-    promo={Object}
-    handleChange={jest.fn()}
-    handleMultiChange={jest.fn()}
-    prevStep={jest.fn()}
-  />);
+  wrapper = mount(
+    <PromoCreateStepThree
+      nextStep={jest.fn()}
+      step={3}
+      promo={Object}
+      handleChange={jest.fn()}
+      handleMultiChange={jest.fn()}
+      prevStep={jest.fn()}
+    />,
+  );
 });
 
 describe('PromoCreateStepThree tests', () => {

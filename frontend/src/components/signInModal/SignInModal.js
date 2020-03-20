@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-
 export class SignInModal extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +15,6 @@ export class SignInModal extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -24,17 +22,17 @@ export class SignInModal extends Component {
 
   handleSignIn(user) {
     const { connect, toggleModal } = this.props;
-    axios.post('http://localhost:4000/api/users/signin', user)
+    axios
+      .post('http://localhost:4000/api/users/signin', user)
       .then((res) => {
         sessionStorage.setItem('promoId', `${res.data.promoId}`);
         sessionStorage.setItem('loggedIn', 'true');
         sessionStorage.setItem('userRole', `${res.data.role}`);
         if (res.data.promoId) {
           const url = `http://localhost:4000/api/promotions/details/${res.data.promoId}`;
-          axios.get(url)
-            .then((result) => {
-              sessionStorage.setItem('programId', `${result.data.program.id}`);
-            });
+          axios.get(url).then((result) => {
+            sessionStorage.setItem('programId', `${result.data.program.id}`);
+          });
         }
         this.setState({ redirectToUser: false, redirectToAdmin: true });
         if (res.data.role === 3 || res.data.role === 2) {
@@ -60,9 +58,7 @@ export class SignInModal extends Component {
   }
 
   render() {
-    const {
-      email, password, redirectToUser, redirectToAdmin,
-    } = this.state;
+    const { email, password, redirectToUser, redirectToAdmin } = this.state;
     const { handleChange, handleSubmit } = this;
     const { toggleModal } = this.props;
     if (redirectToUser === true) {

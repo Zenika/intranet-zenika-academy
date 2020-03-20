@@ -8,15 +8,16 @@ import { PromoCreateStepThree } from './PromoCreateStepThree';
 import { PromoCreateStepFour } from './PromoCreateStepFour';
 import PromoCreateResume from './PromoCreateResume';
 
-
 Enzyme.configure({ adapter: new Adapter() });
 
 let wrapper;
 beforeEach(() => {
   wrapper = mount(<PromoCreateContainer />);
-  wrapper.state().program = [{ label: 'js', value: 2 }, { label: 'java', value: 4 }];
+  wrapper.state().program = [
+    { label: 'js', value: 2 },
+    { label: 'java', value: 4 },
+  ];
 });
-
 
 describe('PromoCreateContainer tests', () => {
   it('Should exist', () => {

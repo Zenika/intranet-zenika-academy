@@ -36,7 +36,8 @@ class ProgramDetails extends Component {
     if (JSON.parse(promoId) !== null) {
       this.setState({ promotionId: promoId });
     }
-    axios.get(`http://localhost:4000/api/programs/${id}/details`)
+    axios
+      .get(`http://localhost:4000/api/programs/${id}/details`)
       .then((res) => {
         const programDetails = res.data;
         if (this._isMounted) {
@@ -61,39 +62,29 @@ class ProgramDetails extends Component {
       if (programDetails.type === 1) {
         content = (
           <li key={programDetails.id}>
-            <h1 className="programTitle">
-              {programDetails.title}
-            </h1>
+            <h1 className="programTitle">{programDetails.title}</h1>
           </li>
         );
       } else if (programDetails.type === 2) {
         content = (
           <li key={programDetails.id}>
-            <h2 className="moduleTitle">
-              {programDetails.title}
-            </h2>
+            <h2 className="moduleTitle">{programDetails.title}</h2>
           </li>
         );
       } else if (programDetails.type === 3) {
         content = (
           <li key={programDetails.id}>
-            <h3 className="subModuleTitle">
-              {programDetails.title}
-            </h3>
+            <h3 className="subModuleTitle">{programDetails.title}</h3>
           </li>
         );
       } else if (programDetails.type === 4) {
         content = (
           <li key={programDetails.id}>
-            <h4 className="sequenceTitle">
-              {programDetails.title}
-            </h4>
+            <h4 className="sequenceTitle">{programDetails.title}</h4>
           </li>
         );
       }
-      this.titles.push(
-        content,
-      );
+      this.titles.push(content);
       programDetails.content.forEach(this.record);
     }
   };
@@ -103,14 +94,15 @@ class ProgramDetails extends Component {
   }
 
   /**
- * Allows to delete a program in the DB
- * @param {*} id Promo Id
- */
+   * Allows to delete a program in the DB
+   * @param {*} id Promo Id
+   */
   handleDelete(id) {
     const url = `http://localhost:4000/api/programs/${id}`;
     // eslint-disable-next-line no-restricted-globals,no-alert
     if (confirm('Voulez vous supprimer ce programme?')) {
-      axios.delete(url)
+      axios
+        .delete(url)
         .then(() => {
           this.setState({ redirectToAdmin: true });
         })
@@ -119,17 +111,17 @@ class ProgramDetails extends Component {
   }
 
   /**
- * Allows to call the delete method on mouse click
- * @param {*} id Promo Id
- */
+   * Allows to call the delete method on mouse click
+   * @param {*} id Promo Id
+   */
   handleDeleteClick(id) {
     return this.handleDelete(id);
   }
 
   /**
- * Allows to call the delete method on enter Key press
- * @param {*} id Promo Id
- */
+   * Allows to call the delete method on enter Key press
+   * @param {*} id Promo Id
+   */
   handleDeleteEnterKey(e, id) {
     if (e.key === 'Enter') {
       return this.handleDelete(id);
@@ -139,7 +131,12 @@ class ProgramDetails extends Component {
 
   render() {
     const {
-      programDetails, isAdmin, redirectToProgramEdit, programId, redirectToAdmin, promotionId,
+      programDetails,
+      isAdmin,
+      redirectToProgramEdit,
+      programId,
+      redirectToAdmin,
+      promotionId,
     } = this.state;
     const { goToProgramEdit, handleDeleteClick, handleDeleteEnterKey } = this;
     if (this.titles.length === 0) this.record(programDetails);
@@ -150,9 +147,10 @@ class ProgramDetails extends Component {
     if (redirectToProgramEdit) {
       const path = `/admin/program/${programId}/edit`;
       return (
-        <Redirect to={{
-          pathname: path,
-        }}
+        <Redirect
+          to={{
+            pathname: path,
+          }}
         />
       );
     }
@@ -161,12 +159,19 @@ class ProgramDetails extends Component {
       <>
         {!isAdmin && (
           <div className="buttonContainer">
-            <a href={`/user/promo/${promotionId}/details`} className="button is-dark goBack">Revenir à l&apos;accueil</a>
+            <a
+              href={`/user/promo/${promotionId}/details`}
+              className="button is-dark goBack"
+            >
+              Revenir à l&apos;accueil
+            </a>
           </div>
         )}
         {isAdmin && (
           <div className="buttonContainer">
-            <a href="/home/admin" className="button is-dark goBack">Revenir à l&apos;accueil</a>
+            <a href="/home/admin" className="button is-dark goBack">
+              Revenir à l&apos;accueil
+            </a>
             <button
               type="button"
               className="button is-warning"
