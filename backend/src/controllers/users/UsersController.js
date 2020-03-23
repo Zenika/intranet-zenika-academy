@@ -1,3 +1,4 @@
+const { createJwt } = require('../../utils/jwt');
 const bcrypt = require('bcryptjs');
 const { Users } = require('../../models');
 
@@ -75,11 +76,19 @@ module.exports = {
         foundUser.password,
       );
       if (!allowedUser) throw new Error('wrong credentials');
-      return res.status(200).json({
+      const payload = {
         role: foundUser.role,
         email: foundUser.email,
         promoId: foundUser.promotionId,
-      });
+      };
+      const token = await createJwt(payload);
+      return res
+        .cookie('token', token, {
+          maxAge: process.env.COOKIE_MAX_AGE_IN_MS || 10 * 60 * 60 * 1000,
+          httpOnly: true,
+        })
+        .status(200)
+        .send(payload);
     } catch (error) {
       return res.status(403).json({ error: error.message });
     }

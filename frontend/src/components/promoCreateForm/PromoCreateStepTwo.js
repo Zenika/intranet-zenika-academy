@@ -15,7 +15,7 @@ export class PromoCreateStepTwo extends Component {
   componentDidMount() {
     setTimeout(() => {
       axios
-        .get('http://localhost:4000/api/programs')
+        .get('/api/programs')
         .then((res) =>
           res.data.forEach((program) => {
             if (program.type === 1) {

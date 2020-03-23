@@ -16,7 +16,7 @@ export class PromoCreateStepThree extends Component {
     const { promo } = this.props;
     setTimeout(() => {
       axios
-        .get('http://localhost:4000/api/users')
+        .get('/api/users')
         .then((res) =>
           res.data.forEach((teacher) => {
             /** RETRIEVE ONLY AVAILABLE OR THIS PROMO TEACHERS FOR MULTISELECT */

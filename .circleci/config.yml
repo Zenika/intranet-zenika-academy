@@ -33,6 +33,9 @@ jobs:
       - run:
           command: npm test
           working_directory: backend
+          environment:
+            JWT_SECRET: jwt secret for tests
+            COOKIE_SECRET: cookie secret for tests
 
   frontend-build:
     docker:

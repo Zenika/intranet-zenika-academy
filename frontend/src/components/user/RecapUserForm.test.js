@@ -85,10 +85,7 @@ describe('UserForm tests', () => {
       preventDefault: () => {},
     });
     expect(getSpy).toHaveBeenCalledTimes(1);
-    expect(getSpy).toHaveBeenCalledWith(
-      'http://localhost:4000/api/users ',
-      state,
-    );
+    expect(getSpy).toHaveBeenCalledWith('/api/users ', state);
     getSpy.mockClear();
   });
 });

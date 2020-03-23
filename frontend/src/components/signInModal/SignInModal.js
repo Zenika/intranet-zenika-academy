@@ -23,13 +23,13 @@ export class SignInModal extends Component {
   handleSignIn(user) {
     const { connect, toggleModal } = this.props;
     axios
-      .post('http://localhost:4000/api/users/signin', user)
+      .post('/api/users/signin', user)
       .then((res) => {
         sessionStorage.setItem('promoId', `${res.data.promoId}`);
         sessionStorage.setItem('loggedIn', 'true');
         sessionStorage.setItem('userRole', `${res.data.role}`);
         if (res.data.promoId) {
-          const url = `http://localhost:4000/api/promotions/details/${res.data.promoId}`;
+          const url = `/api/promotions/details/${res.data.promoId}`;
           axios.get(url).then((result) => {
             sessionStorage.setItem('programId', `${result.data.program.id}`);
           });

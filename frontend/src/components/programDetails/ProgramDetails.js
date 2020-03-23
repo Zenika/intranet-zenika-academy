@@ -36,14 +36,12 @@ class ProgramDetails extends Component {
     if (JSON.parse(promoId) !== null) {
       this.setState({ promotionId: promoId });
     }
-    axios
-      .get(`http://localhost:4000/api/programs/${id}/details`)
-      .then((res) => {
-        const programDetails = res.data;
-        if (this._isMounted) {
-          this.setState({ programDetails, programId: id });
-        }
-      });
+    axios.get(`/api/programs/${id}/details`).then((res) => {
+      const programDetails = res.data;
+      if (this._isMounted) {
+        this.setState({ programDetails, programId: id });
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -98,7 +96,7 @@ class ProgramDetails extends Component {
    * @param {*} id Promo Id
    */
   handleDelete(id) {
-    const url = `http://localhost:4000/api/programs/${id}`;
+    const url = `/api/programs/${id}`;
     // eslint-disable-next-line no-restricted-globals,no-alert
     if (confirm('Voulez vous supprimer ce programme?')) {
       axios

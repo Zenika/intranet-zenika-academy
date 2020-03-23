@@ -15,7 +15,7 @@ class RecapProgramForm extends React.Component {
   createProgram = (e) => {
     e.preventDefault();
     const { program } = this.props;
-    Axios.post('http://localhost:4000/api/programs', program).then(() =>
+    Axios.post('/api/programs', program).then(() =>
       this.setState(() => ({ redirectToReferrer: true })),
     );
   };
@@ -23,10 +23,9 @@ class RecapProgramForm extends React.Component {
   editProgram = (e) => {
     e.preventDefault();
     const { program } = this.props;
-    Axios.put(
-      `http://localhost:4000/api/programs/${program.id}/update`,
-      program,
-    ).then(() => this.setState(() => ({ redirectToReferrer: true })));
+    Axios.put(`/api/programs/${program.id}/update`, program).then(() =>
+      this.setState(() => ({ redirectToReferrer: true })),
+    );
   };
 
   render() {

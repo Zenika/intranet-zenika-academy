@@ -28,10 +28,7 @@ class PromoDetails extends Component {
       this.setState({ isAdmin: true });
     }
     const { match } = this.props;
-    const url = `http://localhost:4000/api/promotions/details/${parseInt(
-      match.params.id,
-      10,
-    )}`;
+    const url = `/api/promotions/details/${parseInt(match.params.id, 10)}`;
     Axios.get(url).then((result) => {
       this.setState({
         users: result.data.users,
@@ -48,7 +45,7 @@ class PromoDetails extends Component {
    * @param {*} id Promo Id
    */
   handleDelete(id) {
-    const url = `http://localhost:4000/api/promotions/${id}`;
+    const url = `/api/promotions/${id}`;
     // eslint-disable-next-line no-restricted-globals,no-alert
     if (confirm('Voulez vous supprimer cette promotion?')) {
       Axios.delete(url)

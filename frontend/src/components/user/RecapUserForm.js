@@ -20,7 +20,7 @@ class RecapProgramForm extends React.Component {
   createUser = (e) => {
     e.preventDefault();
     const { user } = this.state;
-    Axios.post('http://localhost:4000/api/users ', user).then(() =>
+    Axios.post('/api/users ', user).then(() =>
       this.setState(() => ({ redirectToReferrer: true })),
     );
   };
