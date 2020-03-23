@@ -36,7 +36,7 @@
     "lint": "eslint ./src/**/*.js",
     "coverage": "npm test -- --coverage",
     "prettier": "prettier \"src/{**/,}*.{js,scss,json}\"",
-    "prettier:check": "npm run prettier -- --list-different",
+    "prettier:check": "npm run prettier -- --check",
     "prettier:write": "npm run prettier -- --write"
   },
   "browserslist": {

@@ -15,7 +15,7 @@
     "migrate": "sequelize-cli db:migrate",
     "lint": "eslint ./src/**",
     "prettier": "prettier \"src/{**/,}*.{js,json}\" \"test/{**/,}*.{js,json}\"",
-    "prettier:check": "npm run prettier -- --list-different",
+    "prettier:check": "npm run prettier -- --check",
     "prettier:write": "npm run prettier -- --write"
   },
   "dependencies": {
